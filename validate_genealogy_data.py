@@ -80,13 +80,13 @@ def main() -> None:
             errors.append(f"Family {family_id}: no relationship evidence")
     for source_id, source in sources.items():
         if not (DIRECTORY / source["file_name"]).is_file():
-            errors.append(f"{source_id}: chart file not found: {source['file_name']}")
+            errors.append(f"{source_id}: source file not found: {source['file_name']}")
 
     if errors:
         raise SystemExit("\n".join(errors))
     print(
         f"Validated {len(people)} people, {len(families)} families, "
-        f"{len(evidence_rows)} evidence records, and {len(sources)} source charts."
+        f"{len(evidence_rows)} evidence records, and {len(sources)} source documents."
     )
 
 

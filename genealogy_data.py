@@ -7,9 +7,30 @@ from pathlib import Path
 
 
 DIRECTORY = Path(__file__).resolve().parent
+PEOPLE_REGISTRY = DIRECTORY / "genealogy_people_registry.csv"
 FAMILY_REGISTRY = DIRECTORY / "genealogy_family_registry.csv"
 SOURCE_REGISTRY = DIRECTORY / "genealogy_sources.csv"
 EVIDENCE_REGISTRY = DIRECTORY / "genealogy_relationship_evidence.csv"
+
+
+def load_people() -> list[dict[str, str | int | None]]:
+    """Return normalized person records from the people CSV registry."""
+    people = []
+    with PEOPLE_REGISTRY.open(encoding="utf-8", newline="") as source:
+        for row in csv.DictReader(source):
+            people.append(
+                {
+                    "id": int(row["id"]),
+                    "first": row["first_name"],
+                    "surname": row["surname"],
+                    "surname_group": row["family_name_group"] or "Unknown",
+                    "birth": int(row["birth_year"]) if row["birth_year"] else None,
+                    "death": int(row["death_year"]) if row["death_year"] else None,
+                    "source": row["source"],
+                    "note": row["note"],
+                }
+            )
+    return people
 
 
 def load_families() -> list[tuple[int | None, int | None, list[int], str]]:
