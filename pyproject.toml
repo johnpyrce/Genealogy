@@ -1,0 +1,16 @@
+[project]
+name = "genealogy"
+version = "0.1.0"
+description = "Genealogy tools"
+readme = "README.md"
+authors = [
+    { name = "John Pyrce", email = "johnpyrce@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "duckdb>=1.4.0",
+    "pillow>=12.3.0",
+]
+
+[tool.uv]
+package = false

@@ -1,0 +1,158 @@
+id,first_name,surname,family_name_group,birth_year,death_year,source,note
+1,Wawrzyniec,Gościński,Gościński,1760,,printed,approximate birth year
+2,Teresa,Bartmanowicz,Bartmanowicz,,,printed,
+3,Wawrzyniec,Gościński,Gościński,1780,,printed,
+4,Stanisław,Gościński,Gościński,1785,,printed,relationship provisional
+5,Jakub,Gościński,Gościński,1788,,printed,relationship provisional
+6,Antoni,Gościński,Gościński,1816,,printed,
+7,Katarzyna,Grotkowska,Grotkowski,,,printed,
+8,Maria,Sasała,Sasała,,,printed,
+9,Maria,Tryszczyła,Tryszczyła,,,printed,
+10,Franciszek,Gościński,Gościński,1852,1902,printed,
+11,Józefa,Szost,Szost,1853,1926,printed,
+12,Maria,Gościńska,Gościński,,,printed,
+13,Antoni,Drozd,Drozd,1815,,printed,
+14,Jan,Gościński,Gościński,1888,1970,both,
+15,Marianna,Miczulska,Miczulski,1895,1962,both,
+16,Józef,Gościński,Gościński,1895,,printed,
+17,Joanna,Gościńska,Gościński,,,printed,
+18,Andrzej,Gościński,Gościński,,,both,
+19,Franciszek,Gościński,Gościński,,,printed-only sibling,
+20,Magdalena,Gościńska,Gościński,,,printed-only sibling,
+21,Piotr,Szost,Szost,1861,,printed,
+22,Zofia,Gościńska,Gościński,1883,1964,handwritten-only sibling,
+23,Bronisław,Gościński,Gościński,1920,2001,both,
+24,Władysława,Śliwa,Śliwa,1927,2004,both,
+25,Teresa,Gościński,Gościński,,,handwritten,
+26,Marta,Gościński,Gościński,,,handwritten,
+27,Barbara,Gościński,Gościński,,,handwritten,
+28,Edward,Gościński,Gościński,1922,2010,both,
+29,Anna,Maślanka,Maślanka,1928,,both,
+30,Marek,Gościński,Gościński,,,handwritten,
+31,Stanisław,Gościński,Gościński,1923,,both,
+32,Jan,Gościński,Gościński,1925,1985,both,
+33,Zofia,Jacenik,Jacenik,,,both,
+34,Mariusz,Gościński,Gościński,,,handwritten,
+35,Stanisław,Gościński,Gościński,1927,2009,both,
+36,Władysława,Miczulska,Miczulski,1932,2020,both,
+37,Antonina,Miczulska,Miczukski,,,handwritten,daughter of Stanisław and Władysława; shown with Jerzy Guzyk in S4; surname not given
+38,Joanna,Guzyk,Guzyk,,,handwritten,wife listed before husband in S4
+39,Józef,Berduchowski,Berduchowski,,,handwritten,
+40,Jakub,Berduchowski,Berduchowski,,,handwritten,surname inherited from father Józef Berduchowski in S4
+41,Emilia,Pawlowska,Pawlowski,,,handwritten,shown as Jakub's spouse in S4
+42,Krzysztof,Berduchowski,Berduchowski,,,handwritten,surname inherited from father Józef Berduchowski in S4
+43,Łukasz,Guzyk,Guzyk,,,handwritten,
+44,Katarzyna,Sulkowska,Guzyk,,,handwritten,surname not given in S4
+45,Emilia,Guzyk,Guzyk,,,handwritten,surname inherited from father Łukasz Sułkowski in S4
+46,Olivier,Guzyk,Guzyk,,,handwritten,surname inherited from father Łukasz Sułkowski in S4
+47,Marta,Guzyk,Guzyk,,,handwritten,wife listed before husband in S4; surname not given
+48,Marcin,Magarzewych,Magarzewych,,,handwritten,surname reading provisional
+49,Maja,Magarzewych,Magarzewych,,,handwritten,surname inherited from father Marcin Magarzewych in S4; surname reading remains provisional
+50,Marcel,Magarzewych,Magarzewych,,,handwritten,surname inherited from father Marcin Magarzewych in S4; surname reading remains provisional
+51,Grażyna,Guzyk,Guzyk,,,handwritten,wife listed before husband in S4; surname not given
+52,Andrzej,Drabyk,Drabyk,,,handwritten,
+53,Elżbieta,Gościński,Gościński,,,handwritten,marked deceased
+54,Wanda,Gościńska,Gościński,,,both,
+55,Bogumił,Gościński,Gościński,,,polished,
+56,Magdalena,Gościńska,Gościński,,,polished,
+57,Łukasz,Wiśniewski,Wiśniewski,,,polished,
+58,Filip,Wiśniewski,Wiśniewski,,,polished,
+59,Martyna,Wiśniewska,Wiśniewski,,,polished,
+60,Rafał,Gościński,Gościński,,,polished,
+61,Joanna,Kowalczyk,Kowalczyk,,,polished,
+62,Aleksandra,Gościńska,Gościński,,,polished,
+63,Dorota,Gościńska,Gościński,,,polished,
+64,Paulina,Gościńska,Gościński,,,polished,
+65,Grzegorz,Hryc,Hryc,,,polished,
+66,Konstanty,Hryc,Hryc,,,polished,
+67,Wincenty,Hryc,Hryc,,,polished,
+68,Renata,Gościńska,Gościński,,,polished,
+69,Małgorzata,Gościński,Gościński,,,handwritten,
+70,Bogdan,Gościński,Gościński,,,handwritten,generation uncertain
+71,Pluto,Gościński,Gościński,,,handwritten,name and generation uncertain
+72,Bronisława,Gościńska,Gościński,1930,2015,both,
+73,Bolesław,Rams,Rams,1924,2002,both,
+74,Antonina,Gościńska,Gościński,1936,,printed,
+75,Bronisław,Miąsik,Miąsik,,,printed,
+76,Jan,Pyrc,Pyrc,,,handwritten,
+77,Anna,Bukowska,Bukowski,,,handwritten,
+78,Józef,Pyrc,Pyrc,1879,1940,handwritten,
+79,Emil,Pyrc,Pyrc,,,handwritten,
+80,Stanisław,Pyrc,Pyrc,1911,1944,handwritten,
+81,Tadeusz,Pyrc,Pyrc,1920,2004,both,
+82,Karol,Pyrc,Pyrc,1917,1994,both,
+83,Bronisława,Pyrc,Pyrc,1913,2009,both,
+84,Stefania,Pyrc,Pyrc,1923,2018,both,
+85,Maria,Pyrc,Pyrc,,,handwritten,
+86,Jan,Storoż,Storoż,,,handwritten,surname provisional
+87,Franciszek,Pyrc,Pyrc,,,handwritten,
+88,Marcin,Rams,Rams,,,printed,
+89,Anna,Tryszczyła,Tryszczyła,,,printed,
+90,Wawrzyniec,Rams,Rams,,,printed,relationship provisional
+91,Agata,,Unknown,,,printed,
+92,Wojciech,Rams,Rams,1880,1953,printed,
+93,Stanisław,Rams,Rams,1894,1957,printed,
+94,Joanna,Gruczelak,Gruczelak,1901,1994,printed,
+95,Małgorzata,Rams,Rams,1958,,printed,
+96,Henryk,Drzązgowski,Drzązgowski,1957,2002,printed,
+97,Józef,Drost,Drost,1961,,printed,relationship placement uncertain
+98,Joanna,Drzązgowska,Drzązgowski,1985,,printed,
+99,Aleksandra,Drzązgowska,Drzązgowski,1987,,printed,
+100,Michał,Drzązgowski,Drzązgowski,1988,,printed,
+101,Bogusław,Rams,Rams,1960,,printed,
+102,Halina,Dulak,Dulak,1965,,printed,
+103,Maciej,Rams,Rams,1990,,printed,
+104,Natalia,Tokarczyk,Tokarczyk,1993,,printed,
+105,Hanna,Rams,Rams,2021,,printed,relationship provisional
+106,Wojciech,Rams,Rams,1995,,printed,
+107,Natalia,Drobny,Drobny,,,printed,
+108,Urszula,Rams,Rams,2000,,printed,
+109,Wojciech,Walczyk,Walczyk,,,printed,
+110,Marta,Rams,Rams,1965,,printed,
+111,Wiesław,Kokoszka,Kokoszka,1959,,printed,
+112,Karolina,Kokoszka,Kokoszka,1987,,printed,
+113,Anna,Kokoszka,Kokoszka,1988,,printed,
+114,Jan,Romer,Romer,,,printed,
+115,Rita,Romer,Romer,2023,,printed,relationship provisional
+116,Marta,Romer,Romer,,,printed,relationship provisional
+117,Jan,Rams,Rams,1908,1988,printed,
+118,Helena,Ruchałowska,Ruchałowski,1909,2005,printed,
+119,Józef,Rams,Rams,,,printed,
+120,Zofia,Ślaby,Ślaby,1914,2004,printed,
+121,Michalina,Rams,Rams,1917,1996,printed,
+122,Józef,Tokarczyk,Tokarczyk,1909,1984,printed,
+123,Michał,Rams,Rams,1910,1974,printed,
+124,Katarzyna,,Unknown,,,printed,wife placement uncertain
+125,Janina,Fedorczak,Fedorczak,,,printed,
+126,Stanisława,Rams,Rams,1923,2013,printed,
+127,Józef,Cisowski,Cisowski,1913,1995,printed,
+128,Henryk,Rams,Rams,1927,2024,printed,
+129,Genowefa,Gumuliak,Gumuliak,1932,2015,printed,
+130,Wawrzyniec,Miczulski,Miczulski,,,printed,
+131,Małgorzata,Kałucka,Kałucki,,,printed,surname provisional
+132,Piotr,Miczulski,Miczulski,1805,,printed,
+133,Marianna,Sajdak,Sajdak,,,printed,
+134,Katarzyna,Fedorczak,Fedorczak,,,printed,connector provisional
+135,Jan,Miczulski,Miczulski,1833,,printed,
+136,Katarzyna,Łyga,Łyga,,,printed,connector provisional
+137,Jan,Moszczak,Moszczak,1860,1952,printed,
+138,Maria,Wilczyńska,Wilczyński,1861,1953,printed,
+139,Michał,Homa,Homa,1839,,printed,
+140,Marianna,Krajowska,Krajowski,,,printed,
+141,Agnieszka,Homa,Homa,1884,1968,printed,
+142,Franciszek,Miczulski,Miczulski,1899,1965,printed,
+143,Stanisław,Śliwa,Śliwa,1871,1950,printed,
+144,Zofia,Homa,Homa,1886,1927,printed,
+145,Franciszek,Śliwa,Śliwa,1905,1981,printed,
+146,Maria,Moszczak,Moszczak,1903,1993,printed,
+147,Józef,Szost,Szost,1803,,printed,
+148,Maria,Matusiewicz,Matusiewicz,,,printed,
+149,Franciszek,Szost,Szost,1832,,printed,
+150,Zofia,Wilczyńska,Wilczyński,,,printed,
+151,Jan,Gruczelak,Gruczelak,1854,,printed,
+152,Piotr,Jacenik,Jacenik,1908,2002,printed,corrected from the S2 spouse pedigree
+153,Antonina,Bukowska,Bukowski,,,printed,
+154,Maria,Gruczelak,Gruczelak,,,printed,previous extraction; relationship not verified in S2
+155,Zofia,Matusiewicz,Matusiewicz,,,printed,spouse of Wawrzyniec Gościński (1780)
+156,Unknown,Łyga,Łyga,,,printed,first name not shown in S2
+157,Jerzy,Guzyk,Guzyk,,,handwritten,shown with Antonina in S4

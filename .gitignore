@@ -1,0 +1,16 @@
+__pycache__/
+*.py[oc]
+.venv/
+.DS_Store
+.env
+.env.*
+!.env.example
+
+# Reproducible local outputs and dashboard build products.
+artifacts/
+apps/analytics-dashboard/dist/
+apps/analytics-dashboard/node_modules/
+apps/analytics-dashboard/.data-app-offline/
+
+# Preserved only as a local historical reference until reviewed.
+archive/

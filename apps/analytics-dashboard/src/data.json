@@ -1,0 +1,1067 @@
+{
+  "surface": "report",
+  "title": "The Muszyna genealogy has nine documented generations",
+  "generatedAt": "2026-09-16T11:21:30-05:00",
+  "buildStatus": "complete",
+  "status": "reviewed",
+  "queries": {
+    "summary": {
+      "rows": [
+        {
+          "people": 157,
+          "families": 58,
+          "familyChildMemberships": 94,
+          "parentChildEdges": 181,
+          "evidenceRecords": 67,
+          "sourceCharts": 6,
+          "maximumGeneration": 9,
+          "components": 27
+        }
+      ],
+      "source": {
+        "label": "DuckDB analytics summary",
+        "sourceFiles": [
+          "data/registries/people.csv",
+          "data/registries/families.csv",
+          "data/registries/relationship_evidence.csv",
+          "data/registries/sources.csv",
+          "artifacts/analytics/genealogy_analytics.duckdb"
+        ],
+        "filters": [
+          "Rebuilt from the editable CSV registries through the local DuckDB analytical layer"
+        ],
+        "metricDefinitions": [
+          {
+            "label": "DuckDB analytics summary",
+            "definition": "Headline inventory and tree-structure measures calculated from normalized DuckDB tables.",
+            "componentIds": [
+              "analytics-summary",
+              "metric-people",
+              "metric-generation",
+              "metric-families",
+              "metric-sources"
+            ]
+          }
+        ]
+      }
+    },
+    "inventory": {
+      "rows": [
+        {
+          "measure": "People",
+          "value": 157
+        },
+        {
+          "measure": "Families",
+          "value": 58
+        },
+        {
+          "measure": "Partner associations",
+          "value": 56
+        },
+        {
+          "measure": "Family-child memberships",
+          "value": 94
+        },
+        {
+          "measure": "Directed parent-child links",
+          "value": 181
+        },
+        {
+          "measure": "Source charts",
+          "value": 6
+        },
+        {
+          "measure": "Evidence records",
+          "value": 67
+        }
+      ],
+      "source": {
+        "label": "Registry inventory",
+        "sourceFiles": [
+          "data/registries/people.csv",
+          "data/registries/families.csv",
+          "data/registries/relationship_evidence.csv",
+          "data/registries/sources.csv",
+          "artifacts/analytics/genealogy_analytics.duckdb"
+        ],
+        "filters": [
+          "Rebuilt from the editable CSV registries through the local DuckDB analytical layer"
+        ],
+        "metricDefinitions": [
+          {
+            "label": "Registry inventory",
+            "definition": "Counts at their natural registry grain; parent-child edges are directed.",
+            "componentIds": [
+              "inventory-chart",
+              "inventory-table"
+            ]
+          }
+        ]
+      }
+    },
+    "completeness": {
+      "rows": [
+        {
+          "field": "Birth year",
+          "known": 76,
+          "total": 157,
+          "coverage_pct": 48.4
+        },
+        {
+          "field": "Both birth and death",
+          "known": 42,
+          "total": 157,
+          "coverage_pct": 26.8
+        },
+        {
+          "field": "Death year",
+          "known": 42,
+          "total": 157,
+          "coverage_pct": 26.8
+        },
+        {
+          "field": "Family evidence",
+          "known": 58,
+          "total": 58,
+          "coverage_pct": 100.0
+        },
+        {
+          "field": "Family-name group",
+          "known": 157,
+          "total": 157,
+          "coverage_pct": 100.0
+        },
+        {
+          "field": "First name",
+          "known": 157,
+          "total": 157,
+          "coverage_pct": 100.0
+        },
+        {
+          "field": "Generation assigned",
+          "known": 157,
+          "total": 157,
+          "coverage_pct": 100.0
+        },
+        {
+          "field": "Named parent",
+          "known": 91,
+          "total": 157,
+          "coverage_pct": 58.0
+        },
+        {
+          "field": "Recorded partner",
+          "known": 109,
+          "total": 157,
+          "coverage_pct": 69.4
+        },
+        {
+          "field": "Surname",
+          "known": 155,
+          "total": 157,
+          "coverage_pct": 98.7
+        }
+      ],
+      "source": {
+        "label": "Registry completeness",
+        "sourceFiles": [
+          "data/registries/people.csv",
+          "data/registries/families.csv",
+          "data/registries/relationship_evidence.csv",
+          "data/registries/sources.csv",
+          "artifacts/analytics/genealogy_analytics.duckdb"
+        ],
+        "filters": [
+          "Rebuilt from the editable CSV registries through the local DuckDB analytical layer"
+        ],
+        "metricDefinitions": [
+          {
+            "label": "Registry completeness",
+            "definition": "Known values divided by the stated people or family denominator.",
+            "componentIds": [
+              "completeness-chart",
+              "completeness-table"
+            ]
+          }
+        ]
+      }
+    },
+    "evidence": {
+      "rows": [
+        {
+          "confidence": "confirmed",
+          "evidence_records": 53,
+          "share_pct": 79.1
+        },
+        {
+          "confidence": "probable",
+          "evidence_records": 11,
+          "share_pct": 16.4
+        },
+        {
+          "confidence": "uncertain",
+          "evidence_records": 3,
+          "share_pct": 4.5
+        }
+      ],
+      "source": {
+        "label": "Evidence confidence",
+        "sourceFiles": [
+          "data/registries/people.csv",
+          "data/registries/families.csv",
+          "data/registries/relationship_evidence.csv",
+          "data/registries/sources.csv",
+          "artifacts/analytics/genealogy_analytics.duckdb"
+        ],
+        "filters": [
+          "Rebuilt from the editable CSV registries through the local DuckDB analytical layer"
+        ],
+        "metricDefinitions": [
+          {
+            "label": "Evidence confidence",
+            "definition": "Confidence labels on evidence rows, not a score for every distinct relationship.",
+            "componentIds": [
+              "evidence-confidence-chart"
+            ]
+          }
+        ]
+      }
+    },
+    "source_contribution": {
+      "rows": [
+        {
+          "sourceId": "S2",
+          "evidenceRecords": 25
+        },
+        {
+          "sourceId": "S5",
+          "evidenceRecords": 19
+        },
+        {
+          "sourceId": "S3",
+          "evidenceRecords": 10
+        },
+        {
+          "sourceId": "S4",
+          "evidenceRecords": 8
+        },
+        {
+          "sourceId": "S1",
+          "evidenceRecords": 4
+        },
+        {
+          "sourceId": "S6",
+          "evidenceRecords": 1
+        }
+      ],
+      "source": {
+        "label": "Evidence contribution by source chart",
+        "sourceFiles": [
+          "data/registries/people.csv",
+          "data/registries/families.csv",
+          "data/registries/relationship_evidence.csv",
+          "data/registries/sources.csv",
+          "artifacts/analytics/genealogy_analytics.duckdb"
+        ],
+        "filters": [
+          "Rebuilt from the editable CSV registries through the local DuckDB analytical layer"
+        ],
+        "metricDefinitions": [
+          {
+            "label": "Evidence contribution by source chart",
+            "definition": "Evidence-row counts by stable source-chart identifier.",
+            "componentIds": [
+              "evidence-source-chart"
+            ]
+          }
+        ]
+      }
+    },
+    "tree_structure": {
+      "rows": [
+        {
+          "measure": "Connected components",
+          "value": 27
+        },
+        {
+          "measure": "Roots",
+          "value": 66
+        },
+        {
+          "measure": "Terminal lines",
+          "value": 78
+        },
+        {
+          "measure": "Maximum generation",
+          "value": 9
+        },
+        {
+          "measure": "Maximum generation width",
+          "value": 66
+        },
+        {
+          "measure": "Isolated people",
+          "value": 26
+        }
+      ],
+      "source": {
+        "label": "Computed tree structure",
+        "sourceFiles": [
+          "data/registries/people.csv",
+          "data/registries/families.csv",
+          "data/registries/relationship_evidence.csv",
+          "data/registries/sources.csv",
+          "artifacts/analytics/genealogy_analytics.duckdb"
+        ],
+        "filters": [
+          "Rebuilt from the editable CSV registries through the local DuckDB analytical layer"
+        ],
+        "metricDefinitions": [
+          {
+            "label": "Computed tree structure",
+            "definition": "Structure computed from documented parent-child edges; spouses are excluded.",
+            "componentIds": [
+              "tree-structure-table"
+            ]
+          }
+        ]
+      }
+    },
+    "family_structure": {
+      "rows": [
+        {
+          "measure": "Families with recorded children",
+          "value": 41.0
+        },
+        {
+          "measure": "Mean children per family with children",
+          "value": 2.29
+        },
+        {
+          "measure": "Median children per family with children",
+          "value": 2.0
+        },
+        {
+          "measure": "Largest recorded family",
+          "value": 7.0
+        }
+      ],
+      "source": {
+        "label": "Recorded family structure",
+        "sourceFiles": [
+          "data/registries/people.csv",
+          "data/registries/families.csv",
+          "data/registries/relationship_evidence.csv",
+          "data/registries/sources.csv",
+          "artifacts/analytics/genealogy_analytics.duckdb"
+        ],
+        "filters": [
+          "Rebuilt from the editable CSV registries through the local DuckDB analytical layer"
+        ],
+        "metricDefinitions": [
+          {
+            "label": "Recorded family structure",
+            "definition": "Recorded registry structure; missing partners or children are not evidence of absence.",
+            "componentIds": [
+              "family-structure-table"
+            ]
+          }
+        ]
+      }
+    },
+    "temporal": {
+      "rows": [
+        {
+          "decade": "1760s",
+          "people": 1
+        },
+        {
+          "decade": "1780s",
+          "people": 3
+        },
+        {
+          "decade": "1800s",
+          "people": 2
+        },
+        {
+          "decade": "1810s",
+          "people": 2
+        },
+        {
+          "decade": "1830s",
+          "people": 3
+        },
+        {
+          "decade": "1850s",
+          "people": 3
+        },
+        {
+          "decade": "1860s",
+          "people": 3
+        },
+        {
+          "decade": "1870s",
+          "people": 2
+        },
+        {
+          "decade": "1880s",
+          "people": 5
+        },
+        {
+          "decade": "1890s",
+          "people": 4
+        },
+        {
+          "decade": "1900s",
+          "people": 7
+        },
+        {
+          "decade": "1910s",
+          "people": 7
+        },
+        {
+          "decade": "1920s",
+          "people": 12
+        },
+        {
+          "decade": "1930s",
+          "people": 4
+        },
+        {
+          "decade": "1950s",
+          "people": 3
+        },
+        {
+          "decade": "1960s",
+          "people": 4
+        },
+        {
+          "decade": "1980s",
+          "people": 5
+        },
+        {
+          "decade": "1990s",
+          "people": 3
+        },
+        {
+          "decade": "2000s",
+          "people": 1
+        },
+        {
+          "decade": "2020s",
+          "people": 2
+        }
+      ],
+      "source": {
+        "label": "Recorded births by decade",
+        "sourceFiles": [
+          "data/registries/people.csv",
+          "data/registries/families.csv",
+          "data/registries/relationship_evidence.csv",
+          "data/registries/sources.csv",
+          "artifacts/analytics/genealogy_analytics.duckdb"
+        ],
+        "filters": [
+          "Rebuilt from the editable CSV registries through the local DuckDB analytical layer"
+        ],
+        "metricDefinitions": [
+          {
+            "label": "Recorded births by decade",
+            "definition": "People grouped by recorded birth decade; undated people are excluded.",
+            "componentIds": [
+              "temporal-chart"
+            ]
+          }
+        ]
+      }
+    },
+    "names_and_identity": {
+      "rows": [
+        {
+          "familyName": "Gościński",
+          "people": 38
+        },
+        {
+          "familyName": "Rams",
+          "people": 18
+        },
+        {
+          "familyName": "Pyrc",
+          "people": 10
+        },
+        {
+          "familyName": "Guzyk",
+          "people": 8
+        },
+        {
+          "familyName": "Miczulski",
+          "people": 6
+        },
+        {
+          "familyName": "Drzązgowski",
+          "people": 4
+        },
+        {
+          "familyName": "Szost",
+          "people": 4
+        },
+        {
+          "familyName": "Berduchowski",
+          "people": 3
+        },
+        {
+          "familyName": "Gruczelak",
+          "people": 3
+        },
+        {
+          "familyName": "Homa",
+          "people": 3
+        },
+        {
+          "familyName": "Hryc",
+          "people": 3
+        },
+        {
+          "familyName": "Kokoszka",
+          "people": 3
+        },
+        {
+          "familyName": "Magarzewych",
+          "people": 3
+        },
+        {
+          "familyName": "Romer",
+          "people": 3
+        },
+        {
+          "familyName": "Wiśniewski",
+          "people": 3
+        },
+        {
+          "familyName": "Śliwa",
+          "people": 3
+        },
+        {
+          "familyName": "Bukowski",
+          "people": 2
+        },
+        {
+          "familyName": "Fedorczak",
+          "people": 2
+        },
+        {
+          "familyName": "Jacenik",
+          "people": 2
+        },
+        {
+          "familyName": "Matusiewicz",
+          "people": 2
+        },
+        {
+          "familyName": "Moszczak",
+          "people": 2
+        },
+        {
+          "familyName": "Tokarczyk",
+          "people": 2
+        },
+        {
+          "familyName": "Tryszczyła",
+          "people": 2
+        },
+        {
+          "familyName": "Unknown",
+          "people": 2
+        },
+        {
+          "familyName": "Wilczyński",
+          "people": 2
+        },
+        {
+          "familyName": "Łyga",
+          "people": 2
+        },
+        {
+          "familyName": "Bartmanowicz",
+          "people": 1
+        },
+        {
+          "familyName": "Cisowski",
+          "people": 1
+        },
+        {
+          "familyName": "Drabyk",
+          "people": 1
+        },
+        {
+          "familyName": "Drobny",
+          "people": 1
+        },
+        {
+          "familyName": "Drost",
+          "people": 1
+        },
+        {
+          "familyName": "Drozd",
+          "people": 1
+        },
+        {
+          "familyName": "Dulak",
+          "people": 1
+        },
+        {
+          "familyName": "Grotkowski",
+          "people": 1
+        },
+        {
+          "familyName": "Gumuliak",
+          "people": 1
+        },
+        {
+          "familyName": "Kałucki",
+          "people": 1
+        },
+        {
+          "familyName": "Kowalczyk",
+          "people": 1
+        },
+        {
+          "familyName": "Krajowski",
+          "people": 1
+        },
+        {
+          "familyName": "Maślanka",
+          "people": 1
+        },
+        {
+          "familyName": "Miczukski",
+          "people": 1
+        },
+        {
+          "familyName": "Miąsik",
+          "people": 1
+        },
+        {
+          "familyName": "Pawlowski",
+          "people": 1
+        },
+        {
+          "familyName": "Ruchałowski",
+          "people": 1
+        },
+        {
+          "familyName": "Sajdak",
+          "people": 1
+        },
+        {
+          "familyName": "Sasała",
+          "people": 1
+        },
+        {
+          "familyName": "Storoż",
+          "people": 1
+        },
+        {
+          "familyName": "Walczyk",
+          "people": 1
+        },
+        {
+          "familyName": "Ślaby",
+          "people": 1
+        }
+      ],
+      "source": {
+        "label": "Normalized family-name groups",
+        "sourceFiles": [
+          "data/registries/people.csv",
+          "data/registries/families.csv",
+          "data/registries/relationship_evidence.csv",
+          "data/registries/sources.csv",
+          "artifacts/analytics/genealogy_analytics.duckdb"
+        ],
+        "filters": [
+          "Rebuilt from the editable CSV registries through the local DuckDB analytical layer"
+        ],
+        "metricDefinitions": [
+          {
+            "label": "Normalized family-name groups",
+            "definition": "Registry family-name groups as recorded and normalized in the people registry.",
+            "componentIds": [
+              "family-name-chart",
+              "family-name-table"
+            ]
+          }
+        ]
+      }
+    },
+    "family_size_distribution": {
+      "rows": [
+        {
+          "family_size": 1,
+          "families": 18
+        },
+        {
+          "family_size": 2,
+          "families": 10
+        },
+        {
+          "family_size": 3,
+          "families": 6
+        },
+        {
+          "family_size": 4,
+          "families": 2
+        },
+        {
+          "family_size": 5,
+          "families": 1
+        },
+        {
+          "family_size": 6,
+          "families": 3
+        },
+        {
+          "family_size": 7,
+          "families": 1
+        }
+      ],
+      "source": {
+        "label": "Family-size distribution",
+        "sourceFiles": [
+          "data/registries/people.csv",
+          "data/registries/families.csv",
+          "data/registries/relationship_evidence.csv",
+          "data/registries/sources.csv",
+          "artifacts/analytics/genealogy_analytics.duckdb"
+        ],
+        "filters": [
+          "Rebuilt from the editable CSV registries through the local DuckDB analytical layer"
+        ],
+        "metricDefinitions": [
+          {
+            "label": "Family-size distribution",
+            "definition": "Children listed per family, excluding families with no recorded children.",
+            "componentIds": [
+              "family-size-chart"
+            ]
+          }
+        ]
+      }
+    },
+    "longevity_distribution": {
+      "rows": [
+        {
+          "ageBand": "30–39",
+          "people": 1
+        },
+        {
+          "ageBand": "40–49",
+          "people": 2
+        },
+        {
+          "ageBand": "50–59",
+          "people": 1
+        },
+        {
+          "ageBand": "60–69",
+          "people": 6
+        },
+        {
+          "ageBand": "70–79",
+          "people": 9
+        },
+        {
+          "ageBand": "80–89",
+          "people": 12
+        },
+        {
+          "ageBand": "90–99",
+          "people": 11
+        }
+      ],
+      "source": {
+        "label": "Age-at-death distribution",
+        "sourceFiles": [
+          "data/registries/people.csv",
+          "data/registries/families.csv",
+          "data/registries/relationship_evidence.csv",
+          "data/registries/sources.csv",
+          "artifacts/analytics/genealogy_analytics.duckdb"
+        ],
+        "filters": [
+          "Rebuilt from the editable CSV registries through the local DuckDB analytical layer"
+        ],
+        "metricDefinitions": [
+          {
+            "label": "Age-at-death distribution",
+            "definition": "Recorded death year minus recorded birth year; only people with both years are included.",
+            "componentIds": [
+              "longevity-chart"
+            ]
+          }
+        ]
+      }
+    },
+    "child_birth_span_distribution": {
+      "rows": [
+        {
+          "span_band": "0–4 years",
+          "sort_order": 1,
+          "families": 3
+        },
+        {
+          "span_band": "5–9 years",
+          "sort_order": 2,
+          "families": 1
+        },
+        {
+          "span_band": "10–14 years",
+          "sort_order": 3,
+          "families": 3
+        },
+        {
+          "span_band": "15–19 years",
+          "sort_order": 4,
+          "families": 1
+        },
+        {
+          "span_band": "20+ years",
+          "sort_order": 5,
+          "families": 1
+        }
+      ],
+      "source": {
+        "label": "Child birth-year span by family",
+        "sourceFiles": [
+          "data/registries/people.csv",
+          "data/registries/families.csv",
+          "data/registries/relationship_evidence.csv",
+          "data/registries/sources.csv",
+          "artifacts/analytics/genealogy_analytics.duckdb"
+        ],
+        "filters": [
+          "Rebuilt from the editable CSV registries through the local DuckDB analytical layer"
+        ],
+        "metricDefinitions": [
+          {
+            "label": "Child birth-year span by family",
+            "definition": "Earliest to latest recorded child birth year within families with at least two dated children.",
+            "componentIds": [
+              "child-birth-span-chart"
+            ]
+          }
+        ]
+      }
+    },
+    "parent_age_distribution": {
+      "rows": [
+        {
+          "age_band": "Under 20",
+          "sort_order": 1,
+          "parent_child_observations": 1
+        },
+        {
+          "age_band": "20–24",
+          "sort_order": 2,
+          "parent_child_observations": 7
+        },
+        {
+          "age_band": "25–29",
+          "sort_order": 3,
+          "parent_child_observations": 15
+        },
+        {
+          "age_band": "30–34",
+          "sort_order": 4,
+          "parent_child_observations": 22
+        },
+        {
+          "age_band": "35–39",
+          "sort_order": 5,
+          "parent_child_observations": 15
+        },
+        {
+          "age_band": "40 and over",
+          "sort_order": 6,
+          "parent_child_observations": 16
+        }
+      ],
+      "source": {
+        "label": "Parent age at child's birth",
+        "sourceFiles": [
+          "data/registries/people.csv",
+          "data/registries/families.csv",
+          "data/registries/relationship_evidence.csv",
+          "data/registries/sources.csv",
+          "artifacts/analytics/genealogy_analytics.duckdb"
+        ],
+        "filters": [
+          "Rebuilt from the editable CSV registries through the local DuckDB analytical layer"
+        ],
+        "metricDefinitions": [
+          {
+            "label": "Parent age at child's birth",
+            "definition": "Child birth year minus parent birth year for parent-child links with both years recorded.",
+            "componentIds": [
+              "parent-age-chart"
+            ]
+          }
+        ]
+      }
+    },
+    "top_first_names": {
+      "rows": [
+        {
+          "firstName": "Jan",
+          "people": 9
+        },
+        {
+          "firstName": "Józef",
+          "people": 8
+        },
+        {
+          "firstName": "Maria",
+          "people": 8
+        },
+        {
+          "firstName": "Franciszek",
+          "people": 6
+        },
+        {
+          "firstName": "Stanisław",
+          "people": 6
+        },
+        {
+          "firstName": "Zofia",
+          "people": 6
+        },
+        {
+          "firstName": "Joanna",
+          "people": 5
+        },
+        {
+          "firstName": "Katarzyna",
+          "people": 5
+        },
+        {
+          "firstName": "Anna",
+          "people": 4
+        },
+        {
+          "firstName": "Marta",
+          "people": 4
+        }
+      ],
+      "source": {
+        "label": "Most common recorded first names",
+        "sourceFiles": [
+          "data/registries/people.csv",
+          "data/registries/families.csv",
+          "data/registries/relationship_evidence.csv",
+          "data/registries/sources.csv",
+          "artifacts/analytics/genealogy_analytics.duckdb"
+        ],
+        "filters": [
+          "Rebuilt from the editable CSV registries through the local DuckDB analytical layer"
+        ],
+        "metricDefinitions": [
+          {
+            "label": "Most common recorded first names",
+            "definition": "Distinct person-registry entries grouped by the recorded first name.",
+            "componentIds": [
+              "first-name-chart"
+            ]
+          }
+        ]
+      }
+    },
+    "oldest_people": {
+      "rows": [
+        {
+          "person": "Wawrzyniec Gościński",
+          "birthYear": "1760",
+          "deathYear": null,
+          "note": "approximate birth year"
+        },
+        {
+          "person": "Wawrzyniec Gościński",
+          "birthYear": "1780",
+          "deathYear": null,
+          "note": null
+        },
+        {
+          "person": "Stanisław Gościński",
+          "birthYear": "1785",
+          "deathYear": null,
+          "note": "relationship provisional"
+        },
+        {
+          "person": "Jakub Gościński",
+          "birthYear": "1788",
+          "deathYear": null,
+          "note": "relationship provisional"
+        },
+        {
+          "person": "Józef Szost",
+          "birthYear": "1803",
+          "deathYear": null,
+          "note": null
+        },
+        {
+          "person": "Piotr Miczulski",
+          "birthYear": "1805",
+          "deathYear": null,
+          "note": null
+        },
+        {
+          "person": "Antoni Drozd",
+          "birthYear": "1815",
+          "deathYear": null,
+          "note": null
+        },
+        {
+          "person": "Antoni Gościński",
+          "birthYear": "1816",
+          "deathYear": null,
+          "note": null
+        },
+        {
+          "person": "Franciszek Szost",
+          "birthYear": "1832",
+          "deathYear": null,
+          "note": null
+        },
+        {
+          "person": "Jan Miczulski",
+          "birthYear": "1833",
+          "deathYear": null,
+          "note": null
+        }
+      ],
+      "source": {
+        "label": "Oldest recorded people",
+        "sourceFiles": [
+          "data/registries/people.csv",
+          "data/registries/families.csv",
+          "data/registries/relationship_evidence.csv",
+          "data/registries/sources.csv",
+          "artifacts/analytics/genealogy_analytics.duckdb"
+        ],
+        "filters": [
+          "Rebuilt from the editable CSV registries through the local DuckDB analytical layer"
+        ],
+        "metricDefinitions": [
+          {
+            "label": "Oldest recorded people",
+            "definition": "The ten people with the earliest recorded birth years; the list excludes people without a recorded birth year.",
+            "componentIds": [
+              "oldest-people-table"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "id": "report:2d3afe57-7b33-429d-84e3-23f86b59ab23"
+}
