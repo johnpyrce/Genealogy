@@ -10,9 +10,11 @@ This box-drawing view is generated directly from the editable people, family, so
 ├── Family 1 · sources: S2
 │   ├── Partner 1: Wawrzyniec Gościński (1760)
 │   ├── Partner 2: Teresa Bartmanowicz
-│   ├── Registry note: Printed Gościński chart.
+│   ├── Registry note: S2 clearly shows Wawrzyniec Jakub and Stanisław as children of Wawrzyniec Gościński and Teresa née Bartmanowicz.
 │   └── Children:
-│       └── Wawrzyniec Gościński (1780)
+│       ├── Wawrzyniec Gościński (1780)
+│       ├── Jakub Gościński (1788)
+│       └── Stanisław Gościński (1785)
 ├── Family 2 · sources: S2
 │   ├── Partner 1: Wawrzyniec Gościński (1780)
 │   ├── Partner 2: Zofia Matusiewicz
@@ -39,13 +41,14 @@ This box-drawing view is generated directly from the editable people, family, so
 ├── Family 6 · sources: S2, S3
 │   ├── Partner 1: Franciszek Gościński (1852–1902)
 │   ├── Partner 2: Józefa Szost (1853–1926)
-│   ├── Registry note: Sibling lists differ between the printed and handwritten sources.
+│   ├── Registry note: S2 shows Wiktoria Zofia Jan Józef Andrzej and Franciszek; S3 repeats Zofia Jan Józef and Andrzej.
 │   └── Children:
+│       ├── Wiktoria Gościńska
+│       ├── Zofia Gościńska (1883–1964)
 │       ├── Jan Gościński (1888–1970)
 │       ├── Józef Gościński (1895)
 │       ├── Andrzej Gościński
-│       ├── Franciszek Gościński
-│       └── Zofia Gościńska (1883–1964)
+│       └── Franciszek Gościński
 ├── Family 7 · sources: S2
 │   ├── Partner 1: Maria Gościńska
 │   ├── Partner 2: Antoni Drozd (1815)
@@ -86,14 +89,12 @@ This box-drawing view is generated directly from the editable people, family, so
 ├── Family 12 · sources: S3, S4, S6
 │   ├── Partner 1: Stanisław Gościński (1927–2009)
 │   ├── Partner 2: Władysława Miczulska (1932–2020)
-│   ├── Registry note: Later handwritten chart; some names and placement remain uncertain.
+│   ├── Registry note: S3 and S6 show Antonina Elżbieta Wanda and Małgorzata as children; S6 identifies Bogdan Pluta as Małgorzata's spouse rather than another child.
 │   └── Children:
-│       ├── Antonina Miczulska
+│       ├── Antonina Gościńska
 │       ├── Elżbieta Gościński
 │       ├── Wanda Gościńska
-│       ├── Małgorzata Gościński
-│       ├── Bogdan Gościński
-│       └── Pluto Gościński
+│       └── Małgorzata Gościńska
 ├── Family 13 · sources: S4
 │   ├── Partner 1: Józef Berduchowski
 │   ├── Partner 2: Joanna Guzyk
@@ -103,13 +104,13 @@ This box-drawing view is generated directly from the editable people, family, so
 │       └── Krzysztof Berduchowski
 ├── Family 14 · sources: S4
 │   ├── Partner 1: Jakub Berduchowski
-│   ├── Partner 2: Emilia Pawlowska
-│   ├── Registry note: Emilia Pawlowska is shown as Jakub's spouse rather than his child.
+│   ├── Partner 2: Emilia Pawłowska
+│   ├── Registry note: Emilia Pawłowska is shown as Jakub's spouse rather than his child.
 │   └── Children: none recorded
 ├── Family 15 · sources: S4
 │   ├── Partner 1: Łukasz Guzyk
-│   ├── Partner 2: Katarzyna Sulkowska
-│   ├── Registry note: Surname reading is provisional.
+│   ├── Partner 2: Katarzyna Sułkowska
+│   ├── Registry note: S4 shows Łukasz with Katarzyna Sułkowska; the children's Guzyk surname is inferred from their father because only their first names are written.
 │   └── Children:
 │       ├── Emilia Guzyk
 │       └── Olivier Guzyk
@@ -176,10 +177,10 @@ This box-drawing view is generated directly from the editable people, family, so
 │       ├── Józef Pyrc (1879–1940)
 │       ├── Maria Pyrc
 │       └── Franciszek Pyrc
-├── Family 25 · sources: S3
+├── Family 25 · sources: S3, S2
 │   ├── Partner 1: Józef Pyrc (1879–1940)
 │   ├── Partner 2: Zofia Gościńska (1883–1964)
-│   ├── Registry note: Handwritten source adds Emil and Stanisław; Zofia is absent from the printed sibling list.
+│   ├── Registry note: S2 shows Bronisława Karol Tadeusz and Stefania; S3 identifies Józef and adds Emil and Stanisław.
 │   └── Children:
 │       ├── Emil Pyrc
 │       ├── Stanisław Pyrc (1911–1944)
@@ -218,7 +219,7 @@ This box-drawing view is generated directly from the editable people, family, so
 ├── Family 32 · sources: S5
 │   ├── Partner 1: Maciej Rams (1990)
 │   ├── Partner 2: Natalia Tokarczyk (1993)
-│   ├── Registry note: Hanna's connector is partly cropped; treated as likely child.
+│   ├── Registry note: S5 clearly connects Hanna born 2021 as the child of Maciej Rams and Natalia née Tokarczyk.
 │   └── Children:
 │       └── Hanna Rams (2021)
 ├── Family 33 · sources: S5
@@ -245,15 +246,29 @@ This box-drawing view is generated directly from the editable people, family, so
 │   └── Children:
 │       ├── Rita Romer (2023)
 │       └── Marta Romer
-└── Family 58 · sources: S4
-    ├── Partner 1: Jerzy Guzyk
-    ├── Partner 2: Antonina Miczulska
-    ├── Registry note: Jerzy Guzyk and Antonina are shown as the parents of the four S4 family branches; Antonina's surname is not given.
+├── Family 58 · sources: S4
+│   ├── Partner 1: Jerzy Guzyk
+│   ├── Partner 2: Antonina Gościńska
+│   ├── Registry note: Jerzy Guzyk and Antonina are shown as the parents of the four S4 family branches; Antonina's surname is not given.
+│   └── Children:
+│       ├── Joanna Guzyk
+│       ├── Łukasz Guzyk
+│       ├── Marta Guzyk
+│       └── Grażyna Guzyk
+├── Family 59 · sources: S6
+│   ├── Partner 1: Bogdan Pluta
+│   ├── Partner 2: Małgorzata Gościńska
+│   ├── Registry note: S6 shows Małgorzata with Bogdan Pluta and their children Agnieszka Beata and Tomasz.
+│   └── Children:
+│       ├── Agnieszka Pluta
+│       ├── Beata Pluta
+│       └── Tomasz Pluta
+└── Family 60 · sources: S6
+    ├── Partner 1: Tomasz Wiklowski
+    ├── Partner 2: Agnieszka Pluta
+    ├── Registry note: S6 shows Agnieszka with Tomasz Wiklowski and a daughter Łucja; the surname reading is normalized from handwritten Wiklowscy.
     └── Children:
-        ├── Joanna Guzyk
-        ├── Łukasz Guzyk
-        ├── Marta Guzyk
-        └── Grażyna Guzyk
+        └── Łucja Wiklowska
 ```
 
 ## Spouse ancestry
@@ -331,12 +346,28 @@ This box-drawing view is generated directly from the editable people, family, so
 │   ├── Registry note: S2 Miczulski–Łyga spouse pedigree; child link restored.
 │   └── Children:
 │       └── Marianna Miczulska (1895–1962)
-└── Family 56 · sources: S2
-    ├── Partner 1: Jan Gruczelak (1854)
+├── Family 56 · sources: S2
+│   ├── Partner 1: Jan Gruczelak (1854)
+│   ├── Partner 2: not recorded
+│   ├── Registry note: S2 shows Jan Gruczelak as Joanna's father; mother not named.
+│   └── Children:
+│       └── Joanna Gruczelak (1901–1994)
+├── Family 61 · sources: S5
+│   ├── Partner 1: Jan Miczulski (1868)
+│   ├── Partner 2: Antonina Bukowska
+│   ├── Registry note: S5 lists Antonina née Bukowska as the first wife of Jan Miczulski born 1868.
+│   └── Children: none recorded
+├── Family 62 · sources: S5
+│   ├── Partner 1: Jan Miczulski (1868)
+│   ├── Partner 2: Maria Gruczelak
+│   ├── Registry note: S5 lists Maria née Gruczelak as the second wife of Jan Miczulski born 1868.
+│   └── Children: none recorded
+└── Family 63 · sources: S5
+    ├── Partner 1: Jan Miczulski (1868)
     ├── Partner 2: not recorded
-    ├── Registry note: S2 shows Jan Gruczelak as Joanna's father; mother not named.
+    ├── Registry note: S5 connects Jan Miczulski born 1868 to Maria or Marianna née Miczulska; the chart does not identify which of his two wives was her mother.
     └── Children:
-        └── Joanna Gruczelak (1901–1994)
+        └── Marianna Miczulska (1895–1962)
 ```
 
 ## Collateral families
@@ -390,7 +421,7 @@ This box-drawing view is generated directly from the editable people, family, so
 │   └── Children: none recorded
 ├── Family 43 · sources: S5
 │   ├── Partner 1: Henryk Rams (1927–2024)
-│   ├── Partner 2: Genowefa Gumuliak (1932–2015)
+│   ├── Partner 2: Genowefa Gumulak (1932–2015)
 │   ├── Registry note: Recorded Rams household; parentage not asserted.
 │   └── Children: none recorded
 └── Family 57 · sources: S5
@@ -407,10 +438,7 @@ This box-drawing view is generated directly from the editable people, family, so
 
 ```text
 ├── Józef Drost (1961) · relationship placement uncertain
-├── Jakub Gościński (1788) · relationship provisional
 ├── Joanna Gościńska
-├── Stanisław Gościński (1785) · relationship provisional
-├── Maria Gruczelak · previous extraction; relationship not verified in S2
 └── Piotr Szost (1861)
 ```
 

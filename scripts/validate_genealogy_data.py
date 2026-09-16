@@ -11,6 +11,7 @@ from scripts.lib.genealogy_data import (
     PEOPLE_REGISTRY,
     load_families,
     load_relationship_evidence,
+    load_person_source_evidence,
     load_sources,
 )
 
@@ -29,6 +30,7 @@ def main() -> None:
         family_rows = list(csv.DictReader(source))
     sources = load_sources()
     evidence_rows = load_relationship_evidence()
+    person_source_rows = load_person_source_evidence()
     errors = []
 
     if len(people) != len(person_rows):
@@ -82,6 +84,13 @@ def main() -> None:
     for source_id, source in sources.items():
         if not (ROOT / source["file_name"]).is_file():
             errors.append(f"{source_id}: source file not found: {source['file_name']}")
+    for row in person_source_rows:
+        if int(row["person_id"]) not in people:
+            errors.append(f"Person-source evidence: unknown person ID {row['person_id']}")
+        if row["source_id"] not in sources:
+            errors.append(f"Person-source evidence: unknown source ID {row['source_id']}")
+        if row["confidence"] not in CONFIDENCE_VALUES:
+            errors.append(f"Person-source evidence: invalid confidence {row['confidence']}")
 
     if errors:
         raise SystemExit("\n".join(errors))

@@ -58,4 +58,49 @@ uv run python -m unittest tests.test_genealogy_analytics
 - `scripts.build_box_drawing_tree` writes `docs/trees/merged_family_tree_box_drawing.md`.
 - `scripts.export_gedcom` writes the GEDCOM export under `artifacts/exports/`.
 - `scripts.build_cytoscape_genealogy_graph` writes the interactive graph under `artifacts/interactive/`.
+- `scripts.build_family_chart` writes the searchable family-chart tree under `artifacts/interactive/`.
 
+Generate the family-chart viewer:
+
+```sh
+uv run python -m scripts.build_family_chart
+```
+
+Open `artifacts/interactive/family_tree.html` directly in a browser. All people
+and relationships are embedded in the HTML; no server or separate data file is
+required. The page loads pinned family-chart 0.9.0 and D3 7.9.0 assets from a
+CDN, so viewing the chart requires internet access. Generation uses only Python's
+standard library and requires no network access.
+
+Search by name (with or without Polish accents) or exact person ID, then click a
+result or press Enter to center its branch. IDs and dates distinguish people
+with the same name. Click cards to explore related branches; the details panel
+shows the selected person's dates, source, and notes.
+The chart starts with two generations in each direction for readability;
+the generation selector can expand this to four or all generations.
+The source selector can limit the tree and search results to relationships
+supported by one of the six chart documents. Its legend reports the number of
+distinct people currently displayed, the number available in the selected
+source, and the complete registry total.
+
+Box colors can represent gender or normalized family name. Family colors are
+assigned deterministically from `family_name_group`, remain stable across
+filters and rebuilds, and appear in the legend only while that family is visible.
+The **Show entire tree** button keeps the current source selection and renders
+every connected group in that source as a scrollable forest. Detached couples
+and standalone source labels remain visible as their own groups; clicking any
+person returns to the focused branch view.
+
+Use `--root 10` to choose the starting person and `--output path/to/tree.html`
+to choose an output file. Gender styling follows explicit father/mother roles;
+people without a recorded parent role use the neutral style. The viewer shows
+the selected person's branch, with every registry person available in search.
+When sources record alternative parent families, a selector preserves access to
+each account and its note. The first listed family is displayed initially;
+this display choice does not resolve conflicting evidence.
+
+Run the generator regression tests with:
+
+```sh
+uv run python -m unittest tests.test_family_chart
+```

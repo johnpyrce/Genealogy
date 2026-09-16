@@ -1,186 +1,179 @@
-# English transcription of the six source charts
+# Source chart review and data-handling report
 
-This is a best-effort transcription and translation. Polish personal names and
-place names are not anglicized. Dates use the source convention
-`day.month.year`. In the printed charts, a `+` before a date means “died,” not
-addition. `zd.` or `z domu` is translated as “née.”
+This document describes the six genealogy charts in `data/source-material/charts/`,
+their legibility and evidentiary quality, and how their information has been
+represented in the normalized registries. It replaces the earlier selective
+English transcription, which was useful as a reading aid but was neither a
+complete transcription nor a reliable statement of every chart relationship.
 
-## 1. “Drzewo genealogiczne” — “Family tree”
+The CSV files in `data/registries/` are the source of truth. Polish personal and
+place names are retained. Dates are normalized to years in `people.csv`, while
+full dates and source wording are preserved in relationship evidence or this
+report when they affect interpretation. In the printed charts, `+` before a date
+means “died”; `zd.` (*z domu*) means “née.” Inferred surnames and uncertain
+connections are explicitly identified instead of being presented as source text.
 
-- Władysława Miczulska + Stanisław Gościński
-  - Wanda Gościńska + Bogumił Gościński
-    - Magdalena Gościńska + Łukasz Wiśniewski
-      - Filip Wiśniewski
-      - Martyna Wiśniewska
-    - Rafał Gościński + Joanna Kowalczyk
-      - Aleksandra Gościńska
-      - Dorota Gościńska
-    - Paulina Gościńska + Grzegorz Hryc
-      - Konstanty Hryc
-      - Wincenty Hryc
-    - Renata Gościńska
+## Source overview
 
-This polished chart presents Wanda's branch only. It does not say that Wanda
-was the couple's only child.
+| ID | File | Description | Quality | Registry treatment |
+| --- | --- | --- | --- | --- |
+| S1 | `Drzewo Genealogy.png` | Polished modern tree for Wanda Gościńska's branch | Excellent | All displayed relationships are recorded as confirmed. |
+| S2 | `Goscinscy z Wapiennego Genealogy.png` | Dense printed Gościński chart with several spouse pedigrees | Good, but structurally dense | Clear solid and dotted connectors are recorded; ambiguous annotations remain in notes. |
+| S3 | `Goscinski z Pyrc Genealogy.png` | Handwritten Gościński–Pyrc chart with later descendants | Fair; lower portion is overwritten | Clear upper relationships and readable additions are recorded. Unresolvable lower entries are not forced into families. |
+| S4 | `Wladusklana Mickulska Genealogy.png` | Handwritten Antonina and Jerzy Guzyk descendant chart | Fair to good | Family groups are recorded; inferred child surnames and one provisional surname are noted. |
+| S5 | `Rodzina Ramsow Geneoaogy.png` | Printed Rams chart with Gościński and Miczulski bridges | Good; right and lower edges are cropped | Clear relationships are confirmed; cropped descendant details and isolated labels are marked probable or uncertain. |
+| S6 | `Mickulska Genealogy.png` | Sparse handwritten Stanisław and Władysława descendant chart | Fair | Used to resolve the Małgorzata–Bogdan Pluta branch and to corroborate four children of the head couple. |
 
-## 2. “Gościńscy z Wapiennego” — “The Gościński family from Wapienne”
+## S1 — “Drzewo genealogiczne”
 
-Main ancestral line that can be followed with reasonable confidence:
+This polished chart begins with Władysława Miczulska and Stanisław Gościński,
+then follows their daughter Wanda Gościńska and Wanda's husband Bogumił
+Gościński. It gives four children of Wanda and Bogumił—Magdalena, Rafał,
+Paulina, and Renata—and the children of the first three couples.
 
-- Wawrzyniec Gościński, about 1760 + Teresa née Bartmanowicz
-  - Wawrzyniec Gościński, 1780
-    + Zofia née Matusiewicz
-    - Antoni Gościński, born 1.01.1816
-      - wives shown: Katarzyna née Grotkowska; Maria née Sasała; Maria née
-        Tryszczyła
-      - children with Maria née Sasała: Franciszek Gościński; Magdalena
-        née Gościńska + Piotr Szost, born 20.04.1861
-      - Franciszek Gościński, 7.02.1852–13.05.1902 + Józefa née Szost,
-        3.03.1853–7.03.1926
-        - Jan Gościński, 27.05.1888–11.05.1970 + Marianna née Miczulska,
-          25.02.1895–9.10.1962
-        - Józef Gościński, born 17.05.1895 + Joanna née Gościńska
-        - Andrzej Gościński — “left for Chicago”
-        - Franciszek Gościński
-    - Maria née Gościńska + Antoni Drozd, born 1.01.1815
+The scan is clean, the names are typeset, and all connectors are unambiguous.
+Its relationships are therefore recorded as confirmed. The chart is limited in
+scope: it documents Wanda's branch and does not imply that Wanda was the head
+couple's only child.
 
-Children shown for Jan Gościński and Marianna Miczulska:
+## S2 — “Gościńscy z Wapiennego”
 
-- Bronisław Gościński, 20.03.1920–21.12.2001 + Władysława née Śliwa,
-  9.11.1927–26.01.2004
-- Edward Gościński, 21.04.1922–16.08.2010 + Anna née Maślanka, born 8.03.1928
-- Stanisław Gościński, born 14.11.1923
-- Jan Gościński, 13.04.1925–10.06.1985 + Zofia née Jacenik
-- Stanisław Gościński, 9.04.1927–2.07.2009 + Władysława née Miczulska,
-  15.05.1932–31.08.2020
-- Bronisława née Gościńska, 17.08.1930–16.11.2015 + Bolesław Rams,
-  5.03.1924–22.01.2002
-- Antonina née Gościńska, born 9.06.1936 + Bronisław Miąsik
+This is the richest historical source. It combines a principal Gościński line,
+collateral siblings, descendant households, and dotted spouse pedigrees for the
+Miczulski, Łyga, Moszczak, Śliwa, Homa, Szost, Rams, Gruczelak, Jacenik, and
+Pyrc families.
 
-Other early Gościński names printed near the first generations are Jakub
-Gościński (20.07.1788) and Stanisław Gościński (15.05.1785). Their exact
-connecting lines are too unclear in the scan to assign parentage confidently.
+The central family line and most printed dates are highly legible, but the page
+is dense and some dotted connectors cross other branches. The registry therefore
+distinguishes confirmed links from probable links instead of treating every
+nearby box as a relationship.
 
-The chart also contains several dashed side pedigrees for spouses, including
-Miczulski, Moszczak, Śliwa, Homa, Szost, and related families. Some arrows and
-generation boundaries are ambiguous, so they are not forced into the primary
-line in the merged poster.
+Important handling decisions:
 
-The dashed spouse pedigrees show these additional connections:
+- The shared connector clearly makes Wawrzyniec Gościński (born 1780), Jakub
+  Gościński (born 1788), and Stanisław Gościński (born 1785) children of
+  Wawrzyniec Gościński (about 1760) and Teresa née Bartmanowicz.
+- Franciszek Gościński and Józefa née Szost have a printed child list containing
+  Wiktoria, Zofia, Jan, Józef, Andrzej, and Franciszek. Wiktoria was missing from
+  the earlier extraction.
+- Zofia née Gościńska is shown with a husband identified only as `Pyrc`, with
+  children Bronisława, Karol, Tadeusz, and Stefania. S3 supplies the husband's
+  given name, Józef, and adds Emil and Stanisław. S2 also states that Zofia
+  emigrated to Chicago and married there.
+- The dotted spouse pedigrees have been retained as separate `spouse_ancestry`
+  families. A dotted line is not downgraded merely because it is dotted; its
+  confidence depends on whether its endpoints are visually clear.
+- The parentage of Maria/Marianna née Miczulska is cross-checked against S5.
+  S5 identifies her father more precisely as Jan Miczulski, born 2 February
+  1868, while leaving her mother unclear between his two recorded wives.
 
-- Wawrzyniec Miczulski + Małgorzata née Kałucka → Piotr Miczulski;
-  Piotr + Marianna née Sajdak → Jan Miczulski; Jan + Katarzyna née Łyga →
-  Marianna née Miczulska.
-- A member of the Łyga family + Katarzyna née Fedorczak → Katarzyna née Łyga.
-- Jan Moszczak + Maria née Wilczyńska → Maria née Moszczak; Maria +
-  Franciszek Śliwa → Władysława née Śliwa.
-- Michał Homa + Marianna née Krajowska → Agnieszka née Homa; Agnieszka +
-  Franciszek Miczulski → Władysława née Miczulska.
-- Józef Szost + Maria née Matusiewicz → Franciszek Szost; Franciszek +
-  Zofia née Wilczyńska → Józefa née Szost.
-- Marcin Rams + Anna née Tryszczyła → Stanisław Rams; Jan Gruczelak is shown
-  as Joanna née Gruczelak's father, with her mother unnamed.
-- Piotr Jacenik + Antonina née Bukowska → Zofia née Jacenik.
+The unexplained parenthetical date beside Jan Gościński's birth date and other
+isolated annotations are not converted into facts without a clear label.
 
-## 3. Handwritten “Gościński z Pyrc” chart
+## S3 — handwritten “Gościński z Pyrc” chart
 
-This later chart repeats Franciszek Gościński + Józefa Szost and shows their
-children as Jan, Andrzej, Józef, and Zofia Gościńska. This differs from the
-printed sibling list above.
+The upper half repeats Franciszek Gościński and Józefa Szost, showing children
+Zofia, Jan, Andrzej, and Józef. This does not contradict Zofia's presence in S2;
+instead, S3 omits Wiktoria and the younger Franciszek shown by S2.
 
-- Zofia Gościńska + Józef Pyrc
-  - Józef Pyrc is shown as a child of Jan Pyrc + Anna Bukowska
-  - children: Emil, Stanisław, Tadeusz, Karol, Bronisława, Stefania
-- Maria, another child of Jan Pyrc + Anna Bukowska, is shown with Jan Storoż
-- Franciszek is also shown as their child
+S3 identifies Józef Pyrc as a child of Jan Pyrc and Anna Bukowska and shows
+Józef with Zofia Gościńska. Their children are Emil, Stanisław, Tadeusz, Karol,
+Bronisława, and Stefania. It also records Maria Pyrc with Jan Storoż and a
+Franciszek Pyrc as other children of Jan and Anna.
 
-Later descendants added by this handwritten chart include:
+Readable descendant additions include Teresa, Marta, and Barbara under
+Bronisław Gościński and Władysława Śliwa; Marek under Edward Gościński and Anna
+Maślanka; Mariusz under Jan Gościński and Zofia Jacenik; and Antonina,
+Elżbieta, Wanda, and Małgorzata under Stanisław Gościński and Władysława
+Miczulska.
 
-- Bronisław Gościński + Władysława Śliwa → Teresa, Marta, Barbara
-- Edward Gościński + Anna Maślanka → Marek
-- Jan Gościński + Zofia Jacenik → Mariusz
-- Stanisław Gościński + Władysława Miczulska → Antonina, Elżbieta (marked
-  deceased), Wanda, and Małgorzata
+The lower portion contains additional names, but repeated overwriting makes
+several partner and parent-child lines impossible to distinguish. Legible names
+are not automatically treated as people in the normalized tree when their
+identity or family placement cannot be separated from overwritten alternatives.
 
-The remaining names at the bottom are densely overwritten and are not reliable
-enough to transcribe without confirmation from the family.
+## S4 — handwritten Antonina and Jerzy Guzyk chart
 
-## 4. Handwritten “Stanisław / Władysława Miczulska” chart
+This chart begins with Stanisław Gościński and Władysława Miczulska and follows
+their daughter Antonina with Jerzy Guzyk. The central group has four child
+branches:
 
-The chart usually writes the wife's first name followed by the husband's first
-and last name. The wife's surname is not supplied. The top node is the
-exception and lists the husband first. Read using that convention, the chart
-shows:
+- Joanna with Józef Berduchowski; their children are Jakub and Krzysztof, and
+  Jakub is shown with Emilia Pawłowska.
+- Łukasz with Katarzyna Sułkowska; their children are Emilia and Olivier.
+- Marta with Marcin Magarzewych; their children are Maja and Marcel.
+- Grażyna with Andrzej Drabyk.
 
-- Stanisław Gościński + Władysława Miczulska
-  - Antonina (surname not given) + Jerzy Guzyk
-    - Joanna (surname not given) + Józef Berduchowski
-      - Jakub Berduchowski
-        - spouse: Emilia Pawlowska; this bottom entry uniquely gives the
-          female spouse's first and last name
-      - Krzysztof Berduchowski
-    - Łukasz Sułkowski + Katarzyna (surname not given)
-      - Emilia Sułkowska
-      - Olivier Sułkowski
-    - Marta (surname not given) + Marcin Magarzewych
-      - Maja Magarzewych
-      - Marcel Magarzewych
-    - Grażyna (surname not given) + Andrzej Drabyk
+The scan and connectors are clear enough to confirm the family groupings.
+`Magarzewych` remains the best provisional reading of Marcin's surname. The
+chart often supplies only a child's first name; the registry's Guzyk,
+Berduchowski, and Magarzewych surnames for those children are documented
+inheritance inferences, not literal transcriptions. Antonina's Gościńska surname
+is likewise inferred from her father and corroborating charts.
 
-“Magarzewych” is the best reading of the third branch's shared surname and
-remains provisional. The other family groupings and connectors are clear. The
-lowest-level children's surnames are inherited from their fathers' family
-names; the chart itself shows only their first names.
+## S5 — “Rodzina Ramsów”
 
-## 5. “Rodzina Ramsów” — “The Rams family”
+This printed chart supplies the Rams branch and its bridge through Bolesław
+Rams and Bronisława née Gościńska. It also includes older Rams households,
+spouse information, and dotted ancestry for the Gościński and Miczulski spouses.
 
-Early Rams entries:
+The main boxes are highly legible. The far-right and bottom edge are cropped,
+so some birth details are incomplete even where a connector remains visible.
 
-- An unnamed parent family is shown with children Marcin Rams, Wawrzyniec Rams,
-  and Wojciech Rams (16.04.1880–24.05.1953).
-- Marcin Rams + Anna née Tryszczyła
-- Wawrzyniec Rams + Agata
-- Wojciech Rams, 16.04.1880–24.05.1953
+Important handling decisions:
 
-Recorded following generation and spouses:
+- Henryk Rams and Genowefa née Gumulak, Michał Rams's two wives, and the full
+  Drzązgowski child surnames are retained rather than omitted from the summary.
+- The arrow from Maciej Rams and Natalia née Tokarczyk to Hanna Rams, born
+  2021, is clear and is recorded as confirmed.
+- Józef Drost (born 1961) is legible near Małgorzata Rams and Henryk
+  Drzązgowski, but no connector establishes his role. He remains an isolated
+  person with an uncertainty note rather than being assigned as a spouse or
+  child.
+- Rita and Marta Romer appear below Anna Kokoszka and Jan Romer. Their branch
+  is retained as probable because the connectors and dates are partly cropped.
+- Jan Miczulski, born 2 February 1868, is shown with first wife Antonina née
+  Bukowska and second wife Maria née Gruczelak, described as `Jacenikowa` and a
+  widow of Andrzej from Folwark. The chart connects Jan to Maria/Marianna née
+  Miczulska but does not identify which wife was her mother; only Jan's
+  parent-child link is asserted.
+- Zofia née Ślaby is described as being from Trzetrzewina and as the widow of
+  Jan Miczulski. That biographical note is retained without merging her husband
+  with another same-named Jan Miczulski unless independent evidence supports it.
 
-- Stanisław Rams, 6.04.1894–15.01.1957 + Joanna née Gruczelak,
-  20.06.1901–26.08.1994
-- Jan Rams, 24.12.1908–26.06.1988 + Helena née Ruchałowska,
-  1.07.1909–21.04.2005
-- Józef Rams + Zofia née Ślaby, 28.09.1914–8.02.2004
-- Michalina née Rams, 27.09.1917–20.07.1996 + Józef Tokarczyk,
-  1.10.1909–18.05.1984
-- Michał Rams, 6.09.1910–16.11.1974
-- Stanisława née Rams, 10.09.1923–19.11.2013 + Józef Cisowski,
-  31.01.1913–10.01.1995
+## S6 — later handwritten Stanisław and Władysława chart
 
-Bridge to the Gościński family:
+This sparse chart corroborates Antonina, Elżbieta, Wanda, and Małgorzata as
+children of Stanisław Gościński and Władysława Miczulska. Its most important
+clarification is the right-hand branch:
 
-- Bolesław Rams, 5.03.1924–22.01.2002 + Bronisława née Gościńska,
-  17.08.1930–16.11.2015
-  - Małgorzata née Rams, born 1958 + Henryk Drzązgowski,
-    13.10.1957–19.03.2002
-    - Joanna, 1985
-    - Aleksandra, 1987
-    - Michał, 1988
-  - Bogusław Rams, born 22.07.1960 + Halina née Dulak, born 20.03.1965
-    - Maciej Rams, 1990 + Natalia née Tokarczyk, 1993
-    - Wojciech Rams, 1995 + Natalia née Drobny
-    - Urszula née Rams, 2000 + Wojciech Walczyk
-  - Marta née Rams, born 1965 + Wiesław Kokoszka, born 1959
-    - Karolina née Kokoszka, 1987
-    - Anna née Kokoszka, 1988 + Jan Romer
+- Małgorzata is shown with **Bogdan Pluta**. The previous extraction incorrectly
+  split his full name into two people, “Bogdan” and “Pluto.”
+- Małgorzata and Bogdan have children Agnieszka, Beata, and Tomasz.
+- Agnieszka is shown with Tomasz; the handwritten surname uses the family-form
+  spelling `Wiklowscy`, normalized in the registry to Wiklowski/Wiklowska. Their
+  daughter is Łucja.
 
-The far-right labels “Hanna née Rams,” “Rita née Romer,” and “Marta née Romer”
-appear to be later descendants, but the cropped lower dates and connector lines
-prevent a certain placement.
+The chart is sparse but its branch lines are visible. These relationships are
+recorded as confirmed except for the Wiklowski surname normalization, which is
+kept probable pending family confirmation.
 
-## 6. Later handwritten Stanisław / Władysława chart
+## Reconciliation and quality policy
 
-This chart shows Stanisław Gościński + Władysława Miczulska above Antonina,
-Elżbieta (marked deceased), and Wanda. Małgorzata, Bogdan, and “Pluto” or a
-similar reading appear farther to the right, but the line structure does not
-make their precise generation certain. Names farther down appear to include
-Agnieszka, Tomasz, and Łucja, but their connections are too uncertain to state
-as fact.
+The six charts overlap but are not treated as equally complete versions of one
+tree. A person absent from one chart is not presumed absent from the family.
+When two sources show different child lists, the union is retained and each
+source's contribution is described in `relationship_evidence.csv`.
+
+Confidence labels mean:
+
+- `confirmed`: the names and relevant connector are clear in the cited chart;
+- `probable`: the relationship is visually supported but relies on a cropped
+  connector, cross-source identity match, or normalized handwritten surname;
+- `uncertain`: the name is readable but its family role or connector cannot be
+  assigned safely.
+
+The charts are family-created secondary sources, not civil or parish records.
+Even a `confirmed` chart reading means “confirmed as shown on the chart,” not
+independently proven historical fact. Dates, identities, and inferred surnames
+should be checked against vital, parish, immigration, and cemetery records.

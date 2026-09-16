@@ -27,7 +27,7 @@ class GenealogyAnalyticsTests(unittest.TestCase):
 
             tree = output.read_text(encoding="utf-8")
             self.assertIn("generated directly from the editable people, family, source, and relationship-evidence CSV registries", tree)
-            self.assertEqual(tree.count("Family "), 58)
+            self.assertEqual(tree.count("Family "), 63)
             self.assertIn("Partner 1: Wawrzyniec Gościński (1760)", tree)
             self.assertIn("People without a recorded family", tree)
 
@@ -37,11 +37,11 @@ class GenealogyAnalyticsTests(unittest.TestCase):
             connection = duckdb.connect(str(database))
             try:
                 create_tables(connection)
-                self.assertEqual(connection.execute("SELECT COUNT(*) FROM people").fetchone()[0], 157)
-                self.assertEqual(connection.execute("SELECT COUNT(*) FROM family_children").fetchone()[0], 94)
-                self.assertEqual(connection.execute("SELECT COUNT(*) FROM parent_child").fetchone()[0], 181)
-                self.assertEqual(connection.execute("SELECT COUNT(*) FROM person_generation").fetchone()[0], 157)
-                self.assertEqual(connection.execute("SELECT COUNT(*) FROM person_component").fetchone()[0], 157)
+                self.assertEqual(connection.execute("SELECT COUNT(*) FROM people").fetchone()[0], 164)
+                self.assertEqual(connection.execute("SELECT COUNT(*) FROM family_children").fetchone()[0], 100)
+                self.assertEqual(connection.execute("SELECT COUNT(*) FROM parent_child").fetchone()[0], 192)
+                self.assertEqual(connection.execute("SELECT COUNT(*) FROM person_generation").fetchone()[0], 164)
+                self.assertEqual(connection.execute("SELECT COUNT(*) FROM person_component").fetchone()[0], 164)
 
                 output = build_output(connection)
                 domains = {domain["id"]: domain["rows"] for domain in output["domains"]}
@@ -55,7 +55,7 @@ class GenealogyAnalyticsTests(unittest.TestCase):
                 tree_metrics = {row["measure"]: row["value"] for row in domains["tree_structure"]}
                 self.assertEqual(tree_metrics["Maximum generation"], 9)
                 completeness = {row["field"]: row for row in domains["completeness"]}
-                self.assertEqual(completeness["Family evidence"]["total"], 58)
+                self.assertEqual(completeness["Family evidence"]["total"], 63)
                 self.assertEqual(completeness["Family evidence"]["coverage_pct"], 100.0)
                 family_metrics = {row["measure"]: row["value"] for row in domains["family_structure"]}
                 self.assertNotIn("People in sibling groups", family_metrics)

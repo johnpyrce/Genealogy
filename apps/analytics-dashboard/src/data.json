@@ -1,21 +1,21 @@
 {
   "surface": "report",
   "title": "The Muszyna genealogy has nine documented generations",
-  "generatedAt": "2026-09-16T11:21:30-05:00",
+  "generatedAt": "2026-09-16T11:59:57-05:00",
   "buildStatus": "complete",
   "status": "reviewed",
   "queries": {
     "summary": {
       "rows": [
         {
-          "people": 157,
-          "families": 58,
-          "familyChildMemberships": 94,
-          "parentChildEdges": 181,
-          "evidenceRecords": 67,
+          "people": 164,
+          "families": 63,
+          "familyChildMemberships": 100,
+          "parentChildEdges": 192,
+          "evidenceRecords": 73,
           "sourceCharts": 6,
           "maximumGeneration": 9,
-          "components": 27
+          "components": 26
         }
       ],
       "source": {
@@ -49,23 +49,23 @@
       "rows": [
         {
           "measure": "People",
-          "value": 157
+          "value": 164
         },
         {
           "measure": "Families",
-          "value": 58
+          "value": 63
         },
         {
           "measure": "Partner associations",
-          "value": 56
+          "value": 60
         },
         {
           "measure": "Family-child memberships",
-          "value": 94
+          "value": 100
         },
         {
           "measure": "Directed parent-child links",
-          "value": 181
+          "value": 192
         },
         {
           "measure": "Source charts",
@@ -73,7 +73,7 @@
         },
         {
           "measure": "Evidence records",
-          "value": 67
+          "value": 73
         }
       ],
       "source": {
@@ -104,63 +104,63 @@
       "rows": [
         {
           "field": "Birth year",
-          "known": 76,
-          "total": 157,
-          "coverage_pct": 48.4
+          "known": 77,
+          "total": 164,
+          "coverage_pct": 47.0
         },
         {
           "field": "Both birth and death",
           "known": 42,
-          "total": 157,
-          "coverage_pct": 26.8
+          "total": 164,
+          "coverage_pct": 25.6
         },
         {
           "field": "Death year",
           "known": 42,
-          "total": 157,
-          "coverage_pct": 26.8
+          "total": 164,
+          "coverage_pct": 25.6
         },
         {
           "field": "Family evidence",
-          "known": 58,
-          "total": 58,
+          "known": 63,
+          "total": 63,
           "coverage_pct": 100.0
         },
         {
           "field": "Family-name group",
-          "known": 157,
-          "total": 157,
+          "known": 164,
+          "total": 164,
           "coverage_pct": 100.0
         },
         {
           "field": "First name",
-          "known": 157,
-          "total": 157,
+          "known": 164,
+          "total": 164,
           "coverage_pct": 100.0
         },
         {
           "field": "Generation assigned",
-          "known": 157,
-          "total": 157,
+          "known": 164,
+          "total": 164,
           "coverage_pct": 100.0
         },
         {
           "field": "Named parent",
-          "known": 91,
-          "total": 157,
-          "coverage_pct": 58.0
+          "known": 96,
+          "total": 164,
+          "coverage_pct": 58.5
         },
         {
           "field": "Recorded partner",
-          "known": 109,
-          "total": 157,
-          "coverage_pct": 69.4
+          "known": 116,
+          "total": 164,
+          "coverage_pct": 70.7
         },
         {
           "field": "Surname",
-          "known": 155,
-          "total": 157,
-          "coverage_pct": 98.7
+          "known": 162,
+          "total": 164,
+          "coverage_pct": 98.8
         }
       ],
       "source": {
@@ -191,18 +191,18 @@
       "rows": [
         {
           "confidence": "confirmed",
-          "evidence_records": 53,
-          "share_pct": 79.1
+          "evidence_records": 60,
+          "share_pct": 82.2
         },
         {
           "confidence": "probable",
           "evidence_records": 11,
-          "share_pct": 16.4
+          "share_pct": 15.1
         },
         {
           "confidence": "uncertain",
-          "evidence_records": 3,
-          "share_pct": 4.5
+          "evidence_records": 2,
+          "share_pct": 2.7
         }
       ],
       "source": {
@@ -232,11 +232,11 @@
       "rows": [
         {
           "sourceId": "S2",
-          "evidenceRecords": 25
+          "evidenceRecords": 26
         },
         {
           "sourceId": "S5",
-          "evidenceRecords": 19
+          "evidenceRecords": 22
         },
         {
           "sourceId": "S3",
@@ -252,7 +252,7 @@
         },
         {
           "sourceId": "S6",
-          "evidenceRecords": 1
+          "evidenceRecords": 3
         }
       ],
       "source": {
@@ -282,15 +282,15 @@
       "rows": [
         {
           "measure": "Connected components",
-          "value": 27
+          "value": 26
         },
         {
           "measure": "Roots",
-          "value": 66
+          "value": 68
         },
         {
           "measure": "Terminal lines",
-          "value": 78
+          "value": 80
         },
         {
           "measure": "Maximum generation",
@@ -298,11 +298,11 @@
         },
         {
           "measure": "Maximum generation width",
-          "value": 66
+          "value": 68
         },
         {
           "measure": "Isolated people",
-          "value": 26
+          "value": 25
         }
       ],
       "source": {
@@ -332,11 +332,11 @@
       "rows": [
         {
           "measure": "Families with recorded children",
-          "value": 41.0
+          "value": 44.0
         },
         {
           "measure": "Mean children per family with children",
-          "value": 2.29
+          "value": 2.27
         },
         {
           "measure": "Median children per family with children",
@@ -398,7 +398,7 @@
         },
         {
           "decade": "1860s",
-          "people": 3
+          "people": 4
         },
         {
           "decade": "1870s",
@@ -492,14 +492,18 @@
         },
         {
           "familyName": "Guzyk",
-          "people": 8
+          "people": 7
         },
         {
           "familyName": "Miczulski",
-          "people": 6
+          "people": 7
         },
         {
           "familyName": "Drzązgowski",
+          "people": 4
+        },
+        {
+          "familyName": "Pluta",
           "people": 4
         },
         {
@@ -508,6 +512,10 @@
         },
         {
           "familyName": "Berduchowski",
+          "people": 3
+        },
+        {
+          "familyName": "Bukowski",
           "people": 3
         },
         {
@@ -543,10 +551,6 @@
           "people": 3
         },
         {
-          "familyName": "Bukowski",
-          "people": 2
-        },
-        {
           "familyName": "Fedorczak",
           "people": 2
         },
@@ -572,6 +576,10 @@
         },
         {
           "familyName": "Unknown",
+          "people": 2
+        },
+        {
+          "familyName": "Wiklowski",
           "people": 2
         },
         {
@@ -615,7 +623,7 @@
           "people": 1
         },
         {
-          "familyName": "Gumuliak",
+          "familyName": "Gumulak",
           "people": 1
         },
         {
@@ -635,15 +643,11 @@
           "people": 1
         },
         {
-          "familyName": "Miczukski",
-          "people": 1
-        },
-        {
           "familyName": "Miąsik",
           "people": 1
         },
         {
-          "familyName": "Pawlowski",
+          "familyName": "Pawłowski",
           "people": 1
         },
         {
@@ -660,6 +664,10 @@
         },
         {
           "familyName": "Storoż",
+          "people": 1
+        },
+        {
+          "familyName": "Sułkowski",
           "people": 1
         },
         {
@@ -699,7 +707,7 @@
       "rows": [
         {
           "family_size": 1,
-          "families": 18
+          "families": 19
         },
         {
           "family_size": 2,
@@ -707,15 +715,11 @@
         },
         {
           "family_size": 3,
-          "families": 6
+          "families": 8
         },
         {
           "family_size": 4,
-          "families": 2
-        },
-        {
-          "family_size": 5,
-          "families": 1
+          "families": 3
         },
         {
           "family_size": 6,
@@ -813,7 +817,7 @@
         {
           "span_band": "5–9 years",
           "sort_order": 2,
-          "families": 1
+          "families": 2
         },
         {
           "span_band": "10–14 years",
@@ -869,7 +873,7 @@
         {
           "age_band": "25–29",
           "sort_order": 3,
-          "parent_child_observations": 15
+          "parent_child_observations": 18
         },
         {
           "age_band": "30–34",
@@ -914,7 +918,7 @@
       "rows": [
         {
           "firstName": "Jan",
-          "people": 9
+          "people": 10
         },
         {
           "firstName": "Józef",
@@ -949,7 +953,7 @@
           "people": 4
         },
         {
-          "firstName": "Marta",
+          "firstName": "Antonina",
           "people": 4
         }
       ],
@@ -994,13 +998,13 @@
           "person": "Stanisław Gościński",
           "birthYear": "1785",
           "deathYear": null,
-          "note": "relationship provisional"
+          "note": null
         },
         {
           "person": "Jakub Gościński",
           "birthYear": "1788",
           "deathYear": null,
-          "note": "relationship provisional"
+          "note": null
         },
         {
           "person": "Józef Szost",

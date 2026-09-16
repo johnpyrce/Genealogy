@@ -1,0 +1,518 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Muszyna family tree</title>
+  <link rel="stylesheet" href="https://unpkg.com/family-chart@0.9.0/dist/styles/family-chart.css">
+  <script src="https://unpkg.com/d3@7.9.0/dist/d3.min.js"></script>
+  <script src="https://unpkg.com/family-chart@0.9.0/dist/family-chart.min.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    [hidden] { display:none !important; }
+    body { margin:0; background:#f6f4ef; color:#173b3f; font:15px system-ui,sans-serif; }
+    header { padding:20px 24px; border-bottom:1px solid #ced9d4; }
+    h1 { margin:0 0 8px; font:700 28px Georgia,serif; }
+    p { line-height:1.5; margin:8px 0; }
+    main { display:grid; grid-template-columns:300px minmax(0,1fr); height:calc(100dvh - 125px); min-height:560px; }
+    aside { padding:20px; background:#fffdf8; overflow:auto; border-right:1px solid #ced9d4; }
+    label { display:block; font-weight:650; margin:14px 0 7px; }
+    form label { margin-top:0; }
+    input, button, select { font:inherit; color:inherit; border:1px solid #9eb5af; border-radius:6px; padding:9px; background:white; }
+    select { max-width:100%; }
+    input { width:100%; }
+    button { cursor:pointer; }
+    button:hover { background:#e7f2ed; }
+    :focus-visible { outline:3px solid #047857; outline-offset:2px; }
+    #search-status { font-size:13px; color:#536a65; }
+    #results { list-style:none; padding:0; margin:10px 0; max-height:240px; overflow:auto; }
+    #results button { width:100%; text-align:left; margin-bottom:6px; }
+    #legend { margin:18px 0 0; padding:12px; border:1px solid #c8d5d0; border-radius:8px; background:#f5f9f7; }
+    #legend h2 { margin:0 0 8px; font:700 17px Georgia,serif; }
+    #legend-count { margin:0; font-size:13px; color:#405b55; }
+    #legend-items { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:6px 10px; margin-top:10px; font-size:12px; }
+    .legend-label { display:flex; min-width:0; align-items:center; gap:7px; }
+    .legend-name { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+    .swatch { flex:0 0 14px; width:14px; height:14px; border:1px solid rgba(23,59,63,.35); border-radius:3px; }
+    .legend-value { color:#536a65; font-variant-numeric:tabular-nums; }
+    h2 { font:700 22px Georgia,serif; margin:24px 0 10px; }
+    dt { font-size:12px; font-weight:700; margin-top:12px; color:#536a65; }
+    dd { margin:4px 0 0; overflow-wrap:anywhere; white-space:pre-wrap; }
+    .stage { position:relative; min-width:0; background:#f0f4f2; }
+    .family-chart-surface { width:100%; height:100%; background:#f0f4f2; color:#173b3f;
+      --female-color:#d5b5a1; --male-color:#acc7bf; --genderless-color:#d5d7cd; }
+    .family-chart-surface .link { stroke:#607d74; }
+    .family-chart-surface .card-inner { color:#173b3f; }
+    .toolbar { position:absolute; z-index:10; top:12px; left:12px; display:flex; gap:8px; flex-wrap:wrap; }
+    #ForestCharts { position:absolute; inset:0; overflow:auto; padding:62px 14px 16px; background:#f0f4f2; }
+    #forest-heading { margin:0 0 12px; font:700 22px Georgia,serif; }
+    #forest-summary { margin:0 0 14px; color:#536a65; }
+    #forest-grid { display:grid; grid-template-columns:repeat(2,minmax(320px,1fr)); gap:14px; align-items:start; }
+    .forest-panel { min-width:0; overflow:hidden; border:1px solid #c8d5d0; border-radius:9px; background:#fbfdfc; }
+    .forest-panel.primary { grid-column:1 / -1; }
+    .forest-panel h3 { margin:0; padding:10px 13px 2px; font:700 16px Georgia,serif; }
+    .forest-panel p { margin:0; padding:0 13px 8px; color:#536a65; font-size:12px; }
+    .forest-chart { height:320px; border-top:1px solid #dce5e1; }
+    .forest-panel.primary .forest-chart { height:760px; }
+    .forest-roster { grid-column:1 / -1; padding:13px; border:1px solid #c8d5d0; border-radius:9px; background:#fbfdfc; }
+    .forest-roster h3 { margin:0 0 4px; font:700 18px Georgia,serif; }
+    .forest-roster > p { margin:0 0 12px; color:#536a65; font-size:12px; }
+    .forest-roster-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:7px; }
+    .forest-person { display:block; width:100%; border-left:8px solid var(--person-color); text-align:left; }
+    .forest-person small { display:block; margin-top:3px; color:#536a65; }
+    #error { background:#fff1e5; padding:12px; }
+    .hint { font-size:12px; color:#536a65; }
+    @media(max-width:700px) {
+      main { display:flex; flex-direction:column; height:auto; }
+      aside { overflow:visible; border-right:0; }
+      .stage { height:70dvh; min-height:450px; }
+      #forest-grid { grid-template-columns:1fr; }
+      .forest-panel.primary { grid-column:auto; }
+      .forest-panel.primary .forest-chart { height:620px; }
+      #results { max-height:160px; }
+    }
+  </style>
+</head>
+<body>
+  <header><h1>Muszyna family tree</h1><p>Explore the Gościński, Miczulski, Pyrc, and Rams families. Click a person to explore their branch. Drag to pan; scroll or pinch to zoom.</p></header>
+  <p id="error" role="alert" hidden></p>
+  <main>
+    <aside>
+      <form id="search-form" role="search">
+        <label for="search">Find a person</label>
+        <input id="search" type="search" placeholder="Name or person ID" autocomplete="off" aria-controls="results">
+      </form>
+      <p id="search-status" role="status" aria-live="polite"></p>
+      <ul id="results" aria-label="Matching people"></ul>
+      <label for="depth">Generations in each direction</label>
+      <select id="depth"><option value="2" selected>2 generations</option><option value="4">4 generations</option><option value="all">All generations</option></select>
+      <label for="source-filter">Source document</label>
+      <select id="source-filter"><option value="all">All charts</option></select>
+      <label for="color-mode">Color boxes by</label>
+      <select id="color-mode"><option value="gender">Gender</option><option value="family">Family name</option></select>
+      <section id="legend" aria-label="Tree legend" aria-live="polite">
+        <h2>Legend</h2>
+        <p id="legend-count"></p>
+        <div id="legend-items"></div>
+      </section>
+      <section aria-label="Selected person"><h2 id="person-name"></h2><dl id="details"></dl></section>
+      <section id="parentage-controls" hidden>
+        <h2>Alternative parentage</h2>
+        <p class="hint">Some records name different parents. Choose which recorded family to draw; this does not resolve the source conflict.</p>
+        <div id="parentage-options"></div>
+      </section>
+      <p class="hint">Search includes every person, even outside the displayed branch. Names can be typed without Polish accents. Unknown dates remain blank; notes preserve date qualifications.</p>
+      <p class="hint">Built with <a href="https://github.com/donatso/family-chart">family-chart</a>. Family data is embedded in this file; an internet connection is needed to load the chart libraries.</p>
+    </aside>
+    <div class="stage">
+      <div class="toolbar"><button id="fit" type="button" disabled>Fit branch</button><button id="home" type="button" disabled>Starting person</button><button id="entire-tree" type="button" disabled>Show entire tree</button></div>
+      <div id="FamilyChart" class="f3 family-chart-surface" role="region" aria-label="Interactive family tree"></div>
+      <section id="ForestCharts" aria-label="Complete family forest" hidden>
+        <h2 id="forest-heading">Entire tree</h2>
+        <p id="forest-summary"></p>
+        <div id="forest-grid"></div>
+      </section>
+    </div>
+  </main>
+  <noscript>Enable JavaScript to view and search the family tree.</noscript>
+  <script id="family-data" type="application/json">__FAMILY_DATA__</script>
+  <script>
+    const payload = JSON.parse(document.getElementById('family-data').textContent);
+    const people = payload.people;
+    const byId = new Map(people.map(p => [p.id, p]));
+    const search = document.getElementById('search');
+    const results = document.getElementById('results');
+    const status = document.getElementById('search-status');
+    const sourceFilter = document.getElementById('source-filter');
+    const colorMode = document.getElementById('color-mode');
+    const sources = new Map(payload.sources.map(source => [source.source_id, source]));
+    for (const source of payload.sources) {
+      const option = document.createElement('option');
+      option.value = source.source_id;
+      option.textContent = `${source.source_id} — ${source.display_name}`;
+      sourceFilter.append(option);
+    }
+    const fullName = p => [p.data['first name'], p.data['last name']].filter(Boolean).join(' ') || 'Unnamed person';
+    const dates = p => [p.data.birthday ? 'b. ' + p.data.birthday : '', p.data.death ? 'd. ' + p.data.death : ''].filter(Boolean).join(' · ');
+    const normalize = text => text.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/ł/g, 'l');
+    const escapeHtml = text => String(text).replace(/[&<>"']/g, c => ({'&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;'}[c]));
+    let chart;
+    let forestCharts = [];
+    let forestMode = false;
+    let matches = [];
+    let selectedPersonId = payload.root;
+    let activeIds = new Set(people.map(person => person.id));
+    let legendTimer;
+    const parentageChoices = new Map();
+
+    function sameIds(left, right) {
+      return left.length === right.length && left.every((value, index) => value === right[index]);
+    }
+
+    function activeFamilies() {
+      return sourceFilter.value === 'all' ? payload.families : (payload.sourceViews[sourceFilter.value] || []);
+    }
+
+    function chartData() {
+      const families = activeFamilies();
+      activeIds = sourceFilter.value === 'all'
+        ? new Set(people.map(person => person.id))
+        : new Set(families.flatMap(family => [...family.parents, ...family.children]));
+      if (sourceFilter.value !== 'all') {
+        for (const person of people) {
+          if (person.data['source ids'].includes(sourceFilter.value)) activeIds.add(person.id);
+        }
+      }
+      const data = JSON.parse(JSON.stringify(people.filter(person => activeIds.has(person.id))));
+      const selected = new Map(data.map(person => {
+        person.rels = {parents:[], spouses:[], children:[]};
+        return [person.id, person];
+      }));
+      const childFamilies = new Map();
+      const add = (person, relation, relatedId) => {
+        if (person && relatedId && !person.rels[relation].includes(relatedId)) person.rels[relation].push(relatedId);
+      };
+      for (const family of families) {
+        if (family.parents.length === 2) {
+          add(selected.get(family.parents[0]), 'spouses', family.parents[1]);
+          add(selected.get(family.parents[1]), 'spouses', family.parents[0]);
+        }
+        for (const childId of family.children) {
+          const candidates = childFamilies.get(childId) || [];
+          candidates.push(family);
+          childFamilies.set(childId, candidates);
+          for (const parentId of family.parents) {
+            add(selected.get(parentId), 'children', childId);
+            add(selected.get(childId), 'parents', parentId);
+          }
+        }
+      }
+      for (const [childId, candidates] of childFamilies) {
+        const child = selected.get(childId);
+        if (!child || candidates.length < 2) continue;
+        const original = byId.get(childId);
+        const preferred = original.data.parentages[parentageChoices.get(childId) || 0];
+        const chosen = candidates.find(family => preferred && sameIds(family.parents, preferred.parents)) || candidates[0];
+        child.rels.parents = chosen.parents.slice();
+      }
+      for (const person of selected.values()) {
+        person.rels.children = person.rels.children.filter(id => selected.get(id)?.rels.parents.includes(person.id));
+      }
+      return data;
+    }
+
+    function familyColor(name) {
+      if (!name || name === 'Unknown') return '#d5d7cd';
+      let hash = 2166136261;
+      for (const character of name) {
+        hash ^= character.codePointAt(0);
+        hash = Math.imul(hash, 16777619);
+      }
+      return `hsl(${Math.abs(hash) % 360} 48% 73%)`;
+    }
+
+    function genderColor(gender) {
+      return gender === 'M' ? '#acc7bf' : gender === 'F' ? '#d5b5a1' : '#d5d7cd';
+    }
+
+    function styleCard(container, person) {
+      container.dataset.personId = person.id;
+      const inner = container.querySelector('.card-inner');
+      if (!inner) return;
+      if (colorMode.value === 'family') {
+        inner.style.setProperty('background-color', familyColor(person.data['family name']));
+        inner.style.setProperty('color', '#173b3f');
+      } else {
+        inner.style.removeProperty('background-color');
+        inner.style.removeProperty('color');
+      }
+    }
+
+    function updateLegend() {
+      clearTimeout(legendTimer);
+      legendTimer = setTimeout(() => {
+        const displayedIds = forestMode
+          ? new Set(activeIds)
+          : new Set([...document.querySelectorAll('.family-chart-surface .card_cont[data-person-id]')]
+            .filter(card => getComputedStyle(card).display !== 'none')
+            .map(card => card.dataset.personId));
+        const displayed = [...displayedIds].map(id => byId.get(id)).filter(Boolean);
+        const source = sources.get(sourceFilter.value);
+        document.getElementById('legend-count').textContent = source
+          ? `Displayed ${displayed.length} of ${activeIds.size} people in ${source.source_id} — ${source.display_name} · ${people.length} total`
+          : `Displayed ${displayed.length} of ${people.length} people`;
+        const counts = new Map();
+        for (const person of displayed) {
+          const key = colorMode.value === 'family'
+            ? (person.data['family name'] || 'Unknown')
+            : (person.data.gender === 'M' ? 'Male' : person.data.gender === 'F' ? 'Female' : 'Unspecified');
+          counts.set(key, (counts.get(key) || 0) + 1);
+        }
+        const items = document.getElementById('legend-items');
+        items.replaceChildren();
+        [...counts].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).forEach(([name, count]) => {
+          const label = document.createElement('span'); label.className = 'legend-label';
+          const swatch = document.createElement('span'); swatch.className = 'swatch';
+          swatch.style.background = colorMode.value === 'family'
+            ? familyColor(name)
+            : genderColor(name === 'Male' ? 'M' : name === 'Female' ? 'F' : 'U');
+          const text = document.createElement('span'); text.className = 'legend-name'; text.textContent = name;
+          const value = document.createElement('span'); value.className = 'legend-value'; value.textContent = count;
+          label.append(swatch, text); items.append(label, value);
+        });
+      }, 375);
+    }
+
+    function connectedComponents(data) {
+      const records = new Map(data.map(person => [person.id, person]));
+      const adjacent = new Map(data.map(person => [person.id, new Set()]));
+      for (const person of data) {
+        for (const relatedId of [...person.rels.parents, ...person.rels.spouses, ...person.rels.children]) {
+          if (!records.has(relatedId)) continue;
+          adjacent.get(person.id).add(relatedId);
+          adjacent.get(relatedId).add(person.id);
+        }
+      }
+      const seen = new Set();
+      const components = [];
+      for (const person of data) {
+        if (seen.has(person.id)) continue;
+        const ids = new Set();
+        const stack = [person.id];
+        while (stack.length) {
+          const id = stack.pop();
+          if (ids.has(id)) continue;
+          ids.add(id); seen.add(id);
+          stack.push(...adjacent.get(id));
+        }
+        components.push(data.filter(record => ids.has(record.id)));
+      }
+      return components.sort((left, right) => right.length - left.length || fullName(left[0]).localeCompare(fullName(right[0])));
+    }
+
+    function configureCards(chartInstance, onClick) {
+      chartInstance.setCardHtml().setStyle('rect').setCardDim({w:200, h:90}).setCardDisplay([
+        p => escapeHtml(fullName(p)), p => escapeHtml(dates(p)), p => '#' + escapeHtml(p.id)
+      ]).setOnCardClick(onClick)
+        .setOnCardUpdate(function(node) { styleCard(this, node.data); });
+    }
+
+    function showEntireTree() {
+      const data = chartData();
+      const components = connectedComponents(data);
+      forestMode = true;
+      document.getElementById('depth').value = 'all';
+      document.getElementById('FamilyChart').hidden = true;
+      document.getElementById('ForestCharts').hidden = false;
+      document.getElementById('entire-tree').textContent = 'Show selected branch';
+      document.getElementById('fit').textContent = 'Fit all groups';
+      const source = sources.get(sourceFilter.value);
+      document.getElementById('forest-heading').textContent = source
+        ? `Entire tree in ${source.source_id} — ${source.display_name}`
+        : 'Entire tree from all charts';
+      document.getElementById('forest-summary').textContent =
+        `${data.length} ${data.length === 1 ? 'person' : 'people'} in ${components.length} ${components.length === 1 ? 'connected group' : 'connected groups'}. Each group can be panned and zoomed independently.`;
+      const grid = document.getElementById('forest-grid');
+      grid.replaceChildren();
+      forestCharts = [];
+      components.forEach((component, index) => {
+        const panel = document.createElement('section');
+        panel.className = `forest-panel${index === 0 && component.length > 8 ? ' primary' : ''}`;
+        const heading = document.createElement('h3');
+        heading.textContent = component.length === 1
+          ? fullName(component[0])
+          : `Family group ${index + 1}`;
+        const summary = document.createElement('p');
+        summary.textContent = component.length === 1
+          ? `Standalone record · #${component[0].id}${dates(component[0]) ? ' · ' + dates(component[0]) : ''}`
+          : `${component.length} people · ${component.slice(0, 3).map(fullName).join(', ')}${component.length > 3 ? ', …' : ''}`;
+        const surface = document.createElement('div');
+        surface.id = `ForestChart${index}`;
+        surface.className = 'f3 family-chart-surface forest-chart';
+        surface.setAttribute('role', 'region');
+        surface.setAttribute('aria-label', heading.textContent);
+        panel.append(heading, summary, surface); grid.append(panel);
+        const componentData = JSON.parse(JSON.stringify(component));
+        const instance = f3.createChart(`#${surface.id}`, componentData)
+          .setTransitionTime(250).setCardXSpacing(240).setCardYSpacing(140)
+          .setAncestryDepth(Infinity).setProgenyDepth(Infinity)
+          .setSingleParentEmptyCard(false).setAfterUpdate(updateLegend);
+        configureCards(instance, (event, node) => showFocusedView(node.data.id));
+        instance.updateTree({initial:true, tree_position:'fit'});
+        forestCharts.push(instance);
+      });
+      const roster = document.createElement('section');
+      roster.className = 'forest-roster';
+      const rosterHeading = document.createElement('h3'); rosterHeading.textContent = 'All people in this view';
+      const rosterSummary = document.createElement('p');
+      rosterSummary.textContent = 'This complete index includes people whom the relationship diagrams cannot place because their source has no recorded connector.';
+      const rosterGrid = document.createElement('div'); rosterGrid.className = 'forest-roster-grid';
+      data.slice().sort((a, b) => fullName(a).localeCompare(fullName(b)) || Number(a.id) - Number(b.id)).forEach(person => {
+        const button = document.createElement('button');
+        button.type = 'button'; button.className = 'forest-person';
+        button.style.setProperty('--person-color', colorMode.value === 'family'
+          ? familyColor(person.data['family name']) : genderColor(person.data.gender));
+        const name = document.createElement('span'); name.textContent = fullName(person);
+        const detail = document.createElement('small');
+        detail.textContent = `#${person.id}${dates(person) ? ' · ' + dates(person) : ''}`;
+        button.append(name, detail);
+        button.addEventListener('click', () => showFocusedView(person.id));
+        rosterGrid.append(button);
+      });
+      roster.append(rosterHeading, rosterSummary, rosterGrid); grid.append(roster);
+      searchPeople(); updateLegend();
+    }
+
+    function showFocusedView(id = selectedPersonId) {
+      forestMode = false;
+      document.getElementById('ForestCharts').hidden = true;
+      document.getElementById('FamilyChart').hidden = false;
+      document.getElementById('entire-tree').textContent = 'Show entire tree';
+      document.getElementById('fit').textContent = 'Fit branch';
+      const data = chartData();
+      const fallback = data.slice().sort((a, b) => fullName(a).localeCompare(fullName(b)))[0];
+      const targetId = activeIds.has(id) ? id : fallback?.id;
+      const depthValue = document.getElementById('depth').value;
+      const depth = depthValue === 'all' ? Infinity : Number(depthValue);
+      chart.setAncestryDepth(depth).setProgenyDepth(depth);
+      if (targetId) selectPerson(targetId);
+      searchPeople(); updateLegend();
+    }
+    for (const person of people.filter(p => p.data.parentages.length > 1)) {
+      document.getElementById('parentage-controls').hidden = false;
+      const label = document.createElement('label');
+      label.textContent = `${fullName(person)} · #${person.id}`;
+      const select = document.createElement('select');
+      select.id = 'parentage-' + person.id;
+      label.htmlFor = select.id;
+      const note = document.createElement('p'); note.className = 'hint';
+      person.data.parentages.forEach((family, index) => {
+        const option = document.createElement('option');
+        option.value = index;
+        option.textContent = family.parents.map(id => `${fullName(byId.get(id))} (#${id})`).join(' + ');
+        select.append(option);
+      });
+      note.textContent = person.data.parentages[0].note;
+      select.addEventListener('change', () => {
+        parentageChoices.set(person.id, Number(select.value));
+        note.textContent = person.data.parentages[Number(select.value)].note;
+        if (chart) applyView(activeIds.has(person.id) ? person.id : selectedPersonId);
+      });
+      document.getElementById('parentage-options').append(label, select, note);
+    }
+
+    function showDetails(person) {
+      document.getElementById('person-name').textContent = fullName(person);
+      const details = document.getElementById('details');
+      details.replaceChildren();
+      for (const [label, value] of [['Person ID', person.id], ['Birth', person.data.birthday], ['Death', person.data.death], ['Source', person.data.source], ['Notes', person.data.note]]) {
+        if (!value) continue;
+        const term = document.createElement('dt'); term.textContent = label;
+        const description = document.createElement('dd'); description.textContent = value;
+        details.append(term, description);
+      }
+    }
+
+    function selectPerson(id, initial = false) {
+      const person = byId.get(id);
+      if (!person || !activeIds.has(id)) return;
+      if (forestMode) {
+        showFocusedView(id);
+        return;
+      }
+      selectedPersonId = id;
+      showDetails(person);
+      if (chart) {
+        const component = connectedComponents(chartData()).find(group => group.some(record => record.id === id)) || [];
+        chart.updateData(component).updateMainId(id).updateTree({initial, tree_position:'fit'});
+      }
+    }
+
+    function applyView(preferredId = selectedPersonId) {
+      if (forestMode) {
+        showEntireTree();
+        return;
+      }
+      const data = chartData();
+      const fallback = data.slice().sort((a, b) => fullName(a).localeCompare(fullName(b)))[0];
+      const targetId = activeIds.has(preferredId) ? preferredId : fallback?.id;
+      if (targetId) selectPerson(targetId);
+      searchPeople();
+      updateLegend();
+    }
+
+    function searchPeople() {
+      const query = normalize(search.value.trim());
+      results.replaceChildren();
+      matches = query ? people.filter(p => activeIds.has(p.id) && (p.id === query.replace(/^#/, '') ||
+        query.split(/\s+/).every(word => normalize(fullName(p)).includes(word)))) : [];
+      const scope = sourceFilter.value === 'all' ? '' : ` in ${sourceFilter.value}`;
+      status.textContent = query ? `${matches.length} matching ${matches.length === 1 ? 'person' : 'people'}${scope}` : `${activeIds.size} people${scope} · Search to explore a branch`;
+      for (const person of matches) {
+        const item = document.createElement('li');
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.textContent = `${fullName(person)} · #${person.id}${dates(person) ? ' · ' + dates(person) : ''}`;
+        button.addEventListener('click', () => selectPerson(person.id));
+        item.append(button); results.append(item);
+      }
+    }
+    search.addEventListener('input', searchPeople);
+    document.getElementById('search-form').addEventListener('submit', event => {
+      event.preventDefault();
+      if (matches.length) selectPerson(matches[0].id);
+    });
+    searchPeople();
+    showDetails(byId.get(payload.root));
+    try {
+      if (!window.f3 || !window.d3) throw new Error('Chart libraries could not be loaded. Connect to the internet and reload this file.');
+      // The library mutates its data while building the tree; keep search records intact.
+      chart = f3.createChart('#FamilyChart', chartData())
+        .setTransitionTime(350).setCardXSpacing(240).setCardYSpacing(140)
+        .setAncestryDepth(2).setProgenyDepth(2)
+        .setSingleParentEmptyCard(false)
+        .setAfterUpdate(updateLegend);
+      configureCards(chart, (event, node) => selectPerson(node.data.id));
+      selectPerson(payload.root, true);
+      document.getElementById('fit').disabled = false;
+      document.getElementById('home').disabled = false;
+      document.getElementById('entire-tree').disabled = false;
+      document.getElementById('fit').addEventListener('click', () => {
+        if (forestMode) forestCharts.forEach(instance => instance.updateTree({tree_position:'fit'}));
+        else chart.updateTree({tree_position:'fit'});
+      });
+      document.getElementById('home').addEventListener('click', () => showFocusedView(payload.root));
+      document.getElementById('entire-tree').addEventListener('click', () => {
+        if (forestMode) showFocusedView();
+        else showEntireTree();
+      });
+      document.getElementById('depth').addEventListener('change', event => {
+        if (forestMode) {
+          showFocusedView();
+          return;
+        }
+        const depth = event.target.value === 'all' ? Infinity : Number(event.target.value);
+        chart.setAncestryDepth(depth).setProgenyDepth(depth).updateTree({tree_position:'fit'});
+      });
+      sourceFilter.addEventListener('change', () => applyView());
+      colorMode.addEventListener('change', () => {
+        if (forestMode) showEntireTree();
+        else chart.updateTree({tree_position:'inherit', transition_time:0});
+      });
+      let resizeTimer;
+      new ResizeObserver(() => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+          if (forestMode) forestCharts.forEach(instance => instance.updateTree({tree_position:'fit', transition_time:0}));
+          else chart.updateTree({tree_position:'fit', transition_time:0});
+        }, 150);
+      }).observe(document.querySelector('.stage'));
+    } catch (error) {
+      const message = document.getElementById('error');
+      message.textContent = error.message;
+      message.hidden = false;
+      console.error(error);
+    }
+  </script>
+</body>
+</html>

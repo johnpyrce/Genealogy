@@ -2,8 +2,8 @@ id,first_name,surname,family_name_group,birth_year,death_year,source,note
 1,Wawrzyniec,Gościński,Gościński,1760,,printed,approximate birth year
 2,Teresa,Bartmanowicz,Bartmanowicz,,,printed,
 3,Wawrzyniec,Gościński,Gościński,1780,,printed,
-4,Stanisław,Gościński,Gościński,1785,,printed,relationship provisional
-5,Jakub,Gościński,Gościński,1788,,printed,relationship provisional
+4,Stanisław,Gościński,Gościński,1785,,printed,
+5,Jakub,Gościński,Gościński,1788,,printed,
 6,Antoni,Gościński,Gościński,1816,,printed,
 7,Katarzyna,Grotkowska,Grotkowski,,,printed,
 8,Maria,Sasała,Sasała,,,printed,
@@ -20,7 +20,7 @@ id,first_name,surname,family_name_group,birth_year,death_year,source,note
 19,Franciszek,Gościński,Gościński,,,printed-only sibling,
 20,Magdalena,Gościńska,Gościński,,,printed-only sibling,
 21,Piotr,Szost,Szost,1861,,printed,
-22,Zofia,Gościńska,Gościński,1883,1964,handwritten-only sibling,
+22,Zofia,Gościńska,Gościński,1883,1964,both,S2 says that she emigrated to Chicago and married there; S2 gives her husband's surname only
 23,Bronisław,Gościński,Gościński,1920,2001,both,
 24,Władysława,Śliwa,Śliwa,1927,2004,both,
 25,Teresa,Gościński,Gościński,,,handwritten,
@@ -35,14 +35,14 @@ id,first_name,surname,family_name_group,birth_year,death_year,source,note
 34,Mariusz,Gościński,Gościński,,,handwritten,
 35,Stanisław,Gościński,Gościński,1927,2009,both,
 36,Władysława,Miczulska,Miczulski,1932,2020,both,
-37,Antonina,Miczulska,Miczukski,,,handwritten,daughter of Stanisław and Władysława; shown with Jerzy Guzyk in S4; surname not given
+37,Antonina,Gościńska,Gościński,,,handwritten,daughter of Stanisław and Władysława; shown with Jerzy Guzyk in S4; surname inferred from her father because the charts give only her first name
 38,Joanna,Guzyk,Guzyk,,,handwritten,wife listed before husband in S4
 39,Józef,Berduchowski,Berduchowski,,,handwritten,
 40,Jakub,Berduchowski,Berduchowski,,,handwritten,surname inherited from father Józef Berduchowski in S4
-41,Emilia,Pawlowska,Pawlowski,,,handwritten,shown as Jakub's spouse in S4
+41,Emilia,Pawłowska,Pawłowski,,,handwritten,shown as Jakub's spouse in S4
 42,Krzysztof,Berduchowski,Berduchowski,,,handwritten,surname inherited from father Józef Berduchowski in S4
 43,Łukasz,Guzyk,Guzyk,,,handwritten,
-44,Katarzyna,Sulkowska,Guzyk,,,handwritten,surname not given in S4
+44,Katarzyna,Sułkowska,Sułkowski,,,handwritten,shown as Łukasz's spouse in S4
 45,Emilia,Guzyk,Guzyk,,,handwritten,surname inherited from father Łukasz Sułkowski in S4
 46,Olivier,Guzyk,Guzyk,,,handwritten,surname inherited from father Łukasz Sułkowski in S4
 47,Marta,Guzyk,Guzyk,,,handwritten,wife listed before husband in S4; surname not given
@@ -67,16 +67,16 @@ id,first_name,surname,family_name_group,birth_year,death_year,source,note
 66,Konstanty,Hryc,Hryc,,,polished,
 67,Wincenty,Hryc,Hryc,,,polished,
 68,Renata,Gościńska,Gościński,,,polished,
-69,Małgorzata,Gościński,Gościński,,,handwritten,
-70,Bogdan,Gościński,Gościński,,,handwritten,generation uncertain
-71,Pluto,Gościński,Gościński,,,handwritten,name and generation uncertain
+69,Małgorzata,Gościńska,Gościński,,,handwritten,daughter of Stanisław and Władysława; shown with Bogdan Pluta in S6
+70,Bogdan,Pluta,Pluta,,,handwritten,shown as Małgorzata's spouse in S6; previously misread as separate names Bogdan and Pluto
+71,Agnieszka,Pluta,Pluta,,,handwritten,daughter of Małgorzata and Bogdan Pluta; surname inferred from her father
 72,Bronisława,Gościńska,Gościński,1930,2015,both,
 73,Bolesław,Rams,Rams,1924,2002,both,
 74,Antonina,Gościńska,Gościński,1936,,printed,
 75,Bronisław,Miąsik,Miąsik,,,printed,
 76,Jan,Pyrc,Pyrc,,,handwritten,
 77,Anna,Bukowska,Bukowski,,,handwritten,
-78,Józef,Pyrc,Pyrc,1879,1940,handwritten,
+78,Józef,Pyrc,Pyrc,1879,1940,both,S2 gives only the husband's surname; given name and dates come from S3
 79,Emil,Pyrc,Pyrc,,,handwritten,
 80,Stanisław,Pyrc,Pyrc,1911,1944,handwritten,
 81,Tadeusz,Pyrc,Pyrc,1920,2004,both,
@@ -103,7 +103,7 @@ id,first_name,surname,family_name_group,birth_year,death_year,source,note
 102,Halina,Dulak,Dulak,1965,,printed,
 103,Maciej,Rams,Rams,1990,,printed,
 104,Natalia,Tokarczyk,Tokarczyk,1993,,printed,
-105,Hanna,Rams,Rams,2021,,printed,relationship provisional
+105,Hanna,Rams,Rams,2021,,printed,shown as the child of Maciej Rams and Natalia née Tokarczyk
 106,Wojciech,Rams,Rams,1995,,printed,
 107,Natalia,Drobny,Drobny,,,printed,
 108,Urszula,Rams,Rams,2000,,printed,
@@ -118,7 +118,7 @@ id,first_name,surname,family_name_group,birth_year,death_year,source,note
 117,Jan,Rams,Rams,1908,1988,printed,
 118,Helena,Ruchałowska,Ruchałowski,1909,2005,printed,
 119,Józef,Rams,Rams,,,printed,
-120,Zofia,Ślaby,Ślaby,1914,2004,printed,
+120,Zofia,Ślaby,Ślaby,1914,2004,printed,S5 says she was from Trzetrzewina and was the widow of Jan Miczulski
 121,Michalina,Rams,Rams,1917,1996,printed,
 122,Józef,Tokarczyk,Tokarczyk,1909,1984,printed,
 123,Michał,Rams,Rams,1910,1974,printed,
@@ -127,7 +127,7 @@ id,first_name,surname,family_name_group,birth_year,death_year,source,note
 126,Stanisława,Rams,Rams,1923,2013,printed,
 127,Józef,Cisowski,Cisowski,1913,1995,printed,
 128,Henryk,Rams,Rams,1927,2024,printed,
-129,Genowefa,Gumuliak,Gumuliak,1932,2015,printed,
+129,Genowefa,Gumulak,Gumulak,1932,2015,printed,
 130,Wawrzyniec,Miczulski,Miczulski,,,printed,
 131,Małgorzata,Kałucka,Kałucki,,,printed,surname provisional
 132,Piotr,Miczulski,Miczulski,1805,,printed,
@@ -152,7 +152,14 @@ id,first_name,surname,family_name_group,birth_year,death_year,source,note
 151,Jan,Gruczelak,Gruczelak,1854,,printed,
 152,Piotr,Jacenik,Jacenik,1908,2002,printed,corrected from the S2 spouse pedigree
 153,Antonina,Bukowska,Bukowski,,,printed,
-154,Maria,Gruczelak,Gruczelak,,,printed,previous extraction; relationship not verified in S2
+154,Maria,Gruczelak,Gruczelak,,,printed,second wife of Jan Miczulski born 1868; described in S5 as Jacenikowa and widow of Andrzej from Folwark
 155,Zofia,Matusiewicz,Matusiewicz,,,printed,spouse of Wawrzyniec Gościński (1780)
 156,Unknown,Łyga,Łyga,,,printed,first name not shown in S2
 157,Jerzy,Guzyk,Guzyk,,,handwritten,shown with Antonina in S4
+158,Tomasz,Wiklowski,Wiklowski,,,handwritten,shown with Agnieszka in S6; surname normalized from the handwritten family-form reading Wiklowscy
+159,Łucja,Wiklowska,Wiklowski,,,handwritten,shown below Agnieszka and Tomasz in S6; surname inferred from her father
+160,Beata,Pluta,Pluta,,,handwritten,daughter of Małgorzata and Bogdan Pluta; surname inferred from her father
+161,Tomasz,Pluta,Pluta,,,handwritten,son of Małgorzata and Bogdan Pluta; surname inferred from his father
+162,Wiktoria,Gościńska,Gościński,,,printed,shown in S2 as a child of Franciszek Gościński and Józefa née Szost
+163,Jan,Miczulski,Miczulski,1868,,printed,shown in the S5 spouse pedigree for Maria née Miczulska
+164,Antonina,Bukowska,Bukowski,,,printed,first wife of Jan Miczulski born 1868; distinct from Antonina Bukowska in the Jacenik branch
