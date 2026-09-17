@@ -100,7 +100,7 @@
     {selector:'node.person.radial-layout',style:{'width':40,'height':40}},
     {selector:'node.family.radial-layout',style:{'width':32,'height':32}},
     {selector:'node.string-match',style:{'background-color':'data(matchColor)','border-color':'#173b3f','border-width':3,'width':34,'height':34}},
-    {selector:'node.show-label',style:{'label':'data(label)','font-size':'data(labelSize)','color':'#666','text-outline-color':'#f7f4ed','text-outline-width':'data(labelOutline)','text-valign':'bottom','text-margin-y':-5}},
+    {selector:'node.show-label',style:{'label':'data(label)','font-size':'data(labelSize)','color':'#808080','text-outline-color':'#f7f4ed','text-outline-width':'data(labelOutline)','text-valign':'bottom','text-margin-y':-5}},
     {selector:'node.highlight',style:{'background-color':'#e4572e','border-width':6,'border-color':'#fbbf24','width':40,'height':40}},
     {selector:'edge',style:{'width':1.6,'line-color':'#789096','target-arrow-color':'#789096','curve-style':'bezier','target-arrow-shape':'triangle','arrow-scale':.8}},
     {selector:'edge.spouse_ancestry',style:{'line-style':'dashed'}},{selector:'edge.collateral',style:{'line-style':'dotted'}},
@@ -109,8 +109,8 @@
   function overlaps(a,b){return a.left<b.right&&a.right>b.left&&a.top<b.bottom&&a.bottom>b.top;}
   function updateLabels(){
     cy.nodes().removeClass('show-label');
-    const zoom=Math.max(cy.zoom(),.01), renderedFont=Math.max(10,12*zoom);
-    cy.nodes().data('labelSize',Math.max(12,10/zoom));
+    const zoom=Math.max(cy.zoom(),.01), renderedFont=Math.max(11,12*zoom);
+    cy.nodes().data('labelSize',Math.max(12,11/zoom));
     cy.nodes().data('labelOutline',Math.max(1.8,2/zoom));
     const mode=document.getElementById('labels').value;
     if(mode==='none')return;
@@ -291,7 +291,8 @@
     updateLabels();
     if(focused){const node=cy.getElementById(`p:${focused}`);if(node.length){cy.animate({center:{eles:node},zoom:Math.max(cy.zoom(),1.05)},{duration:180});}}
   }
-  function fitEntireGraph(){if(!cy.nodes().length)return;cy.stop();cy.animate({fit:{eles:cy.elements(),padding:42}},{duration:220,complete:updateLabels});}
+  function fittedGraphView(padding=42){const bounds=cy.elements().boundingBox({includeLabels:false}), availableWidth=Math.max(1,cy.width()-padding*2), availableHeight=Math.max(1,cy.height()-padding*2), zoom=Math.min(availableWidth/Math.max(1,bounds.w),availableHeight/Math.max(1,bounds.h));return {zoom,pan:{x:(cy.width()-bounds.w*zoom)/2-bounds.x1*zoom,y:(cy.height()-bounds.h*zoom)/2-bounds.y1*zoom}};}
+  function fitEntireGraph(){if(!cy.nodes().length)return;const view=fittedGraphView();cy.stop();cy.animate({zoom:view.zoom,pan:view.pan},{duration:220,complete:()=>{overviewZoom=view.zoom;updateLabels();}});}
   function showReadableView(){if(!cy.nodes().length)return;const bounds=cy.elements().boundingBox({includeLabels:false}), zoom=Math.max(overviewZoom*1.85,.85), pan={x:(cy.width()-bounds.w*zoom)/2-bounds.x1*zoom,y:18-bounds.y1*zoom};cy.stop();cy.animate({zoom,pan},{duration:240,complete:updateLabels});}
   function compactLayout(){return window.matchMedia('(max-width:900px)').matches;}
   function resizeDetails(size){const available=compactLayout()?workspace.clientHeight:workspace.clientWidth, minimum=compactLayout()?160:220, maximum=Math.max(minimum,Math.floor(available*.6)), next=Math.min(Math.max(size,minimum),maximum);document.documentElement.style.setProperty('--details-size',`${next}px`);cy.resize();updateLabels();}
