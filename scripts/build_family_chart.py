@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
+from shutil import copyfile
 
 from scripts.lib.genealogy_data import (
     ROOT,
@@ -17,6 +18,8 @@ from scripts.lib.genealogy_data import (
 
 OUTPUT = ROOT / "artifacts" / "interactive" / "family_tree.html"
 TEMPLATE = Path(__file__).with_name("templates") / "family_chart.html"
+HELP_TEMPLATE = Path(__file__).with_name("templates") / "family_chart_help.html"
+HELP_IMAGE = Path(__file__).with_name("templates") / "family_chart_elements.png"
 
 
 def build_data(people=None, families=None, direct_sources=None) -> list[dict]:
@@ -152,6 +155,7 @@ def render_html(
     families=None,
     sources=None,
     evidence_rows=None,
+    help_file: str = "family_tree_help.html",
 ) -> str:
     root_id = root_id or data[0]["id"]
     if root_id not in {person["id"] for person in data}:
@@ -171,7 +175,11 @@ def render_html(
     )
     # Prevent registry text from closing the JSON script element.
     payload = payload.replace("&", "\\u0026").replace("<", "\\u003c").replace(">", "\\u003e")
-    return TEMPLATE.read_text(encoding="utf-8").replace("__FAMILY_DATA__", payload)
+    return (
+        TEMPLATE.read_text(encoding="utf-8")
+        .replace("__FAMILY_DATA__", payload)
+        .replace("__FAMILY_HELP_FILE__", help_file)
+    )
 
 
 def main() -> None:
@@ -179,6 +187,7 @@ def main() -> None:
     parser.add_argument("--output", type=Path, default=OUTPUT, help="Destination HTML file")
     parser.add_argument("--root", help="Initial person ID (defaults to the first registry entry)")
     args = parser.parse_args()
+    help_output = args.output.with_name(f"{args.output.stem}_help.html")
     try:
         people = load_people()
         families = load_families()
@@ -189,11 +198,17 @@ def main() -> None:
             families=families,
             sources=load_sources(),
             evidence_rows=load_relationship_evidence(),
+            help_file=help_output.name,
         )
     except ValueError as error:
         parser.error(str(error))
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(html, encoding="utf-8")
+    help_output.write_text(
+        HELP_TEMPLATE.read_text(encoding="utf-8").replace("__FAMILY_TREE_FILE__", args.output.name),
+        encoding="utf-8",
+    )
+    copyfile(HELP_IMAGE, help_output.with_name(HELP_IMAGE.name))
     print(f"Wrote {args.output} ({len(data)} people)")
 
 

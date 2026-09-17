@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Help: Muszyna family tree</title>
+  <style>
+    :root { --ink:#173b3f; --muted:#536a65; --paper:#f7f4ed; --panel:#fff; --accent:#0f766e; }
+    * { box-sizing:border-box; } body { margin:0; color:var(--ink); background:var(--paper); font:16px/1.55 Arial,sans-serif; } main { max-width:850px; margin:0 auto; padding:38px 24px 56px; } h1,h2 { font-family:Georgia,serif; } h1 { margin:0; font-size:32px; } h2 { margin:32px 0 8px; font-size:22px; } p,li { max-width:74ch; } .lede { color:var(--muted); font-size:18px; } .back { display:inline-block; margin:0 0 24px; color:#075d57; font-weight:700; } .diagram { max-width:680px; margin:24px auto; padding:12px; border:1px solid #c8d5d0; border-radius:10px; background:var(--panel); } .diagram img { display:block; width:100%; height:auto; border-radius:5px; } .diagram figcaption { margin:10px 4px 2px; color:var(--muted); font-size:14px; } .note { padding:14px 16px; border-left:4px solid var(--accent); background:var(--panel); } kbd { padding:1px 5px; border:1px solid #b8c5c4; border-radius:4px; background:#fff; font:inherit; } a { color:#075d57; }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back" href="__FAMILY_TREE_FILE__">← Return to the family tree</a>
+    <h1>Using the family tree</h1>
+    <p class="lede">This viewer shows a focused family branch at a time. It is designed for finding a person, following their recorded relationships, and reading the source notes attached to their record.</p>
+
+    <figure class="diagram">
+      <img src="family_chart_elements.png" alt="Illustration of two parent cards connected to a selected person card, then a child card, with a selected-person details panel.">
+      <figcaption>Person cards are joined through recorded family relationships. The teal outline marks the selected person; the side panel shows that person's registry details.</figcaption>
+    </figure>
+
+    <h2>Start exploring</h2>
+    <p>Click a person card to make that person the focus. Drag across the diagram to pan, and use the mouse wheel, trackpad, or pinch gesture to zoom. Use <strong>Fit branch</strong> when the current branch no longer fits comfortably on screen, or <strong>Starting person</strong> to return to the initial view.</p>
+
+    <h2>Find a person</h2>
+    <p>Enter a name or exact person ID in <strong>Find a person</strong>, then choose a result. Search accepts Polish names with or without diacritics. Dates and IDs in the results help distinguish people who share a name.</p>
+
+    <h2>Control what is shown</h2>
+    <ul>
+      <li><strong>Generations</strong> expands the focused branch to two, four, or all recorded generations in each direction.</li>
+      <li><strong>Source document</strong> limits the diagram and search results to relationships supported by a selected chart. The viewer keeps people with direct evidence from that chart available even when the chart does not record a connector for them.</li>
+      <li><strong>Color cards by</strong> switches between recorded parent-role styling and normalized family-name styling. The legend explains the colors currently visible.</li>
+      <li><strong>Show entire tree</strong> displays every connected group available under the current source selection. Use it when you need an overview rather than one person’s branch.</li>
+    </ul>
+
+    <h2>Read a person record</h2>
+    <p>The selected-person panel lists the stable person ID, recorded birth and death years, source label, and registry notes. Blank values mean the registry does not record that fact; they do not establish that the fact was historically absent.</p>
+
+    <h2>Alternative parent records</h2>
+    <p>Some people have more than one recorded parent family. When this occurs, the viewer offers a parent-family selector. Selecting an option changes the displayed branch only. It does not choose between conflicting source accounts.</p>
+
+    <p class="note">The chart is a view of the registry. It preserves unknown values, source notes, and alternate accounts rather than inferring missing relationships.</p>
+  </main>
+</body>
+</html>

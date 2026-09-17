@@ -49,6 +49,11 @@ class FamilyChartTests(unittest.TestCase):
         self.assertNotIn("<", embedded)
         self.assertEqual(json.loads(embedded)["people"][0]["data"]["first name"], name)
 
+    def test_viewer_links_to_its_companion_help_page(self):
+        html = render_html(build_data([person(1)], []), "1")
+        self.assertIn('href="family_tree_help.html"', html)
+        self.assertNotIn("__FAMILY_HELP_FILE__", html)
+
     def test_invalid_graphs_fail_clearly(self):
         cases = [
             ([person(1)], [(1, 2, [], "")], "unknown person"),

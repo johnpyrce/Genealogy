@@ -27,7 +27,7 @@ analytics, exports, and dashboard data are derived from them.
 - `scripts/templates/family_chart.html`: template for the family-chart viewer.
 - `tests/`: standard-library `unittest` regression tests.
 - `docs/`: working narrative, transcription, and history. The generated
-  `docs/trees/merged_family_tree_box_drawing.md` should be regenerated through
+  `docs/trees/family_tree.md` should be regenerated through
   `scripts.build_box_drawing_tree`, not edited by hand.
 - `apps/analytics-dashboard/`: React dashboard. Read its local `AGENTS.md`
   before editing; it defines authored content boundaries, protected runtime

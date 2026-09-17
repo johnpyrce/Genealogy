@@ -12,7 +12,7 @@
 | By the numbers | apps/analytics-dashboard |
 | The Family Tree | artifacts/interactive/family_tree.html |
 |  | artifacts/interactive/genealogy_relationship_graph.html |
-|  | docs/trees/merged_family_tree_box_drawing.md |
+|  | docs/trees/family_tree.md |
 | Download data | artifacts/exports/merged_muszyna_family_tree.ged |
 | Stories | 'docs/history/1945 - Bronislaw Goscinski Auchwitz History.md' |
 | Pictures from Muszyna | media/photos |

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import re
 import tempfile
 import unittest
 from pathlib import Path
@@ -27,9 +28,51 @@ class GenealogyAnalyticsTests(unittest.TestCase):
 
             tree = output.read_text(encoding="utf-8")
             self.assertIn("generated directly from the editable people, family, source, and relationship-evidence CSV registries", tree)
-            self.assertEqual(tree.count("Family "), 63)
-            self.assertIn("Partner 1: Wawrzyniec Gościński (1760)", tree)
+            family_headings = re.findall(
+                r"^[│ ]*[└├]── Family (\d+) ·", tree, flags=re.MULTILINE
+            )
+            self.assertEqual(len(family_headings), 63)
+            self.assertEqual(len(set(family_headings)), 63)
+            self.assertIn("Partner 1: Person 1 · Wawrzyniec Gościński (1760)", tree)
+            self.assertRegex(tree, r"Person 14 · Jan Gościński \(1888–1970\)\n[│ ]*└── Family 8")
+            self.assertIn(
+                "Partner 2: Person 94 · Joanna Gruczelak (1901–1994) · ↪ child in Family 56",
+                tree,
+            )
+            self.assertIn(
+                "Person 15 · Marianna Miczulska (1895–1962) · ↪ also child in Family 63",
+                tree,
+            )
+            self.assertIn("↪ Family 8 (expanded elsewhere)", tree)
             self.assertIn("People without a recorded family", tree)
+
+    def test_box_drawing_tree_stops_at_a_family_cycle(self) -> None:
+        people = {
+            person_id: {
+                "id": person_id,
+                "first": f"Person{person_id}",
+                "surname": "Test",
+                "surname_group": "Test",
+                "birth": None,
+                "death": None,
+                "source": "test",
+                "note": "",
+            }
+            for person_id in range(1, 5)
+        }
+        families = [(1, 4, [2], ""), (2, 3, [1], "")]
+        tree = build_box_drawing_tree.render_tree(
+            people,
+            families,
+            {1: "main_line", 2: "main_line"},
+            {1: ["S1"], 2: ["S1"]},
+        )
+
+        self.assertEqual(
+            len(re.findall(r"^[│ ]*[└├]── Family \d+ ·", tree, flags=re.MULTILINE)),
+            2,
+        )
+        self.assertIn("↪ Family 1 (expanded elsewhere)", tree)
 
     def test_normalized_grains_and_agreed_domains(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Help: Muszyna relationship graph</title>
+  <style>
+    :root { --ink:#173b3f; --muted:#536a65; --paper:#f7f4ed; --panel:#fff; --accent:#0f766e; }
+    * { box-sizing:border-box; } body { margin:0; color:var(--ink); background:var(--paper); font:16px/1.55 Arial,sans-serif; } main { max-width:850px; margin:0 auto; padding:38px 24px 56px; } h1,h2 { font-family:Georgia,serif; } h1 { margin:0; font-size:32px; } h2 { margin:32px 0 8px; font-size:22px; } p,li { max-width:74ch; } .lede { color:var(--muted); font-size:18px; } .back { display:inline-block; margin:0 0 24px; color:#075d57; font-weight:700; } .diagram { max-width:680px; margin:24px auto; padding:12px; border:1px solid #c8d5d0; border-radius:10px; background:var(--panel); } .diagram img { display:block; width:100%; height:auto; border-radius:5px; } .diagram figcaption { margin:10px 4px 2px; color:var(--muted); font-size:14px; } .note { padding:14px 16px; border-left:4px solid var(--accent); background:var(--panel); } a { color:#075d57; }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back" href="__GRAPH_FILE__">← Return to the relationship graph</a>
+    <h1>Using the relationship graph</h1>
+    <p class="lede">This viewer maps the genealogy as a relationship network. It is useful for following connections across several branches, comparing source-backed relationships, and exporting a view of the graph.</p>
+
+    <figure class="diagram">
+      <img src="cytoscape_genealogy_graph_elements.png" alt="Illustration of teal circular people connected through a gold square family hub to child circles, with one orange highlighted person and a details panel.">
+      <figcaption>Teal circles are people. The gold square is a family hub. Arrows lead from recorded partners to that hub and from the hub to children; orange marks a selected or search-highlighted person.</figcaption>
+    </figure>
+
+    <h2>Read the diagram</h2>
+    <p>Circles represent people. Square hubs represent family records: incoming arrows connect recorded partners to the family, and outgoing arrows connect the family to recorded children. A solid line is a main-line record, a dashed line is spouse ancestry, and a dotted line is collateral family material.</p>
+
+    <h2>Navigate and inspect</h2>
+    <p>Drag the diagram to pan and use the mouse wheel, trackpad, or pinch gesture to zoom. Hover over a node to see its label. Click a person or family hub to open its registry details and source evidence in the side panel. Drag the divider beside that panel to resize it.</p>
+    <p>Use the fit icon to show the whole current graph. The readable-view icon resets to a larger top-down layout for reading labels and descendant branches.</p>
+
+    <h2>Find and focus people</h2>
+    <p>Enter a name or exact person ID in <strong>Find a person</strong>. Search accepts Polish names with or without diacritics. Press <kbd>Return</kbd> to select the first result and press it again to cycle through matches. Once a person is selected, <strong>Show direct ancestors</strong> limits the graph to that person and their recorded ancestors.</p>
+
+    <h2>Filter the graph</h2>
+    <ul>
+      <li><strong>Source chart</strong> limits the graph to evidence associated with one chart. A source may support a whole family record or only selected partner and parent-child relationships.</li>
+      <li><strong>Branches</strong> lets you include or hide main-line, spouse-ancestry, and collateral records.</li>
+      <li><strong>Labels</strong> controls whether labels appear automatically, never, or on every node.</li>
+      <li><strong>Color matching people</strong> highlights names containing the entered text with the selected color.</li>
+    </ul>
+
+    <h2>Reset and export</h2>
+    <p><strong>Reset</strong> restores the unfiltered graph and default appearance. <strong>Download PNG</strong> saves a high-resolution image of the current graph, including the full diagram rather than only the visible viewport.</p>
+
+    <p class="note">The graph presents the registry as recorded. Unknown values, source notes, and competing parent accounts remain visible; filters and layouts do not resolve those historical uncertainties.</p>
+  </main>
+</body>
+</html>
