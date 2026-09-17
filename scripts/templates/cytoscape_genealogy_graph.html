@@ -57,7 +57,7 @@
   </style>
 </head>
 <body>
-  <header><h1>Muszyna family history: relationship graph</h1><p>People are circles; square family hubs connect parents to their children. Each family group uses a pedigree layout: parents, family, then children. Hover to identify, click for source evidence, and pan or zoom to explore. <a href="__GRAPH_HELP_FILE__">Help and guide</a></p></header>
+  <header><h1>Muszyna family history: relationship graph</h1><p>People are circles; square family hubs connect parents to their children. Choose a top-down pedigree or radial-tree layout, then hover to identify, click for source evidence, and pan or zoom to explore. <a href="__GRAPH_HELP_FILE__">Help and guide</a></p></header>
   <section id="controls" aria-label="Graph controls">
     <div class="toolbar">
       <label class="search-control">Find a person<input id="search" placeholder="Name or person ID" autocomplete="off"><span id="search-status" class="search-status" aria-live="polite"></span></label>
@@ -68,6 +68,7 @@
           <div class="control">Branches<div class="checks"><label><input class="role" type="checkbox" value="main_line" checked> Main line</label><label><input class="role" type="checkbox" value="spouse_ancestry" checked> Spouse ancestry</label><label><input class="role" type="checkbox" value="collateral" checked> Collateral</label></div></div>
         </div></details>
         <details class="control-menu"><summary>Appearance</summary><div class="menu-panel">
+          <label class="control">Layout<select id="layout"><option value="pedigree" selected>Pedigree (top-down)</option><option value="radial">Radial tree</option></select></label>
           <label class="control">Labels<select id="labels"><option value="auto" selected>Auto</option><option value="none">None</option><option value="all">All</option></select></label>
           <label class="control">Color matching people<div class="color-match-row"><input id="match-string" type="text" placeholder="Part of a name" autocomplete="off"><input id="match-color" type="color" value="#7c3aed" aria-label="Matching people color"></div></label>
         </div></details>
@@ -94,11 +95,13 @@
   function ancestorSets(anchor='81') { const byChild=new Map(); families.forEach(f=>f.children.forEach(child=>{const rows=byChild.get(child)||[];rows.push(f);byChild.set(child,rows)})); const p=new Set([anchor]), f=new Set(), queue=[anchor]; while(queue.length){const child=queue.shift();(byChild.get(child)||[]).forEach(family=>{f.add(family.id);[family.father_id,family.mother_id].filter(Boolean).forEach(parent=>{if(!p.has(parent)){p.add(parent);queue.push(parent)}})})} return {people:p,families:f}; }
   function activeData() { const source=document.getElementById('source').value, roles=selectedRoles(), anchor=showingAncestors&&selectedPersonId?selectedPersonId:null, ancestors=anchor?ancestorSets(anchor):null; const activeFamilies=families.filter(f=>roles.has(f.branch_role)&&(!ancestors||ancestors.families.has(f.id))).map(f=>familyForSource(f,source)).filter(Boolean); const activePeople=new Set(); activeFamilies.forEach(f=>[f.father_id,f.mother_id,...f.children].filter(Boolean).forEach(id=>activePeople.add(id))); if(anchor)activePeople.add(anchor); return {activeFamilies,activePeople}; }
   const cy=cytoscape({container:document.getElementById('cy'),elements:[],style:[
-    {selector:'node',style:{'label':'','background-color':'#197278','width':19,'height':19,'border-width':1.5,'border-color':'#fff'}},
-    {selector:'node.family',style:{'shape':'round-rectangle','background-color':'#d19a2a','border-color':'#8d6516','width':16,'height':16}},
-    {selector:'node.string-match',style:{'background-color':'data(matchColor)','border-color':'#173b3f','border-width':2.5,'width':24,'height':24}},
-    {selector:'node.show-label',style:{'label':'data(label)','font-size':12,'color':'#173b3f','text-outline-color':'#f7f4ed','text-outline-width':2,'text-valign':'bottom','text-margin-y':-5}},
-    {selector:'node.highlight',style:{'background-color':'#e4572e','border-width':6,'border-color':'#fbbf24','width':31,'height':31}},
+    {selector:'node',style:{'label':'','background-color':'#197278','width':28,'height':28,'border-width':2,'border-color':'#fff'}},
+    {selector:'node.family',style:{'shape':'round-rectangle','background-color':'#d19a2a','border-color':'#8d6516','width':23,'height':23}},
+    {selector:'node.person.radial-layout',style:{'width':40,'height':40}},
+    {selector:'node.family.radial-layout',style:{'width':32,'height':32}},
+    {selector:'node.string-match',style:{'background-color':'data(matchColor)','border-color':'#173b3f','border-width':3,'width':34,'height':34}},
+    {selector:'node.show-label',style:{'label':'data(label)','font-size':'data(labelSize)','color':'#666','text-outline-color':'#f7f4ed','text-outline-width':'data(labelOutline)','text-valign':'bottom','text-margin-y':-5}},
+    {selector:'node.highlight',style:{'background-color':'#e4572e','border-width':6,'border-color':'#fbbf24','width':40,'height':40}},
     {selector:'edge',style:{'width':1.6,'line-color':'#789096','target-arrow-color':'#789096','curve-style':'bezier','target-arrow-shape':'triangle','arrow-scale':.8}},
     {selector:'edge.spouse_ancestry',style:{'line-style':'dashed'}},{selector:'edge.collateral',style:{'line-style':'dotted'}},
     {selector:':selected',style:{'border-color':'#0f766e','border-width':4}}
@@ -106,6 +109,9 @@
   function overlaps(a,b){return a.left<b.right&&a.right>b.left&&a.top<b.bottom&&a.bottom>b.top;}
   function updateLabels(){
     cy.nodes().removeClass('show-label');
+    const zoom=Math.max(cy.zoom(),.01), renderedFont=Math.max(10,12*zoom);
+    cy.nodes().data('labelSize',Math.max(12,10/zoom));
+    cy.nodes().data('labelOutline',Math.max(1.8,2/zoom));
     const mode=document.getElementById('labels').value;
     if(mode==='none')return;
     if(mode==='all'){cy.nodes().addClass('show-label');return;}
@@ -115,8 +121,8 @@
     if(relativeZoom>=1)candidates.push(...cy.nodes('.family').toArray());
     if(relativeZoom>=1.8)candidates.push(...cy.nodes('.person').toArray());
     [...new Map(candidates.map(node=>[node.id(),node])).values()].forEach(node=>{
-      const point=node.renderedPosition(), label=node.data('label'), width=Math.max(26,label.length*6.2);
-      const box={left:point.x-width/2,right:point.x+width/2,top:point.y+4,bottom:point.y+17};
+      const point=node.renderedPosition(), label=node.data('label'), width=Math.max(34,label.length*renderedFont*.52);
+      const box={left:point.x-width/2,right:point.x+width/2,top:point.y+4,bottom:point.y+renderedFont+7};
       if(!occupied.some(other=>overlaps(box,other))){node.addClass('show-label');occupied.push(box);}
     });
   }
@@ -216,9 +222,71 @@
     });
     cy.fit(cy.elements(),42); overviewZoom=cy.zoom();
   }
+  function radialLayout() {
+    const ringGap=120, padding=74, componentGap=170, positioned=[];
+    connectedComponents().forEach(nodes=>{
+      const familyNodes=nodes.filter(node=>node.data('kind')==='family');
+      const foundingFamilies=familyNodes.filter(node=>node.incomers().nodes().toArray().every(parent=>
+        !parent.incomers().nodes().toArray().some(ancestor=>ancestor.data('kind')==='family')
+      ));
+      const familyYear=node=>{
+        const family=families.find(record=>record.id===node.data('familyId'));
+        if(!family)return Number.POSITIVE_INFINITY;
+        const years=[family.father_id,family.mother_id].map(id=>people.get(id)?.birth_year).filter(value=>value&&Number.isFinite(Number(value))).map(Number);
+        return years.length?Math.min(...years):Number.POSITIVE_INFINITY;
+      };
+      const rootCandidates=foundingFamilies.length?foundingFamilies:familyNodes;
+      rootCandidates.sort((a,b)=>familyYear(a)-familyYear(b)||Number(a.data('familyId'))-Number(b.data('familyId')));
+      const root=rootCandidates[0]||nodes[0], parent=new Map([[root.id(),null]]), depth=new Map([[root.id(),0]]), children=new Map(nodes.map(node=>[node.id(),[]])), queue=[root];
+      while(queue.length){
+        const node=queue.shift();
+        const neighbors=node.neighborhood().nodes().toArray().sort((a,b)=>{
+          const aEdge=node.edgesWith(a)[0], bEdge=node.edgesWith(b)[0];
+          const aDirection=aEdge&&aEdge.source().id()===node.id()?0:1, bDirection=bEdge&&bEdge.source().id()===node.id()?0:1;
+          return aDirection-bDirection||a.id().localeCompare(b.id(),undefined,{numeric:true});
+        });
+        neighbors.forEach(child=>{
+          if(parent.has(child.id()))return;
+          parent.set(child.id(),node.id());depth.set(child.id(),depth.get(node.id())+1);children.get(node.id()).push(child);queue.push(child);
+        });
+      }
+      // Allocate a continuous angular sector to every descendant branch. This
+      // keeps a child's later families together as an arc away from its family.
+      const weights=new Map();
+      const subtreeWeight=node=>{
+        const branches=children.get(node.id());
+        const weight=branches.length?branches.reduce((sum,child)=>sum+subtreeWeight(child),0):1;
+        weights.set(node.id(),weight);return weight;
+      };
+      subtreeWeight(root);
+      const positions=[];
+      const place=(node,startAngle,endAngle)=>{
+        const angle=(startAngle+endAngle)/2, radius=depth.get(node.id())*ringGap;
+        positions.push({node,x:radius*Math.cos(angle),y:radius*Math.sin(angle)});
+        const branches=children.get(node.id()), total=branches.reduce((sum,child)=>sum+weights.get(child.id()),0);
+        let cursor=startAngle;
+        branches.forEach(child=>{
+          const extent=(endAngle-startAngle)*weights.get(child.id())/total;
+          place(child,cursor,cursor+extent);cursor+=extent;
+        });
+      };
+      place(root,-Math.PI/2,Math.PI*3/2);
+      const xs=positions.map(point=>point.x), ys=positions.map(point=>point.y), minX=Math.min(...xs), maxX=Math.max(...xs), minY=Math.min(...ys), maxY=Math.max(...ys);
+      positions.forEach(point=>point.node.position({x:point.x-minX+padding,y:point.y-minY+padding}));
+      positioned.push({nodes,width:Math.max(maxX-minX+padding*2,ringGap*2),height:Math.max(maxY-minY+padding*2,ringGap*2)});
+    });
+    const rowWidth=Math.max(1000,cy.width()*1.6); let cursorX=0,cursorY=0,rowHeight=0;
+    positioned.forEach(component=>{
+      if(cursorX&&cursorX+component.width>rowWidth){cursorX=0;cursorY+=rowHeight+componentGap;rowHeight=0;}
+      component.nodes.forEach(node=>{const point=node.position();node.position({x:point.x+cursorX,y:point.y+cursorY});});
+      cursorX+=component.width+componentGap;rowHeight=Math.max(rowHeight,component.height);
+    });
+    cy.fit(cy.elements(),42);overviewZoom=cy.zoom();
+  }
+  function applyLayout(){const radial=document.getElementById('layout').value==='radial';if(radial)cy.nodes().addClass('radial-layout');else cy.nodes().removeClass('radial-layout');radial?radialLayout():pedigreeLayout();}
   function render() {
     const {activeFamilies,activePeople}=activeData(); const elements=elementsFor(activeFamilies,activePeople);
-    cy.elements().remove();cy.add(elements.nodes);cy.add(elements.edges);pedigreeLayout();
+    cy.elements().remove();cy.add(elements.nodes);cy.add(elements.edges);applyLayout();
     if(highlightedNodeId){const node=cy.getElementById(highlightedNodeId);if(node.length)node.addClass('highlight');}
     updateLabels();
     if(focused){const node=cy.getElementById(`p:${focused}`);if(node.length){cy.animate({center:{eles:node},zoom:Math.max(cy.zoom(),1.05)},{duration:180});}}
@@ -240,7 +308,7 @@
   document.getElementById('search').addEventListener('input',()=>{clearSearchSelection();refreshSearchMatches();render();});document.getElementById('search').addEventListener('keydown',event=>{if(event.key!=='Enter'||!searchMatches.length)return;event.preventDefault();const nextIndex=searchIndex===-1?(event.shiftKey?searchMatches.length-1:0):(searchIndex+(event.shiftKey?-1:1)+searchMatches.length)%searchMatches.length;showSearchMatch(nextIndex);});
   document.getElementById('fit-graph').addEventListener('click',fitEntireGraph);document.getElementById('readable-view').addEventListener('click',showReadableView);
   detailsResizer.addEventListener('mousedown',event=>{if(event.button!==0)return;event.preventDefault();detailsDrag={startX:event.clientX,startY:event.clientY,startSize:parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--details-size'))};detailsResizer.classList.add('dragging');});document.addEventListener('mousemove',event=>{if(!detailsDrag)return;const delta=compactLayout()?detailsDrag.startY-event.clientY:detailsDrag.startX-event.clientX;resizeDetails(detailsDrag.startSize+delta);});document.addEventListener('mouseup',()=>{if(!detailsDrag)return;detailsDrag=null;detailsResizer.classList.remove('dragging');});window.addEventListener('resize',()=>{cy.resize();updateLabels();});
-  document.getElementById('match-string').addEventListener('input',render);document.getElementById('match-color').addEventListener('input',render);document.getElementById('labels').addEventListener('change',updateLabels);document.getElementById('source').addEventListener('change',()=>{clearSearchSelection();updateSourceStatus();refreshSearchMatches();render();});document.querySelectorAll('.role').forEach(input=>input.addEventListener('change',()=>{clearSearchSelection();refreshSearchMatches();render();}));document.getElementById('ancestors').addEventListener('click',()=>{if(!selectedPersonId)return;showingAncestors=!showingAncestors;updateAncestorButton();render();});document.getElementById('reset').addEventListener('click',()=>{clearSearchSelection();document.getElementById('search').value='';document.getElementById('match-string').value='';document.getElementById('match-color').value='#7c3aed';document.getElementById('labels').value='auto';document.getElementById('source').value='all';document.querySelectorAll('.role').forEach(input=>input.checked=true);controlMenus.forEach(menu=>menu.open=false);updateSourceStatus();refreshSearchMatches();render();});document.getElementById('download').addEventListener('click',()=>{const link=document.createElement('a');link.download='muszyna-genealogy-cytoscape.png';link.href=cy.png({full:true,scale:2,bg:'#f7f4ed'});link.click();});
+  document.getElementById('match-string').addEventListener('input',render);document.getElementById('match-color').addEventListener('input',render);document.getElementById('layout').addEventListener('change',render);document.getElementById('labels').addEventListener('change',updateLabels);document.getElementById('source').addEventListener('change',()=>{clearSearchSelection();updateSourceStatus();refreshSearchMatches();render();});document.querySelectorAll('.role').forEach(input=>input.addEventListener('change',()=>{clearSearchSelection();refreshSearchMatches();render();}));document.getElementById('ancestors').addEventListener('click',()=>{if(!selectedPersonId)return;showingAncestors=!showingAncestors;updateAncestorButton();render();});document.getElementById('reset').addEventListener('click',()=>{clearSearchSelection();document.getElementById('search').value='';document.getElementById('match-string').value='';document.getElementById('match-color').value='#7c3aed';document.getElementById('layout').value='pedigree';document.getElementById('labels').value='auto';document.getElementById('source').value='all';document.querySelectorAll('.role').forEach(input=>input.checked=true);controlMenus.forEach(menu=>menu.open=false);updateSourceStatus();refreshSearchMatches();render();});document.getElementById('download').addEventListener('click',()=>{const link=document.createElement('a');link.download='muszyna-genealogy-cytoscape.png';link.href=cy.png({full:true,scale:2,bg:'#f7f4ed'});link.click();});
   populateSources();updateAncestorButton();updateSourceStatus();render();
   </script>
 </body>

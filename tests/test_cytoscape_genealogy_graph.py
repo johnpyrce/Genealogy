@@ -11,9 +11,19 @@ class CytoscapeGenealogyGraphTests(unittest.TestCase):
         help_page = render_help()
 
         self.assertIn('href="genealogy_relationship_graph_help.html"', html)
+        self.assertIn('id="layout"', html)
+        self.assertIn('value="radial">Radial tree', html)
+        self.assertIn('function radialLayout()', html)
+        self.assertIn("const foundingFamilies=", html)
+        self.assertIn("const subtreeWeight=", html)
+        self.assertIn("'width':28,'height':28", html)
+        self.assertIn("node.person.radial-layout", html)
+        self.assertIn("'width':40,'height':40", html)
+        self.assertIn("Math.max(12,10/zoom)", html)
         self.assertNotIn("__GRAPH_DATA__", html)
         self.assertNotIn("__GRAPH_HELP_FILE__", html)
         self.assertIn('href="genealogy_relationship_graph.html"', help_page)
+        self.assertIn('Radial tree', help_page)
         self.assertNotIn("__GRAPH_FILE__", help_page)
 
 
