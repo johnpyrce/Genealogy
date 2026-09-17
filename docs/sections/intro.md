@@ -1,17 +1,13 @@
-# Musczyna Polish relatives
+## Welcome to the Muszyna Family Archive
 
-## Introduction
+This site brings together a growing record of the Gościński, Miczulski, Pyrc, Pyrce, and Rams families, with roots in Muszyna and Wapienne in southern Poland and family branches in the United States.
 
-This gives genealogical information about Polish relatives of the US Pyrce family.  
+It began with six genealogy charts and photographs brought back from a family visit to Muszyna. Those materials are preserved here alongside transcriptions, source notes, family stories, surname research, and a structured genealogy registry. The site does not treat the charts as a finished answer: it records what each source says, keeps uncertainty visible, and preserves alternate accounts where the evidence differs.
 
-The Pyrce family, Sophie (Zofia, nee Goscinska) and Joseph (Josef) Pyrce (Pyrc), left Muszyna, Poland in the early 1900s and ended up in Chicago. 
-This shows genealogical information about the family remaining in Poland and the US contingent.
+Start with the source charts to see the original material, then explore the interactive family tree or relationship graph to follow people and households across generations. The tree supports searching by name or person ID, while the relationship graph makes it easier to trace connections between branches. A readable text tree and GEDCOM download are also available for reference and reuse.
 
-This was genealogical study was partly motivated by a recent 
-[trip](https://www.facebook.com/laura.hamman1/posts/pfbid02SxXpK4KrwL3ysd5cm37ypGQrAsNTi7BUKbqWPBbi9MzHQSaboJu4eVvW7ZELXvrsl?__cft__[0]=AZjUaMTqpOrByEmwnVSvDnIdHX1dVyOLmTQHaX85uzL9-t2zF8EaKoxkZjlTfHK5PGw-bvXhfiFlZg_s14Xtc0gnbHzJYaaG8WvNkmmvoJZgwSh4RPMmDhmcLishxTujbH0&__tn__=%2CO%2CP-R)
-to Muszyna.  The contingent making the trip brought back genealogical charts and a few pictures from Poland.
-This note consolidates these and enriches them with additional information.
+The site also includes genealogy analytics that summarize the documented family record: generations, family structures, source coverage, dates, names, and other patterns in the registry. These views provide an overview of the available evidence while linking the numbers back to the underlying people, families, and source charts.
 
-## Sources
+The site also includes a look at the meanings and Polish forms of the family names, historical stories, photographs from Muszyna, and material on Joseph Pyrc and Zofia Gościńska’s life in America. Together, these pages connect the documented Polish branches with the family that settled in Chicago.
 
-The genealogical information available is in the form of 6 charts.
+This is a living research collection. Missing dates, unnamed relatives, and conflicting parentage are shown as recorded rather than filled in by assumption. New evidence can strengthen, correct, or extend the story.
