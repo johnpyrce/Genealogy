@@ -1,4 +1,6 @@
-### Meaning and origin
+# The Gościński Name
+
+## Meaning and origin
 
 The Polish Academy of Sciences’ surname dictionary gives two plausible origins:
 
@@ -7,7 +9,7 @@ The Polish Academy of Sciences’ surname dictionary gives two plausible origins
 
 Those place-names ultimately relate to the old Polish root *gość*, meaning “guest,” “visitor,” or originally “stranger/newcomer.” Some may instead derive through old personal names such as **Gościmir** or **Gościsław**. The surname alone cannot establish which explanation applies to a particular family. [Polish Academy of Sciences surname dictionary](https://nazwiska.ijppan.pl/haslo/show/name/GO%C5%9ACI%C5%83SKI), [Goszczyn municipal history](https://bip.goszczyn.pl/index.php?cmd=zawartosc&id=30&opt=pokaz)
 
-### Pronunciation
+## Pronunciation
 
 Approximately:
 
@@ -16,7 +18,7 @@ Approximately:
 
 The stress falls on **-ciń-**. More precisely, Polish **ś** and **ć** are soft consonants, so the beginning is slightly softer than English “gosh-ch.”
 
-### Why there are two forms
+## Why there are two forms
 
 Polish surnames ending in *-ski* behave like adjectives:
 
@@ -26,9 +28,9 @@ Polish surnames ending in *-ski* behave like adjectives:
 
 Thus, *Gościńska* is normally the feminine form of the same surname—not a separate family name. Outside Poland, women frequently retain the standardized immigrant spelling **Goscinski**.
 
-### Frequency and geography
+## Frequency and geography
 
-The Polish Academy’s current reference entry records **1,133 bearers in Poland**—546 men and 587 women. The largest concentrations are in:
+The Polish Academy’s reference entry reports **1,133 bearers in Poland**—546 men and 587 women. The largest concentrations are in:
 
 - Kujawsko-Pomorskie
 - Małopolskie
@@ -39,7 +41,7 @@ An especially notable local concentration occurs around **Muszyna and Nowy Sącz
 
 The surname is documented by **1614**, while the unaccented spelling *Goscinski* appears in records from 1838 and 1841.
 
-### Does *-ski* mean nobility?
+## Does *-ski* mean nobility?
 
 Not by itself. Some historical **Gościński/Goszczyński** families were recorded among the Polish nobility, including associations claimed with the **Doliwa coat of arms**, but sharing their surname does not establish descent from them. Polish coats of arms belonged to particular documented lineages—not automatically to everyone with the same surname. A reliable connection requires a continuous paper trail linking the family to that lineage.
 

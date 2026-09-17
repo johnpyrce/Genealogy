@@ -1,37 +1,28 @@
 # The Pyrce Name
 
-The American family of Joseph and Sophie came to use the name "Pyrce", but
-the Polish records clearly attest that Joseph/Josef's surname was "Pyrć".
+The American family of Joseph and Sophie came to use the name **Pyrce**, while Polish records in this collection use **Pyrć** for Joseph/Józef.
 
-A 1933 Petitiion for Citizenship document for Sophie states the following (although
-some of the writing on this is illegible):
+A 1933 [Petition for Citizenship](<../../media/SophieJoseph/1933 - Citizenship Petition.png>) for Sophie records the following. Parts of the document are difficult to read.
 
-- Sophie lists her surname as "Pyrch".  Perhaps this modification was to
-eliminate the non-English diacritic "c".  "Pyrcz" would be the more usual Polish version,
-but that name is distinctly foreign looking to an American.
-- She was born in Muszyna Poland on May 1, 1883.
-- She was married to Joseph in 1910 in Muszyna.
-- Joseph arrived in the US in 1911.
-- Sophie attests that she has recided in the US since May, 1912.  (Curiously the manifest for
-the S.S. Kaiser Wilhelm II sailing from Bremen that lists Zofia on Line 2 is dated February 4, 1913.)
-- She currently liveed at 2406 S Spaulding Ave in Chicago, with all children.
+- Sophie lists her surname as **Pyrch**. The document does not explain the spelling; it may be an English approximation of the final Polish sound in *Pyrć*.
+- She records that she was born in Muszyna, Poland, on May 1, 1883.
+- She records that she married Joseph in Muszyna in 1910.
+- Joseph arrived in the United States in 1911.
+- She states that she had resided in the United States since May 1912. The [1913 passenger manifest](<../../media/SophieJoseph/1913 - Zofia Goscinska Manifest.gif>) in this collection is dated February 4, 1913, so the two records should be read together rather than silently reconciled.
+- She was then living at 2406 S. Spaulding Avenue in Chicago with her children.
 
-There are five children (this is difficult to read):
+The petition appears to list five children:
 
-|Name  | Birth date | Birth place | Polish name |
-|------|--------|-------|-------|
-|Stanley John | Nov? 5 1911 | Poland | Stanisław
-|Bernice Rose | Aug 1, 1914 | Chicago | Bronisława
-|Charles Lewis|  May? 4, 1919 | Chicago | Karol
-|Taddeus Matthew | Feb 19, 1920 | Chicago | Tadeusz
-|Stella ??? | June 16, 1923 | Chicago | Stefania
+| Name | Birth date | Birth place | Polish name |
+| --- | --- | --- | --- |
+| Stanley John | Nov.? 5, 1911 | Poland | Stanisław |
+| Bernice Rose | Aug. 1, 1914 | Chicago | Bronisława |
+| Charles Lewis | May? 4, 1919 | Chicago | Karol |
+| Taddeus Matthew | Feb. 19, 1920 | Chicago | Tadeusz |
+| Stella | June 16, 1923 | Chicago | Stefania |
 
-All of the children's names had already by 1933 been Americanized away from
-the Polish names.  Both Taddeus/Thaddeus/Ted and Roberta would change their names again.
+By 1933, the document uses Americanized forms of the children’s names. Later family records may use additional name forms; any reference to a person named Roberta should be identified with a source before it is added to this account.
 
-- Sophie becomes a naturalized citizen on March 22, 1938, five years after the original petition.
-- The rear of that naturlization document says that her name was changed.
-- She is now "Sophie Pyrce".
-- She is 54 years old, 5 feet tall, 140 pounds.
+Sophie became a naturalized U.S. citizen on March 22, 1938, five years after the petition. The reverse of the [naturalization record](<../../media/SophieJoseph/1938 - Naturalization - Back.tif>) records a name change to **Sophie Pyrce**. It also gives her age as 54, height as five feet, and weight as 140 pounds.
 
-Later records for all children and Sophie use the name "Pyrce" exclusively.
+Later records for Sophie and her children in this collection use **Pyrce**.

@@ -1,19 +1,14 @@
 # Combined Muszyna Genealogy
 
-| Section | Location |
-|-------|------|
-|Intro | docs/sections/intro.md|
-|Sources | docs/transcription/english_chart_transcription.md |
-| | data/registries/sources.csv |
-| | data/source-material/charts/*.png |
-| What's in a name? | docs/sections/goscinski.md |
-| | docs/sections/pyrc.md |
-| | docs/sections/pyrce.md |
-| By the numbers | apps/analytics-dashboard |
-| The Family Tree | artifacts/interactive/family_tree.html |
-|  | artifacts/interactive/genealogy_relationship_graph.html |
-|  | docs/trees/family_tree.md |
-| Download data | artifacts/exports/merged_muszyna_family_tree.ged |
-| Stories | 'docs/history/1945 - Bronislaw Goscinski Auchwitz History.md' |
-| Pictures from Muszyna | media/photos |
-| Joseph and Sophie in America | 'media/SophieJoseph' |
+| Section | Resource |
+| --- | --- |
+| Introduction | [Welcome](intro.md) |
+| Sources | [Chart transcription](../transcription/english_chart_transcription.md) · [source registry](../../data/registries/sources.csv) · [original chart images](../../data/source-material/charts/) |
+| Names | [Gościński](goscinski.md) · [Pyrć / Pyrc](pyrc.md) · [Pyrce in America](pyrce.md) |
+| Methods and corrections | [How to read and improve this archive](methodology.md) |
+| Genealogy analytics | [Analytics dashboard source](../../apps/analytics-dashboard/) |
+| Interactive family tree | [Family-tree viewer](../../artifacts/interactive/family_tree.html) · [relationship graph](../../artifacts/interactive/genealogy_relationship_graph.html) · [text family tree](../trees/family_tree.md) |
+| Download | [GEDCOM export](../../artifacts/exports/merged_muszyna_family_tree.ged) |
+| Stories | [Bronisław Gościński and Auschwitz, 1945](<../history/1945 - Bronislaw Goscinski Auschwitz History.md>) |
+| Pictures from Muszyna | [Photograph collection](../../media/photos/) |
+| Joseph and Sophie in America | [Family documents and photographs](../../media/SophieJoseph/) |

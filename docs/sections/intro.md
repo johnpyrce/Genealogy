@@ -10,4 +10,4 @@ The site also includes genealogy analytics that summarize the documented family 
 
 The site also includes a look at the meanings and Polish forms of the family names, historical stories, photographs from Muszyna, and material on Joseph Pyrc and Zofia Gościńska’s life in America. Together, these pages connect the documented Polish branches with the family that settled in Chicago.
 
-This is a living research collection. Missing dates, unnamed relatives, and conflicting parentage are shown as recorded rather than filled in by assumption. New evidence can strengthen, correct, or extend the story.
+This is a living research collection. Missing dates, unnamed relatives, and conflicting parentage are shown as recorded rather than filled in by assumption. New evidence can strengthen, correct, or extend the story. [Send feedback or source information by email](mailto:rekarpyrce@gmail.com).

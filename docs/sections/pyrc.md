@@ -1,8 +1,7 @@
-# Pyrć Meaning and origin
+# Pyrć: Meaning and Origin
 
-The attested name in "Goscinscy z Wapiennego Genealogy" is "Pyrć", with a diacritic. I believe this to be correct.
-
-Pyrć is a graphic/spelling variant of the surname Pyrc, which is itself catalogued in Poland's Academy of Sciences surname dictionary (Instytut Języka Polskiego PAN) as a variant of the somewhat more common Pyrcz. The PAN dictionary lists Pyrc as a recognized variant of Pyrcz. Forebears.io's phonetic-similarity data confirms the same cluster, ranking Pyrć as the closest match to Pyrc.
+The chart *Gościńscy z Wapiennego* records the surname as **Pyrć**. The Polish Academy of Sciences surname dictionary treats **Pyrc** as a variant in the **Pyrcz** name group. 
+[Polish Academy of Sciences surname dictionary](https://nazwiska.ijppan.pl/haslo/show/name/PYRC), [Forebears: Pyrc](https://forebears.io/surnames/pyrc)
 
 ## Derivation
 
@@ -23,7 +22,7 @@ More precisely, Polish **y** is a short central vowel somewhat between the vowel
 
 ## Male and female forms
 
-Modern official usage is:
+Modern Polish usage is:
 
 - man: **Jan Pyrc**
 - woman: **Anna Pyrc**
@@ -31,12 +30,6 @@ Modern official usage is:
 
 ## Modern distribution
 
-Numbers are small across the board, consistent with a minor variant spelling:
+Counts vary by source and date. Forebears currently lists 265 people named Pyrc in Poland and estimates 336 worldwide; its related-name list includes Pyrć and Pyrcz. These figures are useful indicators of rarity and geography, not evidence that all people with these spellings share a common ancestor. [Forebears: Pyrc](https://forebears.io/surnames/pyrc), [Forebears: Pyrcz](https://forebears.io/surnames/pyrcz)
 
-- Pyrcz: 454 bearers in Poland today, concentrated heavily in Podkarpackie voivodeship (187), especially around Rzeszów and Dynów, with smaller clusters in Małopolskie, Dolnośląskie, and Śląskie. 
-pan
-- Pyrc: 265 people in Poland, plus smaller communities abroad — 52 in the United States, 13 in Australia, and single-digit counts in England, Austria, Canada, Mexico, and Thailand. 
-forebears
-- Pyrć itself is rarer still — forebears.io puts total worldwide incidence at just over 100 — reflecting that it's a minority spelling variant rather than the "main" form of the name.
-
-Pyrć/Pyrc/Pyrcz function as interchangeable spellings in Polish records: the diacritic ć and the digraph cz were sometimes used to represent similar sounds by different scribes or across regional/dialect boundaries.
+The spellings Pyrć, Pyrc, and Pyrcz can appear as related variants in Polish records. A specific identification still depends on the record’s place, date, relationships, and source context.
