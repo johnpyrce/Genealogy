@@ -6,6 +6,9 @@ __pycache__/
 .env.*
 !.env.example
 
+# symlink to photo directory
+media/SophieJoseph
+
 # Reproducible local outputs and dashboard build products.
 artifacts/
 apps/analytics-dashboard/dist/
