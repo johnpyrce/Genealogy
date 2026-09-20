@@ -33,7 +33,6 @@ export function ReportContent() {
   const familyNames = reviewedRows("names_and_identity");
   const firstNames = reviewedRows("top_first_names");
   const oldestPeople = reviewedRows("oldest_people");
-  const methodSources = { summary: summaryRows, completeness, family_structure: familyStructure, family_size_distribution: familySizes, child_birth_span_distribution: childBirthSpans, parent_age_distribution: parentAges, longevity_distribution: longevity, temporal, names_and_identity: familyNames, top_first_names: firstNames };
 
   return <article className="report-content" aria-label="Genealogy analytics report">
     <header className="report-hero">
@@ -123,13 +122,6 @@ export function ReportContent() {
       <EvidenceChart id="first-name-chart" queryId="top_first_names" title="Top recorded first names" rows={firstNames} sourceRows={firstNames} height={360}
         spec={{ type: "horizontalBar", x: "firstName", y: "people", colors: chartColors, valueDecimals: 0 }} />
     </section>
-
-    <ReportSection id="report-method" title="Method and limitations" queryId="summary"
-      queryIds={["summary", "completeness", "family_structure", "family_size_distribution", "child_birth_span_distribution", "parent_age_distribution", "longevity_distribution", "temporal", "names_and_identity", "top_first_names"]}
-      sourceRowsByQuery={methodSources} sourceRows={summaryRows} showHeading={false} className="report-methods">
-      <RichNarrative id="report-method:body" className="report-caveat" label="Edit method"
-        value="## Method and limitations\n\nThe editable CSV registries remain the source of truth. The analytics build recreates an ignored DuckDB database, splitting packed child lists into normalized family-child and parent-child tables before calculating this report. Rebuild the database and sync the dashboard data before rebuilding the HTML artifact. Missing observations are not zeros or proof of absence." />
-    </ReportSection>
 
     <section className="report-section">
       <RichNarrative id="oldest-people:body" className="report-analysis"

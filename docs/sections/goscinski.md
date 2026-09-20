@@ -43,6 +43,10 @@ The surname is documented by **1614**, while the unaccented spelling *Goscinski*
 
 ## Does *-ski* mean nobility?
 
-Not by itself. Some historical **Gościński/Goszczyński** families were recorded among the Polish nobility, including associations claimed with the **Doliwa coat of arms**, but sharing their surname does not establish descent from them. Polish coats of arms belonged to particular documented lineages—not automatically to everyone with the same surname. A reliable connection requires a continuous paper trail linking the family to that lineage.
+A Polish name with the suffix **-ski** can be related to the Polish nobility, the **szlachta**, but it does not by itself indicate nobility. Historically, a **-ski** suffix meant "from" when combined with a place.  This naming pattern was initially common among the szlachta, especially landowners whose surnames referred to their estates.
+Over time, however, -ski surnames spread throughout Polish society, particular after the 1700s.  Today, -ski is simply a very common surname ending.
 
-For identifying your particular branch, the most valuable clue is the earliest known **village or parish**, followed by religion and approximate dates. Those details can distinguish the Muszyna/Nowy Sącz cluster from families in Kujawy, Pomerania, Mazovia, or elsewhere.
+Some historical **Gościński/Goszczyński** families were recorded among the Polish nobility, including associations claimed with the [Doliwa coat of arms](https://en.wikipedia.org/wiki/Doliwa_coat_of_arms), 
+but sharing their surname does not establish descent from them. Polish coats of arms belonged to particular documented lineages—not automatically to everyone with the same surname. A reliable connection requires a continuous paper trail linking the family to that lineage.
+
+For identifying a particular branch, the most valuable clue is the earliest known **village or parish**, followed by religion and approximate dates. Those details can distinguish the Muszyna/Nowy Sącz cluster from families in Kujawy, Pomerania, Mazovia, or elsewhere.

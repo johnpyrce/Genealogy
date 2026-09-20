@@ -1,15 +1,10 @@
-# Source chart review and data-handling report
+# Source charts
 
-This document describes the six genealogy charts in `data/source-material/charts/`,
-their legibility and evidentiary quality, and how their information has been
-represented in the normalized registries. It replaces the earlier selective
-English transcription, which was useful as a reading aid but was neither a
-complete transcription nor a reliable statement of every chart relationship.
-
-The CSV files in `data/registries/` are the source of truth. Polish personal and
-place names are retained. Dates are normalized to years in `people.csv`, while
-full dates and source wording are preserved in relationship evidence or this
-report when they affect interpretation. In the printed charts, `+` before a date
+The Family Tree is derived from a set of original family tree documents.
+Polish personal and
+place names are retained. 
+Dates are normalized to years.
+In the printed charts, `+` before a date
 means “died”; `zd.` (*z domu*) means “née.” Inferred surnames and uncertain
 connections are explicitly identified instead of being presented as source text.
 
@@ -23,6 +18,8 @@ connections are explicitly identified instead of being presented as source text.
 | S4 | `Wladusklana Mickulska Genealogy.png` | Handwritten Antonina and Jerzy Guzyk descendant chart | Fair to good | Family groups are recorded; inferred child surnames and one provisional surname are noted. |
 | S5 | `Rodzina Ramsow Geneoaogy.png` | Printed Rams chart with Gościński and Miczulski bridges | Good; right and lower edges are cropped | Clear relationships are confirmed; cropped descendant details and isolated labels are marked probable or uncertain. |
 | S6 | `Mickulska Genealogy.png` | Sparse handwritten Stanisław and Władysława descendant chart | Fair | Used to resolve the Małgorzata–Bogdan Pluta branch and to corroborate four children of the head couple. |
+
+## Original chart images
 
 ## S1 — “Drzewo genealogiczne”
 
@@ -163,7 +160,7 @@ kept probable pending family confirmation.
 The six charts overlap but are not treated as equally complete versions of one
 tree. A person absent from one chart is not presumed absent from the family.
 When two sources show different child lists, the union is retained and each
-source's contribution is described in `relationship_evidence.csv`.
+source's contribution is described.
 
 Confidence labels mean:
 
@@ -175,5 +172,4 @@ Confidence labels mean:
 
 The charts are family-created secondary sources, not civil or parish records.
 Even a `confirmed` chart reading means “confirmed as shown on the chart,” not
-independently proven historical fact. Dates, identities, and inferred surnames
-should be checked against vital, parish, immigration, and cemetery records.
+independently proven historical fact. 

@@ -17,3 +17,6 @@ apps/analytics-dashboard/.data-app-offline/
 
 # Preserved only as a local historical reference until reviewed.
 archive/
+
+# the site built by ChatGPT
+genealogy-site/
