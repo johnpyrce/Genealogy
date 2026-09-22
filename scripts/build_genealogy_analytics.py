@@ -279,13 +279,18 @@ def supplemental_queries() -> dict[str, str]:
         """,
         "parent_age_distribution": """
             WITH parent_ages AS (
-                SELECT p_child.birth_year - p_parent.birth_year AS age
+                SELECT
+                    pc.parent_role,
+                    p_child.birth_year - p_parent.birth_year AS age
                 FROM parent_child pc
                 JOIN people p_parent ON p_parent.id = pc.parent_id
                 JOIN people p_child ON p_child.id = pc.child_id
-                WHERE p_parent.birth_year IS NOT NULL AND p_child.birth_year IS NOT NULL
+                WHERE p_parent.birth_year IS NOT NULL
+                  AND p_child.birth_year IS NOT NULL
+                  AND p_child.birth_year >= p_parent.birth_year
             )
             SELECT
+                parent_role,
                 CASE
                     WHEN age < 20 THEN 'Under 20'
                     WHEN age < 25 THEN '20–24'
@@ -304,8 +309,114 @@ def supplemental_queries() -> dict[str, str]:
                 END AS sort_order,
                 COUNT(*)::BIGINT AS parent_child_observations
             FROM parent_ages
-            GROUP BY age_band, sort_order
+            GROUP BY parent_role, age_band, sort_order
+            ORDER BY sort_order, parent_role
+        """,
+        "oldest_parent_ages": """
+            WITH parent_ages AS (
+                SELECT
+                    pc.parent_role,
+                    TRIM(CONCAT_WS(' ', p_parent.first_name, p_parent.surname)) AS parent_name,
+                    TRIM(CONCAT_WS(' ', p_child.first_name, p_child.surname)) AS child_name,
+                    p_child.birth_year - p_parent.birth_year AS age,
+                    p_child.birth_year AS child_birth_year
+                FROM parent_child pc
+                JOIN people p_parent ON p_parent.id = pc.parent_id
+                JOIN people p_child ON p_child.id = pc.child_id
+                WHERE p_parent.birth_year IS NOT NULL
+                  AND p_child.birth_year IS NOT NULL
+                  AND p_child.birth_year >= p_parent.birth_year
+            ), oldest AS (
+                SELECT parent_role, MAX(age) AS age
+                FROM parent_ages
+                GROUP BY parent_role
+            )
+            SELECT
+                pa.parent_role,
+                pa.parent_name,
+                pa.child_name,
+                pa.age,
+                pa.child_birth_year
+            FROM parent_ages pa
+            JOIN oldest ON oldest.parent_role = pa.parent_role AND oldest.age = pa.age
+            ORDER BY pa.parent_role, pa.parent_name, pa.child_birth_year, pa.child_name
+        """,
+        "completeness_heatmap": """
+            WITH top_groups AS (
+                SELECT family_name_group
+                FROM people
+                WHERE family_name_group <> 'Unknown'
+                GROUP BY family_name_group
+                HAVING COUNT(*) >= 3
+                ORDER BY COUNT(*) DESC, family_name_group
+                LIMIT 8
+            ), base AS (
+                SELECT
+                    p.family_name_group,
+                    pg.generation,
+                    COUNT(*)::BIGINT AS people,
+                    COUNT(p.birth_year)::BIGINT AS birth_known,
+                    COUNT(p.death_year)::BIGINT AS death_known,
+                    COUNT(*) FILTER (
+                        WHERE EXISTS (SELECT 1 FROM parent_child pc WHERE pc.child_id = p.id)
+                    )::BIGINT AS parent_known
+                FROM people p
+                JOIN person_generation pg ON pg.person_id = p.id
+                WHERE p.family_name_group IN (SELECT family_name_group FROM top_groups)
+                GROUP BY p.family_name_group, pg.generation
+            )
+            SELECT
+                family_name_group,
+                generation,
+                people,
+                ROUND(100.0 * (birth_known + death_known + parent_known) / (3 * people), 1) AS completeness_pct,
+                birth_known,
+                death_known,
+                parent_known
+            FROM base
+            ORDER BY family_name_group, generation
+        """,
+        "partner_age_gap_distribution": """
+            WITH age_gaps AS (
+                SELECT ABS(a.birth_year - b.birth_year)::INTEGER AS age_gap
+                FROM partner_associations pa
+                JOIN people a ON a.id = pa.person_id
+                JOIN people b ON b.id = pa.partner_id
+                WHERE pa.person_id < pa.partner_id
+                  AND a.birth_year IS NOT NULL
+                  AND b.birth_year IS NOT NULL
+            ), binned AS (
+                SELECT (FLOOR(age_gap / 2) * 2)::INTEGER AS age_gap_start
+                FROM age_gaps
+            )
+            SELECT
+                CONCAT(age_gap_start, '–', age_gap_start + 1, ' years') AS age_gap_band,
+                age_gap_start AS sort_order,
+                COUNT(*)::BIGINT AS couples
+            FROM binned
+            GROUP BY age_gap_start
             ORDER BY sort_order
+        """,
+        "top_founders": """
+            WITH RECURSIVE descent(founder_id, descendant_id) AS (
+                SELECT p.id::INTEGER, p.id::INTEGER
+                FROM people p
+                WHERE NOT EXISTS (SELECT 1 FROM parent_child pc WHERE pc.child_id = p.id)
+                UNION
+                SELECT d.founder_id, pc.child_id
+                FROM descent d
+                JOIN parent_child pc ON pc.parent_id = d.descendant_id
+            )
+            SELECT
+                f.id,
+                TRIM(CONCAT_WS(' ', f.first_name, f.surname)) AS founder,
+                COUNT(DISTINCT d.descendant_id) - 1 AS documented_descendants
+            FROM descent d
+            JOIN people f ON f.id = d.founder_id
+            GROUP BY f.id, f.first_name, f.surname
+            HAVING COUNT(DISTINCT d.descendant_id) > 1
+            ORDER BY documented_descendants DESC, founder
+            LIMIT 15
         """,
         "top_first_names": """
             SELECT first_name AS first_name, COUNT(*)::BIGINT AS people

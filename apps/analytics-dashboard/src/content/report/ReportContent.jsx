@@ -24,15 +24,29 @@ export function ReportContent() {
   const summaryRows = reviewedRows("summary");
   const [summary] = summaryRows;
   const completeness = reviewedRows("completeness");
+  const completenessHeatmap = reviewedRows("completeness_heatmap");
   const familyStructure = reviewedRows("family_structure");
   const familySizes = reviewedRows("family_size_distribution");
   const childBirthSpans = reviewedRows("child_birth_span_distribution");
   const parentAges = reviewedRows("parent_age_distribution");
+  const oldestParentAges = reviewedRows("oldest_parent_ages");
+  const partnerAgeGaps = reviewedRows("partner_age_gap_distribution");
+  const topFounders = reviewedRows("top_founders");
   const longevity = reviewedRows("longevity_distribution");
   const temporal = reviewedRows("temporal");
   const familyNames = reviewedRows("names_and_identity");
   const firstNames = reviewedRows("top_first_names");
   const oldestPeople = reviewedRows("oldest_people");
+  const oldestFather = oldestParentAges.find((row) => row.parentRole === "Father");
+  const oldestMothers = oldestParentAges.filter((row) => row.parentRole === "Mother");
+  const oldestMotherText = oldestMothers.map((row) =>
+    `**${row.parent}** (${row.age} at ${row.child}'s recorded ${row.childBirthYear} birth)`,
+  ).join(" and ");
+  const oldestParentAgeNote = [
+    oldestFather && `Among dated parent-child links, the oldest recorded father was **${oldestFather.parent}**, at **${oldestFather.age}** when ${oldestFather.child} was born in ${oldestFather.childBirthYear}.`,
+    oldestMotherText && `The oldest recorded mothers were ${oldestMotherText}.`,
+    "These calculated ages use recorded birth years only and do not establish exact birth dates.",
+  ].filter(Boolean).join(" ");
 
   return <article className="report-content" aria-label="Genealogy analytics report">
     <header className="report-hero">
@@ -74,6 +88,10 @@ export function ReportContent() {
         value="## Dates remain the least complete person-level fields\n\nThe coverage chart uses each measure’s explicit denominator. Family evidence is measured against family records; all other coverage measures use the full person registry." />
       <EvidenceChart id="completeness-chart" queryId="completeness" title="Coverage by field" rows={completeness} sourceRows={completeness} height={390}
         spec={{ type: "horizontalBar", x: "field", y: "coverage_pct", colors: chartColors, valueDecimals: 1, yLabel: "Coverage (%)" }} />
+      <EvidenceChart id="completeness-heatmap" queryId="completeness_heatmap" title="Completeness by family-name group and generation" rows={completenessHeatmap} sourceRows={completenessHeatmap} height={460}
+        spec={{ type: "heatmap", x: "generation", y: "completenessPct", series: "familyName", categoryOrder: ["1", "2", "3", "4", "5", "6", "7", "8", "9"], colorDomain: [0, 100], missingValues: "gap", showValues: true, valueDecimals: 1, xLabel: "Generation", yLabel: "Family-name group", tooltipFields: [{ field: "people", label: "People" }, { field: "birthKnown", label: "Birth years recorded" }, { field: "deathKnown", label: "Death years recorded" }, { field: "parentKnown", label: "People with parent link" }] }} />
+      <RichNarrative id="completeness:heatmap-note" className="report-analysis"
+        value="The heat map shows the eight largest represented family-name groups. Each cell is the mean availability of a birth year, death year, and at least one recorded parent link. Blank cells have no people in that documented branch-generation combination; they are not zero completeness." />
     </section>
 
     <section className="report-section">
@@ -86,9 +104,22 @@ export function ReportContent() {
       <div className="report-grid">
         <EvidenceChart id="child-birth-span-chart" queryId="child_birth_span_distribution" title="Child birth-year span within a family" rows={childBirthSpans} sourceRows={childBirthSpans} height={310}
           spec={{ type: "bar", x: "span_band", y: "families", colors: chartColors, valueDecimals: 0, distribution: true }} />
-        <EvidenceChart id="parent-age-chart" queryId="parent_age_distribution" title="Parent age at a child's recorded birth" rows={parentAges} sourceRows={parentAges} height={310}
-          spec={{ type: "bar", x: "age_band", y: "parent_child_observations", colors: chartColors, valueDecimals: 0, distribution: true }} />
+        <EvidenceChart id="partner-age-gap-chart" queryId="partner_age_gap_distribution" title="Recorded partner age gaps" rows={partnerAgeGaps} sourceRows={partnerAgeGaps} height={310}
+          spec={{ type: "bar", x: "ageGapBand", y: "couples", colors: chartColors, valueDecimals: 0, distribution: true }} />
       </div>
+      <EvidenceChart id="parent-age-chart" queryId="parent_age_distribution" title="Parent age at a child's recorded birth" rows={parentAges} sourceRows={parentAges} height={380}
+        spec={{ type: "bar", x: "ageBand", y: "observations", series: "parentRole", colors: { Father: "var(--chart-1)", Mother: "var(--chart-2)" }, valueDecimals: 0, distribution: true, stackable: false, showLegend: true }} />
+      <ReportSection id="parent-age-oldest-note" title="Oldest recorded parent ages" queryId="oldest_parent_ages"
+        sourceRows={oldestParentAges} showHeading={false}>
+        <RichNarrative id="parent-age:oldest-note" className="report-analysis" value={oldestParentAgeNote} />
+      </ReportSection>
+    </section>
+
+    <section className="report-section">
+      <RichNarrative id="founders:body" className="report-analysis"
+        value="## Documented descent is concentrated in a small number of recorded roots\n\nA founder here means a person without a recorded parent link. Descendant counts follow documented parent–child paths only, so this is a view of the archive’s structure rather than a claim about historical founding families." />
+      <EvidenceChart id="top-founders-chart" queryId="top_founders" title="Founders with the most documented descendants" rows={topFounders} sourceRows={topFounders} height={510}
+        spec={{ type: "horizontalBar", x: "founder", y: "documentedDescendants", colors: chartColors, valueDecimals: 0, showValues: true, xLabel: "Documented descendants" }} />
     </section>
 
     <section className="report-section">
@@ -102,18 +133,14 @@ export function ReportContent() {
       <RichNarrative id="temporal:body" className="report-analysis"
         value="## Recorded births cluster in the early twentieth century\n\nOnly people with an explicit birth year are included. The distribution indicates documentation coverage over time, not the complete historical population." />
       <EvidenceChart id="temporal-chart" queryId="temporal" title="People with recorded births by decade" rows={temporal} sourceRows={temporal} height={340}
-        spec={{ type: "bar", x: "decade", y: "people", colors: chartColors, valueDecimals: 0 }} />
+        spec={{ type: "bar", x: "decade", y: "people", colors: chartColors, valueDecimals: 0, xTickStride: 2 }} />
     </section>
 
     <section className="report-section">
       <RichNarrative id="names:body" className="report-analysis"
-        value="## Gościński remains the largest normalized family-name group\n\nThe registry’s family-name groups preserve its normalization choices. The chart shows the largest groups; the table retains every group for lookup." />
-      <div className="report-grid">
-        <EvidenceChart id="family-name-chart" queryId="names_and_identity" title="Largest family-name groups" rows={familyNames.slice(0, 15)} sourceRows={familyNames} height={460}
-          spec={{ type: "horizontalBar", x: "familyName", y: "people", colors: chartColors, valueDecimals: 0 }} />
-        <EvidenceTable id="family-name-table" queryId="names_and_identity" title="All normalized family-name groups" rows={familyNames} searchable
-          columns={[{ field: "familyName", label: "Family-name group" }, { field: "people", label: "People" }]} />
-      </div>
+        value="## Gościński remains the largest normalized family-name group\n\nThe registry’s family-name groups preserve its normalization choices. The chart shows the fifteen largest represented groups." />
+      <EvidenceChart id="family-name-chart" queryId="names_and_identity" title="Largest family-name groups" rows={familyNames.slice(0, 15)} sourceRows={familyNames} height={460}
+        spec={{ type: "horizontalBar", x: "familyName", y: "people", colors: chartColors, valueDecimals: 0 }} />
     </section>
 
     <section className="report-section">

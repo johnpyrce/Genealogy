@@ -53,6 +53,21 @@ def reviewed_queries(connection: duckdb.DuckDBPyConnection) -> dict[str, Any]:
         },
         "inventory": {"rows": domains["inventory"], "source": source("Registry inventory", ["inventory-chart", "inventory-table"], "Counts at their natural registry grain; parent-child edges are directed.")},
         "completeness": {"rows": domains["completeness"], "source": source("Registry completeness", ["completeness-chart", "completeness-table"], "Known values divided by the stated people or family denominator.")},
+        "completeness_heatmap": {
+            "rows": [
+                {
+                    "familyName": row["family_name_group"],
+                    "generation": str(row["generation"]),
+                    "people": row["people"],
+                    "completenessPct": row["completeness_pct"],
+                    "birthKnown": row["birth_known"],
+                    "deathKnown": row["death_known"],
+                    "parentKnown": row["parent_known"],
+                }
+                for row in query_rows(connection, supplemental_queries()["completeness_heatmap"])
+            ],
+            "source": source("Completeness by branch and generation", ["completeness-heatmap"], "Composite availability of a birth year, death year, and at least one recorded parent link for each represented branch-generation cell."),
+        },
         "evidence": {"rows": domains["evidence"], "source": source("Evidence confidence", ["evidence-confidence-chart"], "Confidence labels on evidence rows, not a score for every distinct relationship.")},
         "source_contribution": {
             "rows": query_rows(connection, "SELECT source_id AS sourceId, COUNT(*)::BIGINT AS evidenceRecords FROM relationship_evidence GROUP BY source_id ORDER BY evidenceRecords DESC, sourceId"),
@@ -66,7 +81,7 @@ def reviewed_queries(connection: duckdb.DuckDBPyConnection) -> dict[str, Any]:
         },
         "names_and_identity": {
             "rows": [{"familyName": row["family_name_group"], "people": row["people"]} for row in domains["names_and_identity"]],
-            "source": source("Normalized family-name groups", ["family-name-chart", "family-name-table"], "Registry family-name groups as recorded and normalized in the people registry."),
+            "source": source("Normalized family-name groups", ["family-name-chart"], "Registry family-name groups as recorded and normalized in the people registry."),
         },
         "family_size_distribution": {"rows": query_rows(connection, supplemental_queries()["family_size_distribution"]), "source": source("Family-size distribution", ["family-size-chart"], "Children listed per family, excluding families with no recorded children.")},
         "longevity_distribution": {
@@ -74,7 +89,45 @@ def reviewed_queries(connection: duckdb.DuckDBPyConnection) -> dict[str, Any]:
             "source": source("Age-at-death distribution", ["longevity-chart"], "Recorded death year minus recorded birth year; only people with both years are included."),
         },
         "child_birth_span_distribution": {"rows": query_rows(connection, supplemental_queries()["child_birth_span_distribution"]), "source": source("Child birth-year span by family", ["child-birth-span-chart"], "Earliest to latest recorded child birth year within families with at least two dated children.")},
-        "parent_age_distribution": {"rows": query_rows(connection, supplemental_queries()["parent_age_distribution"]), "source": source("Parent age at child's birth", ["parent-age-chart"], "Child birth year minus parent birth year for parent-child links with both years recorded.")},
+        "parent_age_distribution": {
+            "rows": [
+                {
+                    "parentRole": row["parent_role"].title(),
+                    "ageBand": row["age_band"],
+                    "sortOrder": row["sort_order"],
+                    "observations": row["parent_child_observations"],
+                }
+                for row in query_rows(connection, supplemental_queries()["parent_age_distribution"])
+            ],
+            "source": source("Parent age at a child's birth", ["parent-age-chart"], "Child birth year minus parent birth year, split by recorded parent role, for documented parent-child links with both years recorded."),
+        },
+        "oldest_parent_ages": {
+            "rows": [
+                {
+                    "parentRole": row["parent_role"].title(),
+                    "parent": row["parent_name"],
+                    "child": row["child_name"],
+                    "age": row["age"],
+                    "childBirthYear": row["child_birth_year"],
+                }
+                for row in query_rows(connection, supplemental_queries()["oldest_parent_ages"])
+            ],
+            "source": source("Oldest recorded parent ages", ["parent-age-oldest-note"], "Maximum child birth year minus parent birth year for each recorded parent role; only documented parent-child links with both years recorded are included."),
+        },
+        "partner_age_gap_distribution": {
+            "rows": [
+                {"ageGapBand": row["age_gap_band"], "sortOrder": row["sort_order"], "couples": row["couples"]}
+                for row in query_rows(connection, supplemental_queries()["partner_age_gap_distribution"])
+            ],
+            "source": source("Partner age-gap distribution", ["partner-age-gap-chart"], "Absolute difference between recorded partner birth years, grouped into two-year bands; only associations with two recorded birth years are included."),
+        },
+        "top_founders": {
+            "rows": [
+                {"id": row["id"], "founder": row["founder"], "documentedDescendants": row["documented_descendants"]}
+                for row in query_rows(connection, supplemental_queries()["top_founders"])
+            ],
+            "source": source("Founders with the most documented descendants", ["top-founders-chart"], "Top 15 people with no recorded parent link, ranked by distinct descendants reachable through documented parent-child links. This is a record-structure measure, not a claim of historical founding status."),
+        },
         "top_first_names": {
             "rows": [{"firstName": row["first_name"], "people": row["people"]} for row in query_rows(connection, supplemental_queries()["top_first_names"])],
             "source": source("Most common recorded first names", ["first-name-chart"], "Distinct person-registry entries grouped by the recorded first name."),

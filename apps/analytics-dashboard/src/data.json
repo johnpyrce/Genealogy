@@ -1,7 +1,7 @@
 {
   "surface": "report",
   "title": "The Muszyna genealogy has nine documented generations",
-  "generatedAt": "2026-09-16T11:59:57-05:00",
+  "generatedAt": "2026-09-21T23:08:17-05:00",
   "buildStatus": "complete",
   "status": "reviewed",
   "queries": {
@@ -182,6 +182,320 @@
             "componentIds": [
               "completeness-chart",
               "completeness-table"
+            ]
+          }
+        ]
+      }
+    },
+    "completeness_heatmap": {
+      "rows": [
+        {
+          "familyName": "Drzązgowski",
+          "generation": "1",
+          "people": 1,
+          "completenessPct": 66.7,
+          "birthKnown": 1,
+          "deathKnown": 1,
+          "parentKnown": 0
+        },
+        {
+          "familyName": "Drzązgowski",
+          "generation": "8",
+          "people": 3,
+          "completenessPct": 66.7,
+          "birthKnown": 3,
+          "deathKnown": 0,
+          "parentKnown": 3
+        },
+        {
+          "familyName": "Gościński",
+          "generation": "1",
+          "people": 4,
+          "completenessPct": 8.3,
+          "birthKnown": 1,
+          "deathKnown": 0,
+          "parentKnown": 0
+        },
+        {
+          "familyName": "Gościński",
+          "generation": "2",
+          "people": 3,
+          "completenessPct": 66.7,
+          "birthKnown": 3,
+          "deathKnown": 0,
+          "parentKnown": 3
+        },
+        {
+          "familyName": "Gościński",
+          "generation": "3",
+          "people": 1,
+          "completenessPct": 66.7,
+          "birthKnown": 1,
+          "deathKnown": 0,
+          "parentKnown": 1
+        },
+        {
+          "familyName": "Gościński",
+          "generation": "4",
+          "people": 2,
+          "completenessPct": 66.7,
+          "birthKnown": 1,
+          "deathKnown": 1,
+          "parentKnown": 2
+        },
+        {
+          "familyName": "Gościński",
+          "generation": "5",
+          "people": 6,
+          "completenessPct": 61.1,
+          "birthKnown": 3,
+          "deathKnown": 2,
+          "parentKnown": 6
+        },
+        {
+          "familyName": "Gościński",
+          "generation": "6",
+          "people": 7,
+          "completenessPct": 90.5,
+          "birthKnown": 7,
+          "deathKnown": 5,
+          "parentKnown": 7
+        },
+        {
+          "familyName": "Gościński",
+          "generation": "7",
+          "people": 9,
+          "completenessPct": 33.3,
+          "birthKnown": 0,
+          "deathKnown": 0,
+          "parentKnown": 9
+        },
+        {
+          "familyName": "Gościński",
+          "generation": "8",
+          "people": 4,
+          "completenessPct": 33.3,
+          "birthKnown": 0,
+          "deathKnown": 0,
+          "parentKnown": 4
+        },
+        {
+          "familyName": "Gościński",
+          "generation": "9",
+          "people": 2,
+          "completenessPct": 33.3,
+          "birthKnown": 0,
+          "deathKnown": 0,
+          "parentKnown": 2
+        },
+        {
+          "familyName": "Guzyk",
+          "generation": "1",
+          "people": 1,
+          "completenessPct": 0.0,
+          "birthKnown": 0,
+          "deathKnown": 0,
+          "parentKnown": 0
+        },
+        {
+          "familyName": "Guzyk",
+          "generation": "8",
+          "people": 4,
+          "completenessPct": 33.3,
+          "birthKnown": 0,
+          "deathKnown": 0,
+          "parentKnown": 4
+        },
+        {
+          "familyName": "Guzyk",
+          "generation": "9",
+          "people": 2,
+          "completenessPct": 33.3,
+          "birthKnown": 0,
+          "deathKnown": 0,
+          "parentKnown": 2
+        },
+        {
+          "familyName": "Miczulski",
+          "generation": "1",
+          "people": 3,
+          "completenessPct": 33.3,
+          "birthKnown": 2,
+          "deathKnown": 1,
+          "parentKnown": 0
+        },
+        {
+          "familyName": "Miczulski",
+          "generation": "2",
+          "people": 1,
+          "completenessPct": 66.7,
+          "birthKnown": 1,
+          "deathKnown": 0,
+          "parentKnown": 1
+        },
+        {
+          "familyName": "Miczulski",
+          "generation": "3",
+          "people": 2,
+          "completenessPct": 83.3,
+          "birthKnown": 2,
+          "deathKnown": 1,
+          "parentKnown": 2
+        },
+        {
+          "familyName": "Miczulski",
+          "generation": "4",
+          "people": 1,
+          "completenessPct": 100.0,
+          "birthKnown": 1,
+          "deathKnown": 1,
+          "parentKnown": 1
+        },
+        {
+          "familyName": "Pluta",
+          "generation": "1",
+          "people": 1,
+          "completenessPct": 0.0,
+          "birthKnown": 0,
+          "deathKnown": 0,
+          "parentKnown": 0
+        },
+        {
+          "familyName": "Pluta",
+          "generation": "8",
+          "people": 3,
+          "completenessPct": 33.3,
+          "birthKnown": 0,
+          "deathKnown": 0,
+          "parentKnown": 3
+        },
+        {
+          "familyName": "Pyrc",
+          "generation": "1",
+          "people": 1,
+          "completenessPct": 0.0,
+          "birthKnown": 0,
+          "deathKnown": 0,
+          "parentKnown": 0
+        },
+        {
+          "familyName": "Pyrc",
+          "generation": "2",
+          "people": 3,
+          "completenessPct": 55.6,
+          "birthKnown": 1,
+          "deathKnown": 1,
+          "parentKnown": 3
+        },
+        {
+          "familyName": "Pyrc",
+          "generation": "6",
+          "people": 6,
+          "completenessPct": 88.9,
+          "birthKnown": 5,
+          "deathKnown": 5,
+          "parentKnown": 6
+        },
+        {
+          "familyName": "Rams",
+          "generation": "1",
+          "people": 3,
+          "completenessPct": 22.2,
+          "birthKnown": 1,
+          "deathKnown": 1,
+          "parentKnown": 0
+        },
+        {
+          "familyName": "Rams",
+          "generation": "2",
+          "people": 6,
+          "completenessPct": 88.9,
+          "birthKnown": 5,
+          "deathKnown": 5,
+          "parentKnown": 6
+        },
+        {
+          "familyName": "Rams",
+          "generation": "3",
+          "people": 2,
+          "completenessPct": 100.0,
+          "birthKnown": 2,
+          "deathKnown": 2,
+          "parentKnown": 2
+        },
+        {
+          "familyName": "Rams",
+          "generation": "7",
+          "people": 3,
+          "completenessPct": 66.7,
+          "birthKnown": 3,
+          "deathKnown": 0,
+          "parentKnown": 3
+        },
+        {
+          "familyName": "Rams",
+          "generation": "8",
+          "people": 3,
+          "completenessPct": 66.7,
+          "birthKnown": 3,
+          "deathKnown": 0,
+          "parentKnown": 3
+        },
+        {
+          "familyName": "Rams",
+          "generation": "9",
+          "people": 1,
+          "completenessPct": 66.7,
+          "birthKnown": 1,
+          "deathKnown": 0,
+          "parentKnown": 1
+        },
+        {
+          "familyName": "Szost",
+          "generation": "1",
+          "people": 2,
+          "completenessPct": 33.3,
+          "birthKnown": 2,
+          "deathKnown": 0,
+          "parentKnown": 0
+        },
+        {
+          "familyName": "Szost",
+          "generation": "2",
+          "people": 1,
+          "completenessPct": 66.7,
+          "birthKnown": 1,
+          "deathKnown": 0,
+          "parentKnown": 1
+        },
+        {
+          "familyName": "Szost",
+          "generation": "3",
+          "people": 1,
+          "completenessPct": 100.0,
+          "birthKnown": 1,
+          "deathKnown": 1,
+          "parentKnown": 1
+        }
+      ],
+      "source": {
+        "label": "Completeness by branch and generation",
+        "sourceFiles": [
+          "data/registries/people.csv",
+          "data/registries/families.csv",
+          "data/registries/relationship_evidence.csv",
+          "data/registries/sources.csv",
+          "artifacts/analytics/genealogy_analytics.duckdb"
+        ],
+        "filters": [
+          "Rebuilt from the editable CSV registries through the local DuckDB analytical layer"
+        ],
+        "metricDefinitions": [
+          {
+            "label": "Completeness by branch and generation",
+            "definition": "Composite availability of a birth year, death year, and at least one recorded parent link for each represented branch-generation cell.",
+            "componentIds": [
+              "completeness-heatmap"
             ]
           }
         ]
@@ -696,8 +1010,7 @@
             "label": "Normalized family-name groups",
             "definition": "Registry family-name groups as recorded and normalized in the people registry.",
             "componentIds": [
-              "family-name-chart",
-              "family-name-table"
+              "family-name-chart"
             ]
           }
         ]
@@ -861,38 +1174,74 @@
     "parent_age_distribution": {
       "rows": [
         {
-          "age_band": "Under 20",
-          "sort_order": 1,
-          "parent_child_observations": 1
+          "parentRole": "Mother",
+          "ageBand": "Under 20",
+          "sortOrder": 1,
+          "observations": 1
         },
         {
-          "age_band": "20–24",
-          "sort_order": 2,
-          "parent_child_observations": 7
+          "parentRole": "Father",
+          "ageBand": "20–24",
+          "sortOrder": 2,
+          "observations": 5
         },
         {
-          "age_band": "25–29",
-          "sort_order": 3,
-          "parent_child_observations": 18
+          "parentRole": "Mother",
+          "ageBand": "20–24",
+          "sortOrder": 2,
+          "observations": 2
         },
         {
-          "age_band": "30–34",
-          "sort_order": 4,
-          "parent_child_observations": 22
+          "parentRole": "Father",
+          "ageBand": "25–29",
+          "sortOrder": 3,
+          "observations": 8
         },
         {
-          "age_band": "35–39",
-          "sort_order": 5,
-          "parent_child_observations": 15
+          "parentRole": "Mother",
+          "ageBand": "25–29",
+          "sortOrder": 3,
+          "observations": 10
         },
         {
-          "age_band": "40 and over",
-          "sort_order": 6,
-          "parent_child_observations": 16
+          "parentRole": "Father",
+          "ageBand": "30–34",
+          "sortOrder": 4,
+          "observations": 12
+        },
+        {
+          "parentRole": "Mother",
+          "ageBand": "30–34",
+          "sortOrder": 4,
+          "observations": 10
+        },
+        {
+          "parentRole": "Father",
+          "ageBand": "35–39",
+          "sortOrder": 5,
+          "observations": 10
+        },
+        {
+          "parentRole": "Mother",
+          "ageBand": "35–39",
+          "sortOrder": 5,
+          "observations": 5
+        },
+        {
+          "parentRole": "Father",
+          "ageBand": "40 and over",
+          "sortOrder": 6,
+          "observations": 11
+        },
+        {
+          "parentRole": "Mother",
+          "ageBand": "40 and over",
+          "sortOrder": 6,
+          "observations": 5
         }
       ],
       "source": {
-        "label": "Parent age at child's birth",
+        "label": "Parent age at a child's birth",
         "sourceFiles": [
           "data/registries/people.csv",
           "data/registries/families.csv",
@@ -905,10 +1254,219 @@
         ],
         "metricDefinitions": [
           {
-            "label": "Parent age at child's birth",
-            "definition": "Child birth year minus parent birth year for parent-child links with both years recorded.",
+            "label": "Parent age at a child's birth",
+            "definition": "Child birth year minus parent birth year, split by recorded parent role, for documented parent-child links with both years recorded.",
             "componentIds": [
               "parent-age-chart"
+            ]
+          }
+        ]
+      }
+    },
+    "oldest_parent_ages": {
+      "rows": [
+        {
+          "parentRole": "Father",
+          "parent": "Jan Miczulski",
+          "child": "Marianna Miczulska",
+          "age": 62,
+          "childBirthYear": 1895
+        },
+        {
+          "parentRole": "Mother",
+          "parent": "Józefa Szost",
+          "child": "Józef Gościński",
+          "age": 42,
+          "childBirthYear": 1895
+        },
+        {
+          "parentRole": "Mother",
+          "parent": "Maria Wilczyńska",
+          "child": "Maria Moszczak",
+          "age": 42,
+          "childBirthYear": 1903
+        }
+      ],
+      "source": {
+        "label": "Oldest recorded parent ages",
+        "sourceFiles": [
+          "data/registries/people.csv",
+          "data/registries/families.csv",
+          "data/registries/relationship_evidence.csv",
+          "data/registries/sources.csv",
+          "artifacts/analytics/genealogy_analytics.duckdb"
+        ],
+        "filters": [
+          "Rebuilt from the editable CSV registries through the local DuckDB analytical layer"
+        ],
+        "metricDefinitions": [
+          {
+            "label": "Oldest recorded parent ages",
+            "definition": "Maximum child birth year minus parent birth year for each recorded parent role; only documented parent-child links with both years recorded are included.",
+            "componentIds": [
+              "parent-age-oldest-note"
+            ]
+          }
+        ]
+      }
+    },
+    "partner_age_gap_distribution": {
+      "rows": [
+        {
+          "ageGapBand": "0–1 years",
+          "sortOrder": 0,
+          "couples": 4
+        },
+        {
+          "ageGapBand": "2–3 years",
+          "sortOrder": 2,
+          "couples": 2
+        },
+        {
+          "ageGapBand": "4–5 years",
+          "sortOrder": 4,
+          "couples": 4
+        },
+        {
+          "ageGapBand": "6–7 years",
+          "sortOrder": 6,
+          "couples": 6
+        },
+        {
+          "ageGapBand": "8–9 years",
+          "sortOrder": 8,
+          "couples": 1
+        },
+        {
+          "ageGapBand": "10–11 years",
+          "sortOrder": 10,
+          "couples": 1
+        },
+        {
+          "ageGapBand": "14–15 years",
+          "sortOrder": 14,
+          "couples": 2
+        }
+      ],
+      "source": {
+        "label": "Partner age-gap distribution",
+        "sourceFiles": [
+          "data/registries/people.csv",
+          "data/registries/families.csv",
+          "data/registries/relationship_evidence.csv",
+          "data/registries/sources.csv",
+          "artifacts/analytics/genealogy_analytics.duckdb"
+        ],
+        "filters": [
+          "Rebuilt from the editable CSV registries through the local DuckDB analytical layer"
+        ],
+        "metricDefinitions": [
+          {
+            "label": "Partner age-gap distribution",
+            "definition": "Absolute difference between recorded partner birth years, grouped into two-year bands; only associations with two recorded birth years are included.",
+            "componentIds": [
+              "partner-age-gap-chart"
+            ]
+          }
+        ]
+      }
+    },
+    "top_founders": {
+      "rows": [
+        {
+          "id": 2,
+          "founder": "Teresa Bartmanowicz",
+          "documentedDescendants": 72
+        },
+        {
+          "id": 1,
+          "founder": "Wawrzyniec Gościński",
+          "documentedDescendants": 72
+        },
+        {
+          "id": 155,
+          "founder": "Zofia Matusiewicz",
+          "documentedDescendants": 69
+        },
+        {
+          "id": 147,
+          "founder": "Józef Szost",
+          "documentedDescendants": 68
+        },
+        {
+          "id": 148,
+          "founder": "Maria Matusiewicz",
+          "documentedDescendants": 68
+        },
+        {
+          "id": 8,
+          "founder": "Maria Sasała",
+          "documentedDescendants": 68
+        },
+        {
+          "id": 150,
+          "founder": "Zofia Wilczyńska",
+          "documentedDescendants": 67
+        },
+        {
+          "id": 131,
+          "founder": "Małgorzata Kałucka",
+          "documentedDescendants": 57
+        },
+        {
+          "id": 130,
+          "founder": "Wawrzyniec Miczulski",
+          "documentedDescendants": 57
+        },
+        {
+          "id": 134,
+          "founder": "Katarzyna Fedorczak",
+          "documentedDescendants": 56
+        },
+        {
+          "id": 133,
+          "founder": "Marianna Sajdak",
+          "documentedDescendants": 56
+        },
+        {
+          "id": 156,
+          "founder": "Unknown Łyga",
+          "documentedDescendants": 56
+        },
+        {
+          "id": 163,
+          "founder": "Jan Miczulski",
+          "documentedDescendants": 55
+        },
+        {
+          "id": 140,
+          "founder": "Marianna Krajowska",
+          "documentedDescendants": 30
+        },
+        {
+          "id": 139,
+          "founder": "Michał Homa",
+          "documentedDescendants": 30
+        }
+      ],
+      "source": {
+        "label": "Founders with the most documented descendants",
+        "sourceFiles": [
+          "data/registries/people.csv",
+          "data/registries/families.csv",
+          "data/registries/relationship_evidence.csv",
+          "data/registries/sources.csv",
+          "artifacts/analytics/genealogy_analytics.duckdb"
+        ],
+        "filters": [
+          "Rebuilt from the editable CSV registries through the local DuckDB analytical layer"
+        ],
+        "metricDefinitions": [
+          {
+            "label": "Founders with the most documented descendants",
+            "definition": "Top 15 people with no recorded parent link, ranked by distinct descendants reachable through documented parent-child links. This is a record-structure measure, not a claim of historical founding status.",
+            "componentIds": [
+              "top-founders-chart"
             ]
           }
         ]

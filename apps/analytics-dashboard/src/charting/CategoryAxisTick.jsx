@@ -9,15 +9,21 @@ const axisTextColor = "var(--secondary)";
 export function CategoryAxisTick({
   x,
   y,
+  index,
   payload,
   field,
   horizontal = false,
   angled = false,
   layout,
+  tickStride = 1,
   width = 150,
   count = 1,
   side = "left",
 }) {
+  const tickIndex = Number.isInteger(index) ? index : Number(payload?.index);
+  if (Number.isInteger(tickIndex) && tickIndex % Math.max(1, Math.floor(Number(tickStride) || 1)) !== 0) {
+    return null;
+  }
   const value = categoryLabel(field, payload.value);
   const { measureFont, measureText } = useChartText(400, axisTickFontSize);
   const plot = usePlotArea();

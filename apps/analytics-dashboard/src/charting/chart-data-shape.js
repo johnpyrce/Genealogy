@@ -20,6 +20,7 @@ const scalarSpecKeys = [
   "yAxisPosition",
   "xLabelPosition",
   "xTickLabelLayout",
+  "xTickStride",
   "axisPercentDigits",
   "showXAxisLabel",
   "showYAxisLabel",

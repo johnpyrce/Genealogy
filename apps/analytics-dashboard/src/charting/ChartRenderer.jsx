@@ -717,6 +717,7 @@ function StandardChartRenderer({
       : [];
   const categoryValues = everyCategory ? [...new Set(data.map((row) => row[x]))] : [];
   const categoryCount = categoryValues.length;
+  const xTickStride = Math.max(1, Math.floor(Number(spec.xTickStride) || 1));
   const dateTimeCategories = !horizontal && !temporalValues.length && spec.xTickLabelLayout === "date-time";
   const angledCategories = everyCategory && !dateTimeCategories
     && categoryAxisLayout(categoryValues.map((value) => categoryLabel(x, value)),
@@ -749,7 +750,8 @@ function StandardChartRenderer({
       height={hideXAxisCategoryTicks ? 0 : angledCategories ? 76 : everyCategory || dateTimeCategories ? 44 : 30}
       tick={
         hideXAxisCategoryTicks ? false : everyCategory || dateTimeCategories ? (
-          <CategoryAxisTick field={x} count={categoryCount} angled={angledCategories} layout={spec.xTickLabelLayout} />
+          <CategoryAxisTick field={x} count={Math.ceil(categoryCount / xTickStride)} angled={angledCategories} layout={spec.xTickLabelLayout}
+            tickStride={xTickStride} />
         ) : (
           { fontSize: 12 }
         )
