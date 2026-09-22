@@ -29,7 +29,7 @@ Some time around this date the family moved to 4307 South Sawyer Ave in Chicago.
 
 There are conflicts in the records:
 
-- Genealogy Chart S2 "Gościńscy z Wapiennego" notes that (translated from Polish) "Zofia zd Gościińska Emigr. to Chicago, there she got married".  But the Petition for Citizenship says that she was married in Musczyna, Poland and that Stanley was born in Poland.  The notation in S2 seems unlikely.
+- Genealogy Chart S2 "Gościńscy z Wapiennego" notes that (translated from Polish) "Zofia zd Gościińska Emigr. to Chicago, there she got married".  But the Petition for Citizenship says that she was married in Muszyna, Poland and that Stanley was born in Poland.  The notation in S2 seems unlikely.
 - Sophie's birth date is given as 1883 in the Petition for Citizenship and Naturalization papers, which were either prepared by her or under her direction.  But her Death Certificate gives her birth date as 1893.  It seems unlikely that the Death Certificate is more accurate.
 - A record is available from the Ellis Island archives that shows a Josef Pyrc arriving at New York in 1905, originating from Muszyna (in Prussia), with roughly the same age as Joseph would have been.  The Petition for Citizenship says that Joseph arrived in the USA in 1911, and it also states that they were married in Poland. It is not clear if this is the same person.
 
