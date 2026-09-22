@@ -49,4 +49,13 @@ Over time, however, -ski surnames spread throughout Polish society, particular a
 Some historical **Gościński/Goszczyński** families were recorded among the Polish nobility, including associations claimed with the [Doliwa coat of arms](https://en.wikipedia.org/wiki/Doliwa_coat_of_arms), 
 but sharing their surname does not establish descent from them. Polish coats of arms belonged to particular documented lineages—not automatically to everyone with the same surname. A reliable connection requires a continuous paper trail linking the family to that lineage.
 
-For identifying a particular branch, the most valuable clue is the earliest known **village or parish**, followed by religion and approximate dates. Those details can distinguish the Muszyna/Nowy Sącz cluster from families in Kujawy, Pomerania, Mazovia, or elsewhere.
+Although it is unlikely that this Gościński family was part of the szlachta, if it was this would be
+the coat of arms:
+
+<a href="https://en.wikipedia.org/wiki/Doliwa_coat_of_arms">
+  <img src="doliwa_coat_of_arms.svg" alt="Doliwa coat of arms" width="150">
+</a>
+
+*Doliwa coat of arms. Source: [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:POL_COA_Doliwa.svg).*
+
+For identifying a particular family branch, the most valuable clue is the earliest known **village or parish**, followed by religion and approximate dates. Those details can distinguish the Muszyna/Nowy Sącz cluster from families in Kujawy, Pomerania, Mazovia, or elsewhere.
