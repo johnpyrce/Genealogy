@@ -261,7 +261,7 @@
       };
       const rootCandidates=foundingFamilies.length?foundingFamilies:familyNodes;
       rootCandidates.sort((a,b)=>familyYear(a)-familyYear(b)||Number(a.data('familyId'))-Number(b.data('familyId')));
-      const root=rootCandidates[0]||nodes[0], parent=new Map([[root.id(),null]]), depth=new Map([[root.id(),0]]), children=new Map(nodes.map(node=>[node.id(),[]])), queue=[root];
+      const root=rootCandidates[0]||nodes[0], parent=new Map([[root.id(),null]]), children=new Map(nodes.map(node=>[node.id(),[]])), queue=[root];
       while(queue.length){
         const node=queue.shift();
         const neighbors=node.neighborhood().nodes().toArray().sort((a,b)=>{
@@ -271,9 +271,20 @@
         });
         neighbors.forEach(child=>{
           if(parent.has(child.id()))return;
-          parent.set(child.id(),node.id());depth.set(child.id(),depth.get(node.id())+1);children.get(node.id()).push(child);queue.push(child);
+          parent.set(child.id(),node.id());children.get(node.id()).push(child);queue.push(child);
         });
       }
+      // Undirected distance can put a spouse on the children's ring. Directed
+      // person → family → child steps give both partners the same generation.
+      const ringRanks=new Map([[root.id(),0]]), rankQueue=[root];
+      while(rankQueue.length){
+        const node=rankQueue.shift(), rank=ringRanks.get(node.id());
+        node.connectedEdges().forEach(edge=>{
+          const forward=edge.source().id()===node.id(), other=forward?edge.target():edge.source();
+          if(!ringRanks.has(other.id())){ringRanks.set(other.id(),rank+(forward?1:-1));rankQueue.push(other);}
+        });
+      }
+      const minimumRank=Math.min(...ringRanks.values());
       // Allocate a continuous angular sector to every descendant branch. This
       // keeps a child's later families together as an arc away from its family.
       const weights=new Map();
@@ -285,7 +296,7 @@
       subtreeWeight(root);
       const positions=[];
       const place=(node,startAngle,endAngle)=>{
-        const angle=(startAngle+endAngle)/2, radius=depth.get(node.id())*ringGap;
+        const angle=(startAngle+endAngle)/2, radius=(ringRanks.get(node.id())-minimumRank+1)*ringGap/2;
         positions.push({node,x:radius*Math.cos(angle),y:radius*Math.sin(angle)});
         const branches=children.get(node.id()), total=branches.reduce((sum,child)=>sum+weights.get(child.id()),0);
         let cursor=startAngle;
