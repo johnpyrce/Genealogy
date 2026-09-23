@@ -1,21 +1,21 @@
 {
   "surface": "report",
   "title": "The Muszyna genealogy has nine documented generations",
-  "generatedAt": "2026-09-21T23:08:17-05:00",
+  "generatedAt": "2026-09-23T00:42:13-05:00",
   "buildStatus": "complete",
   "status": "reviewed",
   "queries": {
     "summary": {
       "rows": [
         {
-          "people": 164,
-          "families": 63,
-          "familyChildMemberships": 100,
-          "parentChildEdges": 192,
-          "evidenceRecords": 73,
+          "people": 171,
+          "families": 64,
+          "familyChildMemberships": 109,
+          "parentChildEdges": 210,
+          "evidenceRecords": 85,
           "sourceCharts": 6,
           "maximumGeneration": 9,
-          "components": 26
+          "components": 24
         }
       ],
       "source": {
@@ -49,23 +49,23 @@
       "rows": [
         {
           "measure": "People",
-          "value": 164
+          "value": 171
         },
         {
           "measure": "Families",
-          "value": 63
+          "value": 64
         },
         {
           "measure": "Partner associations",
-          "value": 60
+          "value": 61
         },
         {
           "measure": "Family-child memberships",
-          "value": 100
+          "value": 109
         },
         {
           "measure": "Directed parent-child links",
-          "value": 192
+          "value": 210
         },
         {
           "measure": "Source charts",
@@ -73,7 +73,7 @@
         },
         {
           "measure": "Evidence records",
-          "value": 73
+          "value": 85
         }
       ],
       "source": {
@@ -105,61 +105,61 @@
         {
           "field": "Birth year",
           "known": 77,
-          "total": 164,
-          "coverage_pct": 47.0
+          "total": 171,
+          "coverage_pct": 45.0
         },
         {
           "field": "Both birth and death",
           "known": 42,
-          "total": 164,
-          "coverage_pct": 25.6
+          "total": 171,
+          "coverage_pct": 24.6
         },
         {
           "field": "Death year",
           "known": 42,
-          "total": 164,
-          "coverage_pct": 25.6
+          "total": 171,
+          "coverage_pct": 24.6
         },
         {
           "field": "Family evidence",
-          "known": 63,
-          "total": 63,
+          "known": 64,
+          "total": 64,
           "coverage_pct": 100.0
         },
         {
           "field": "Family-name group",
-          "known": 164,
-          "total": 164,
+          "known": 171,
+          "total": 171,
           "coverage_pct": 100.0
         },
         {
           "field": "First name",
-          "known": 164,
-          "total": 164,
+          "known": 171,
+          "total": 171,
           "coverage_pct": 100.0
         },
         {
           "field": "Generation assigned",
-          "known": 164,
-          "total": 164,
+          "known": 171,
+          "total": 171,
           "coverage_pct": 100.0
         },
         {
           "field": "Named parent",
-          "known": 96,
-          "total": 164,
-          "coverage_pct": 58.5
+          "known": 105,
+          "total": 171,
+          "coverage_pct": 61.4
         },
         {
           "field": "Recorded partner",
-          "known": 116,
-          "total": 164,
-          "coverage_pct": 70.7
+          "known": 118,
+          "total": 171,
+          "coverage_pct": 69.0
         },
         {
           "field": "Surname",
-          "known": 162,
-          "total": 164,
+          "known": 169,
+          "total": 171,
           "coverage_pct": 98.8
         }
       ],
@@ -210,8 +210,8 @@
         {
           "familyName": "Gościński",
           "generation": "1",
-          "people": 4,
-          "completenessPct": 8.3,
+          "people": 3,
+          "completenessPct": 11.1,
           "birthKnown": 1,
           "deathKnown": 0,
           "parentKnown": 0
@@ -228,11 +228,11 @@
         {
           "familyName": "Gościński",
           "generation": "3",
-          "people": 1,
-          "completenessPct": 66.7,
+          "people": 2,
+          "completenessPct": 50.0,
           "birthKnown": 1,
           "deathKnown": 0,
-          "parentKnown": 1
+          "parentKnown": 2
         },
         {
           "familyName": "Gościński",
@@ -264,11 +264,11 @@
         {
           "familyName": "Gościński",
           "generation": "7",
-          "people": 9,
+          "people": 14,
           "completenessPct": 33.3,
           "birthKnown": 0,
           "deathKnown": 0,
-          "parentKnown": 9
+          "parentKnown": 14
         },
         {
           "familyName": "Gościński",
@@ -318,10 +318,10 @@
         {
           "familyName": "Miczulski",
           "generation": "1",
-          "people": 3,
-          "completenessPct": 33.3,
-          "birthKnown": 2,
-          "deathKnown": 1,
+          "people": 2,
+          "completenessPct": 16.7,
+          "birthKnown": 1,
+          "deathKnown": 0,
           "parentKnown": 0
         },
         {
@@ -336,15 +336,24 @@
         {
           "familyName": "Miczulski",
           "generation": "3",
-          "people": 2,
-          "completenessPct": 83.3,
-          "birthKnown": 2,
-          "deathKnown": 1,
-          "parentKnown": 2
+          "people": 1,
+          "completenessPct": 66.7,
+          "birthKnown": 1,
+          "deathKnown": 0,
+          "parentKnown": 1
         },
         {
           "familyName": "Miczulski",
           "generation": "4",
+          "people": 2,
+          "completenessPct": 100.0,
+          "birthKnown": 2,
+          "deathKnown": 2,
+          "parentKnown": 2
+        },
+        {
+          "familyName": "Miczulski",
+          "generation": "5",
           "people": 1,
           "completenessPct": 100.0,
           "birthKnown": 1,
@@ -505,18 +514,18 @@
       "rows": [
         {
           "confidence": "confirmed",
-          "evidence_records": 60,
-          "share_pct": 82.2
+          "evidence_records": 72,
+          "share_pct": 84.7
         },
         {
           "confidence": "probable",
           "evidence_records": 11,
-          "share_pct": 15.1
+          "share_pct": 12.9
         },
         {
           "confidence": "uncertain",
           "evidence_records": 2,
-          "share_pct": 2.7
+          "share_pct": 2.4
         }
       ],
       "source": {
@@ -546,15 +555,15 @@
       "rows": [
         {
           "sourceId": "S2",
-          "evidenceRecords": 26
+          "evidenceRecords": 29
         },
         {
           "sourceId": "S5",
-          "evidenceRecords": 22
+          "evidenceRecords": 28
         },
         {
           "sourceId": "S3",
-          "evidenceRecords": 10
+          "evidenceRecords": 13
         },
         {
           "sourceId": "S4",
@@ -596,15 +605,15 @@
       "rows": [
         {
           "measure": "Connected components",
-          "value": 26
+          "value": 24
         },
         {
           "measure": "Roots",
-          "value": 68
+          "value": 66
         },
         {
           "measure": "Terminal lines",
-          "value": 80
+          "value": 85
         },
         {
           "measure": "Maximum generation",
@@ -612,11 +621,11 @@
         },
         {
           "measure": "Maximum generation width",
-          "value": 68
+          "value": 66
         },
         {
           "measure": "Isolated people",
-          "value": 25
+          "value": 23
         }
       ],
       "source": {
@@ -646,11 +655,11 @@
       "rows": [
         {
           "measure": "Families with recorded children",
-          "value": 44.0
+          "value": 45.0
         },
         {
           "measure": "Mean children per family with children",
-          "value": 2.27
+          "value": 2.42
         },
         {
           "measure": "Median children per family with children",
@@ -794,7 +803,7 @@
       "rows": [
         {
           "familyName": "Gościński",
-          "people": 38
+          "people": 43
         },
         {
           "familyName": "Rams",
@@ -850,6 +859,10 @@
         },
         {
           "familyName": "Magarzewych",
+          "people": 3
+        },
+        {
+          "familyName": "Miąsik",
           "people": 3
         },
         {
@@ -949,15 +962,11 @@
           "people": 1
         },
         {
-          "familyName": "Krajowski",
+          "familyName": "Kraiowski",
           "people": 1
         },
         {
           "familyName": "Maślanka",
-          "people": 1
-        },
-        {
-          "familyName": "Miąsik",
           "people": 1
         },
         {
@@ -1020,19 +1029,23 @@
       "rows": [
         {
           "family_size": 1,
-          "families": 19
+          "families": 16
         },
         {
           "family_size": 2,
-          "families": 10
+          "families": 13
         },
         {
           "family_size": 3,
-          "families": 8
+          "families": 7
         },
         {
           "family_size": 4,
-          "families": 3
+          "families": 4
+        },
+        {
+          "family_size": 5,
+          "families": 1
         },
         {
           "family_size": 6,
@@ -1125,7 +1138,7 @@
         {
           "span_band": "0–4 years",
           "sort_order": 1,
-          "families": 3
+          "families": 4
         },
         {
           "span_band": "5–9 years",
@@ -1231,7 +1244,7 @@
           "parentRole": "Father",
           "ageBand": "40 and over",
           "sortOrder": 6,
-          "observations": 11
+          "observations": 12
         },
         {
           "parentRole": "Mother",
@@ -1268,9 +1281,9 @@
         {
           "parentRole": "Father",
           "parent": "Jan Miczulski",
-          "child": "Marianna Miczulska",
-          "age": 62,
-          "childBirthYear": 1895
+          "child": "Franciszek Miczulski",
+          "age": 66,
+          "childBirthYear": 1899
         },
         {
           "parentRole": "Mother",
@@ -1376,71 +1389,71 @@
         {
           "id": 2,
           "founder": "Teresa Bartmanowicz",
-          "documentedDescendants": 72
+          "documentedDescendants": 80
         },
         {
           "id": 1,
           "founder": "Wawrzyniec Gościński",
-          "documentedDescendants": 72
+          "documentedDescendants": 80
         },
         {
           "id": 155,
           "founder": "Zofia Matusiewicz",
-          "documentedDescendants": 69
+          "documentedDescendants": 77
         },
         {
           "id": 147,
           "founder": "Józef Szost",
-          "documentedDescendants": 68
+          "documentedDescendants": 75
         },
         {
           "id": 148,
           "founder": "Maria Matusiewicz",
-          "documentedDescendants": 68
+          "documentedDescendants": 75
         },
         {
           "id": 8,
           "founder": "Maria Sasała",
-          "documentedDescendants": 68
+          "documentedDescendants": 75
         },
         {
           "id": 150,
           "founder": "Zofia Wilczyńska",
-          "documentedDescendants": 67
+          "documentedDescendants": 74
         },
         {
           "id": 131,
           "founder": "Małgorzata Kałucka",
-          "documentedDescendants": 57
+          "documentedDescendants": 66
         },
         {
           "id": 130,
           "founder": "Wawrzyniec Miczulski",
-          "documentedDescendants": 57
+          "documentedDescendants": 66
         },
         {
           "id": 134,
           "founder": "Katarzyna Fedorczak",
-          "documentedDescendants": 56
+          "documentedDescendants": 65
         },
         {
           "id": 133,
           "founder": "Marianna Sajdak",
-          "documentedDescendants": 56
+          "documentedDescendants": 65
         },
         {
           "id": 156,
           "founder": "Unknown Łyga",
-          "documentedDescendants": 56
+          "documentedDescendants": 65
         },
         {
           "id": 163,
           "founder": "Jan Miczulski",
-          "documentedDescendants": 55
+          "documentedDescendants": 62
         },
         {
           "id": 140,
-          "founder": "Marianna Krajowska",
+          "founder": "Marianna Kraiowska",
           "documentedDescendants": 30
         },
         {
@@ -1479,12 +1492,12 @@
           "people": 10
         },
         {
-          "firstName": "Józef",
-          "people": 8
+          "firstName": "Maria",
+          "people": 10
         },
         {
-          "firstName": "Maria",
-          "people": 8
+          "firstName": "Józef",
+          "people": 9
         },
         {
           "firstName": "Franciszek",
@@ -1499,6 +1512,10 @@
           "people": 6
         },
         {
+          "firstName": "Antonina",
+          "people": 5
+        },
+        {
           "firstName": "Joanna",
           "people": 5
         },
@@ -1508,10 +1525,6 @@
         },
         {
           "firstName": "Anna",
-          "people": 4
-        },
-        {
-          "firstName": "Antonina",
           "people": 4
         }
       ],

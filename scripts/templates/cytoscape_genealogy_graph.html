@@ -19,7 +19,8 @@
     input, select, button, summary { font:inherit; }
     input, select, button { border:1px solid #b8c5c4; border-radius:7px; padding:8px 10px; background:#fff; color:var(--ink); }
     button, summary { min-height:36px; cursor:pointer; font-weight:700; }
-    button { background:#fff; } button:hover, summary:hover { background:#edf5f2; }
+    button { background:#fff; } button:hover:not(:disabled), summary:hover { background:#edf5f2; }
+    button:disabled { cursor:not-allowed; opacity:.48; }
 #ancestors { max-width:310px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 #ancestors.has-selection { background:#e1efeb; border-color:#9ebfb8; }
     .control-menu { position:relative; }
@@ -33,14 +34,16 @@
     input[type="checkbox"] { accent-color:var(--accent); padding:0; } input[type="color"] { width:44px; height:36px; padding:3px; }
     .color-match-row { display:grid; grid-template-columns:minmax(0,1fr) 44px; gap:8px; }
     main { display:grid; grid-template-columns:minmax(0,1fr) 8px var(--details-size); flex:1 1 auto; min-height:0; } .graph-stage { position:relative; min-width:0; min-height:0; } #cy { width:100%; height:100%; min-height:420px; background:var(--paper); }
-    .source-annotation { position:absolute; z-index:5; top:12px; left:14px; display:flex; align-items:center; gap:6px; max-width:calc(100% - 126px); padding:6px 9px; border:1px solid rgba(120,144,150,.55); border-radius:6px; background:rgba(251,250,246,.92); box-shadow:0 2px 8px rgba(23,59,63,.08); color:#52666a; font-size:12px; white-space:nowrap; }
-    .source-annotation strong { overflow:hidden; color:#173b3f; text-overflow:ellipsis; }
-    .source-annotation.source-s1 { border-color:#60a5fa; background:rgba(219,234,254,.95); } .source-annotation.source-s1 strong { color:#1e3a8a; }
-    .source-annotation.source-s2 { border-color:#d97706; background:rgba(254,243,199,.95); } .source-annotation.source-s2 strong { color:#78350f; }
-    .source-annotation.source-s3 { border-color:#8b5cf6; background:rgba(237,233,254,.95); } .source-annotation.source-s3 strong { color:#4c1d95; }
-    .source-annotation.source-s4 { border-color:#fb7185; background:rgba(255,228,230,.95); } .source-annotation.source-s4 strong { color:#881337; }
-    .source-annotation.source-s5 { border-color:#4ade80; background:rgba(220,252,231,.95); } .source-annotation.source-s5 strong { color:#14532d; }
-    .source-annotation.source-s6 { border-color:#22d3ee; background:rgba(207,250,254,.95); } .source-annotation.source-s6 strong { color:#164e63; }
+    .source-annotation { position:absolute; z-index:5; top:12px; left:14px; max-width:calc(100% - 126px); padding:6px 9px; border:1px solid rgba(120,144,150,.55); border-radius:6px; background:rgba(251,250,246,.92); box-shadow:0 2px 8px rgba(23,59,63,.08); color:#173b3f; font-size:12px; font-weight:700; cursor:pointer; text-overflow:ellipsis; }
+    .source-annotation:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+    .source-annotation.source-s1 { border-color:#60a5fa; background:rgba(219,234,254,.95); color:#1e3a8a; }
+    .source-annotation.source-s2 { border-color:#d97706; background:rgba(254,243,199,.95); color:#78350f; }
+    .source-annotation.source-s3 { border-color:#8b5cf6; background:rgba(237,233,254,.95); color:#4c1d95; }
+    .source-annotation.source-s4 { border-color:#fb7185; background:rgba(255,228,230,.95); color:#881337; }
+    .source-annotation.source-s5 { border-color:#4ade80; background:rgba(220,252,231,.95); color:#14532d; }
+    .source-annotation.source-s6 { border-color:#22d3ee; background:rgba(207,250,254,.95); color:#164e63; }
+    .view-annotation { position:absolute; z-index:5; top:60px; left:14px; max-width:calc(100% - 28px); padding:7px 10px; border:1px solid #a78bfa; border-radius:6px; background:rgba(237,233,254,.96); box-shadow:0 2px 8px rgba(23,59,63,.08); color:#4c1d95; font-size:12px; font-weight:700; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; pointer-events:none; }
+    .view-annotation[hidden] { display:none; }
     .viewport-controls { position:absolute; z-index:6; top:12px; right:14px; display:flex; gap:6px; padding:4px; border:1px solid rgba(120,144,150,.55); border-radius:9px; background:rgba(251,250,246,.92); box-shadow:0 2px 8px rgba(23,59,63,.1); }
     .viewport-controls button { display:grid; place-items:center; width:34px; height:34px; min-height:0; padding:0; border:0; border-radius:6px; background:transparent; color:#31585d; }
     .viewport-controls button:hover { background:#e2efec; color:#0f5f59; }
@@ -62,7 +65,7 @@
     <div class="toolbar">
       <label class="search-control">Find a person<input id="search" placeholder="Name or person ID" autocomplete="off"><span id="search-status" class="search-status" aria-live="polite"></span></label>
       <div class="toolbar-actions">
-        <button id="ancestors" type="button">Show direct ancestors</button>
+        <button id="ancestors" type="button" disabled>Direct ancestors</button>
         <details class="control-menu"><summary>Filters</summary><div class="menu-panel">
           <label class="control">Source chart<select id="source"><option value="all">All source charts</option></select></label>
           <div class="control">Branches<div class="checks"><label><input class="role" type="checkbox" value="main_line" checked> Main line</label><label><input class="role" type="checkbox" value="spouse_ancestry" checked> Spouse ancestry</label><label><input class="role" type="checkbox" value="collateral" checked> Collateral</label></div></div>
@@ -70,6 +73,7 @@
         <details class="control-menu"><summary>Appearance</summary><div class="menu-panel">
           <label class="control">Layout<select id="layout"><option value="pedigree" selected>Pedigree (top-down)</option><option value="radial">Radial tree</option></select></label>
           <label class="control">Labels<select id="labels"><option value="auto" selected>Auto</option><option value="none">None</option><option value="all">All</option></select></label>
+          <label class="control">Color people by<select id="person-colors"><option value="uniform" selected>Uniform</option><option value="lineage">Main line versus spouses</option></select></label>
           <label class="control">Color matching people<div class="color-match-row"><input id="match-string" type="text" placeholder="Part of a name" autocomplete="off"><input id="match-color" type="color" value="#7c3aed" aria-label="Matching people color"></div></label>
         </div></details>
         <button id="reset" type="button">Reset</button>
@@ -77,13 +81,28 @@
       </div>
     </div>
   </section>
-  <div class="legend"><span><i class="swatch" style="background:#197278"></i>Person</span><span><i class="swatch" style="background:#d19a2a;border-radius:2px"></i>Family hub</span><span><i class="swatch" style="background:#e4572e"></i>Search match</span><span>Solid: main line · dashed: spouse ancestry · dotted: collateral</span></div>
-  <main id="workspace"><div class="graph-stage"><div id="cy" aria-label="Interactive Cytoscape genealogy graph"></div><div id="source-status" class="source-annotation" role="status" aria-live="polite"><strong>All charts</strong></div><div class="viewport-controls" aria-label="Diagram view controls"><button id="fit-graph" type="button" aria-label="Fit entire graph" title="Fit entire graph"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"/></svg></button><button id="readable-view" type="button" aria-label="Show readable view from top" title="Show readable view from top"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16M7 9v3m5-3v7m5-7v3"/><circle cx="7" cy="15" r="2.5"/><circle cx="12" cy="19" r="2.5"/><circle cx="17" cy="15" r="2.5"/></svg></button></div></div><div id="details-resizer" class="details-resizer" role="separator" aria-label="Resize details panel" tabindex="0"></div><aside id="details"><h2>Explore the graph</h2><p>Click a person or family hub to inspect the registry information and evidence.</p></aside></main><div id="tooltip"></div>
+  <div class="legend"><span class="uniform-legend"><i class="swatch" style="background:#197278"></i>Person</span><span class="lineage-legend" hidden><i class="swatch" style="background:#197278"></i>Main-line descendant</span><span class="lineage-legend" hidden><i class="swatch" style="background:#c2185b"></i>Spouse joining main line</span><span class="lineage-legend" hidden><i class="swatch" style="background:#768186"></i>Other person</span><span><i class="swatch" style="background:#d19a2a;border-radius:2px"></i>Family hub</span><span><i class="swatch" style="background:#e4572e"></i>Selected node</span><span>Solid: main line · dashed: spouse ancestry · dotted: collateral</span></div>
+  <main id="workspace">
+    <div class="graph-stage">
+      <div id="cy" aria-label="Interactive Cytoscape genealogy graph"></div>
+      <select id="source-status" class="source-annotation" aria-label="Source chart" title="Choose source chart"><option value="all">All charts</option></select>
+      <div id="view-status" class="view-annotation" role="status" aria-live="polite" hidden></div>
+      <div class="viewport-controls" aria-label="Diagram view controls">
+        <button id="fit-graph" type="button" aria-label="Fit entire graph" title="Fit entire graph"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"/></svg></button>
+        <button id="readable-view" type="button" aria-label="Show readable view from top" title="Show readable view from top"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16M7 9v3m5-3v7m5-7v3"/><circle cx="7" cy="15" r="2.5"/><circle cx="12" cy="19" r="2.5"/><circle cx="17" cy="15" r="2.5"/></svg></button>
+      </div>
+    </div>
+    <div id="details-resizer" class="details-resizer" role="separator" aria-label="Resize details panel" tabindex="0"></div>
+    <aside id="details"><h2>Explore the graph</h2><p>Click a person or family hub to inspect the registry information and evidence.</p></aside>
+  </main>
+  <div id="tooltip"></div>
   <script>
   const DATA = __GRAPH_DATA__;
   const people = new Map(DATA.people.map(p => [p.id,p])); const families = DATA.families.map(f => ({...f,children:f.children_ids ? f.children_ids.split(';').filter(Boolean) : []})); const sources = new Map(DATA.sources.map(s => [s.source_id,s]));
+  const mainLineChildren=new Set(families.filter(f=>f.branch_role==='main_line').flatMap(f=>f.children));
+  const mainLineSpouses=new Set(families.filter(f=>f.branch_role==='main_line'&&[f.father_id,f.mother_id].some(id=>mainLineChildren.has(id))).flatMap(f=>[f.father_id,f.mother_id].filter(id=>id&&!mainLineChildren.has(id))));
   const evidenceByFamily = new Map(); DATA.evidence.forEach(row => { const list=evidenceByFamily.get(row.family_id)||[]; list.push(row); evidenceByFamily.set(row.family_id,list); });
-  const details=document.getElementById('details'); const tooltip=document.getElementById('tooltip'); const workspace=document.getElementById('workspace'); const detailsResizer=document.getElementById('details-resizer'); let focused=null, highlightedNodeId=null, selectedPersonId=null, showingAncestors=false, overviewZoom=1, searchMatches=[], searchIndex=-1, detailsDrag=null;
+  const details=document.getElementById('details'); const tooltip=document.getElementById('tooltip'); const workspace=document.getElementById('workspace'); const detailsResizer=document.getElementById('details-resizer'); let focused=null, highlightedNodeId=null, selectedPersonId=null, ancestorAnchorId=null, showingAncestors=false, spotlightInAncestors=false, overviewZoom=1, searchMatches=[], searchIndex=-1, detailsDrag=null;
   function fullName(person) { return `${person.first_name}${person.surname && person.surname !== 'Unknown' ? ' '+person.surname : ''}`; }
   function matchText(value) { return String(value).normalize('NFD').toLowerCase().replace(/[\u0300-\u036f]/g,'').replace(/ł/g,'l'); }
   function lastName(person) { return person && person.surname && person.surname !== 'Unknown' ? person.surname : 'Unknown'; }
@@ -93,18 +112,21 @@
   function familyForSource(family,source){if(source==='all')return family;const rows=evidenceFor(family).filter(row=>row.source_id===source);if(!rows.length)return null;if(rows.some(row=>row.relationship==='family'))return family;const hasRelationship=rows.some(row=>row.relationship==='spouse'||row.relationship==='parent-child'), childIds=new Set(rows.filter(row=>row.relationship==='parent-child').map(row=>row.related_person_id));return {...family,father_id:hasRelationship?family.father_id:null,mother_id:hasRelationship?family.mother_id:null,children:family.children.filter(id=>childIds.has(id))};}
   function selectedRoles() { return new Set([...document.querySelectorAll('.role:checked')].map(input=>input.value)); }
   function ancestorSets(anchor='81') { const byChild=new Map(); families.forEach(f=>f.children.forEach(child=>{const rows=byChild.get(child)||[];rows.push(f);byChild.set(child,rows)})); const p=new Set([anchor]), f=new Set(), queue=[anchor]; while(queue.length){const child=queue.shift();(byChild.get(child)||[]).forEach(family=>{f.add(family.id);[family.father_id,family.mother_id].filter(Boolean).forEach(parent=>{if(!p.has(parent)){p.add(parent);queue.push(parent)}})})} return {people:p,families:f}; }
-  function activeData() { const source=document.getElementById('source').value, roles=selectedRoles(), anchor=showingAncestors&&selectedPersonId?selectedPersonId:null, ancestors=anchor?ancestorSets(anchor):null; const activeFamilies=families.filter(f=>roles.has(f.branch_role)&&(!ancestors||ancestors.families.has(f.id))).map(f=>familyForSource(f,source)).filter(Boolean); const activePeople=new Set(); activeFamilies.forEach(f=>[f.father_id,f.mother_id,...f.children].filter(Boolean).forEach(id=>activePeople.add(id))); if(anchor)activePeople.add(anchor); return {activeFamilies,activePeople}; }
+  function activeData() { const source=document.getElementById('source').value, roles=selectedRoles(), anchor=showingAncestors?ancestorAnchorId:null, ancestors=anchor?ancestorSets(anchor):null; const activeFamilies=families.filter(f=>roles.has(f.branch_role)&&(!ancestors||ancestors.families.has(f.id))).map(f=>familyForSource(f,source)).filter(Boolean); const activePeople=new Set(); activeFamilies.forEach(f=>[f.father_id,f.mother_id,...f.children].filter(Boolean).forEach(id=>activePeople.add(id))); if(anchor)activePeople.add(anchor); return {activeFamilies,activePeople}; }
   const cy=cytoscape({container:document.getElementById('cy'),elements:[],style:[
     {selector:'node',style:{'label':'','background-color':'#197278','width':28,'height':28,'border-width':2,'border-color':'#fff'}},
+    {selector:'node.person',style:{'background-color':'data(personColor)'}},
     {selector:'node.family',style:{'shape':'round-rectangle','background-color':'#d19a2a','border-color':'#8d6516','width':23,'height':23}},
     {selector:'node.person.radial-layout',style:{'width':40,'height':40}},
     {selector:'node.family.radial-layout',style:{'width':32,'height':32}},
     {selector:'node.string-match',style:{'background-color':'data(matchColor)','border-color':'#173b3f','border-width':3,'width':34,'height':34}},
     {selector:'node.show-label',style:{'label':'data(label)','font-size':'data(labelSize)','color':'#808080','text-outline-color':'#f7f4ed','text-outline-width':'data(labelOutline)','text-valign':'bottom','text-margin-y':-5}},
     {selector:'node.highlight',style:{'background-color':'#e4572e','border-width':6,'border-color':'#fbbf24','width':40,'height':40}},
+    {selector:'node.neighbor',style:{'border-width':4,'border-color':'#fbbf24'}},
     {selector:'edge',style:{'width':1.6,'line-color':'#789096','target-arrow-color':'#789096','curve-style':'bezier','target-arrow-shape':'triangle','arrow-scale':.8}},
     {selector:'edge.spouse_ancestry',style:{'line-style':'dashed'}},{selector:'edge.collateral',style:{'line-style':'dotted'}},
-    {selector:':selected',style:{'border-color':'#0f766e','border-width':4}}
+    {selector:':selected',style:{'border-color':'#0f766e','border-width':4}},
+    {selector:'.dimmed',style:{'opacity':.16}}
   ],wheelSensitivity:.2});
   function overlaps(a,b){return a.left<b.right&&a.right>b.left&&a.top<b.bottom&&a.bottom>b.top;}
   function updateLabels(){
@@ -127,7 +149,9 @@
     });
   }
   cy.on('zoom',updateLabels);
-  function elementsFor(activeFamilies,activePeople) { const matchString=matchText(document.getElementById('match-string').value.trim()), matchColor=document.getElementById('match-color').value; const nodes=[...activePeople].filter(id=>people.has(id)).map(id=>{const person=people.get(id),matches=matchString&&matchText(fullName(person)).includes(matchString);return {data:{id:`p:${id}`,kind:'person',personId:id,label:fullName(person),matchColor},classes:`person${matches?' string-match':''}`};}); const edges=[]; activeFamilies.forEach(f=>{nodes.push({data:{id:`f:${f.id}`,kind:'family',familyId:f.id,label:familyLabel(f)},classes:`family ${f.branch_role}`});[f.father_id,f.mother_id].filter(Boolean).forEach(id=>edges.push({data:{id:`p:${id}>f:${f.id}`,source:`p:${id}`,target:`f:${f.id}`},classes:f.branch_role}));f.children.forEach(id=>edges.push({data:{id:`f:${f.id}>p:${id}`,source:`f:${f.id}`,target:`p:${id}`},classes:f.branch_role}));});return {nodes,edges}; }
+  function personColor(id){if(document.getElementById('person-colors').value!=='lineage')return '#197278';return mainLineChildren.has(id)?'#197278':mainLineSpouses.has(id)?'#c2185b':'#768186';}
+  function updateColorLegend(){const lineage=document.getElementById('person-colors').value==='lineage';document.querySelectorAll('.lineage-legend').forEach(item=>item.hidden=!lineage);document.querySelector('.uniform-legend').hidden=lineage;}
+  function elementsFor(activeFamilies,activePeople) { const matchString=matchText(document.getElementById('match-string').value.trim()), matchColor=document.getElementById('match-color').value; const nodes=[...activePeople].filter(id=>people.has(id)).map(id=>{const person=people.get(id),matches=matchString&&matchText(fullName(person)).includes(matchString);return {data:{id:`p:${id}`,kind:'person',personId:id,label:fullName(person),matchColor,personColor:personColor(id)},classes:`person${matches?' string-match':''}`};}); const edges=[]; activeFamilies.forEach(f=>{nodes.push({data:{id:`f:${f.id}`,kind:'family',familyId:f.id,label:familyLabel(f)},classes:`family ${f.branch_role}`});[f.father_id,f.mother_id].filter(Boolean).forEach(id=>edges.push({data:{id:`p:${id}>f:${f.id}`,source:`p:${id}`,target:`f:${f.id}`},classes:f.branch_role}));f.children.forEach(id=>edges.push({data:{id:`f:${f.id}>p:${id}`,source:`f:${f.id}`,target:`p:${id}`},classes:f.branch_role}));});return {nodes,edges}; }
   function connectedComponents() {
     const unseen=new Set(cy.nodes().map(node=>node.id())), components=[];
     while(unseen.size){
@@ -284,10 +308,28 @@
     cy.fit(cy.elements(),42);overviewZoom=cy.zoom();
   }
   function applyLayout(){const radial=document.getElementById('layout').value==='radial';if(radial)cy.nodes().addClass('radial-layout');else cy.nodes().removeClass('radial-layout');radial?radialLayout():pedigreeLayout();}
+  function applySelectionHighlight(){
+    cy.elements().removeClass('dimmed neighbor highlight');
+    if(!highlightedNodeId)return;
+    const node=cy.getElementById(highlightedNodeId);
+    if(!node.length)return;
+    if(showingAncestors&&!spotlightInAncestors){node.addClass('highlight');return;}
+    cy.elements().addClass('dimmed');
+    const edges=node.connectedEdges();
+    edges.removeClass('dimmed');
+    edges.connectedNodes().removeClass('dimmed').addClass('neighbor');
+    node.removeClass('dimmed neighbor').addClass('highlight');
+  }
+  function updateViewStatus(){
+    const status=document.getElementById('view-status'), anchor=people.get(ancestorAnchorId);
+    status.textContent=showingAncestors?`Direct ancestors of ${anchor?fullName(anchor):'selected person'}`:'';
+    status.hidden=!showingAncestors;
+  }
   function render() {
     const {activeFamilies,activePeople}=activeData(); const elements=elementsFor(activeFamilies,activePeople);
     cy.elements().remove();cy.add(elements.nodes);cy.add(elements.edges);applyLayout();
-    if(highlightedNodeId){const node=cy.getElementById(highlightedNodeId);if(node.length)node.addClass('highlight');}
+    updateViewStatus();
+    applySelectionHighlight();
     updateLabels();
     if(focused){const node=cy.getElementById(`p:${focused}`);if(node.length){cy.animate({center:{eles:node},zoom:Math.max(cy.zoom(),1.05)},{duration:180});}}
   }
@@ -298,19 +340,42 @@
   function resizeDetails(size){const available=compactLayout()?workspace.clientHeight:workspace.clientWidth, minimum=compactLayout()?160:220, maximum=Math.max(minimum,Math.floor(available*.6)), next=Math.min(Math.max(size,minimum),maximum);document.documentElement.style.setProperty('--details-size',`${next}px`);cy.resize();updateLabels();}
   function evidenceHtml(rows) { return rows.length ? rows.map(row=>{const source=sources.get(row.source_id);return `<div class="detail-value"><b>${row.source_id}</b> — ${source?source.display_name:'unknown chart'}<br><span>${row.location||'location not recorded'} · ${row.confidence}</span><br>${row.transcription||''}</div>`}).join('') : 'No source evidence is assigned.'; }
   function showDetails(data) { const activeFamilies=activeData().activeFamilies;if(data.kind==='person'){const person=people.get(data.personId), related=activeFamilies.filter(f=>f.father_id===data.personId||f.mother_id===data.personId||f.children.includes(data.personId));details.innerHTML=`<h2>${fullName(person)}</h2><div class="detail-label">Registry</div><div class="detail-value">Person ID ${person.id}${person.birth_year||person.death_year?`<br>${person.birth_year||'?'}–${person.death_year||''}`:''}${person.note?`<br>${person.note}`:''}</div><div class="detail-label">Recorded families</div>${related.length?related.map(f=>`<div class="detail-value">${familyLabel(f)} · Family ${f.id}</div>`).join(''):'<div class="detail-value">No family record</div>'}<div class="detail-label">Evidence</div>${evidenceHtml(related.flatMap(evidenceForCurrentSource))}`;}else{const family=activeFamilies.find(f=>f.id===data.familyId)||families.find(f=>f.id===data.familyId),members=[family.father_id,family.mother_id,...family.children].filter(Boolean).map(id=>fullName(people.get(id))).join(', ');details.innerHTML=`<h2>${familyLabel(family)}</h2><div class="detail-label">Family record</div><div class="detail-value">Family ${family.id}</div><div class="detail-label">Members</div><div class="detail-value">${members}</div><div class="detail-label">Evidence</div>${evidenceHtml(evidenceForCurrentSource(family))}`;}}
-  function updateAncestorButton(){const button=document.getElementById('ancestors');const canShowAncestors=Boolean(selectedPersonId)&&!showingAncestors;button.textContent=showingAncestors?'Show complete graph':'Show direct';button.classList.toggle('has-selection',canShowAncestors);}
-  function updateSourceStatus(){const select=document.getElementById('source'), status=document.getElementById('source-status'), label=status.querySelector('strong'), source=sources.get(select.value);status.classList.remove('source-s1','source-s2','source-s3','source-s4','source-s5','source-s6');if(source){label.textContent=`${source.source_id} — ${source.display_name}`;status.classList.add(`source-${source.source_id.toLowerCase()}`);}else{label.textContent='All charts';}}
-  function clearSearchSelection(){focused=null;highlightedNodeId=null;selectedPersonId=null;showingAncestors=false;updateAncestorButton();}
+  function updateAncestorButton(){const button=document.getElementById('ancestors');const canShowAncestors=Boolean(selectedPersonId)&&!showingAncestors;button.textContent=showingAncestors?'Full graph':'Direct ancestors';button.disabled=!showingAncestors&&!selectedPersonId;button.classList.toggle('has-selection',canShowAncestors);}
+  function updateSourceStatus(){const select=document.getElementById('source'), status=document.getElementById('source-status'), source=sources.get(select.value);status.value=select.value;status.classList.remove('source-s1','source-s2','source-s3','source-s4','source-s5','source-s6');if(source)status.classList.add(`source-${source.source_id.toLowerCase()}`);}
+  function clearSelectedNode(){focused=null;highlightedNodeId=null;selectedPersonId=null;spotlightInAncestors=false;updateAncestorButton();}
+  function clearSearchSelection(){ancestorAnchorId=null;showingAncestors=false;clearSelectedNode();}
   function refreshSearchMatches(){const query=matchText(document.getElementById('search').value.trim()), status=document.getElementById('search-status');searchMatches=[];searchIndex=-1;if(!query){status.textContent='';return;}const {activePeople}=activeData();searchMatches=[...people.values()].filter(person=>activePeople.has(person.id)&&(person.id===query||matchText(fullName(person)).includes(query)));status.textContent=searchMatches.length?`${searchMatches.length} match${searchMatches.length===1?'':'es'} · Press Return to cycle`:'No matches';}
-  function showSearchMatch(index){const person=searchMatches[index];if(!person)return;searchIndex=index;focused=person.id;highlightedNodeId=`p:${person.id}`;selectedPersonId=person.id;showingAncestors=false;showDetails({kind:'person',personId:person.id});updateAncestorButton();document.getElementById('search-status').textContent=`${searchIndex+1} of ${searchMatches.length} matches · Return for next` ;render();}
-  cy.on('tap','node',event=>{const node=event.target,isPerson=node.data('kind')==='person',wasShowingAncestors=showingAncestors;node.unselect();if(highlightedNodeId===node.id()){focused=null;highlightedNodeId=null;if(isPerson)selectedPersonId=null;showingAncestors=false;updateAncestorButton();node.removeClass('highlight');render();return;}focused=null;highlightedNodeId=node.id();selectedPersonId=isPerson?node.data('personId'):null;if(!selectedPersonId)showingAncestors=false;updateAncestorButton();cy.nodes().removeClass('highlight');node.addClass('highlight');showDetails(node.data());if(wasShowingAncestors)render();else updateLabels();});cy.on('mouseover','node',event=>{tooltip.textContent=event.target.data('label');tooltip.style.display='block';const point=event.renderedPosition;const box=document.getElementById('cy').getBoundingClientRect();tooltip.style.left=`${box.left+point.x+12}px`;tooltip.style.top=`${box.top+point.y+12}px`;});cy.on('mouseout','node',()=>tooltip.style.display='none');
-  function populateSources(){const select=document.getElementById('source');[...sources.values()].sort((a,b)=>a.source_id.localeCompare(b.source_id)).forEach(source=>select.insertAdjacentHTML('beforeend',`<option value="${source.source_id}">${source.source_id} — ${source.display_name}</option>`));}
+  function showSearchMatch(index){const person=searchMatches[index];if(!person)return;searchIndex=index;focused=person.id;highlightedNodeId=`p:${person.id}`;selectedPersonId=person.id;spotlightInAncestors=showingAncestors;showDetails({kind:'person',personId:person.id});updateAncestorButton();document.getElementById('search-status').textContent=`${searchIndex+1} of ${searchMatches.length} matches · Return for next` ;render();}
+  cy.on('tap','node',event=>{
+    const node=event.target,isPerson=node.data('kind')==='person';
+    node.unselect();
+    if(highlightedNodeId===node.id()){
+      focused=null;highlightedNodeId=null;selectedPersonId=null;spotlightInAncestors=false;
+      updateAncestorButton();applySelectionHighlight();updateLabels();
+      return;
+    }
+    focused=null;highlightedNodeId=node.id();selectedPersonId=isPerson?node.data('personId'):null;
+    spotlightInAncestors=showingAncestors;
+    updateAncestorButton();showDetails(node.data());applySelectionHighlight();updateLabels();
+  });cy.on('mouseover','node',event=>{tooltip.textContent=event.target.data('label');tooltip.style.display='block';const point=event.renderedPosition;const box=document.getElementById('cy').getBoundingClientRect();tooltip.style.left=`${box.left+point.x+12}px`;tooltip.style.top=`${box.top+point.y+12}px`;});cy.on('mouseout','node',()=>tooltip.style.display='none');
+  function populateSources(){const select=document.getElementById('source'), shortcut=document.getElementById('source-status');[...sources.values()].sort((a,b)=>a.source_id.localeCompare(b.source_id)).forEach(source=>{const label=`${source.source_id} — ${source.display_name}`;select.add(new Option(label,source.source_id));shortcut.add(new Option(label,source.source_id));});}
   const controlMenus=[...document.querySelectorAll('.control-menu')];controlMenus.forEach(menu=>menu.addEventListener('toggle',()=>{if(menu.open)controlMenus.filter(other=>other!==menu).forEach(other=>other.open=false);}));document.addEventListener('click',event=>{if(!event.target.closest('.control-menu'))controlMenus.forEach(menu=>menu.open=false);});
-  document.getElementById('search').addEventListener('input',()=>{clearSearchSelection();refreshSearchMatches();render();});document.getElementById('search').addEventListener('keydown',event=>{if(event.key!=='Enter'||!searchMatches.length)return;event.preventDefault();const nextIndex=searchIndex===-1?(event.shiftKey?searchMatches.length-1:0):(searchIndex+(event.shiftKey?-1:1)+searchMatches.length)%searchMatches.length;showSearchMatch(nextIndex);});
+  document.getElementById('search').addEventListener('input',()=>{clearSelectedNode();refreshSearchMatches();render();});document.getElementById('search').addEventListener('keydown',event=>{if(event.key!=='Enter'||!searchMatches.length)return;event.preventDefault();const nextIndex=searchIndex===-1?(event.shiftKey?searchMatches.length-1:0):(searchIndex+(event.shiftKey?-1:1)+searchMatches.length)%searchMatches.length;showSearchMatch(nextIndex);});
   document.getElementById('fit-graph').addEventListener('click',fitEntireGraph);document.getElementById('readable-view').addEventListener('click',showReadableView);
   detailsResizer.addEventListener('mousedown',event=>{if(event.button!==0)return;event.preventDefault();detailsDrag={startX:event.clientX,startY:event.clientY,startSize:parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--details-size'))};detailsResizer.classList.add('dragging');});document.addEventListener('mousemove',event=>{if(!detailsDrag)return;const delta=compactLayout()?detailsDrag.startY-event.clientY:detailsDrag.startX-event.clientX;resizeDetails(detailsDrag.startSize+delta);});document.addEventListener('mouseup',()=>{if(!detailsDrag)return;detailsDrag=null;detailsResizer.classList.remove('dragging');});window.addEventListener('resize',()=>{cy.resize();updateLabels();});
-  document.getElementById('match-string').addEventListener('input',render);document.getElementById('match-color').addEventListener('input',render);document.getElementById('layout').addEventListener('change',render);document.getElementById('labels').addEventListener('change',updateLabels);document.getElementById('source').addEventListener('change',()=>{clearSearchSelection();updateSourceStatus();refreshSearchMatches();render();});document.querySelectorAll('.role').forEach(input=>input.addEventListener('change',()=>{clearSearchSelection();refreshSearchMatches();render();}));document.getElementById('ancestors').addEventListener('click',()=>{if(!selectedPersonId)return;showingAncestors=!showingAncestors;updateAncestorButton();render();});document.getElementById('reset').addEventListener('click',()=>{clearSearchSelection();document.getElementById('search').value='';document.getElementById('match-string').value='';document.getElementById('match-color').value='#7c3aed';document.getElementById('layout').value='pedigree';document.getElementById('labels').value='auto';document.getElementById('source').value='all';document.querySelectorAll('.role').forEach(input=>input.checked=true);controlMenus.forEach(menu=>menu.open=false);updateSourceStatus();refreshSearchMatches();render();});document.getElementById('download').addEventListener('click',()=>{const link=document.createElement('a');link.download='muszyna-genealogy-cytoscape.png';link.href=cy.png({full:true,scale:2,bg:'#f7f4ed'});link.click();});
-  populateSources();updateAncestorButton();updateSourceStatus();render();
+  document.getElementById('match-string').addEventListener('input',render);
+  document.getElementById('match-color').addEventListener('input',render);
+  document.getElementById('layout').addEventListener('change',render);
+  document.getElementById('labels').addEventListener('change',updateLabels);
+  document.getElementById('person-colors').addEventListener('change',()=>{updateColorLegend();render();});
+  function changeSource(value){document.getElementById('source').value=value;clearSelectedNode();updateSourceStatus();refreshSearchMatches();render();}
+  document.getElementById('source').addEventListener('change',event=>changeSource(event.target.value));
+  document.getElementById('source-status').addEventListener('change',event=>changeSource(event.target.value));
+  document.querySelectorAll('.role').forEach(input=>input.addEventListener('change',()=>{clearSelectedNode();refreshSearchMatches();render();}));
+  document.getElementById('ancestors').addEventListener('click',()=>{if(showingAncestors){showingAncestors=false;ancestorAnchorId=null;spotlightInAncestors=false;}else{if(!selectedPersonId)return;ancestorAnchorId=selectedPersonId;showingAncestors=true;spotlightInAncestors=false;}updateAncestorButton();refreshSearchMatches();render();});
+  document.getElementById('reset').addEventListener('click',()=>{clearSearchSelection();document.getElementById('search').value='';document.getElementById('match-string').value='';document.getElementById('match-color').value='#7c3aed';document.getElementById('layout').value='pedigree';document.getElementById('labels').value='auto';document.getElementById('person-colors').value='uniform';document.getElementById('source').value='all';document.querySelectorAll('.role').forEach(input=>input.checked=true);controlMenus.forEach(menu=>menu.open=false);updateColorLegend();updateSourceStatus();refreshSearchMatches();render();});
+  document.getElementById('download').addEventListener('click',()=>{const link=document.createElement('a');link.download='muszyna-genealogy-cytoscape.png';link.href=cy.png({full:true,scale:2,bg:'#f7f4ed'});link.click();});
+  populateSources();updateAncestorButton();updateColorLegend();updateSourceStatus();render();
   </script>
 </body>
 </html>

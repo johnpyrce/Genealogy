@@ -1,14 +1,14 @@
 id,father_id,mother_id,children_ids,branch_role,note
 1,1,2,3;5;4,main_line,S2 clearly shows Wawrzyniec Jakub and Stanisław as children of Wawrzyniec Gościński and Teresa née Bartmanowicz.
-2,3,155,6,main_line,Wawrzyniec Gościński and Zofia née Matusiewicz.
+2,3,155,6;12,main_line,Wawrzyniec Gościński and Zofia née Matusiewicz.
 3,6,7,,main_line,One of Antoni Gościński's three recorded marriages.
 4,6,8,10;20,main_line,Antoni Gościński and Maria née Sasała; children Franciszek and Magdalena.
 5,6,9,,main_line,One of Antoni Gościński's three recorded marriages.
 6,10,11,162;22;14;16;18;19,main_line,S2 shows Wiktoria Zofia Jan Józef Andrzej and Franciszek; S3 repeats Zofia Jan Józef and Andrzej.
 7,12,13,,main_line,Marriage/household recorded; no children shown.
-8,14,15,23;28;31;32;35;72;74,main_line,Printed chart with handwritten descendant additions.
-9,23,24,25;26;27,main_line,Children are handwritten additions.
-10,28,29,30,main_line,Child is a handwritten addition.
+8,14,15,23;28;31;32;35;72;74,main_line,S2 names Marianna and shows seven children; S3 descendant branch also records this family.
+9,23,24,25;26;27;30,main_line,S3 shows Teresa Marta Barbara and Marek as children of Bronisław and Władysława.
+10,28,29,165;166;167;168;169,main_line,S3 shows Edward Maria Antonina Teresa and Paweł as children of Edward and Anna; the younger Edward is marked deceased.
 11,32,33,34,main_line,Child is a handwritten addition.
 12,35,36,37;53;54;69,main_line,S3 and S6 show Antonina Elżbieta Wanda and Małgorzata as children; S6 identifies Bogdan Pluta as Małgorzata's spouse rather than another child.
 13,39,38,40;42,main_line,Joanna is listed before her husband Józef in S4.
@@ -21,13 +21,13 @@ id,father_id,mother_id,children_ids,branch_role,note
 20,60,61,62;63,main_line,Polished modern chart.
 21,64,65,66;67,main_line,Polished modern chart.
 22,72,73,95;101;110,main_line,Gościński–Rams bridge; printed Rams chart.
-23,74,75,,main_line,Printed chart.
+23,74,75,170;171,main_line,S2 records the spouses; S3 adds their children Józef and Maria.
 24,76,77,78;85;87,main_line,Handwritten Pyrc chart.
 25,78,22,79;80;81;82;83;84,main_line,S2 shows Bronisława Karol Tadeusz and Stefania; S3 identifies Józef and adds Emil and Stanisław.
 26,85,86,,main_line,Surname reading is provisional.
-27,88,89,93;117;119;121;123;126,collateral,Early Rams household; parent link follows the dotted S2 connector.
+27,88,89,93;117;119;121;123;126,collateral,S5 solid child trunk links Marcin Rams and Anna Tryszczyła to Stanisław Jan Józef Michalina Michał and Stanisława; S2 also shows Stanisław.
 28,90,91,,collateral,Exact link to later Rams branch is unclear.
-29,93,94,73;128,main_line,Bolesław is shown as their child in the Rams chart.
+29,93,94,73;128,main_line,S5 shows Bolesław and Henryk as children of Stanisław Rams and Joanna Gruczelak.
 30,95,96,98;99;100,main_line,Józef Drost is also shown near Małgorzata; placement is uncertain.
 31,101,102,103;106;108,main_line,Printed Rams chart.
 32,103,104,105,main_line,S5 clearly connects Hanna born 2021 as the child of Maciej Rams and Natalia née Tokarczyk.
@@ -35,13 +35,13 @@ id,father_id,mother_id,children_ids,branch_role,note
 34,108,109,,main_line,Printed Rams chart.
 35,110,111,112;113,main_line,Printed Rams chart.
 36,113,114,115;116,main_line,Children are likely but connectors/birth detail are partly cropped.
-37,117,118,,collateral,Recorded Rams household; parentage not asserted.
-38,119,120,,collateral,Recorded Rams household; parentage not asserted.
-39,121,122,,collateral,Recorded Rams household; parentage not asserted.
+37,117,118,,collateral,S5 spouse pair; Jan is a child in Family 27.
+38,119,120,,collateral,S5 spouse pair; Józef is a child in Family 27.
+39,121,122,,collateral,S5 spouse pair; Michalina is a child in Family 27.
 40,123,124,,collateral,Wife placement is uncertain.
 41,123,125,,collateral,Second wife shown; placement is uncertain.
-42,126,127,,collateral,Recorded Rams household; parentage not asserted.
-43,128,129,,collateral,Recorded Rams household; parentage not asserted.
+42,126,127,,collateral,S5 spouse pair; Stanisława is a child in Family 27.
+43,128,129,,collateral,S5 spouse pair; Henryk is a child in Family 29.
 44,130,131,132,spouse_ancestry,S2 Miczulski spouse pedigree.
 45,132,133,135,spouse_ancestry,S2 Miczulski spouse pedigree.
 46,137,138,146,spouse_ancestry,S2 Moszczak spouse pedigree; child link restored.
@@ -53,7 +53,7 @@ id,father_id,mother_id,children_ids,branch_role,note
 52,152,153,33,spouse_ancestry,S2 Jacenik–Bukowska spouse pedigree; corrected identity and child link.
 53,149,150,11,spouse_ancestry,S2 Szost spouse pedigree; marriage and child link restored.
 54,156,134,136,spouse_ancestry,S2 Łyga–Fedorczak spouse pedigree; father's first name not shown.
-55,135,136,15,spouse_ancestry,S2 Miczulski–Łyga spouse pedigree; child link restored.
+55,135,136,15;142,spouse_ancestry,S2 Miczulski–Łyga spouse pedigree; child link restored.
 56,151,,94,spouse_ancestry,S2 shows Jan Gruczelak as Joanna's father; mother not named.
 57,,,88;90;92,collateral,Unnamed parents shown as the shared family for Marcin Wawrzyniec and Wojciech Rams in the Rams chart.
 58,157,37,38;43;47;51,main_line,Jerzy Guzyk and Antonina are shown as the parents of the four S4 family branches; Antonina's surname is not given.
@@ -62,3 +62,4 @@ id,father_id,mother_id,children_ids,branch_role,note
 61,163,164,,spouse_ancestry,S5 lists Antonina née Bukowska as the first wife of Jan Miczulski born 1868.
 62,163,154,,spouse_ancestry,S5 lists Maria née Gruczelak as the second wife of Jan Miczulski born 1868.
 63,163,,15,spouse_ancestry,S5 connects Jan Miczulski born 1868 to Maria or Marianna née Miczulska; the chart does not identify which of his two wives was her mother.
+64,21,20,,main_line,Piotr Szost and Magdalena née Gościńska; S2 shows no children.

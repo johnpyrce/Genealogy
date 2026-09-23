@@ -8,8 +8,8 @@ E006,6,family,,,S2,main ancestral line,Franciszek Gościński and Józefa née S
 E007,6,family,,,S3,upper family group,Franciszek Gościński and Józefa née Szost with Zofia Jan Andrzej and Józef,confirmed,S3 omits Wiktoria and Franciszek who are shown in S2.
 E008,7,spouse,12,13,S2,early Gościński branch,Maria née Gościńska and Antoni Drozd,confirmed,
 E009,8,family,,,S2,main descendant line,Jan Gościński and Marianna née Miczulska with seven children,confirmed,
-E010,9,family,,,S3,later descendant additions,Bronisław Gościński and Władysława née Śliwa with Teresa Marta and Barbara,confirmed,
-E011,10,family,,,S3,later descendant additions,Edward Gościński and Anna née Maślanka with Marek,confirmed,
+E010,9,family,,,S3,later descendant additions,Bronisław Gościński and Władysława née Śliwa with Teresa Marta Barbara and Marek,confirmed,The correction reads Presa for Teresa; Marek was previously assigned to Edward's family in error and his ID is retained.
+E011,10,family,,,S3,later descendant additions,Edward Gościński and Anna née Maślanka with Edward Maria Antonina Teresa and Paweł,confirmed,The younger Edward is marked deceased; Marek belongs to Bronisław's family.
 E012,11,family,,,S3,later descendant additions,Jan Gościński and Zofia née Jacenik with Mariusz,confirmed,
 E013,12,family,,,S3,lower overwritten branch,Stanisław Gościński and Władysława née Miczulska with Antonina Elżbieta Wanda and Małgorzata,probable,the lower part is overwritten but these four names agree with S6
 E014,12,parent-child,35,37,S4,upper parent line,Stanisław Gościński shown as Antonina's father,confirmed,Władysława Miczulska is shown with Stanisław at the head of the branch.
@@ -28,9 +28,9 @@ E026,23,spouse,74,75,S2,main descendant line,Antonina née Gościńska and Broni
 E027,24,family,,,S3,Pyrc branch,Jan Pyrc and Anna née Bukowska with Józef Maria and Franciszek,confirmed,
 E028,25,family,,,S3,Pyrc branch,Józef Pyrc and Zofia née Gościńska with six children,confirmed,handwritten version
 E029,26,spouse,85,86,S3,Pyrc branch,Maria Pyrc and Jan Storoż,probable,surname provisional
-E030,27,spouse,88,89,S5,early Rams entries,Marcin Rams and Anna née Tryszczyła,confirmed,exact link to later branch unclear
+E030,27,spouse,88,89,S5,early Rams entries,Marcin Rams and Anna née Tryszczyła,confirmed,Their solid child trunk is recorded separately in E080.
 E031,28,spouse,90,91,S5,early Rams entries,Wawrzyniec Rams and Agata,confirmed,exact link to later branch unclear
-E032,29,family,,,S5,Rams main tree,Stanisław Rams and Joanna née Gruczelak with Bolesław,confirmed,
+E032,29,family,,,S5,Rams main tree,Stanisław Rams and Joanna née Gruczelak with Bolesław and Henryk,confirmed,
 E033,30,family,,,S5,Rams descendant branch,Małgorzata Rams and Henryk Drzązgowski with three children,confirmed,Józef Drost placement nearby is uncertain
 E034,31,family,,,S5,Rams descendant branch,Bogusław Rams and Halina née Dulak with three children,confirmed,
 E035,32,family,,,S5,Rams descendant branch,Maciej Rams and Natalia née Tokarczyk with Hanna born 2021,confirmed,The right-pointing connector from the parents' box to Hanna is clear.
@@ -38,13 +38,13 @@ E036,33,spouse,106,107,S5,Rams descendant branch,Wojciech Rams and Natalia née 
 E037,34,spouse,108,109,S5,Rams descendant branch,Urszula née Rams and Wojciech Walczyk,confirmed,
 E038,35,family,,,S5,Rams descendant branch,Marta Rams and Wiesław Kokoszka with Karolina and Anna,confirmed,
 E039,36,family,,,S5,Rams descendant branch,Anna Kokoszka and Jan Romer with Rita and Marta,probable,connectors and birth detail partly cropped
-E040,37,spouse,117,118,S5,Rams main tree,Jan Rams and Helena née Ruchałowska,confirmed,parentage not asserted
-E041,38,spouse,119,120,S5,Rams main tree,Józef Rams and Zofia née Ślaby,confirmed,parentage not asserted
-E042,39,spouse,121,122,S5,Rams main tree,Michalina Rams and Józef Tokarczyk,confirmed,parentage not asserted
+E040,37,spouse,117,118,S5,Rams main tree,Jan Rams and Helena née Ruchałowska,confirmed,Jan is linked to Marcin and Anna by the S5 child trunk.
+E041,38,spouse,119,120,S5,Rams main tree,Józef Rams and Zofia née Ślaby,confirmed,Józef is linked to Marcin and Anna by the S5 child trunk.
+E042,39,spouse,121,122,S5,Rams main tree,Michalina Rams and Józef Tokarczyk,confirmed,Michalina is linked to Marcin and Anna by the S5 child trunk.
 E043,40,spouse,123,124,S5,Rams main tree,Michał Rams and Katarzyna,uncertain,wife placement uncertain
 E044,41,spouse,123,125,S5,Rams main tree,Michał Rams and Janina Fedorczak,uncertain,second wife placement uncertain
-E045,42,spouse,126,127,S5,Rams main tree,Stanisława Rams and Józef Cisowski,confirmed,parentage not asserted
-E046,43,spouse,128,129,S5,Rams main tree,Henryk Rams and Genowefa Gumulak,confirmed,parentage not asserted
+E045,42,spouse,126,127,S5,Rams main tree,Stanisława Rams and Józef Cisowski,confirmed,Stanisława is linked to Marcin and Anna by the S5 child trunk.
+E046,43,spouse,128,129,S5,Rams main tree,Henryk Rams and Genowefa Gumulak,confirmed,Henryk is linked to Stanisław and Joanna in Family 29.
 E047,44,family,,,S2,Miczulski side pedigree,Wawrzyniec Miczulski and Małgorzata née Kałucka with Piotr,probable,surname provisional
 E048,45,family,,,S2,Miczulski side pedigree,Piotr Miczulski and Marianna née Sajdak with Jan,confirmed,
 E049,46,family,,,S2,Moszczak side pedigree,Jan Moszczak and Maria née Wilczyńska with daughter Maria Moszczak,confirmed,child link restored from dotted connector
@@ -72,3 +72,15 @@ E070,60,family,,,S6,lower-left sub-branch,Agnieszka / Tomasz WIKLOWSCY with daug
 E071,61,spouse,163,164,S5,Miczulski spouse pedigree,Jan Miczulski born 2.2.1868 with first wife Antonina née Bukowska,confirmed,This Antonina is distinct from the woman in the Jacenik branch.
 E072,62,spouse,163,154,S5,Miczulski spouse pedigree,Jan Miczulski born 2.2.1868 with second wife Maria née Gruczelak,confirmed,S5 also describes her as Jacenikowa and widow of Andrzej from Folwark.
 E073,63,parent-child,163,15,S5,Miczulski spouse pedigree,Jan Miczulski born 2.2.1868 shown as father of Maria or Marianna née Miczulska born 25.2.1895,probable,S5 does not identify which of Jan's two wives was her mother.
+E074,9,spouse,23,24,S2,far-right Gościński branch,Bronisław Gościński with Władysława née Śliwa,confirmed,S2 does not show their children.
+E075,11,spouse,32,33,S2,far-right Gościński branch,Jan Gościński with Zofia née Jacenik,confirmed,S2 does not show Mariusz.
+E076,64,spouse,21,20,S2,Szost side pedigree,Piotr Szost with Magdalena née Gościńska,confirmed,Magdalena is Person 20 recorded as Antoni Gościński's daughter in Family 4; no children are shown for this couple.
+E077,8,family,,,S3,Gościński descendant branch,Jan Gościński and Marianna or Maria née Miczulska with Bronisław Edward Stanisław Jan Stanisław Bronisława and Antonina,confirmed,S2 names the spouse Marianna; the correction reads Maria in S3. The first Stanisław and Jan are marked deceased.
+E078,22,family,,,S3,Gościński descendant branch,Bronisława Gościńska and Bolesław Rams with Małgorzata Marta and Bogusław,confirmed,Confirms the child grouping also recorded in S5.
+E079,23,family,,,S3,Gościński descendant branch,Antonina Gościńska and Bronisław Miąsik with Józef and Maria,confirmed,S2 records the spouses but not these children; the correction calls the parents Anton and Bronisła while the chart and prior registry use Antonina and Bronisław.
+E080,27,family,,,S5,Rams main child trunk,Marcin Rams and Anna née Tryszczyła with Stanisław Jan Józef Michalina Michał and Stanisława,confirmed,Solid vertical connector from the couple to all six child boxes; E060 provides a separate S2 cross-citation for Stanisław.
+E081,6,parent-child,10,14,S5,Gościński dashed ancestry,Franciszek Gościński shown as father of Jan Gościński,confirmed,The dashed parent box and arrow lead to Jan in the S5 chart.
+E082,6,parent-child,11,14,S5,Gościński dashed ancestry,Józefa née Szost shown as mother of Jan Gościński,confirmed,The same dashed parent box and arrow lead to Jan in the S5 chart.
+E083,8,parent-child,14,72,S5,Gościński dashed ancestry,Jan Gościński shown as father of Bronisława Gościńska,confirmed,The dashed couple box points to Bronisława in the S5 chart; other children of the couple are not shown there.
+E084,8,parent-child,15,72,S5,Gościński dashed ancestry,Maria or Marianna née Miczulska shown as mother of Bronisława Gościńska,confirmed,S5 prints Maria; S2 records Marianna. The dashed couple box points to Bronisława.
+E085,56,parent-child,151,94,S5,Gruczelak dashed ancestry,Jan Gruczelak shown as father of Joanna Gruczelak,confirmed,The dashed arrow from Jan points to Joanna in the S5 chart.

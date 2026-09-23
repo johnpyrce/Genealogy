@@ -13,23 +13,23 @@ id,first_name,surname,family_name_group,birth_year,death_year,source,note
 12,Maria,Gościńska,Gościński,,,printed,
 13,Antoni,Drozd,Drozd,1815,,printed,
 14,Jan,Gościński,Gościński,1888,1970,both,
-15,Marianna,Miczulska,Miczulski,1895,1962,both,
+15,Marianna,Miczulska,Miczulski,1895,1962,both,S2 names her Marianna; the S3 descendant branch is also read as Maria in the correction
 16,Józef,Gościński,Gościński,1895,,printed,
 17,Joanna,Gościńska,Gościński,,,printed,
 18,Andrzej,Gościński,Gościński,,,both,
 19,Franciszek,Gościński,Gościński,,,printed-only sibling,
 20,Magdalena,Gościńska,Gościński,,,printed-only sibling,
-21,Piotr,Szost,Szost,1861,,printed,
+21,Piotr,Szost,Szost,1861,,both,
 22,Zofia,Gościńska,Gościński,1883,1964,both,S2 says that she emigrated to Chicago and married there; S2 gives her husband's surname only
 23,Bronisław,Gościński,Gościński,1920,2001,both,
 24,Władysława,Śliwa,Śliwa,1927,2004,both,
-25,Teresa,Gościński,Gościński,,,handwritten,
-26,Marta,Gościński,Gościński,,,handwritten,
-27,Barbara,Gościński,Gościński,,,handwritten,
+25,Teresa,Gościńska,Gościński,,,handwritten,S3 and the prior registry read Teresa; the correction calls her Presa; surname inferred from her father
+26,Marta,Gościńska,Gościński,,,handwritten,shown as a daughter of Bronisław and Władysława in S3; surname inferred from her father
+27,Barbara,Gościńska,Gościński,,,handwritten,shown as a daughter of Bronisław and Władysława in S3; surname inferred from her father
 28,Edward,Gościński,Gościński,1922,2010,both,
 29,Anna,Maślanka,Maślanka,1928,,both,
 30,Marek,Gościński,Gościński,,,handwritten,
-31,Stanisław,Gościński,Gościński,1923,,both,
+31,Stanisław,Gościński,Gościński,1923,,both,marked deceased in S3; year not given
 32,Jan,Gościński,Gościński,1925,1985,both,
 33,Zofia,Jacenik,Jacenik,,,both,
 34,Mariusz,Gościński,Gościński,,,handwritten,
@@ -51,7 +51,7 @@ id,first_name,surname,family_name_group,birth_year,death_year,source,note
 50,Marcel,Magarzewych,Magarzewych,,,handwritten,surname inherited from father Marcin Magarzewych in S4; surname reading remains provisional
 51,Grażyna,Guzyk,Guzyk,,,handwritten,wife listed before husband in S4; surname not given
 52,Andrzej,Drabyk,Drabyk,,,handwritten,
-53,Elżbieta,Gościński,Gościński,,,handwritten,marked deceased
+53,Elżbieta,Gościńska,Gościński,,,handwritten,marked deceased in S3; surname inferred from her father
 54,Wanda,Gościńska,Gościński,,,both,
 55,Bogumił,Gościński,Gościński,,,polished,
 56,Magdalena,Gościńska,Gościński,,,polished,
@@ -138,7 +138,7 @@ id,first_name,surname,family_name_group,birth_year,death_year,source,note
 137,Jan,Moszczak,Moszczak,1860,1952,printed,
 138,Maria,Wilczyńska,Wilczyński,1861,1953,printed,
 139,Michał,Homa,Homa,1839,,printed,
-140,Marianna,Krajowska,Krajowski,,,printed,
+140,Marianna,Kraiowska,Kraiowski,,,printed,
 141,Agnieszka,Homa,Homa,1884,1968,printed,
 142,Franciszek,Miczulski,Miczulski,1899,1965,printed,
 143,Stanisław,Śliwa,Śliwa,1871,1950,printed,
@@ -163,3 +163,10 @@ id,first_name,surname,family_name_group,birth_year,death_year,source,note
 162,Wiktoria,Gościńska,Gościński,,,printed,shown in S2 as a child of Franciszek Gościński and Józefa née Szost
 163,Jan,Miczulski,Miczulski,1868,,printed,shown in the S5 spouse pedigree for Maria née Miczulska
 164,Antonina,Bukowska,Bukowski,,,printed,first wife of Jan Miczulski born 1868; distinct from Antonina Bukowska in the Jacenik branch
+165,Edward,Gościński,Gościński,,,handwritten,child of Edward and Anna in S3; marked deceased; surname inferred from his father
+166,Maria,Gościńska,Gościński,,,handwritten,child of Edward and Anna in S3; surname inferred from her father
+167,Antonina,Gościńska,Gościński,,,handwritten,child of Edward and Anna in S3; surname inferred from her father
+168,Teresa,Gościńska,Gościński,,,handwritten,child of Edward and Anna in S3; surname inferred from her father
+169,Paweł,Gościński,Gościński,,,handwritten,child of Edward and Anna in S3; surname inferred from his father
+170,Józef,Miąsik,Miąsik,,,handwritten,child of Antonina and Bronisław in S3; surname inferred from his father
+171,Maria,Miąsik,Miąsik,,,handwritten,child of Antonina and Bronisław in S3; surname inferred from her father

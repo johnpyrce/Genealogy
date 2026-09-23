@@ -24,18 +24,19 @@
     <p>Circles represent people. Square hubs represent family records: incoming arrows connect recorded partners to the family, and outgoing arrows connect the family to recorded children. A solid line is a main-line record, a dashed line is spouse ancestry, and a dotted line is collateral family material.</p>
 
     <h2>Navigate and inspect</h2>
-    <p>Drag the diagram to pan and use the mouse wheel, trackpad, or pinch gesture to zoom. Hover over a node to see its label. Click a person or family hub to open its registry details and source evidence in the side panel. Drag the divider beside that panel to resize it.</p>
+    <p>Drag the diagram to pan and use the mouse wheel, trackpad, or pinch gesture to zoom. Hover over a node to see its label. Click a person or family hub to open its registry details and source evidence in the side panel. The selected node and its directly connected nodes and lines stay bright while the rest of the graph fades. Click the selected node again to clear the focus. Drag the divider beside the details panel to resize it.</p>
     <p>In <strong>Appearance</strong>, choose <strong>Pedigree (top-down)</strong> to show parents, family hubs, and children in rows, or <strong>Radial tree</strong> to place each component’s earliest recorded family hub at the center. Each child’s later families and descendants occupy a continuous arc extending outward from that hub. Use the fit icon to show the whole current graph. The readable-view icon enlarges the current layout for reading labels and branches.</p>
 
     <h2>Find and focus people</h2>
-    <p>Enter a name or exact person ID in <strong>Find a person</strong>. Search accepts Polish names with or without diacritics. Press <kbd>Return</kbd> to select the first result and press it again to cycle through matches. Once a person is selected, <strong>Show direct ancestors</strong> limits the graph to that person and their recorded ancestors.</p>
+    <p>Enter a name or exact person ID in <strong>Find a person</strong>. Search accepts Polish names with or without diacritics. Press <kbd>Return</kbd> to select the first result and press it again to cycle through matches. Once a person is selected, <strong>Direct ancestors</strong> limits the graph to that person and their recorded ancestors. A label inside the diagram names the person whose ancestors are shown. The selected person remains highlighted while the rest of the subgraph uses its normal colors. Clicking another node highlights its immediate neighbors within the same subgraph. Press <strong>Full graph</strong> to return to the complete graph. Direct ancestors is available only when a person is selected.</p>
 
     <h2>Filter the graph</h2>
     <ul>
-      <li><strong>Source chart</strong> limits the graph to evidence associated with one chart. A source may support a whole family record or only selected partner and parent-child relationships.</li>
+      <li><strong>Source chart</strong> limits the graph to evidence associated with one chart. Click the source-chart selector in the upper-left corner of the diagram, or use the matching selector in Filters. A source may support a whole family record or only selected partner and parent-child relationships.</li>
       <li><strong>Branches</strong> lets you include or hide main-line, spouse-ancestry, and collateral records.</li>
       <li><strong>Labels</strong> controls whether labels appear automatically, never, or on every node.</li>
       <li><strong>Layout</strong> changes only the position of the current records; it does not add, remove, or resolve relationships.</li>
+      <li><strong>Color people by</strong> can distinguish recorded children of main-line families from partners who join those descendants. People outside those groups, including founding parents without a recorded main-line parent, use a neutral color. This grouping uses family roles and child links; it does not infer ancestry from a surname.</li>
       <li><strong>Color matching people</strong> highlights names containing the entered text with the selected color.</li>
     </ul>
 
