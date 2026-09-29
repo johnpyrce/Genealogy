@@ -65,11 +65,23 @@ uv run python -m unittest tests.test_family_chart
 uv run python -m scripts.build_family_chart
 ```
 
-Both shell workflows currently reference an absolute, locally installed Data
-plugin path. Check its availability before using them elsewhere and follow the
-dashboard guide to resolve the installed builder. Do not replace the protected
-runtime or install app dependencies merely to bypass a missing builder.
-`refresh_dashboard.sh` starts a long-running HTTP server.
+The shell workflows resolve the installed Data builder through
+`scripts.build_dashboard`. Do not replace the protected runtime or install app
+dependencies to bypass a missing builder. `refresh_dashboard.sh` starts a
+long-running HTTP server.
+
+## Website publishing
+
+`website/site.json` is the explicit page/source and photo-collection mapping.
+Read `website/README.md` for preview and publication. The repository-owned builder
+is `scripts.build_website`; `scripts.website` coordinates a full build, local
+link checks, preview, and staging. Use `./preview_site.sh --build-only` before
+publication, or reuse a verified build when its source fingerprint still matches.
+Stage it into an opened checkout of the existing Site with
+`uv run python -m scripts.website stage --checkout <path>`, then use the Sites
+hosting workflow to publish. Do not reconstruct the mapping in chat or maintain
+a second builder in the Site checkout. Preserve current access and stable photo
+URLs; retain the configured redirects for older numbered photo URLs.
 
 ## Verification and change discipline
 

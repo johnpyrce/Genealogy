@@ -1,0 +1,129 @@
+{
+  "project_id": "appgprj_6aac4b37d48c8191b01fcb832148b648",
+  "url": "https://genealogy.pyrce.org",
+  "navigation": [
+    [
+      "/",
+      "Home"
+    ],
+    [
+      "/sources/",
+      "Sources"
+    ],
+    [
+      "/names/",
+      "Names"
+    ],
+    [
+      "/analytics/",
+      "Analytics"
+    ],
+    [
+      "/tree/",
+      "Tree"
+    ],
+    [
+      "/download/",
+      "Download"
+    ],
+    [
+      "/stories/",
+      "Stories"
+    ],
+    [
+      "/photos/",
+      "Photos"
+    ],
+    [
+      "/america/",
+      "America"
+    ]
+  ],
+  "documents": {
+    "home": {
+      "source": "docs/sections/intro.md",
+      "output": "index.html"
+    },
+    "sources": {
+      "source": "docs/transcription/english_chart_transcription.md",
+      "output": "sources/index.html"
+    },
+    "goscinski": {
+      "source": "docs/sections/goscinski.md",
+      "output": "names/goscinski/index.html"
+    },
+    "pyrc": {
+      "source": "docs/sections/pyrc.md",
+      "output": "names/pyrc/index.html"
+    },
+    "pyrce": {
+      "source": "docs/sections/pyrce.md",
+      "output": "names/pyrce/index.html"
+    },
+    "tree": {
+      "source": "docs/sections/tree_intro.md",
+      "output": "tree/index.html"
+    },
+    "text_tree": {
+      "source": "docs/trees/family_tree.md",
+      "output": "tree/text/index.html"
+    },
+    "download": {
+      "source": "docs/sections/gedcom.md",
+      "output": "download/index.html"
+    },
+    "story": {
+      "source": "docs/history/1945 - Bronislaw Goscinski Auschwitz History.md",
+      "output": "stories/index.html"
+    },
+    "america": {
+      "source": "docs/sections/pyrce_history.md",
+      "output": "america/index.html"
+    }
+  },
+  "timeline": "docs/sections/joseph_sophie_timeline_v11.svg",
+  "coat_of_arms": "docs/sections/doliwa_coat_of_arms.svg",
+  "collections": {
+    "america": {
+      "directory": "media/SophieJoseph"
+    },
+    "muszyna": {
+      "directory": "media/photos"
+    }
+  },
+  "legacy_photo_urls": {
+    "01": "1905 - Josef Pyrc Pretoria Manifest? (line 5).gif",
+    "02": "1905 - Pretoria Transported Josef?.jpg",
+    "03": "1910 - Sophie & Joseph Wedding.jpg",
+    "04": "1913 - Sophie on Kaiser Wilhelm III.jpg",
+    "05": "1913 - Zofia Goscinska Manifest - line 2?.gif",
+    "06": "1913 - Zofia Goscinska Page 2 Manifest?.gif",
+    "07": "1920s - Betty & Joseph.tif",
+    "08": "1920s - Pyrch Joseph, Ted, Betty, Charly, Sophie, Stanley.jpg",
+    "09": "1930 - Census as Puirch.jpg",
+    "10": "1930s - Joseph Pyrce Detail.tif",
+    "11": "1930s - Joseph Pyrce, Died 12-1939.tif",
+    "12": "1930s - Joseph-Josef Pyrc-Pyrce.tif",
+    "13": "1933 - Citizenship Petition.png",
+    "14": "1938 - Naturalization - Back.tif",
+    "15": "1938 - Naturalization - Front.tif",
+    "16": "1940s - Pyrce Bobbie Charlie Sophie Betty Ted.tif",
+    "17": "1940s - Sohie Portrait.tif",
+    "18": "1940s - Sophie, Betty, Charlie.tif",
+    "19": "1940s - Sophie.tif",
+    "20": "1940s - Ted, Sophie, Andrew Gocinski, Unknown.tif",
+    "21": "1950 - Betty, Bobbie, Sophie @ Ted wedding.tif",
+    "22": "1950 - Betty, Sophie, Tillie Zrazik at Ted Wedding.tif",
+    "23": "1950 - Sophie @ Ted wedding.tif",
+    "24": "1950s - at 4307 Sawyer house.tif",
+    "25": "1950s.tif",
+    "26": "1955 - Andrew Funeral Card.tif",
+    "27": "1960 - Charlie, Betty, Sophie at Betty Wedding.jpg",
+    "28": "1960 - Wedding w Sophie.tif",
+    "29": "1960s - Sophie.tif",
+    "30": "1964 - Death Certificate.tif",
+    "31": "1964 - Sophie Funeral Card.tif",
+    "32": "Andrew Goscinski.tif",
+    "33": "Sophie was from Muszyna, PO.tif"
+  }
+}

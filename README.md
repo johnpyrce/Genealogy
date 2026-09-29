@@ -72,3 +72,20 @@ Run the generator regression tests with:
 ```sh
 uv run python -m unittest tests.test_family_chart
 ```
+
+## Website updates
+
+Edit a document or add a photo, then run:
+
+```sh
+./preview_site.sh
+```
+
+Open `http://127.0.0.1:4176/`. This rebuilds the required artifacts and website,
+checks internal file links, and starts a local preview. It does not publish.
+Use `./preview_site.sh --build-only` to build without serving.
+
+The page mapping, timeline selection, and photo folders are configured in
+[`website/site.json`](website/site.json); templates and styles live in
+`website/templates/`. See [the website workflow](website/README.md) for details.
+When the preview is ready, ask Codex to **publish the latest site**.
