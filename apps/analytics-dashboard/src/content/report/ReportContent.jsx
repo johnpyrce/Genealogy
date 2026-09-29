@@ -57,8 +57,6 @@ export function ReportContent() {
         onKeyDown={canEdit && mode === "edit" ? (event) => {
           if (event.key === "Enter") { event.preventDefault(); event.currentTarget.blur(); }
         } : undefined}>{appTitle}</h1>
-      <RichNarrative id="report:description" className="report-deck"
-        value="A source-backed view of the editable genealogy registries, rebuilt through normalized DuckDB relationship tables. The CSV registries remain the source of truth; this report is the analytical readout." />
     </header>
 
     {visible("analytics-summary") && <ReportSection id="analytics-summary" title="Executive summary" queryId="summary"
@@ -87,7 +85,7 @@ export function ReportContent() {
       <RichNarrative id="completeness:body" className="report-analysis"
         value="## Dates remain the least complete person-level fields\n\nThe coverage chart uses each measure’s explicit denominator. Family evidence is measured against family records; all other coverage measures use the full person registry." />
       <EvidenceChart id="completeness-chart" queryId="completeness" title="Coverage by field" rows={completeness} sourceRows={completeness} height={390}
-        spec={{ type: "horizontalBar", x: "field", y: "coverage_pct", colors: chartColors, valueDecimals: 1, yLabel: "Coverage (%)" }} />
+        spec={{ type: "horizontalBar", x: "field", y: "coverage_pct", colors: chartColors, valueDecimals: 1, xLabel: "Percent covered" }} />
       <EvidenceChart id="completeness-heatmap" queryId="completeness_heatmap" title="Completeness by family-name group and generation" rows={completenessHeatmap} sourceRows={completenessHeatmap} height={460}
         spec={{ type: "heatmap", x: "generation", y: "completenessPct", series: "familyName", categoryOrder: ["1", "2", "3", "4", "5", "6", "7", "8", "9"], colorDomain: [0, 100], missingValues: "gap", showValues: true, valueDecimals: 1, xLabel: "Generation", yLabel: "Family-name group", tooltipFields: [{ field: "people", label: "People" }, { field: "birthKnown", label: "Birth years recorded" }, { field: "deathKnown", label: "Death years recorded" }, { field: "parentKnown", label: "People with parent link" }] }} />
       <RichNarrative id="completeness:heatmap-note" className="report-analysis"
@@ -101,6 +99,8 @@ export function ReportContent() {
         columns={[{ field: "measure", label: "Measure" }, { field: "value", label: "Value" }]} />
       <EvidenceChart id="family-size-chart" queryId="family_size_distribution" title="Distribution of recorded family sizes" rows={familySizes} sourceRows={familySizes} height={310}
         spec={{ type: "bar", x: "family_size", y: "families", colors: chartColors, valueDecimals: 0, distribution: true }} />
+      <RichNarrative id="family-size:note" className="report-analysis"
+        value="The number of one child families is distorted because parents of spouses may be identified, but their other children are not included." />
       <div className="report-grid">
         <EvidenceChart id="child-birth-span-chart" queryId="child_birth_span_distribution" title="Child birth-year span within a family" rows={childBirthSpans} sourceRows={childBirthSpans} height={310}
           spec={{ type: "bar", x: "span_band", y: "families", colors: chartColors, valueDecimals: 0, distribution: true }} />
@@ -155,6 +155,8 @@ export function ReportContent() {
         value="## Oldest people with recorded birth years\n\nThis list contains the ten earliest recorded birth years. It excludes people without a recorded birth year; a recorded year may be approximate where noted." />
       <EvidenceTable id="oldest-people-table" queryId="oldest_people" title="Oldest recorded people" rows={oldestPeople}
         columns={[{ field: "person", label: "Person" }, { field: "birthYear", label: "Birth year" }, { field: "deathYear", label: "Death year" }, { field: "note", label: "Note" }]} />
+      <RichNarrative id="oldest-people:comment" className="report-analysis"
+        value={`The first name of the oldest person in the tree is "Wawrzyniec". This formidable sounding Polish name is actually the Polish form of the Latin name "Laurentius", which is the root of the English name "Lawrence" or "Laurence". The Latin name derives from "laurus", meaning "laurel", the plant widely used in ancient world as a symbol of victory and honor. A St. Lawrence in the 3rd century was widely venerated. The Polish form looks so different from the Latin because it is a "calque": a word that is borrowed not by importing the sound but by translating to native words. "Laurel" in Polish is "wawrzyn."`} />
     </section>
   </article>;
 }
