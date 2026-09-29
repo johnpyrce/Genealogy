@@ -3,6 +3,6 @@ set -eu
 cd "$(dirname "$0")"
 if [ "${1:-}" = "--build-only" ]; then
   shift
-  exec uv run python -m scripts.website build "$@"
+  exec ./build.sh site "$@"
 fi
-exec uv run python -m scripts.website preview "$@"
+exec ./build.sh site --serve "$@"

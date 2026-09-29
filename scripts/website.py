@@ -92,7 +92,7 @@ def build() -> None:
     from scripts.build_dashboard import resolve_builder
     resolve_builder()
     input_digest()
-    subprocess.run(["sh", str(ROOT / "build_all.sh")], cwd=ROOT, check=True)
+    subprocess.run(["sh", str(ROOT / "build.sh")], cwd=ROOT, check=True)
     from scripts import build_website
     OUTPUT.mkdir(parents=True, exist_ok=True)
     before = input_digest()
