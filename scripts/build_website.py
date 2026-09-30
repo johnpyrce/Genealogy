@@ -394,12 +394,17 @@ def image_gallery(
     mapping: dict[str, str] = {}
     photos: list[tuple[Path, str, str]] = []
     for index, source in enumerate(files, 1):
-        if convert or source.suffix.lower() in {".tif", ".tiff"}:
+        converted = convert or source.suffix.lower() in {".tif", ".tiff"}
+        if converted:
             name = photo_slug(source.name) + ".jpg"
             target = DIST / asset_dir / name
             target.parent.mkdir(parents=True, exist_ok=True)
             with Image.open(source) as original:
-                image = ImageOps.exif_transpose(original).convert("RGB")
+                image = ImageOps.exif_transpose(original)
+                if image.mode.startswith("I;16"):
+                    # Direct RGB conversion clips 16-bit scans to nearly all white.
+                    image = image.convert("I").point(lambda value: value / 257).convert("L")
+                image = image.convert("RGB")
                 image.thumbnail((1600, 2400))
                 image.save(target, "JPEG", quality=90)
         else:
@@ -407,6 +412,9 @@ def image_gallery(
             target = DIST / asset_dir / name
             copy_file(source, target)
         url = "/" + asset_dir + "/" + quote(name)
+        if converted:
+            # Refresh converted images when their bytes change without moving photo pages.
+            url += "?v=" + hashlib.sha256(target.read_bytes()).hexdigest()[:12]
         detail_url = f"/america/photos/{photo_slug(source.name)}/" if detail_pages else url
         mapping[source.name] = detail_url
         photos.append((source, url, detail_url))
