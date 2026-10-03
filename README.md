@@ -34,10 +34,10 @@ Omit `--serve` to build without starting a server: `./build.sh dashboard` or
 is no need to run `./build.sh` immediately before it. Use `--port 4177` after
 `site --serve` to choose another preview port.
 
-The older commands remain available as wrappers: `./build_all.sh` is equivalent
-to `./build.sh`, `./refresh_dashboard.sh` to `./build.sh dashboard --serve`, and
-`./preview_site.sh` to `./build.sh site --serve`. The existing
-`./preview_site.sh --build-only` builds the site without starting a server.
+`./preview_site.sh` remains available as a wrapper for `./build.sh site --serve`.
+Use `./build.sh` for the full build and `./build.sh dashboard --serve` to rebuild
+and preview the analytics dashboard. `./preview_site.sh --build-only` builds
+the site without starting a server.
 
 ## Editing the registries manually
 

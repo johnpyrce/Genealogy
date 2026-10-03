@@ -191,7 +191,7 @@ def header() -> str:
 
 
 def footer() -> str:
-    return '''<footer class="site-footer"><span>Combined Muszyna Genealogy</span><a href="mailto:rekarpyrce@gmail.com">Comments</a></footer>'''
+    return '''<footer class="site-footer"><span>By John Pyrce · October 2, 2026</span><a href="mailto:rekarpyrce@gmail.com">Comments</a></footer>'''
 
 
 def page(title: str, body: str, description: str = "Combined Muszyna Genealogy") -> str:

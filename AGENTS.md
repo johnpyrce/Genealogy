@@ -56,10 +56,10 @@ uv run python -m unittest tests.test_genealogy_analytics
 uv run python -m unittest tests.test_family_chart
 
 # Regenerate all artifacts and build the dashboard.
-./build_all.sh
+./build.sh
 
 # Rebuild analytics/dashboard and serve at http://127.0.0.1:4175/?view=1.
-./refresh_dashboard.sh
+./build.sh dashboard --serve
 
 # Generate only the standalone family-chart viewer.
 uv run python -m scripts.build_family_chart
@@ -67,8 +67,8 @@ uv run python -m scripts.build_family_chart
 
 The shell workflows resolve the installed Data builder through
 `scripts.build_dashboard`. Do not replace the protected runtime or install app
-dependencies to bypass a missing builder. `refresh_dashboard.sh` starts a
-long-running HTTP server.
+dependencies to bypass a missing builder. `./build.sh dashboard --serve` starts
+a long-running HTTP server.
 
 ## Website publishing
 

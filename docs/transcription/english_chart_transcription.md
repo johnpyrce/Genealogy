@@ -45,6 +45,11 @@ is dense and some dotted connectors cross other branches. The registry therefore
 distinguishes confirmed links from probable links instead of treating every
 nearby box as a relationship.
 
+The label on the chart means "Goscinscy from Wapienne".  Wapienne is a small Polish
+spa town northeast of Muszyna.  Its not clear the significance of the town in respect
+to Muszyna.  The chart also appears to have a page number and references to other charts,
+indicating that this was part of a larger document.
+
 Important handling decisions:
 
 - The shared connector clearly makes Wawrzyniec Gościński (born 1780), Jakub
@@ -116,6 +121,9 @@ spouse information, and dotted ancestry for the Gościński and Miczulski spouse
 
 The main boxes are highly legible. The far-right and bottom edge are cropped,
 so some birth details are incomplete even where a connector remains visible.
+
+This chart also has what appears to be a page number, indicating that it might be from
+a larger document.
 
 Important handling decisions:
 
