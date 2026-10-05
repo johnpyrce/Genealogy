@@ -48,11 +48,14 @@ not establish when the move occurred.
 
 ## Stanley Pyrce records
 
-There are two documents for Stanley Pyrce that are relevant.  His military service
-record beginning in January 1944 gives his name as "Pyrce".  But a pay envelope
-for him from his employer Crane Company in 1943 shows his name as "Stanley Pyrc".  
-This may be a holdover from whenever his employment started; he could easily have worked
-at Crane more than ten years at that point.
+Two documents record different spellings of Stanley Pyrce's name. His 1943 pay
+envelope from the Crane Company gives his name as "Stanley Pyrc." This may
+reflect a spelling used when he began working there, possibly more than ten
+years earlier. His military service record, beginning in January 1944, gives
+his name as "Pyrce."
+
+- [1943 pay envelope](https://archive.pyrce.org/#album=1BBN0wvrVgRiKfmurPiiYDShYqHR3hoyI&photo=1RwdAX1K6FQ6R59PHhA3gqM8LM0_K-Rx1)
+- [1944 military service record](https://archive.pyrce.org/#album=1BBN0wvrVgRiKfmurPiiYDShYqHR3hoyI&photo=1Ww_jruBHIoVC6f8dvYVI-lkqz9Regz-V)
 
 ## How did the name come to be "Pyrce"?
 
@@ -91,7 +94,7 @@ This name was firmly established by 1938.
 |1883|1938 Naturalization Papers|
 |1893|1964 Death Certificate|
 |1890|1930 Census gives her age as 40|
-|1894-95|Passenter manifest from February 1913; may be different person|
+|1894-95|Passenger manifest from February 1913; may be different person|
 
 ### Record references
 
