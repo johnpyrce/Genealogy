@@ -11,6 +11,7 @@ from pathlib import Path
 import shutil
 import subprocess
 import sys
+import webbrowser
 import tempfile
 from urllib.parse import unquote, urlsplit
 
@@ -157,7 +158,9 @@ def main() -> None:
         elif args.command == "preview":
             handler = partial(SimpleHTTPRequestHandler, directory=str(DIST))
             with ThreadingHTTPServer(("127.0.0.1", args.port), handler) as server:
-                print(f"Preview: http://127.0.0.1:{args.port}/ (Ctrl-C to stop)", flush=True)
+                url = f"http://127.0.0.1:{args.port}/"
+                print(f"Preview: {url} (Ctrl-C to stop)", flush=True)
+                webbrowser.open_new_tab(url)
                 server.serve_forever()
     except KeyboardInterrupt:
         pass

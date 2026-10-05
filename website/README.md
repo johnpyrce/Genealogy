@@ -8,8 +8,9 @@ pages.
 
 1. Edit the appropriate Markdown document or registry, or add an image to a photo
    folder.
-2. Run `./preview_site.sh` from the repository. Open
-   <http://127.0.0.1:4176/>. Stop the preview with Ctrl-C.
+2. Run `./preview_site.sh` from the repository. It opens
+   <http://127.0.0.1:4176/> in your default browser. Stop the preview with
+   Ctrl-C.
 3. Ask Codex to **publish the latest site** when the preview is ready.
 
 Preview builds and checks the site but does not publish it. To build without

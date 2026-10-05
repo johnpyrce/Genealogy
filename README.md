@@ -27,7 +27,7 @@ dependencies are managed with `uv` using `pyproject.toml` and `uv.lock`.
 | --- | --- | --- |
 | Rebuild after changing registries or genealogy generation code | `./build.sh` | Validates registries and regenerates the tree, analytics, dashboard, GEDCOM, and interactive outputs. |
 | Work on dashboard data or presentation | `./build.sh dashboard --serve` | Rebuilds analytics and the dashboard, then serves it at `http://127.0.0.1:4175/?view=1`. |
-| Work on website content, layout, or photos | `./build.sh site --serve` | Runs the full build, builds the website, checks its internal links, then serves it at `http://127.0.0.1:4176/`. |
+| Work on website content, layout, or photos | `./build.sh site --serve` | Runs the full build, checks its internal links, then serves the website at `http://127.0.0.1:4176/` and opens it in your default browser. |
 
 Omit `--serve` to build without starting a server: `./build.sh dashboard` or
 `./build.sh site`. The site command **already runs the full build**, so there
