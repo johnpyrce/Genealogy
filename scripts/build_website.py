@@ -196,8 +196,10 @@ def footer() -> str:
 
 def page(title: str, body: str, description: str = "Combined Muszyna Genealogy") -> str:
     template = Template((ROOT / "website/templates/page.html").read_text(encoding="utf-8"))
+    stylesheet_version = hashlib.sha256((ROOT / "website/templates/site.css").read_bytes()).hexdigest()[:12]
     return template.substitute(description=html.escape(description, quote=True),
-                               title=html.escape(title), header=header(), body=body, footer=footer())
+                               title=html.escape(title), header=header(), body=body, footer=footer(),
+                               stylesheet_version=stylesheet_version)
 
 
 def doc_page(source: str, output: str, *, link_map: dict[str, str] | None = None) -> None:
@@ -465,7 +467,12 @@ def build_america() -> None:
     link_map = america_link_map()
     link_map["./" + timeline.name] = "/assets/america/" + quote(timeline.name)
     title, content = markdown(read(CONFIG["documents"]["america"]["source"]), link_map)
-    gallery_link = '<p class="gallery-entry"><a class="section-card section-card--memory" href="/america/photos/">Family documents and photographs</a></p>'
+    gallery_link = (
+        '<p class="gallery-entry gallery-entry--paired">'
+        '<a class="section-card section-card--memory" href="/america/photos/">Family documents and photographs</a>'
+        '<a class="section-card section-card--memory" href="https://archive.pyrce.org">Family archive</a>'
+        '</p>'
+    )
     content = content.replace("</h1>", f"</h1>{gallery_link}", 1)
     body = f'''<article class="document">{content}</article>'''
     write(CONFIG["documents"]["america"]["output"], page("Joseph and Sophie in America", body, title))

@@ -65,8 +65,8 @@ his name as "Pyrce."
 |Puirch|1930|Census; may be an error|
 |Pyrch|1933|Citizenship application|
 |Pyrce|1938|Naturalization, name change|
+|Pyrc|1943|Stanley's pay envelope; may represent earlier name|
 |Pyrce|1944|Stanley's military service certification|
-|Pyrc|1943|Stanley's employment envelope|
 
 The diacritic in the original name was probably lost quickly.  
 The name without the diacritic was probably used for a time, but other
@@ -85,7 +85,7 @@ This name was firmly established by 1938.
 
 - A separate manifest records Josef Pyrc, age 23, arriving in New York aboard the S.S. *Pretoria* on December 13, 1905. The name and approximate age make him a possible match for Joseph, but the 1933 statement instead gives Joseph’s arrival as 1911. The 1905 entry should therefore remain a possible earlier arrival, not be assigned to him as fact. The image is archived as “1905 - Josef Pyrc Pretoria Manifest? (line 5).gif.”
 
-- The family chart S2, “Gościńscy z Wapiennego,” says Zofia née Gościńska emigrated to Chicago and married there. That conflicts with Sophie’s own 1933 statement of a 1910 marriage in Muszyna and Stanley’s birth in Poland in 1911. The chart’s note and Sophie’s statement are both retained; the discrepancy is not resolved here.
+- The family chart S2, “Gościńscy z Wapiennego,” says Zofia née Gościńska emigrated to Chicago and married there. That conflicts with Sophie’s own 1933 statement of a 1910 marriage in Muszyna and Stanley’s birth in Poland in 1911.
 
 - Sophie’s birth year is not clear. 
 |Birth year|Document|
