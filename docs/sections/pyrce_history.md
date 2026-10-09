@@ -10,11 +10,13 @@ Poland. Records preserve several spellings of their names.
 
 The 1930 U.S. Census (enumerated
 April 15, 1930; sheet 19-A, enumeration district 16-824, household at 2406 S.
-Spaulding Ave.) records the surname as **Puirch**. It lists Joseph, Sophie, and
+Spaulding Ave.) records the family as **Puirch**. It lists Joseph, Sophie, and
 five children. Joseph’s occupation is recorded as laborer in a steel factory;
 Sophie’s as laborer in a pie factory. “Puirch” may be a spelling used by the
-family or an enumerator’s rendering; this record alone cannot tell us which.
+family or an enumerator’s invention; this record alone cannot tell us which.
 The census image is titled “1930 - Census as Puirch.jpg” in the family archive.
+
+A record of the family in the 1920 Census has not been found.
 
 ## Sophie’s 1933 citizenship papers
 

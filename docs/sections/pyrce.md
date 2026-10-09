@@ -16,4 +16,4 @@ her surname as **Pyrch**.
 
 Sophie became a naturalized U.S. citizen on March 22, 1938, five years after the petition. The reverse of the [naturalization record](<../../media/SophieJoseph/1938 - Naturalization - Back.tif>) records a name change to **Sophie Pyrce**.
 
-Later records for Sophie and her children use **Pyrce**.
+Later records for Sophie and her children use [Pyrce](../../america/).

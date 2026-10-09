@@ -470,7 +470,7 @@ def build_america() -> None:
     gallery_link = (
         '<p class="gallery-entry gallery-entry--paired">'
         '<a class="section-card section-card--memory" href="/america/photos/">Family documents and photographs</a>'
-        '<a class="section-card section-card--memory" href="https://archive.pyrce.org">Family archive</a>'
+        '<a class="section-card section-card--memory" href="https://archive.pyrce.org" target="_blank" rel="noopener">Family archive</a>'
         '</p>'
     )
     content = content.replace("</h1>", f"</h1>{gallery_link}", 1)
