@@ -250,7 +250,7 @@ def build_home() -> None:
         ("/america/", "Joseph and Sophie in America"),
     ]
     links = "".join(section_card(href, label) for href, label in sections)
-    body = f'<article class="document intro">{intro}</article><section class="index"><h2>Sections</h2><nav class="section-grid">{links}</nav></section>'
+    body = f'<article class="document intro">{intro}</article><section class="index"><nav class="section-grid" aria-label="Explore the archive">{links}</nav></section>'
     write(CONFIG["documents"]["home"]["output"], page(title, body, title))
 
 

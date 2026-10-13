@@ -1,6 +1,8 @@
 # The Pyrć Name
 
-The chart *Gościńscy z Wapiennego* records the surname as **Pyrć**. The Polish Academy of Sciences surname dictionary treats **Pyrc** as a variant in the **Pyrcz** name group. 
+The chart *Gościńscy z Wapiennego* records the surname **Pyrć** for Jozef who married Zofia Gościńska.
+
+The Polish Academy of Sciences surname dictionary treats **Pyrc** as a variant in the **Pyrcz** name group.
 [Polish Academy of Sciences surname dictionary](https://nazwiska.ijppan.pl/haslo/show/name/PYRC), [Forebears: Pyrc](https://forebears.io/surnames/pyrc)
 
 ## Derivation
