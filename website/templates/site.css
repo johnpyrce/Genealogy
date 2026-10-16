@@ -7,3 +7,4 @@
 .gallery-entry{max-width:25rem}
 .gallery-entry--paired{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.75rem;max-width:50.75rem}
 @media(max-width:540px){.gallery-entry--paired{grid-template-columns:1fr}}
+.gallery-intro{max-width:52rem;margin:0 auto 1.5rem}

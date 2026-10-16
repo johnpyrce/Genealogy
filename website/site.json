@@ -1,6 +1,7 @@
 {
   "project_id": "appgprj_6aac4b37d48c8191b01fcb832148b648",
   "url": "https://genealogy.pyrce.org",
+  "visitor_access": true,
   "navigation": [
     [
       "/",
@@ -88,7 +89,18 @@
       "directory": "media/SophieJoseph"
     },
     "muszyna": {
-      "directory": "media/photos"
+      "directory": "media/photos",
+      "first_photo": "I Love Muszyna.webp",
+      "photo_credits": {
+        "I Love Muszyna.webp": {
+          "name": "Muszynova Recreation and Sports Park",
+          "url": "https://muszynova.pl/",
+          "original_page_url": "https://muszynova.pl/en/blog/how-to-spend-a-weekend-in-muszyna",
+          "image_url": "https://muszynova.pl/blog/3/1.webp",
+          "retrieved_on": "2026-10-15",
+          "license": "No reuse license stated on the source page."
+        }
+      }
     }
   },
   "legacy_photo_urls": {

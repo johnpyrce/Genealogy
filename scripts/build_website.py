@@ -4,6 +4,8 @@
 from __future__ import annotations
 
 import html
+import base64
+from io import BytesIO
 import json
 import re
 import shutil
@@ -13,6 +15,7 @@ from string import Template
 from PIL import Image, ImageOps
 from pathlib import Path
 from urllib.parse import quote
+from xml.etree import ElementTree
 
 
 from scripts.lib.genealogy_data import ROOT, load_sources
@@ -48,12 +51,13 @@ def inline(text: str, link_map: dict[str, str] | None = None) -> str:
         return hold(f'<img src="{html.escape(url, quote=True)}" alt="{html.escape(alt, quote=True)}">')
 
     def link(match: re.Match[str]) -> str:
-        label, url = match.group(1), match.group(2).strip("<>")
+        label, url, new_tab = match.group(1), match.group(2).strip("<>"), match.group(3)
         url = link_map.get(url, url)
-        return hold(f'<a href="{html.escape(url, quote=True)}">{html.escape(label)}</a>')
+        attributes = ' target="_blank" rel="noopener"' if new_tab else ""
+        return hold(f'<a href="{html.escape(url, quote=True)}"{attributes}>{html.escape(label)}</a>')
 
     text = re.sub(r"!\[([^]]*)\]\(([^)]+)\)", image, text)
-    text = re.sub(r"\[([^]]+)\]\(([^)]+)\)", link, text)
+    text = re.sub(r'\[([^]]+)\]\(([^)]+)\)(\{target="_blank"\})?', link, text)
     text = re.sub(r"`([^`]+)`", lambda m: hold(f"<code>{html.escape(m.group(1))}</code>"), text)
     text = html.escape(text)
     text = re.sub(r"\*\*([^*]+)\*\*", r"<strong>\1</strong>", text)
@@ -197,9 +201,10 @@ def footer() -> str:
 def page(title: str, body: str, description: str = "Combined Muszyna Genealogy") -> str:
     template = Template((ROOT / "website/templates/page.html").read_text(encoding="utf-8"))
     stylesheet_version = hashlib.sha256((ROOT / "website/templates/site.css").read_bytes()).hexdigest()[:12]
+    icon_version = hashlib.sha256((ROOT / "website/templates/favicon.svg").read_bytes()).hexdigest()[:12]
     return template.substitute(description=html.escape(description, quote=True),
                                title=html.escape(title), header=header(), body=body, footer=footer(),
-                               stylesheet_version=stylesheet_version)
+                               stylesheet_version=stylesheet_version, icon_version=icon_version)
 
 
 def doc_page(source: str, output: str, *, link_map: dict[str, str] | None = None) -> None:
@@ -390,8 +395,28 @@ def image_gallery(
     convert: bool = False,
     detail_pages: bool = False,
     gallery_class: str = "",
+    description_html: str = "",
+    first_photo: str | None = None,
+    photo_credits: dict[str, dict[str, str]] | None = None,
 ) -> dict[str, str]:
     files = image_files(source_dir)
+    if first_photo:
+        featured = next((source for source in files if source.name == first_photo), None)
+        if featured is None:
+            raise FileNotFoundError(f"First gallery photo is missing: {first_photo}")
+        files.remove(featured)
+        files.insert(0, featured)
+    photo_credits = photo_credits or {}
+
+    def credit_for(source: Path) -> str:
+        credit = photo_credits.get(source.name)
+        if not credit:
+            return ""
+        return (f'Photo source: <a href="{html.escape(credit["url"], quote=True)}" '
+                f'target="_blank" rel="noopener">{html.escape(credit["name"])}</a>')
+
+    gallery_path = Path(output).parent
+    gallery_url = "/" if gallery_path == Path(".") else f"/{gallery_path.as_posix()}/"
     cards: list[str] = []
     mapping: dict[str, str] = {}
     photos: list[tuple[Path, str, str]] = []
@@ -417,10 +442,12 @@ def image_gallery(
         if converted:
             # Refresh converted images when their bytes change without moving photo pages.
             url += "?v=" + hashlib.sha256(target.read_bytes()).hexdigest()[:12]
-        detail_url = f"/america/photos/{photo_slug(source.name)}/" if detail_pages else url
+        detail_url = f"{gallery_url}{photo_slug(source.name)}/" if detail_pages else url
         mapping[source.name] = detail_url
         photos.append((source, url, detail_url))
         caption = html.escape(source.stem)
+        if credit := credit_for(source):
+            caption += f"<br>{credit}"
         original_pdf = source.with_suffix(".pdf")
         if not convert and original_pdf.is_file():
             pdf_name = original_pdf.name
@@ -429,19 +456,22 @@ def image_gallery(
             caption += f'<br><a href="{pdf_url}" download>Download original scan (PDF)</a>'
         cards.append(f'''<figure class="media-card photo"><a href="{detail_url}"><img src="{url}" alt="{html.escape(source.stem, quote=True)}" loading="lazy"></a><figcaption>{caption}</figcaption></figure>''')
     class_name = f"media-grid photos {gallery_class}".strip()
-    body = f'<section class="page-title"><h1>{html.escape(title)}</h1></section><section class="collection"><div class="{class_name}">{"".join(cards)}</div></section>'
+    description = f'<div class="gallery-intro">{description_html}</div>' if description_html else ""
+    body = f'<section class="page-title"><h1>{html.escape(title)}</h1></section><section class="collection">{description}<div class="{class_name}">{"".join(cards)}</div></section>'
     write(output, page(title, body, title))
     if detail_pages:
         for index, (source, url, _detail_url) in enumerate(photos):
             links = []
             if index > 0:
                 links.append(f'<a href="{photos[index - 1][2]}">Previous</a>')
-            links.append('<a href="/america/photos/">All photos</a>')
+            links.append(f'<a href="{gallery_url}">All photos</a>')
             if index + 1 < len(photos):
                 links.append(f'<a href="{photos[index + 1][2]}">Next</a>')
             filename = html.escape(source.stem)
-            detail = f'''<article class="photo-detail"><h1>{filename}</h1><figure><img src="{url}" alt="{html.escape(source.stem, quote=True)}"><figcaption><span>File name</span>{filename}</figcaption></figure><nav class="photo-nav" aria-label="Photograph navigation">{"".join(links)}</nav></article>'''
-            write(f"america/photos/{photo_slug(source.name)}/index.html", page(source.stem, detail, title))
+            credit = credit_for(source)
+            credit = f'<p class="photo-credit">{credit}</p>' if credit else ""
+            detail = f'''<article class="photo-detail"><h1>{filename}</h1><figure><img src="{url}" alt="{html.escape(source.stem, quote=True)}"><figcaption><span>File name</span>{filename}</figcaption></figure>{credit}<nav class="photo-nav" aria-label="Photograph navigation">{"".join(links)}</nav></article>'''
+            write((gallery_path / photo_slug(source.name) / "index.html").as_posix(), page(source.stem, detail, title))
     return mapping
 
 
@@ -482,6 +512,16 @@ def build_assets() -> None:
     for asset in (ROOT / "website/templates").iterdir():
         if asset.suffix in {".css", ".js", ".svg"}:
             copy_file(asset, DIST / "assets" / asset.name)
+    # The existing SVG wraps the original PNG artwork. Reuse it for browser fallbacks.
+    svg = ElementTree.parse(ROOT / "website/templates/favicon.svg")
+    image = svg.find("{http://www.w3.org/2000/svg}image")
+    if image is None or not image.attrib.get("href", "").startswith("data:image/png;base64,"):
+        raise ValueError("Favicon SVG must contain the embedded PNG artwork for icon generation.")
+    with Image.open(BytesIO(base64.b64decode(image.attrib["href"].split(",", 1)[1], validate=True))) as source:
+        artwork = source.convert("RGBA")
+        artwork.save(DIST / "favicon.ico", sizes=[(16, 16), (32, 32), (48, 48)])
+        artwork.resize((180, 180), Image.Resampling.LANCZOS).save(DIST / "apple-touch-icon.png")
+    shutil.copyfile(DIST / "apple-touch-icon.png", DIST / "apple-touch-icon-precomposed.png")
 
 
 def main() -> None:
@@ -496,7 +536,23 @@ def main() -> None:
     build_analytics()
     build_download()
     build_story()
-    image_gallery(ROOT / CONFIG["collections"]["muszyna"]["directory"], "assets/photos/muszyna", "Pictures from Muszyna", "photos/index.html")
+    muszyna_description = (
+        '<p>Muszyna is a delightful small Polish spa town near Poland’s southern border with Slovakia. '
+        'It has a rich history and many aesthetic, cultural, and historical landmarks. '
+        'Learn more on the <a href="https://muszyna.pl/" target="_blank" rel="noopener">official Muszyna city website</a> '
+        'and explore videos on the <a href="https://www.youtube.com/user/muszynatv1/featured" target="_blank" rel="noopener">Muszyna.TV YouTube channel</a>. '
+        '(Most browsers can translate Polish-language websites into English.)</p>'
+    )
+    image_gallery(
+        ROOT / CONFIG["collections"]["muszyna"]["directory"],
+        "assets/photos/muszyna",
+        "Pictures from Muszyna",
+        "photos/index.html",
+        detail_pages=True,
+        description_html=muszyna_description,
+        first_photo=CONFIG["collections"]["muszyna"].get("first_photo"),
+        photo_credits=CONFIG["collections"]["muszyna"].get("photo_credits"),
+    )
     build_america()
     build_legacy_photo_links()
     print(f"Built {sum(1 for path in DIST.rglob('*') if path.is_file())} files in {DIST}")

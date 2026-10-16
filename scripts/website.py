@@ -71,7 +71,8 @@ def input_digest() -> str:
     config = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
     paths = []
     for folder in ["data/registries", "data/source-material/charts", "docs", "website", "scripts", "apps/analytics-dashboard/src"]:
-        paths.extend(p for p in (ROOT / folder).rglob("*") if p.is_file() and "__pycache__" not in p.parts and p.name != ".DS_Store")
+        paths.extend(p for p in (ROOT / folder).rglob("*") if p.is_file()
+                     and not {"__pycache__", "node_modules"}.intersection(p.parts) and p.name != ".DS_Store")
     for collection in config["collections"].values():
         directory = ROOT / collection["directory"]
         if not directory.is_dir():
@@ -118,14 +119,22 @@ def stage(checkout: Path) -> None:
     checkout = checkout.resolve()
     config = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
     hosting = json.loads((checkout / ".openai/hosting.json").read_text(encoding="utf-8"))
-    if hosting.get("project_id") != config["project_id"] or hosting.get("static", {}).get("directory") != "dist":
-        raise ValueError("Destination must be the opened static checkout for this exact Site.")
+    if hosting.get("project_id") != config["project_id"]:
+        raise ValueError("Destination must be the opened checkout for this exact Site.")
     if checkout == ROOT or checkout.is_relative_to(DIST) or DIST.is_relative_to(checkout):
         raise ValueError("Use a separate Sites source checkout.")
     manifest = json.loads((OUTPUT / "build.json").read_text(encoding="utf-8"))
     if manifest["input_sha256"] != input_digest() or manifest["output_sha256"] != output_digest(DIST):
         raise ValueError("The website build is stale or modified. Run ./preview_site.sh --build-only first.")
     check_links(DIST)
+    if config.get("visitor_access"):
+        from scripts.visitor_access import stage_gateway
+        stage_gateway(checkout, DIST, hosting)
+        (checkout / "genealogy-build.json").write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
+        print(f"Staged protected production gateway in {checkout}. Local preview remains open.")
+        return
+    if hosting.get("static", {}).get("directory") != "dist":
+        raise ValueError("Static staging requires static.directory=dist.")
     target = checkout / "dist"
     if target.is_symlink():
         raise ValueError("Destination dist must not be a symlink.")

@@ -20,3 +20,7 @@ archive/
 
 # the site built by ChatGPT
 genealogy-site/
+
+# Private visitor list and gateway tooling dependencies.
+data/email.csv
+website/access/node_modules/
