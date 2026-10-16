@@ -337,7 +337,9 @@ export function createGateway(assets, clientScript) {
       if (!object) return response('The archive is being updated. Please try again shortly.', 503);
       let body = request.method === 'HEAD' ? null : object.body;
       if (html && request.method === 'GET') {
-        const greeting = `<aside aria-label="Visitor" style="padding:8px 20px;background:#e8eee6;color:#20312a;display:flex;gap:16px;align-items:center;flex-wrap:wrap;font:14px system-ui"><span>Welcome, ${escapeHtml(visitor.name)}</span><form method="post" action="${PREFIX}/forget"><button type="submit">Forget this browser</button></form></aside>`;
+        const greeting = path === '/' || path === '/index.html'
+          ? `<aside aria-label="Visitor" style="padding:8px 20px;background:#e8eee6;color:#20312a;display:flex;gap:16px;align-items:center;flex-wrap:wrap;font:14px system-ui"><span>Welcome, ${escapeHtml(visitor.name)}</span><form method="post" action="${PREFIX}/forget"><button type="submit">Forget this browser</button></form></aside>`
+          : '';
         const content = await object.text();
         body = content.replace(/<body([^>]*)>/i, '<body$1>' + greeting).replace(/<\/body>/i, trackingScript(record) + '</body>');
       }

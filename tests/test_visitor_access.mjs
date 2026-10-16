@@ -27,13 +27,14 @@ function fixture() {
   const objects = new Map();
   const BUCKET = {get: async key => objects.has(key) ? {body:objects.get(key), text:async()=>new TextDecoder().decode(objects.get(key))} : null,
     put: async(key, bytes) => objects.set(key, bytes)};
-  const assets = {'/index.html':{hash:'home',type:'text/html'}, '/private.jpg':{hash:'photo',type:'image/jpeg'}, '/download/family.ged':{hash:'ged',type:'text/plain'}};
+  const assets = {'/index.html':{hash:'home',type:'text/html'}, '/sources/index.html':{hash:'sources',type:'text/html'}, '/private.jpg':{hash:'photo',type:'image/jpeg'}, '/download/family.ged':{hash:'ged',type:'text/plain'}};
   for (const path of ['/assets/favicon.svg','/favicon.ico','/apple-touch-icon.png','/apple-touch-icon-precomposed.png']) {
     assets[path] = {hash:'icon', type:path.endsWith('.svg') ? 'image/svg+xml' : path.endsWith('.ico') ? 'image/vnd.microsoft.icon' : 'image/png'};
   }
   assets['/assets/private.jpg'] = {hash:'photo',type:'image/jpeg'};
   objects.set('assets/icon', new TextEncoder().encode('GENERIC ICON'));
   objects.set('assets/home', new TextEncoder().encode('<html><body><main>Family tree</main></body></html>'));
+  objects.set('assets/sources', new TextEncoder().encode('<html><body><main>Sources</main></body></html>'));
   objects.set('assets/photo', new Uint8Array([1,2,3])); objects.set('assets/ged',new TextEncoder().encode('FAMILY DATA'));
   sqlite.prepare('INSERT INTO approved_visitors VALUES (?,?,1)').run('relative@example.test', 'Józef <Family>');
   const gateway = createGateway(assets, '/* no visitor data */');
@@ -91,6 +92,8 @@ test('recognized visitors get an opaque secure cookie, greeting and logged retur
   assert.ok(!cookie.includes('relative'));const headers={Cookie:cookie.split(';')[0]};
   const page=await f.request('/',{headers});const html=await page.text();
   assert.match(html,/Welcome, Józef &lt;Family&gt;/); assert.ok(!html.includes('relative@example.test'));
+  const subpage=await(await f.request('/sources/',{headers})).text();
+  assert.ok(!subpage.includes('Welcome,')); assert.ok(!subpage.includes('Forget this browser'));
   assert.match(page.headers.get('Cache-Control'),/no-store/);
   assert.equal((await f.request('/private.jpg',{headers})).status,200);
   assert.equal((await f.request('/download/family.ged',{headers})).status,200);
