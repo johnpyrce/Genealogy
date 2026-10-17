@@ -397,6 +397,23 @@ def image_files(directory: Path) -> list[Path]:
     return sorted(path for path in directory.iterdir() if path.is_file() and path.suffix.lower() in suffixes)
 
 
+def linked_video_files(directory: Path) -> list[tuple[str, str]]:
+    """Return catalog titles and Google Drive links from synced .gvid references."""
+    videos = []
+    for reference in sorted(directory.glob("*.gvid")):
+        try:
+            metadata = json.loads(reference.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError) as exc:
+            raise ValueError(f"Invalid Google video reference: {reference}") from exc
+        document_id = metadata.get("doc_id")
+        if not isinstance(document_id, str) or not re.fullmatch(r"[A-Za-z0-9_-]+", document_id):
+            raise ValueError(f"Google video reference has no valid doc_id: {reference}")
+        title = reference.stem.replace(" - ", " — ")
+        url = f"https://docs.google.com/videos/d/{document_id}/edit"
+        videos.append((title, url))
+    return videos
+
+
 def image_gallery(
     source_dir: Path,
     asset_dir: str,
@@ -411,6 +428,7 @@ def image_gallery(
     photo_credits: dict[str, dict[str, str]] | None = None,
     photo_captions: dict[str, str] | None = None,
     photo_notes: dict[str, str] | None = None,
+    linked_videos: list[tuple[str, str]] | None = None,
 ) -> dict[str, str]:
     files = image_files(source_dir)
     if first_photo:
@@ -477,6 +495,18 @@ def image_gallery(
         cards.append(f'''<figure class="media-card photo"><a href="{detail_url}"><img src="{url}" alt="{html.escape(display_caption(source), quote=True)}" loading="lazy"></a><figcaption>{caption}</figcaption></figure>''')
     class_name = f"media-grid photos {gallery_class}".strip()
     description = f'<div class="gallery-intro">{description_html}</div>' if description_html else ""
+    if linked_videos:
+        catalog = [(source.name, card) for source, card in zip(files, cards)]
+        catalog.extend(
+            (label.replace(" — ", " - ") + ".gvid", f'<figure class="media-card video"><a class="video-preview" '
+             f'href="{html.escape(url, quote=True)}" target="_blank" rel="noopener" '
+             f'aria-label="Watch {html.escape(label, quote=True)} in Google Drive">'
+             '<span class="video-play" aria-hidden="true">▶</span><span>Watch video</span></a>'
+             f'<figcaption>{html.escape(label)}<br><span class="photo-note">'
+             'Sophie visits Betty.  Opens in Google Drive.</span></figcaption></figure>')
+            for label, url in linked_videos
+        )
+        cards = [card for _, card in sorted(catalog, key=lambda item: item[0])]
     body = f'<section class="page-title"><h1>{html.escape(title)}</h1></section><section class="collection">{description}<div class="{class_name}">{"".join(cards)}</div></section>'
     write(output, page(title, body, title))
     if detail_pages:
@@ -524,7 +554,8 @@ def build_america() -> None:
     collection = CONFIG["collections"]["america"]
     image_gallery(ROOT / collection["directory"], "assets/photos/sophie-joseph", "Joseph and Sophie in America — documents and photographs", "america/photos/index.html", convert=True, detail_pages=True, gallery_class="america-photos",
                   description_html='<p><a href="/america/">Read the America story</a> · <a href="/photos/">Pictures from Muszyna</a>. Select an image to read its notes and open it full size.</p>',
-                  photo_captions=collection.get("photo_captions"), photo_notes=collection.get("photo_notes"))
+                  photo_captions=collection.get("photo_captions"), photo_notes=collection.get("photo_notes"),
+                  linked_videos=linked_video_files(ROOT / collection["directory"]))
     timeline = ROOT / CONFIG["timeline"]
     copy_file(timeline, DIST / "assets/america" / timeline.name)
     link_map = america_link_map()

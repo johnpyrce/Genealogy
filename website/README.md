@@ -43,6 +43,9 @@ folder must be locally available before building. Missing media or unreadable
 images stop the build instead of silently disappearing from the published site.
 Supported images are JPG, JPEG, PNG, GIF, TIFF and WebP. Matching PDFs alongside
 Muszyna images appear as downloads. Research Markdown notes are not gallery images.
+Synced `.gvid` references in the Sophie and Joseph folder appear as video panels
+among the photographs in filename order; viewers may need Google Drive permission
+to open them.
 
 Each Sophie and Joseph image gets a URL derived from its filename, independent
 of its position in the gallery. Adding a new image preserves existing URLs;
