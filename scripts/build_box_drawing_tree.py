@@ -73,9 +73,9 @@ def render_tree(
     lines = [
         "# Combined Muszyna and Wapienne family tree",
         "",
-        "This textual tree is generated directly from the editable people, family, source, and relationship-evidence CSV registries.",
+        "This outline follows the families recorded in the collection. Missing dates and relationships remain unknown.",
         "",
-        "**Notation:** Each family joins its two recorded partner slots to their children. A child's indented family records continue that person's descendants. `↪` points to a family expanded elsewhere; `†` precedes a death-only year. Stable person and family IDs disambiguate repeated names and alternative accounts.",
+        "**Notation:** Each family lists its recorded partners and their children. A child's indented family records continue that person's descendants. `↪` points to a family expanded elsewhere; `†` precedes a death-only year. Stable person and family IDs disambiguate repeated names and alternative accounts.",
         "",
         "```text",
     ]

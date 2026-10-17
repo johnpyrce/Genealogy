@@ -109,7 +109,7 @@ function trackingScript(record) {
 }
 function entry(returnTo, record, rejected = false, iconVersion = '') {
   return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Welcome · Muszyna Family Archive</title>
+    <title>Welcome · Our Polish Family History</title>
     <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg?v=${iconVersion}">
     <link rel="icon" type="image/x-icon" href="/favicon.ico?v=${iconVersion}">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=${iconVersion}"><style>
@@ -119,7 +119,7 @@ function entry(returnTo, record, rejected = false, iconVersion = '') {
     input,button{font:inherit;box-sizing:border-box;border-radius:6px;padding:12px;width:100%;margin-top:8px}input{border:1px solid #758575}
     button{background:#284e3a;color:white;border:0;cursor:pointer;margin-top:16px}button:hover{background:#1a3627}input:focus-visible,button:focus-visible{outline:3px solid #bd8b32;outline-offset:3px}
     .notice{color:#8b3026}small{display:block;margin-top:24px;line-height:1.5;color:#526254}</style></head><body><main>
-    <p>Muszyna Family Archive</p><h1>Welcome to the archive</h1><p>Please enter your email address to continue.</p>
+    <p>Our Polish Family History</p><h1>Welcome to the archive</h1><p>Please enter your email address to continue.</p>
     ${rejected ? '<p class="notice" role="alert">Sorry, we couldn’t grant access with that email address. Please check the address you entered or <a href="mailto:rekarpyrce@gmail.com">email the archive owner</a>.</p>' : ''}
     <form method="post" action="${PREFIX}/enter"><label for="email">Email address</label><input id="email" name="email" type="email" autocomplete="email" required maxlength="254">
     <input type="hidden" name="return_to" value="${escapeHtml(safeReturn(returnTo))}"><input type="hidden" name="timezone"><input type="hidden" name="utc_offset_minutes"><input type="hidden" name="language">

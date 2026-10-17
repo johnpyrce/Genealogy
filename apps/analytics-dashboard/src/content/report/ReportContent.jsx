@@ -50,7 +50,7 @@ export function ReportContent() {
 
   return <article className="report-content" aria-label="Genealogy analytics report">
     <header className="report-hero">
-      <p className="report-kicker">Combined Muszyna genealogy · DuckDB analytics</p>
+      <p className="report-kicker">Our Polish Family History · Family statistics</p>
       <h1 data-data-app-title contentEditable={canEdit && mode === "edit"} suppressContentEditableWarning
         aria-label={canEdit && mode === "edit" ? "Edit report heading" : undefined}
         onBlur={canEdit && mode === "edit" ? (event) => setAppTitle(event.currentTarget.textContent.trim() || appTitle) : undefined}
@@ -62,19 +62,18 @@ export function ReportContent() {
     {visible("analytics-summary") && <ReportSection id="analytics-summary" title="Executive summary" queryId="summary"
       sourceRows={summaryRows} showHeading={false} className="report-summary">
       <RichNarrative id="analytics-summary:body" className="report-summary-lead" label="Edit executive summary"
-        value={`## What the analytical model shows
+        value={`## What the charts tell us
 
-- **${summary.people} people** appear in **${summary.families} family records**, supported by ${summary.evidenceRecords} evidence records across ${summary.sourceCharts} source charts.
-- Normalized relationships produce **${summary.familyChildMemberships} family-child memberships** and **${summary.parentChildEdges} directed parent-child edges**.
-- The longest documented acyclic parent-child path reaches **${summary.maximumGeneration} generations**. The registry contains ${summary.components} parent-child components, including isolated people.
-- These measures describe the documented registries; missing values are missing observations, not proof that a person, date, partner, or child did not exist.`} />
+- The collection records **${summary.people} people** in **${summary.families} family groups**, across up to **${summary.maximumGeneration} generations**.
+- The information comes from **${summary.sourceCharts} family charts**, with ${summary.evidenceRecords} records describing the evidence for family relationships.
+- Some dates and relationships are missing or uncertain. A missing entry means the information has not been recorded here; it does not mean the person or relationship did not exist.`} />
     </ReportSection>}
 
     <div className="report-facts" aria-label="Key genealogy analytics">
       {visible("metric-people") && <MetricCard id="metric-people" title="People" queryId="summary" sourceRows={summaryRows}
-        value={String(summary.people)} description={`${summary.families} recorded family records.`} />}
-      {visible("metric-generation") && <MetricCard id="metric-generation" title="Maximum generation" queryId="summary" sourceRows={summaryRows}
-        value={String(summary.maximumGeneration)} description="Longest documented acyclic parent-child path." />}
+        value={String(summary.people)} description={`${summary.families} recorded family groups.`} />}
+      {visible("metric-generation") && <MetricCard id="metric-generation" title="Generations" queryId="summary" sourceRows={summaryRows}
+        value={String(summary.maximumGeneration)} description="The longest recorded line of parents and children, counting both endpoints." />}
       {visible("metric-families") && <MetricCard id="metric-families" title="Families" queryId="summary" sourceRows={summaryRows}
         value={String(summary.families)} description="Recorded family or household records." />}
       {visible("metric-sources") && <MetricCard id="metric-sources" title="Source charts" queryId="summary" sourceRows={summaryRows}
@@ -83,7 +82,7 @@ export function ReportContent() {
 
     <section className="report-section">
       <RichNarrative id="completeness:body" className="report-analysis"
-        value="## Dates remain the least complete person-level fields\n\nThe coverage chart uses each measure’s explicit denominator. Family evidence is measured against family records; all other coverage measures use the full person registry." />
+        value="## Birth and death dates are often missing\n\nThe chart shows how often each type of information is recorded. Most percentages refer to all people in the collection; family evidence refers to all family groups." />
       <EvidenceChart id="completeness-chart" queryId="completeness" title="Coverage by field" rows={completeness} sourceRows={completeness} height={390}
         spec={{ type: "horizontalBar", x: "field", y: "coverage_pct", colors: chartColors, valueDecimals: 1, xLabel: "Percent covered" }} />
       <EvidenceChart id="completeness-heatmap" queryId="completeness_heatmap" title="Completeness by family-name group and generation" rows={completenessHeatmap} sourceRows={completenessHeatmap} height={460}
@@ -100,7 +99,7 @@ export function ReportContent() {
       <EvidenceChart id="family-size-chart" queryId="family_size_distribution" title="Distribution of recorded family sizes" rows={familySizes} sourceRows={familySizes} height={310}
         spec={{ type: "bar", x: "family_size", y: "families", colors: chartColors, valueDecimals: 0, distribution: true }} />
       <RichNarrative id="family-size:note" className="report-analysis"
-        value="The number of one child families is distorted because parents of spouses may be identified, but their other children are not included." />
+        value="A family shown with one child may have had more children. Some charts name a spouse’s parents without listing that spouse’s siblings." />
       <div className="report-grid">
         <EvidenceChart id="child-birth-span-chart" queryId="child_birth_span_distribution" title="Child birth-year span within a family" rows={childBirthSpans} sourceRows={childBirthSpans} height={310}
           spec={{ type: "bar", x: "span_band", y: "families", colors: chartColors, valueDecimals: 0, distribution: true }} />
@@ -138,7 +137,7 @@ export function ReportContent() {
 
     <section className="report-section">
       <RichNarrative id="names:body" className="report-analysis"
-        value="## Gościński remains the largest normalized family-name group\n\nThe registry’s family-name groups preserve its normalization choices. The chart shows the fifteen largest represented groups." />
+        value="## Gościński is the largest surname group in the collection\n\nThe chart shows the fifteen largest surname groups. Related male and female forms are grouped together where the collection identifies them as the same family name." />
       <EvidenceChart id="family-name-chart" queryId="names_and_identity" title="Largest family-name groups" rows={familyNames.slice(0, 15)} sourceRows={familyNames} height={460}
         spec={{ type: "horizontalBar", x: "familyName", y: "people", colors: chartColors, valueDecimals: 0 }} />
     </section>
@@ -152,11 +151,11 @@ export function ReportContent() {
 
     <section className="report-section">
       <RichNarrative id="oldest-people:body" className="report-analysis"
-        value="## Oldest people with recorded birth years\n\nThis list contains the ten earliest recorded birth years. It excludes people without a recorded birth year; a recorded year may be approximate where noted." />
-      <EvidenceTable id="oldest-people-table" queryId="oldest_people" title="Oldest recorded people" rows={oldestPeople}
+        value="## Earliest recorded births\n\nThis list contains the ten earliest recorded birth years. It excludes people without a recorded birth year; a recorded year may be approximate where noted." />
+      <EvidenceTable id="oldest-people-table" queryId="oldest_people" title="Earliest recorded births" rows={oldestPeople}
         columns={[{ field: "person", label: "Person" }, { field: "birthYear", label: "Birth year" }, { field: "deathYear", label: "Death year" }, { field: "note", label: "Note" }]} />
       <RichNarrative id="oldest-people:comment" className="report-analysis"
-        value={`The first name of the oldest person in the family tree is "Wawrzyniec". This formidable sounding Polish name is actually the Polish form of the Latin name "Laurentius", which is the root of the English names "Lawrence" and "Laurence". The Latin name derives from "laurus", meaning "laurel", the plant widely used in the ancient world as a symbol of victory and honor. The name was popular in the Christian world because a St. Lawrence in the 3rd century was widely venerated. The Polish form looks different from the Latin because it is a "calque": a word that is borrowed into another language not by importing the sound but by translating to native words. "Laurel" in Polish is "wawrzyn."`} />
+        value={`The person with the earliest recorded birth year is named "Wawrzyniec". This Polish name is actually the Polish form of the Latin name "Laurentius", which is the root of the English names "Lawrence" and "Laurence". The Latin name derives from "laurus", meaning "laurel", the plant widely used in the ancient world as a symbol of victory and honor. The name was popular in the Christian world because a St. Lawrence in the 3rd century was widely venerated. The Polish form looks different from the Latin because it is a "calque": a word that is borrowed into another language not by importing the sound but by translating to native words. "Laurel" in Polish is "wawrzyn."`} />
     </section>
   </article>;
 }

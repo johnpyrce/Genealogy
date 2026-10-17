@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the static Muszyna Family Archive site from repository sources."""
+"""Build the static Our Polish Family History site from repository sources."""
 
 from __future__ import annotations
 
@@ -188,7 +188,7 @@ def header() -> str:
     links = "".join(f'<a href="{href}">{label}</a>' for href, label in NAV)
     return f'''<a class="skip-link" href="#content">Skip to content</a>
 <header class="site-header">
-  <a class="brand" href="/">Muszyna Family Archive</a>
+  <a class="brand" href="/">Our Polish Family History</a>
   <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
   <nav id="site-nav" class="site-nav" aria-label="Primary navigation">{links}</nav>
 </header>'''
@@ -198,12 +198,14 @@ def footer() -> str:
     return '''<footer class="site-footer"><span>By John Pyrce · October 2, 2026</span><a href="mailto:rekarpyrce@gmail.com">Comments</a></footer>'''
 
 
-def page(title: str, body: str, description: str = "Combined Muszyna Genealogy") -> str:
+def page(title: str, body: str, description: str = "Our Polish Family History") -> str:
     template = Template((ROOT / "website/templates/page.html").read_text(encoding="utf-8"))
     stylesheet_version = hashlib.sha256((ROOT / "website/templates/site.css").read_bytes()).hexdigest()[:12]
     icon_version = hashlib.sha256((ROOT / "website/templates/favicon.svg").read_bytes()).hexdigest()[:12]
+    site_title = "Our Polish Family History"
+    browser_title = site_title if not title or title == site_title else f"{title} · {site_title}"
     return template.substitute(description=html.escape(description, quote=True),
-                               title=html.escape(title), header=header(), body=body, footer=footer(),
+                               title=html.escape(browser_title), header=header(), body=body, footer=footer(),
                                stylesheet_version=stylesheet_version, icon_version=icon_version)
 
 
@@ -231,9 +233,9 @@ def section_card(href: str, label: str) -> str:
     )
 
 
-def card_index(title: str, links: list[tuple[str, str]], output: str) -> None:
+def card_index(title: str, links: list[tuple[str, str]], output: str, introduction: str = "") -> None:
     cards = "".join(section_card(href, label) for href, label in links)
-    body = f'<section class="page-title"><h1>{html.escape(title)}</h1></section><nav class="section-grid" aria-label="{html.escape(title)}">{cards}</nav>'
+    body = f'<section class="page-title"><h1>{html.escape(title)}</h1>{introduction}</section><nav class="section-grid" aria-label="{html.escape(title)}">{cards}</nav>'
     write(output, page(title, body, title))
 
 
@@ -282,7 +284,8 @@ def build_names() -> None:
         ("/names/goscinski/", "Gościński"),
         ("/names/pyrc/", "Pyrć"),
         ("/names/pyrce/", "Pyrce"),
-    ], "names/index.html")
+    ], "names/index.html", '<p>These pages explain the Gościński, Pyrć/Pyrc, and Pyrce names. '
+       'Histories of the Miczulski and Rams surnames have not yet been added.</p>')
     copy_file(
         ROOT / CONFIG["coat_of_arms"],
         DIST / "names/goscinski/doliwa_coat_of_arms.svg",
@@ -318,7 +321,10 @@ def build_tree() -> None:
         ("tree/viewer/index.html", "Family-tree viewer", "/tree/viewer/app/family_tree.html"),
         ("tree/graph/index.html", "Relationship graph", "/tree/graph/app/genealogy_relationship_graph.html"),
     ]:
-        body = f'<section class="tool-page"><h1>{label}</h1><iframe src="{src}" title="{label}"></iframe></section>'
+        body = (f'<section class="tool-page"><h1>{label}</h1>'
+                f'<p class="tool-actions"><a href="{src}" target="_blank" rel="noopener">Open {label.lower()} in a full window</a>'
+                ' · <a href="/tree/">Choose another tree view</a></p>'
+                f'<iframe src="{src}" title="{label}"></iframe></section>')
         write(route, page(label, body, label))
     tree_document = read(CONFIG["documents"]["text_tree"]["source"])
     _, separator, remainder = tree_document.partition("```text\n")
@@ -358,7 +364,12 @@ def build_download() -> None:
     source = ROOT / "artifacts/exports/merged_muszyna_family_tree.ged"
     copy_file(source, DIST / "download/merged_muszyna_family_tree.ged")
     title, introduction = markdown(read(CONFIG["documents"]["download"]["source"]))
-    body = f'''<article class="document">{introduction}</article><div class="single-link"><a class="section-card section-card--record" href="/download/merged_muszyna_family_tree.ged" download>GEDCOM export</a></div>'''
+    body = f'''<article class="document">{introduction}</article>
+<nav class="section-grid" aria-label="Download and reading options">
+<a class="section-card section-card--record" href="/download/merged_muszyna_family_tree.ged" download>Download GEDCOM (.ged)</a>
+<a class="section-card section-card--record" href="/tree/text/family_tree.txt" download>Download text family tree (.txt)</a>
+<a class="section-card section-card--record" href="/tree/text/">Read the text tree online</a>
+</nav>'''
     write(CONFIG["documents"]["download"]["output"], page(title, body, title))
 
 
@@ -398,6 +409,8 @@ def image_gallery(
     description_html: str = "",
     first_photo: str | None = None,
     photo_credits: dict[str, dict[str, str]] | None = None,
+    photo_captions: dict[str, str] | None = None,
+    photo_notes: dict[str, str] | None = None,
 ) -> dict[str, str]:
     files = image_files(source_dir)
     if first_photo:
@@ -407,6 +420,11 @@ def image_gallery(
         files.remove(featured)
         files.insert(0, featured)
     photo_credits = photo_credits or {}
+    photo_captions = photo_captions or {}
+    photo_notes = photo_notes or {}
+
+    def display_caption(source: Path) -> str:
+        return photo_captions.get(source.name, source.stem.strip())
 
     def credit_for(source: Path) -> str:
         credit = photo_credits.get(source.name)
@@ -432,7 +450,7 @@ def image_gallery(
                     # Direct RGB conversion clips 16-bit scans to nearly all white.
                     image = image.convert("I").point(lambda value: value / 257).convert("L")
                 image = image.convert("RGB")
-                image.thumbnail((1600, 2400))
+                # Preserve the scan dimensions for the full-size viewing link.
                 image.save(target, "JPEG", quality=90)
         else:
             name = source.name
@@ -445,7 +463,9 @@ def image_gallery(
         detail_url = f"{gallery_url}{photo_slug(source.name)}/" if detail_pages else url
         mapping[source.name] = detail_url
         photos.append((source, url, detail_url))
-        caption = html.escape(source.stem)
+        caption = html.escape(display_caption(source))
+        if note := photo_notes.get(source.name):
+            caption += f'<br><span class="photo-note">{html.escape(note)}</span>'
         if credit := credit_for(source):
             caption += f"<br>{credit}"
         original_pdf = source.with_suffix(".pdf")
@@ -454,7 +474,7 @@ def image_gallery(
             copy_file(original_pdf, DIST / asset_dir / pdf_name)
             pdf_url = "/" + asset_dir + "/" + quote(pdf_name)
             caption += f'<br><a href="{pdf_url}" download>Download original scan (PDF)</a>'
-        cards.append(f'''<figure class="media-card photo"><a href="{detail_url}"><img src="{url}" alt="{html.escape(source.stem, quote=True)}" loading="lazy"></a><figcaption>{caption}</figcaption></figure>''')
+        cards.append(f'''<figure class="media-card photo"><a href="{detail_url}"><img src="{url}" alt="{html.escape(display_caption(source), quote=True)}" loading="lazy"></a><figcaption>{caption}</figcaption></figure>''')
     class_name = f"media-grid photos {gallery_class}".strip()
     description = f'<div class="gallery-intro">{description_html}</div>' if description_html else ""
     body = f'<section class="page-title"><h1>{html.escape(title)}</h1></section><section class="collection">{description}<div class="{class_name}">{"".join(cards)}</div></section>'
@@ -467,17 +487,27 @@ def image_gallery(
             links.append(f'<a href="{gallery_url}">All photos</a>')
             if index + 1 < len(photos):
                 links.append(f'<a href="{photos[index + 1][2]}">Next</a>')
-            filename = html.escape(source.stem)
+            filename = html.escape(source.name)
+            caption = html.escape(display_caption(source))
             credit = credit_for(source)
             credit = f'<p class="photo-credit">{credit}</p>' if credit else ""
-            detail = f'''<article class="photo-detail"><h1>{filename}</h1><figure><img src="{url}" alt="{html.escape(source.stem, quote=True)}"><figcaption><span>File name</span>{filename}</figcaption></figure>{credit}<nav class="photo-nav" aria-label="Photograph navigation">{"".join(links)}</nav></article>'''
-            write((gallery_path / photo_slug(source.name) / "index.html").as_posix(), page(source.stem, detail, title))
+            note = photo_notes.get(source.name)
+            note = f'<p class="photo-note">{html.escape(note)}</p>' if note else ""
+            story_link = '<a href="/america/">Return to the America story</a>' if gallery_url == '/america/photos/' else '<a href="/america/photos/">Documents and photographs from America</a>'
+            detail = f'''<article class="photo-detail"><h1>{caption}</h1><figure><img src="{url}" alt="{html.escape(display_caption(source), quote=True)}"><figcaption><span>Original file</span>{filename}</figcaption></figure>{note}{credit}<p><a href="{url}" target="_blank" rel="noopener">Open full-size image</a> · <a href="{url}" download>Download image</a></p><nav class="photo-nav" aria-label="Photograph navigation">{"".join(links)}</nav><p>{story_link}</p></article>'''
+            write((gallery_path / photo_slug(source.name) / "index.html").as_posix(), page(display_caption(source), detail, title))
     return mapping
 
 
 def america_link_map() -> dict[str, str]:
     directory = ROOT / CONFIG["collections"]["america"]["directory"]
-    return {f"../../media/SophieJoseph/{path.name}": f"/america/photos/{photo_slug(path.name)}/" for path in image_files(directory)}
+    mapping = {}
+    for path in image_files(directory):
+        source = f"../../media/SophieJoseph/{path.name}"
+        destination = f"/america/photos/{photo_slug(path.name)}/"
+        mapping[source] = destination
+        mapping[quote(source, safe="/")] = destination
+    return mapping
 
 
 def build_legacy_photo_links() -> None:
@@ -491,12 +521,21 @@ def build_legacy_photo_links() -> None:
 
 
 def build_america() -> None:
-    image_gallery(ROOT / CONFIG["collections"]["america"]["directory"], "assets/photos/sophie-joseph", "Joseph and Sophie in America — photographs", "america/photos/index.html", convert=True, detail_pages=True, gallery_class="america-photos")
+    collection = CONFIG["collections"]["america"]
+    image_gallery(ROOT / collection["directory"], "assets/photos/sophie-joseph", "Joseph and Sophie in America — documents and photographs", "america/photos/index.html", convert=True, detail_pages=True, gallery_class="america-photos",
+                  description_html='<p><a href="/america/">Read the America story</a> · <a href="/photos/">Pictures from Muszyna</a>. Select an image to read its notes and open it full size.</p>',
+                  photo_captions=collection.get("photo_captions"), photo_notes=collection.get("photo_notes"))
     timeline = ROOT / CONFIG["timeline"]
     copy_file(timeline, DIST / "assets/america" / timeline.name)
     link_map = america_link_map()
     link_map["./" + timeline.name] = "/assets/america/" + quote(timeline.name)
     title, content = markdown(read(CONFIG["documents"]["america"]["source"]), link_map)
+    timeline_image = f'<figure class="document-image"><img src="{link_map["./" + timeline.name]}"'
+    content = content.replace(
+        timeline_image,
+        timeline_image.replace('class="document-image"', 'class="document-image document-image--timeline"'),
+        1,
+    )
     gallery_link = (
         '<p class="gallery-entry gallery-entry--paired">'
         '<a class="section-card section-card--memory" href="/america/photos/">Family documents and photographs</a>'
@@ -504,6 +543,7 @@ def build_america() -> None:
         '</p>'
     )
     content = content.replace("</h1>", f"</h1>{gallery_link}", 1)
+    content = content.replace(gallery_link, gallery_link + '<p>The Family archive opens a separate, broader collection of photographs and home movies. Its access settings are separate from this site.</p>', 1)
     body = f'''<article class="document">{content}</article>'''
     write(CONFIG["documents"]["america"]["output"], page("Joseph and Sophie in America", body, title))
 
@@ -538,10 +578,11 @@ def main() -> None:
     build_story()
     muszyna_description = (
         '<p>Muszyna is a delightful small Polish spa town near Poland’s southern border with Slovakia. '
-        'It has a rich history and many aesthetic, cultural, and historical landmarks. '
+        'Explore its historic buildings, cultural sites, and surrounding scenery. '
         'Learn more on the <a href="https://muszyna.pl/" target="_blank" rel="noopener">official Muszyna city website</a> '
         'and explore videos on the <a href="https://www.youtube.com/user/muszynatv1/featured" target="_blank" rel="noopener">Muszyna.TV YouTube channel</a>. '
         '(Most browsers can translate Polish-language websites into English.)</p>'
+        '<p><a href="/america/photos/">Browse documents and photographs from America</a>.</p>'
     )
     image_gallery(
         ROOT / CONFIG["collections"]["muszyna"]["directory"],
@@ -552,6 +593,8 @@ def main() -> None:
         description_html=muszyna_description,
         first_photo=CONFIG["collections"]["muszyna"].get("first_photo"),
         photo_credits=CONFIG["collections"]["muszyna"].get("photo_credits"),
+        photo_captions=CONFIG["collections"]["muszyna"].get("photo_captions"),
+        photo_notes=CONFIG["collections"]["muszyna"].get("photo_notes"),
     )
     build_america()
     build_legacy_photo_links()

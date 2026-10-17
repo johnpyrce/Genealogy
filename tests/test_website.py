@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
+from urllib.parse import quote
 from unittest.mock import patch
 
 from scripts import build_website, website, visitor_access
@@ -40,6 +41,46 @@ class WebsiteTests(unittest.TestCase):
     def test_slug_distinguishes_same_stem_and_transliterations(self):
         names = ['Zofia.jpg', 'Zofia.png', 'Gościński.jpg', 'Goscinski.jpg']
         self.assertEqual(len({build_website.photo_slug(x) for x in names}), len(names))
+
+    def test_encoded_source_links_resolve_to_stable_photo_pages(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            photos = root / 'photos'
+            photos.mkdir()
+            name = '1905 - Józef? (line 5).gif'
+            (photos / name).write_bytes(b'image')
+            config = {'collections': {'america': {'directory': 'photos'}}}
+            with patch.object(build_website, 'ROOT', root), patch.object(build_website, 'CONFIG', config):
+                mapping = build_website.america_link_map()
+            source = '../../media/SophieJoseph/' + name
+            _, rendered = build_website.markdown(f'[Manifest]({quote(source, safe="/")})', mapping)
+            self.assertEqual(rendered, f'<p><a href="/america/photos/{build_website.photo_slug(name)}/">Manifest</a></p>')
+
+    def test_display_captions_preserve_photo_routes_and_scan_resolution(self):
+        from PIL import Image
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            photos = root / 'photos'
+            photos.mkdir()
+            name = 'Original scan.tif'
+            Image.new('RGB', (1800, 100), 'white').save(photos / name)
+            output = root / 'dist'
+            with patch.object(build_website, 'DIST', output):
+                mapping = build_website.image_gallery(
+                    photos, 'assets/scans', 'Scans', 'america/photos/index.html',
+                    convert=True, detail_pages=True,
+                    photo_captions={name: 'Readable <caption>'},
+                    photo_notes={name: 'An uncertain & preserved account'},
+                )
+            self.assertEqual(mapping[name], f'/america/photos/{build_website.photo_slug(name)}/')
+            detail = (output / mapping[name].strip('/') / 'index.html').read_text(encoding='utf-8')
+            self.assertIn('Readable &lt;caption&gt;', detail)
+            self.assertIn('Original scan.tif', detail)
+            self.assertIn('An uncertain &amp; preserved account', detail)
+            self.assertIn('Open full-size image', detail)
+            self.assertIn('Return to the America story', detail)
+            with Image.open(next((output / 'assets/scans').glob('*.jpg'))) as image:
+                self.assertEqual(image.size, (1800, 100))
 
     def test_gallery_description_renders_before_photo_grid(self):
         with tempfile.TemporaryDirectory() as directory:

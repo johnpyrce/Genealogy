@@ -1,8 +1,9 @@
-# Family Trees
+# Family trees
 
-A family tree is a diagram or chart that shows the relationships among members of a family across generations.
-There are three complementary views here:
+Choose the view that suits what you want to find:
 
-- **Interactive family-chart tree**: a person-centered, card-based pedigree view. Search for a person, explore their ancestors and descendants by generation, switch sources or color schemes, and inspect their dates, notes, and evidence. It is best for reading one family branch in detail.
-- **Interactive relationship graph**: a network view for cross-branch exploration. People are circles; square family hubs connect recorded partners to children. It supports top-down pedigree and radial layouts, branch/source filters, ancestor focus, and configurable labels.
-- **Textual tree**: a reference tree showing partner pairs, children, descendant continuations, and cross-references where a family is expanded elsewhere—useful for a compact, searchable overview.
+- [Family-tree viewer](/tree/viewer/): find a person and explore their parents, children, and family branch. Search accepts names with or without Polish accents.
+- [Relationship graph](/tree/graph/): see how the family branches connect. Circles represent people; squares connect recorded partners and children.
+- [Text family tree](/tree/text/): read or download a searchable outline of families and their descendants.
+
+The trees show what is recorded in the source charts. Blank dates and missing relationships mean that information has not been recorded here. Where sources disagree, the notes preserve the alternatives.

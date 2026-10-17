@@ -405,10 +405,29 @@
       document.getElementById('person-name').textContent = fullName(person);
       const details = document.getElementById('details');
       details.replaceChildren();
-      for (const [label, value] of [['Person ID', person.id], ['Birth', person.data.birthday], ['Death', person.data.death], ['Source', person.data.source], ['Notes', person.data.note]]) {
+      const sourceIds = [...new Set([
+        ...person.data['source ids'],
+        ...Object.entries(payload.sourceViews)
+          .filter(([, families]) => families.some(family => family.parents.includes(person.id) || family.children.includes(person.id)))
+          .map(([sourceId]) => sourceId),
+      ])].sort();
+      for (const [label, value] of [['Person ID', person.id], ['Birth', person.data.birthday], ['Death', person.data.death], ['Source charts', sourceIds.join(', ')], ['Notes', person.data.note]]) {
         if (!value) continue;
         const term = document.createElement('dt'); term.textContent = label;
         const description = document.createElement('dd'); description.textContent = value;
+        details.append(term, description);
+      }
+      if (sourceIds.length && location.pathname.startsWith('/tree/')) {
+        const term = document.createElement('dt'); term.textContent = 'Read the sources';
+        const description = document.createElement('dd');
+        for (const sourceId of sourceIds) {
+          if (description.childNodes.length) description.append(', ');
+          const link = document.createElement('a');
+          link.href = '/sources/#' + sourceId.toLowerCase();
+          link.target = '_blank'; link.rel = 'noopener';
+          link.textContent = sourceId + (sources.has(sourceId) ? ' — ' + sources.get(sourceId).display_name : '');
+          description.append(link);
+        }
         details.append(term, description);
       }
     }

@@ -86,7 +86,29 @@
   "coat_of_arms": "docs/sections/doliwa_coat_of_arms.svg",
   "collections": {
     "america": {
-      "directory": "media/SophieJoseph"
+      "directory": "media/SophieJoseph",
+      "photo_captions": {
+        "1913 - Sophie on Kaiser Wilhelm III.jpg": "1913 — ship photograph captioned “Kaiser Wilhelm III”",
+        "1913 - Zofia Goscinska Manifest - line 2?.gif": "1913 - Zofia Gościńska Manifest - line 2?",
+        "1913 - Zofia Goscinska Page 2 Manifest?.gif": "1913 - Zofia Gościńska Page 2 Manifest?",
+        "1940s - Pyrce Bobbie Charlie Sophie Betty Ted .tif": "1940s - Pyrce Bobbie Charlie Sophie Betty Ted",
+        "1940s - Sohie Portrait.tif": "1940s - Sophie Portrait",
+        "1940s - Ted, Sophie, Andrew Gocinski, Unknown.tif": "1940s — Ted, Sophie, Andrew (surname captioned “Gocinski”), and an unidentified person",
+        "1950 - Betty, Bobbie, Sophie @ Ted wedding.tif": "1950 - Betty, Bobbie, Sophie at Ted wedding",
+        "1950 - Sophie @ Ted wedding.tif": "1950 - Sophie at Ted wedding",
+        "1960 - Wedding w Sophie.tif": "1960 - Wedding with Sophie",
+        "Andrew Goscinski, Sophie brother, also came to America.tif": "Andrew Gościński, Sophie’s brother, also came to America",
+        "Early Muszyna Reimagined.png": "Early Muszyna — reconstruction",
+        "Sophie was from Muszyna, PO.tif": "Sophie was from Muszyna, Poland"
+      },
+      "photo_notes": {
+        "1913 - Sophie on Kaiser Wilhelm III.jpg": "The filename identifies Sophie and Kaiser Wilhelm III; the narrative discusses a possible 1913 manifest on Kaiser Wilhelm II. The ship and traveler identification remain unconfirmed.",
+        "1920s - Pyrch Joseph, Ted, Betty, Charly, Sophie, Stanley - colorized.jpg": "Colorized version.",
+        "1930s - Joseph Pyrce, Died 12-1939.tif": "The original filename gives December 1939 as Joseph’s death date. The family charts and timeline give 1940. This disagreement remains unresolved.",
+        "1940s - Pyrce Bobbie Charlie Sophie Betty Ted - colored.tif": "Colorized version.",
+        "1940s - Ted, Sophie, Andrew Gocinski, Unknown.tif": "Andrew’s surname spelling in the original filename still needs confirmation.",
+        "Early Muszyna Reimagined.png": "Reconstructed image. Details may differ from the historical scene; use an original photograph for evidence."
+      }
     },
     "muszyna": {
       "directory": "media/photos",
@@ -100,6 +122,21 @@
           "retrieved_on": "2026-10-15",
           "license": "No reuse license stated on the source page."
         }
+      },
+      "photo_captions": {
+        "1950s - Jan & Marianna Goscinski Family Wedding .tif": "1950s - Jan & Marianna Gościński Family Wedding",
+        "1950s - Jan & Marianna Goscinski Family Wedding-Back.tif": "1950s - Jan & Marianna Gościński Family Wedding — reverse",
+        "1950s - Jan & Marianna Goscinski Family Wedding-Reimagined.png": "1950s - Jan & Marianna Gościński Family Wedding — reconstruction",
+        "Anna Goscinska (1928-2017).jpg": "Anna Gościńska (1928-2017)",
+        "Children of Anna and Edward Goscinski - Antonina Pawel Maria Teresa.jpg": "Children of Anna and Edward Gościński - Antonina, Paweł, Maria, Teresa",
+        "Early Muszyna .jpg": "Early Muszyna",
+        "Early Muszyna-Reimagined.png": "Early Muszyna — reconstruction",
+        "Edward Goscinski (1922-2010).jpg": "Edward Gościński (1922-2010)",
+        "Jan, Marianna Goscinski, son Bronislaw+Wife, Children Family.jpg": "Jan, Marianna Gościński, son Bronisław and his wife, and family members"
+      },
+      "photo_notes": {
+        "1950s - Jan & Marianna Goscinski Family Wedding-Reimagined.png": "Reconstructed image. Details may differ from the historical scene; use an original photograph for evidence.",
+        "Early Muszyna-Reimagined.png": "Reconstructed image. Details may differ from the historical scene; use an original photograph for evidence."
       }
     }
   },

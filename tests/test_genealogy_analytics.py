@@ -27,7 +27,6 @@ class GenealogyAnalyticsTests(unittest.TestCase):
                 build_box_drawing_tree.OUTPUT = original_output
 
             tree = output.read_text(encoding="utf-8")
-            self.assertIn("generated directly from the editable people, family, source, and relationship-evidence CSV registries", tree)
             family_headings = re.findall(
                 r"^[│ ]*[└├]── Family (\d+) ·", tree, flags=re.MULTILINE
             )

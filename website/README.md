@@ -71,7 +71,7 @@ appear in Git after a build. Review them with the source changes.
 
 ## Publishing with Codex / Sites
 
-This is still the existing Muszyna Family Archive Site. Its ID and URL are in
+Our Polish Family History uses the existing Site. Its ID and URL are in
 `site.json`. Production uses the visitor gateway described below. Local previews
 remain open and do not collect visitor information.
 

@@ -1,6 +1,6 @@
-# The Pyrć Name
+# The Pyrć and Pyrc names
 
-The chart *Gościńscy z Wapiennego* records the surname **Pyrć** for Jozef who married Zofia Gościńska.
+The collection uses both **Pyrć** and **Pyrc** for Józef (Joseph), who married Zofia Gościńska. The spellings are retained as recorded in each source.
 
 The Polish Academy of Sciences surname dictionary treats **Pyrc** as a variant in the **Pyrcz** name group.
 [Polish Academy of Sciences surname dictionary](https://nazwiska.ijppan.pl/haslo/show/name/PYRC), [Forebears: Pyrc](https://forebears.io/surnames/pyrc)
@@ -14,7 +14,9 @@ The Polish Academy of Sciences gives two plausible explanations:
 
 The geographic distribution suggests that separate Pyrc families could have arisen independently—some from a Polish dialect nickname and others through Polish adaptation of a German name. [Polish Academy of Sciences surname dictionary](https://nazwiska.ijppan.pl/haslo/show/name/PYRC)
 
-## Pronunciation
+## Pronunciation of Pyrc
+
+This approximation applies to **Pyrc**, with an unaccented **c**. The spelling **Pyrć** has a different final letter and should not be assumed to have the same pronunciation. The family’s pronunciation of each spelling still needs confirmation.
 
 Approximately:
 

@@ -49,8 +49,7 @@ Over time, however, -ski surnames spread throughout Polish society, particularly
 Some historical **Gościński/Goszczyński** families were recorded among the Polish nobility, including associations claimed with the [Doliwa coat of arms](https://en.wikipedia.org/wiki/Doliwa_coat_of_arms), 
 but sharing their surname does not establish descent from them. Polish coats of arms belonged to particular documented lineages—not automatically to everyone with the same surname. A reliable connection requires a continuous paper trail linking the family to that lineage.
 
-Although it is unlikely that this Gościński family was part of the szlachta, if it was this would be
-the coat of arms:
+The Doliwa arms are shown below as historical context. No connection between these arms and this family has been established in the material presented here.
 
 <a href="https://en.wikipedia.org/wiki/Doliwa_coat_of_arms">
   <img src="doliwa_coat_of_arms.svg" alt="Doliwa coat of arms" width="150">

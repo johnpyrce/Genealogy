@@ -8,18 +8,28 @@ In the printed charts, `+` before a date
 means “died”; `zd.` (*z domu*) means “née.” Inferred surnames and uncertain
 connections are explicitly identified instead of being presented as source text.
 
+## How to read the evidence
+
+**Confirmed means clearly shown on a chart, not independently verified in civil or parish records.** Probable relationships rely on a partial connector or an interpretation; uncertain entries remain unresolved. The original notes and conflicting accounts are preserved.
+
+“Spouse ancestry” means a spouse’s ancestors. “Collateral” means siblings and other side branches.
+
+Jump to [S1](#s1), [S2](#s2), [S3](#s3), [S4](#s4), [S5](#s5), or [S6](#s6). Select a chart image or linked chart name to examine the original.
+
 ## Source overview
 
-| ID | File | Description | Quality | Registry treatment |
+| ID | Chart | Description | Quality | How it is used |
 | --- | --- | --- | --- | --- |
-| S1 | `Drzewo Genealogy.png` | Polished modern tree for Wanda Gościńska's branch | Excellent | All displayed relationships are recorded as confirmed. |
-| S2 | `Goscinscy z Wapiennego Genealogy.png` | Dense printed Gościński chart with several spouse pedigrees | Good, but structurally dense | Clear solid and dotted connectors are recorded; ambiguous annotations remain in notes. |
-| S3 | `Goscinski z Pyrc Genealogy.png` | Handwritten Gościński–Pyrc chart with later descendants | Fair; lower portion is overwritten | Clear upper relationships and readable additions are recorded. Unresolvable lower entries are not forced into families. |
-| S4 | `Wladusklana Mickulska Genealogy.png` | Handwritten Antonina and Jerzy Guzyk descendant chart | Fair to good | Family groups are recorded; inferred child surnames and one provisional surname are noted. |
-| S5 | `Rodzina Ramsow Geneoaogy.png` | Printed Rams chart with Gościński and Miczulski bridges | Good; right and lower edges are cropped | Clear relationships are confirmed; cropped descendant details and isolated labels are marked probable or uncertain. |
-| S6 | `Mickulska Genealogy.png` | Sparse handwritten Stanisław and Władysława descendant chart | Fair | Used to resolve the Małgorzata–Bogdan Pluta branch and to corroborate four children of the head couple. |
+| S1 | [Drzewo genealogiczne](/assets/charts/Drzewo%20Genealogy.png) | Polished modern tree for Wanda Gościńska's branch | Excellent | All displayed relationships are recorded as confirmed. |
+| S2 | [Gościńscy z Wapiennego](/assets/charts/Goscinscy%20z%20Wapiennego%20Genealogy.png) | Dense printed Gościński chart with several spouse pedigrees | Good, but structurally dense | Clear solid and dotted connectors are recorded; ambiguous annotations remain in notes. |
+| S3 | [Gościński z Pyrc](/assets/charts/Goscinski%20z%20Pyrc%20Genealogy.png) | Handwritten Gościński–Pyrc chart with later descendants | Fair; lower portion is overwritten | Clear upper relationships and readable additions are recorded. Unresolvable lower entries are not forced into families. |
+| S4 | [Stanisław and Władysława Miczulska](/assets/charts/Wladusklana%20Mickulska%20Genealogy.png) | Handwritten Antonina and Jerzy Guzyk descendant chart | Fair to good | Family groups are recorded; inferred child surnames and one provisional surname are noted. |
+| S5 | [Rodzina Ramsów](/assets/charts/Rodzina%20Ramsow%20Geneoaogy.png) | Printed Rams chart with Gościński and Miczulski bridges | Good; right and lower edges are cropped | Clear relationships are confirmed; cropped descendant details and isolated labels are marked probable or uncertain. |
+| S6 | [Later Stanisław and Władysława chart](/assets/charts/Mickulska%20Genealogy.png) | Sparse handwritten Stanisław and Władysława descendant chart | Fair | Used to resolve the Małgorzata–Bogdan Pluta branch and to corroborate four children of the head couple. |
 
 ## Original chart images
+
+<a id="s1"></a>
 
 ## S1 — “Drzewo genealogiczne”
 
@@ -32,6 +42,8 @@ The scan is clean, the names are typeset, and all connectors are unambiguous.
 Its relationships are therefore recorded as confirmed. The chart is limited in
 scope: it documents Wanda's branch and does not imply that Wanda was the head
 couple's only child.
+
+<a id="s2"></a>
 
 ## S2 — “Gościńscy z Wapiennego”
 
@@ -72,6 +84,8 @@ Important handling decisions:
 The unexplained parenthetical date beside Jan Gościński's birth date and other
 isolated annotations are not converted into facts without a clear label.
 
+<a id="s3"></a>
+
 ## S3 — handwritten “Gościński z Pyrc” chart
 
 The upper half repeats Franciszek Gościński and Józefa Szost, showing children
@@ -94,6 +108,8 @@ several partner and parent-child lines impossible to distinguish. Legible names
 are not automatically treated as people in the normalized tree when their
 identity or family placement cannot be separated from overwritten alternatives.
 
+<a id="s4"></a>
+
 ## S4 — handwritten Antonina and Jerzy Guzyk chart
 
 This chart begins with Stanisław Gościński and Władysława Miczulska and follows
@@ -112,6 +128,8 @@ chart often supplies only a child's first name; the registry's Guzyk,
 Berduchowski, and Magarzewych surnames for those children are documented
 inheritance inferences, not literal transcriptions. Antonina's Gościńska surname
 is likewise inferred from her father and corroborating charts.
+
+<a id="s5"></a>
 
 ## S5 — “Rodzina Ramsów”
 
@@ -144,6 +162,8 @@ Important handling decisions:
 - Zofia née Ślaby is described as being from Trzetrzewina and as the widow of
   Jan Miczulski. That biographical note is retained without merging her husband
   with another same-named Jan Miczulski unless independent evidence supports it.
+
+<a id="s6"></a>
 
 ## S6 — later handwritten Stanisław and Władysława chart
 

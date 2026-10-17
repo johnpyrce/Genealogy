@@ -2,11 +2,13 @@
 
 Józef (Joseph) Pyrć and Zofia (Sophie) Gościńska came from Muszyna, in the
 historical region of Galicia, then part of Austria-Hungary and now in southern
-Poland. Polish records show that the original name was "Pyrć", pronounced "pirts".
-The diacritic mark over the "c" is one of many used in Polish. It governs pronunciation
-and is a distinct letter and sound from a plain "c".
+Poland. Polish records in this collection use the spellings **Pyrć** and **Pyrc**. The accented **ć** is a different Polish letter from **c**; the spellings should not be treated as having identical pronunciation. See the [surname notes](/names/pyrc/) for the distinction.
 
 ![Timeline of Joseph and Sophie](./joseph_sophie_timeline_v11.svg)
+
+[Open the timeline full size](./joseph_sophie_timeline_v11.svg){target="_blank"}
+
+**Conflicting dates:** The charts and timeline give Joseph’s death year as 1940. A [family photograph caption](../../media/SophieJoseph/1930s%20-%20Joseph%20Pyrce%2C%20Died%2012-1939.tif) says December 1939. The difference remains unresolved; neither account has been replaced.
 
 ## US Census, 1930
 
@@ -16,28 +18,20 @@ Spaulding Ave.) records the family as **Puirch**. It lists Joseph, Sophie, and
 five children. Joseph’s occupation is recorded as laborer in a steel factory;
 Sophie’s as laborer in a pie factory. “Puirch” may be a spelling used by the
 family or an enumerator’s invention.
-The census image is titled “1930 - Census as Puirch.jpg” in the family archive.
+View the [1930 census image](../../media/SophieJoseph/1930%20-%20Census%20as%20Puirch.jpg).
 
 No credible 1920 Census household for Joseph and Sophie has been found.
 
-## Joseph's Naturalization Declaration of Intention?
+## Possible naturalization records for Joseph
 
-Joseph might be expected to have become a naturalized citizen first.
-The Cook County Clerk of the Circuit Court database of Naturalization Declarations of Intention
-has several possible records for Joseph Pyrce.
+The [Cook County naturalization declarations database](https://services.cookcountyclerkofcourt.org/nr/) contains possible matches. Neither entry below has been established as Joseph’s record. A declaration of intention was a step in the naturalization process, not proof that citizenship was granted.
 
-There is a "Frank Pyrch"
-who came from "Musina" in "Poland - Austria", born 1884, arriving 1897, declaration date 1917.
-Given the small population of Muszyna, this seems like a strong hint.
-This record has the right last name, wrong first name, wrong birth date, and wrong arrival date.
-So this seems unlikely.
+| Name in the index | Details in the entry | Why the identification is uncertain |
+| --- | --- | --- |
+| Frank Pyrch | “Musina,” “Poland - Austria”; born 1884; arrived 1897; declaration dated 1917 | The birthplace and surname may be relevant, but the given name, birth year, and arrival year differ from the family accounts. |
+| Josef Pyrcioch | “Lagorzany,” “Austria”; born 1894; arrived 1911; declaration dated 1915 | The given name and reported arrival year match, but the surname, birth year, and birthplace differ. “Lagorzany” may be a reading of “Zagorzany”; this has not been confirmed. |
 
-There is also a "Josef Pyrcioch", from "Lagorzany", "Austria", born 1894, arrivied 1911, declaration
-date 1915.  This is the correct first name, a last name pronounced similarly to the Polish, different
-birth place (although "Lagorzany" may be "Zagorzany", a very small town in southern Poland), wrong birth date,
-correct arrival date.  This is a candidate for yet another spelling (and origin location).
-The address listed for this person was 1346 Walton St in Chicago.  This address is now a modern row house,
-but it is located next to the Polish Museum of America in Chicago, a curious coincidence.
+The second entry gives an address of 1346 Walton St., Chicago. The name and address are research clues, not sufficient evidence to identify the person as Joseph.
 
 ## Sophie’s 1933 citizenship papers
 
@@ -60,18 +54,16 @@ and places of birth (some handwriting is difficult to read):
 | Taddeus Matthew | February 19, 1920, Chicago | Tadeusz |
 | Stella | June 16, 1923, Chicago | Stefania |
 
-The petition uses Americanized forms alongside the Polish names.
+The statement uses Americanized forms alongside the Polish names. Some dates differ from the charts: Karol’s birth year is 1917 in the tree but 1919 for Charles in this statement; Bronisława’s is 1913 in the tree but 1914 for Bernice here. These conflicting accounts are retained.
 
-Sophie was naturalized on March 22, 1938. Her naturalization record’s reverse
+Sophie was naturalized on March 22, 1938. The [reverse of her naturalization record](../../media/SophieJoseph/1938%20-%20Naturalization%20-%20Back.tif)
 records a name change to **Sophie Pyrce**. The
 family was at 2406 S. Spaulding when Sophie filed her 1933 statement; a later
 family note places them at 4307 S. Sawyer Ave. 
 
 ## Stanley Pyrce records
 
-Stanley was the first son.
-A 1941 Natrualization Court Card documents Stanley Pyrce becoming a naturalized citizen in 1941.
-This gives his name s "Pyrce".
+Stanley was the first son. His [1941 naturalization court card](../../media/SophieJoseph/1941%20-%20Stanley%20Pyrce%20Court%20Naturalization%20Card.jpg) records him as **Stanley Pyrce** and gives May 20, 1941, as the date of admission. The card is reproduced in this collection.
 
 A 1943 pay envelope from the Crane Company exists and gives his name as "Stanley Pyrc." This may
 reflect a spelling used when he began working there, possibly more than ten
@@ -96,28 +88,22 @@ he was born in Poland and the existence of the naturalization card, this seems i
 |Pyrc|1943|Stanley's pay envelope; may represent earlier name|
 |Pyrce|1944|Stanley's military service certification|
 
-The diacritic in the original name was probably lost quickly, since English does not use diacritics.
-The name without the diacritic was probably used for a time, but other
-forms that more closely mirrored the Polish pronunciation of "Pyrć", "**pirts**",
-were either adopted or interpreted by recorders.
+The surviving records use several spellings. Sophie’s 1938 naturalization record documents the spelling **Sophie Pyrce**, while Stanley’s records show both **Pyrce** and **Pyrc** in later years. The reasons for the other variations remain uncertain.
 
-The family history shows a willingness to convert Polish names to Americanized versions,
-and the record indicates there were several versions of Pyrć before finally settling on
-the version with a minimal change, the addition of an "e".  This doesn't sound particularly
-American, but it isn't Polish either.
-This name was firmly established by 1938.
-
-As a last detail, Ted Pyrce attributed the name change to embarassement over the name sounding "like the fish".
+Ted Pyrce attributed the name change to embarrassment over the name sounding “like the fish.” This is a family recollection, rather than an explanation established by the documents.
 
 ## Immigration records and unresolved conflicts
 
-- The 1913 passenger manifest for the S.S. *Kaiser Wilhelm II*, sailing from Bremen and arriving February 4, 1913, has an entry for Zofia Goscinska, age 18. It gives Muszyna as her last residence, names Jozef Goscinski as the husband she was joining, and gives Sioux City, Iowa, as her destination. This is tantalizingly close, but those details do not align cleanly with Sophie’s 1933 statement: she gives May 1912 as the start of continuous U.S. residence and says she married Joseph Pyrć in Muszyna in 1910. The manifest may concern Sophie, but the different husband’s surname, destination, and arrival year leave that identification uncertain. The source is archived as “1913 - Zofia Goscinska Manifest.gif,” line 2.
+- The 1913 passenger manifest for the S.S. *Kaiser Wilhelm II*, sailing from Bremen and arriving February 4, 1913, has an entry for Zofia Goscinska, age 18. It gives Muszyna as her last residence, names Jozef Goscinski as the husband she was joining, and gives Sioux City, Iowa, as her destination. Some details are similar, but they do not align with Sophie’s 1933 statement: she gives May 1912 as the start of continuous U.S. residence and says she married Joseph Pyrć in Muszyna in 1910. The manifest may concern Sophie, but the different husband’s surname, destination, and arrival year leave that identification uncertain. Read [line 2 of the manifest](../../media/SophieJoseph/1913%20-%20Zofia%20Goscinska%20Manifest%20-%20line%202%3F.gif) and its [second page](../../media/SophieJoseph/1913%20-%20Zofia%20Goscinska%20Page%202%20Manifest%3F.gif). The separate ship photograph is captioned “Kaiser Wilhelm III,” which differs from the manifest’s “Kaiser Wilhelm II”; its identification also needs confirmation.
 
-- A separate manifest records Josef Pyrc, age 23, arriving in New York aboard the S.S. *Pretoria* on December 13, 1905. The name and approximate age make him a possible match for Joseph, but the 1933 statement gives Joseph’s arrival as 1911. The 1905 entry should therefore remain a possible earlier arrival, not be assigned to him as fact. The image is archived as “1905 - Josef Pyrc Pretoria Manifest? (line 5).gif.”
+- A separate manifest records Josef Pyrc, age 23, arriving in New York aboard the S.S. *Pretoria* on December 13, 1905. The name and approximate age make him a possible match for Joseph, but the 1933 statement gives Joseph’s arrival as 1911. The 1905 entry should therefore remain a possible earlier arrival, not be assigned to him as fact. View the [1905 manifest, line 5](../../media/SophieJoseph/1905%20-%20Josef%20Pyrc%20Pretoria%20Manifest%3F%20%28line%205%29.gif).
 
-- The family chart S2, “Gościńscy z Wapiennego,” says "Zofia née Gościńska emigrated to Chicago and married there". That conflicts with Sophie’s own 1933 statement of a 1910 marriage in Muszyna and Stanley’s likely birth in Poland in 1911.
+- The [family chart S2, “Gościńscy z Wapiennego,”](/sources/#s2) says "Zofia née Gościńska emigrated to Chicago and married there". That conflicts with Sophie’s own 1933 statement of a 1910 marriage in Muszyna and Stanley’s likely birth in Poland in 1911.
 
-- Sophie’s birth year is not clear.
+### Sophie’s birth year
+
+The records give different years; the collection retains these alternatives.
+
 |Birth year|Document|
 |----------|--------|
 |1890|1930 Census gives her age as 40|
@@ -126,22 +112,17 @@ As a last detail, Ted Pyrce attributed the name change to embarassement over the
 |1893|1964 Death Certificate|
 |1894-95|Passenger manifest from February 1913; may be different person|
 
-### Record references
+## Record references
 
 - 1930 U.S. census population schedule, Chicago, Cook County, Illinois, sheet
   19-A, enumeration district 16-824, household at 2406 S. Spaulding Ave.;
-  archived image: “1930 - Census as Puirch.jpg.”
+  [archived census image](../../media/SophieJoseph/1930%20-%20Census%20as%20Puirch.jpg).
 - Sophie Pyrch, “Statement of Facts to Be Used in Filing My Petition for
-  Citizenship,” 1933, page 3; archived image: “1933 - Citizenship Petition.png.”
+  Citizenship,” 1933, page 3; [archived statement](../../media/SophieJoseph/1933%20-%20Citizenship%20Petition.png).
 - S.S. *Kaiser Wilhelm II* passenger manifest, arrival February 4, 1913, line
-  2, Zofia Goscinska; archived image: “1913 - Zofia Goscinska Manifest.gif.”
+  2, Zofia Goscinska; [archived manifest](../../media/SophieJoseph/1913%20-%20Zofia%20Goscinska%20Manifest%20-%20line%202%3F.gif).
 - S.S. *Pretoria* passenger manifest, arrival December 13, 1905, line 5, Josef
-  Pyrc; archived image: “1905 - Josef Pyrc Pretoria Manifest? (line 5).gif.”
-- Sophie’s naturalization record, reverse, March 22, 1938; archived image:
-  “1938 - Naturalization - Back.tif.”
-- "Illinois, United States records," images, FamilySearch (https://www.familysearch.org/
-ark:/61903/3:1:3Q9M-CS9W-QQMQ-Q?view=index : Oct 12, 2026), image 5919 of
-6122; United States. District Court (Illinois : Northern District : Eastern Division).
-Image Group Number: 007794884
-- Cook County Cleark of the Circuit Court Naturlization Declaratlions of Intention,
-https://services.cookcountyclerkofcourt.org/nr.
+  Pyrc; [archived manifest](../../media/SophieJoseph/1905%20-%20Josef%20Pyrc%20Pretoria%20Manifest%3F%20%28line%205%29.gif).
+- Sophie’s naturalization record, reverse, March 22, 1938;
+  [archived naturalization reverse](../../media/SophieJoseph/1938%20-%20Naturalization%20-%20Back.tif).
+- [Cook County Clerk of the Circuit Court: Naturalization Declarations of Intention](https://services.cookcountyclerkofcourt.org/nr/).
