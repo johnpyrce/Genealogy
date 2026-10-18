@@ -608,9 +608,8 @@ def main() -> None:
     build_download()
     build_story()
     muszyna_description = (
-        '<p>Muszyna is a delightful small Polish spa town near Poland’s southern border with Slovakia. '
-        'Explore its historic buildings, cultural sites, and surrounding scenery. '
-        'Learn more on the <a href="https://muszyna.pl/" target="_blank" rel="noopener">official Muszyna city website</a> '
+        '<p>Muszyna, where Sophie and Joseph Pyrce emigrated from, is today a delightful small Polish spa town near Poland’s southern border with Slovakia. '
+        'Learn more about its history and cultural sites at the <a href="https://muszyna.pl/" target="_blank" rel="noopener">official Muszyna city website</a> '
         'and explore videos on the <a href="https://www.youtube.com/user/muszynatv1/featured" target="_blank" rel="noopener">Muszyna.TV YouTube channel</a>. '
         '(Most browsers can translate Polish-language websites into English.)</p>'
         '<p><a href="/america/photos/">Browse documents and photographs from America</a>.</p>'
