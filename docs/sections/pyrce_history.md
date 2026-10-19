@@ -8,7 +8,6 @@ Poland. Polish records in this collection use the spellings **Pyrć** and **Pyrc
 
 [Open the timeline full size](./joseph_sophie_timeline_v11.svg){target="_blank"}
 
-**Conflicting dates:** The charts and timeline give Joseph’s death year as 1940. A [family photograph caption](../../media/SophieJoseph/1930s%20-%20Joseph%20Pyrce%2C%20Died%2012-1939.tif) says December 1939. The difference remains unresolved; neither account has been replaced.
 
 ## US Census, 1930
 

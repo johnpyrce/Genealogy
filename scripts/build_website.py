@@ -574,7 +574,6 @@ def build_america() -> None:
         '</p>'
     )
     content = content.replace("</h1>", f"</h1>{gallery_link}", 1)
-    content = content.replace(gallery_link, gallery_link + '<p>The Family archive opens a separate, broader collection of photographs and home movies. Its access settings are separate from this site.</p>', 1)
     body = f'''<article class="document">{content}</article>'''
     write(CONFIG["documents"]["america"]["output"], page("Joseph and Sophie in America", body, title))
 
