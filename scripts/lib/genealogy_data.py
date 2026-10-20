@@ -15,6 +15,18 @@ EVIDENCE_REGISTRY = REGISTRIES / "relationship_evidence.csv"
 PERSON_SOURCE_REGISTRY = REGISTRIES / "person_source_evidence.csv"
 
 
+def load_registry_csv(path: Path) -> tuple[list[str], list[dict[str, str]]]:
+    """Read an editable registry without discarding columns or blank values."""
+    with path.open(encoding="utf-8", newline="") as source:
+        reader = csv.DictReader(source)
+        if not reader.fieldnames:
+            raise ValueError(f"Registry has no header: {path}")
+        rows = list(reader)
+        if any(None in row or None in row.values() for row in rows):
+            raise ValueError(f"Registry has malformed rows: {path}")
+        return list(reader.fieldnames), rows
+
+
 def load_people() -> list[dict[str, str | int | None]]:
     """Return normalized person records from the people CSV registry."""
     people = []

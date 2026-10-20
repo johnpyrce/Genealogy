@@ -1,0 +1,26 @@
+{
+  "description": "Proposed existing-person matches for the fresh RootsMagic FamilySearch download. Omitted people are new additions. Preview only; registry import has not been applied.",
+  "gedcom_sha256": "2e6bd2bfb4ec64ed3d71c7aa0cab22c47f2d63fb364e0ca384d079b589459afd",
+  "rationale": {
+    "@I1@": "Sophie Goscinski → Zofia Gościńska (22): Chicago emigrant, spouse and five children align; death 1964 agrees. Birth 1893 conflicts with registry 1883. Carried forward using identical FamilySearch ID, person facts and family membership in the fresh download.",
+    "@I2@": "Stanley Pyrce → Stanisław Pyrc (80): same parents and birth/death years 1911–1944. Carried forward using identical FamilySearch ID, person facts and family membership in the fresh download.",
+    "@I4@": "Josepha Szost → Józefa Szost (11): mother of Sophie/Zofia; spouse Franciscus/Franciszek Gościński. GEDCOM gives no years. Carried forward using identical FamilySearch ID, person facts and family membership in the fresh download.",
+    "@I5@": "Bernice Pyrce → Bronisława Pyrc (83): parents, sibling group and death 2009 align. Birth 1917 conflicts with registry 1913; identity remains a proposal. Carried forward using identical FamilySearch ID, person facts and family membership in the fresh download.",
+    "@I3@": "Franciscus Goscinski → Franciszek Gościński (10): father of Sophie/Zofia; spouse Josepha/Józefa Szost. GEDCOM gives no years. Carried forward using identical FamilySearch ID, person facts and family membership in the fresh download.",
+    "@I7@": "Stephanie Roberta Pyrce → Stefania Pyrc (84): parents, sibling group and birth/death years 1923–2018 agree. Carried forward using identical FamilySearch ID, person facts and family membership in the fresh download.",
+    "@I8@": "Charles Louis Pyrce → Karol Pyrc (82): parents, sibling group and birth/death years 1917–1994 agree. Carried forward using identical FamilySearch ID, person facts and family membership in the fresh download.",
+    "@I9@": "Thaddeus Matthew Pyrce → Tadeusz Pyrc (81): parents, sibling group and birth/death years 1920–2004 agree. Carried forward using identical FamilySearch ID, person facts and family membership in the fresh download.",
+    "@I15@": "Josef Pyrć → Józef Pyrc (78): spouse, children and birth 1879 agree. GEDCOM death BET 1930 AND 1940 stays in evidence; registry death 1940 retained. Carried forward using identical FamilySearch ID, person facts and family membership in the fresh download."
+  },
+  "people": {
+    "@I1@": 22,
+    "@I2@": 80,
+    "@I4@": 11,
+    "@I5@": 83,
+    "@I3@": 10,
+    "@I7@": 84,
+    "@I8@": 82,
+    "@I9@": 81,
+    "@I15@": 78
+  }
+}

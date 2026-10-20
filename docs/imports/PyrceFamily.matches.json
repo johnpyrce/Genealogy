@@ -1,0 +1,26 @@
+{
+  "description": "Proposed existing-person matches for the current PyrceFamily.ged. Preview only; review before --apply. People omitted from this file are added as new people. Existing Polish names and dates stay unchanged.",
+  "gedcom_sha256": "ac26b3d56dec255b29c17dc717ae70242e1f8a13d5c93432f966b72a5d899c67",
+  "rationale": {
+    "@I1@": "Sophie Goscinski → Zofia Gościńska (22): Chicago emigrant, spouse and five children align; death 1964 agrees. Birth 1893 conflicts with registry 1883.",
+    "@I2@": "Stanley Pyrce → Stanisław Pyrc (80): same parents and birth/death years 1911–1944.",
+    "@I3@": "Josepha Szost → Józefa Szost (11): mother of Sophie/Zofia; spouse Franciscus/Franciszek Gościński. GEDCOM gives no years.",
+    "@I4@": "Bernice Pyrce → Bronisława Pyrc (83): parents, sibling group and death 2009 align. Birth 1917 conflicts with registry 1913; identity remains a proposal.",
+    "@I5@": "Franciscus Goscinski → Franciszek Gościński (10): father of Sophie/Zofia; spouse Josepha/Józefa Szost. GEDCOM gives no years.",
+    "@I6@": "Stephanie Roberta Pyrce → Stefania Pyrc (84): parents, sibling group and birth/death years 1923–2018 agree.",
+    "@I11@": "Charles Louis Pyrce → Karol Pyrc (82): parents, sibling group and birth/death years 1917–1994 agree.",
+    "@I16@": "Thaddeus Matthew Pyrce → Tadeusz Pyrc (81): parents, sibling group and birth/death years 1920–2004 agree.",
+    "@I34@": "Josef Pyrć → Józef Pyrc (78): spouse, children and birth 1879 agree. GEDCOM death BET 1930 AND 1940 stays in evidence; registry death 1940 retained."
+  },
+  "people": {
+    "@I1@": 22,
+    "@I2@": 80,
+    "@I3@": 11,
+    "@I4@": 83,
+    "@I5@": 10,
+    "@I6@": 84,
+    "@I11@": 82,
+    "@I16@": 81,
+    "@I34@": 78
+  }
+}

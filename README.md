@@ -80,6 +80,108 @@ Use these when you only need to regenerate or work on one part of the project:
 - `uv run python -m scripts.build_cytoscape_genealogy_graph` and `uv run python -m scripts.build_family_chart` generate interactive trees.
 - `uv run python -m scripts.build_dashboard` builds the analytics dashboard bundle.
 
+## Download from FamilySearch
+
+The command-line wrapper downloads a tree through the RootsMagic desktop app,
+exports a new GEDCOM, and prepares proposed matches and an import preview:
+
+```sh
+./genealogy doctor
+./genealogy fetch --person G4ZN-5FR --ancestors 10 --descendants 4
+```
+
+Run from this repository on an unlocked Mac with RootsMagic 12 in English.
+`doctor` builds the local helper using Apple's Command Line Tools and checks
+Accessibility and Screen Recording permissions for the invoking terminal. If a
+FamilySearch sign-in page opens, complete it in your browser; the command waits
+and continues when sign-in finishes. Leave RootsMagic available while it runs.
+
+Each run creates a new timestamped GEDCOM in `data/source-material/` and a run
+folder under `artifacts/imports/` containing the separate RootsMagic database,
+proposed `matches.json`, `preview.md`, `preview.json`, and `download.json`.
+Source files and existing trees are preserved. Fetching does not change the
+registries. Review the preview before using the import commands below.
+
+The wrapper carries previous proposed matches forward by stable FamilySearch
+IDs, using `PyrceFamily.ged` and its match file when available. Additional possible
+overlaps are reported for review. See [the wrapper guide](docs/imports/command-line.md)
+for setup, other input files, output details, and troubleshooting.
+
+## GEDCOM import
+
+The importer reads `data/source-material/PyrceFamily.ged` by default. Supply a
+different repository path as a positional argument to import another GEDCOM.
+Run the commands below from the repository root.
+
+### How the match file is created
+
+The direct importer **does not generate a match file automatically**. Create or
+update it by comparing GEDCOM names, dates, spouses, parents, and children with
+the existing registries. The command-line wrapper above can prepare proposed
+matches for that review. The supplied
+[`PyrceFamily.matches.json`](docs/imports/PyrceFamily.matches.json) was prepared
+this way and contains proposed matches with explanations for review.
+
+Its `people` section records each decision:
+
+```json
+{
+  "people": {
+    "@I1@": 22
+  }
+}
+```
+
+`"@I1@": 22` means GEDCOM person `@I1@` matches existing registry person **22**.
+List only people who should match existing registry entries. When a match file
+is supplied, everyone omitted from it is added as a **new person**, even if a
+similar name exists. An empty `people` object adds everyone. Previously imported
+people are reused so rerunning the same import does not create duplicates.
+
+The supplied match file also contains a fingerprint tying the decisions to the
+current GEDCOM export. Another export can renumber people, so review and update
+the decisions and fingerprint whenever the input changes.
+
+For a new GEDCOM, first run `uv run python -m scripts.import_gedcom <path>` without
+`--matches`. The importer identifies straightforward matches and reports uncertain
+candidates. It exits with an incomplete plan when decisions are needed. Use that
+report to prepare the reviewed match file manually.
+
+### Preview, review, and apply
+
+1. Preview the supplied GEDCOM using the proposed match file. This does not
+   change the registries:
+
+   ```sh
+   uv run python -m scripts.import_gedcom \
+     --matches docs/imports/PyrceFamily.matches.json \
+     --report artifacts/imports/PyrceFamily.preview.md
+   ```
+
+2. Open `artifacts/imports/PyrceFamily.preview.md`. Review the people matched,
+   people added, families added, and conflicting facts. Correct any identity
+   decisions in the match file and repeat the preview before applying.
+
+3. Apply the reviewed import. **This step writes the registry changes:**
+
+   ```sh
+   uv run python -m scripts.import_gedcom \
+     --matches docs/imports/PyrceFamily.matches.json \
+     --apply \
+     --report artifacts/imports/PyrceFamily.applied.json
+   ```
+
+4. Validate the registries and rebuild the derived outputs:
+
+   ```sh
+   uv run python -m scripts.validate_genealogy_data
+   ./build.sh
+   ```
+
+Existing facts are preserved; incoming alternatives are retained in source
+evidence. See [the detailed GEDCOM import guide](docs/imports/README.md) for the
+source extraction process, matching rules, and provenance handling.
+
 ## Generated artifacts and focused tests
 
 The full build writes `docs/trees/family_tree.md`, analytics data and reports,

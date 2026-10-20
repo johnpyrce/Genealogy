@@ -16,12 +16,17 @@ export function CategoryAxisTick({
   angled = false,
   layout,
   tickStride = 1,
+  lastTickIndex,
   width = 150,
   count = 1,
   side = "left",
 }) {
   const tickIndex = Number.isInteger(index) ? index : Number(payload?.index);
-  if (Number.isInteger(tickIndex) && tickIndex % Math.max(1, Math.floor(Number(tickStride) || 1)) !== 0) {
+  const stride = Math.max(1, Math.floor(Number(tickStride) || 1));
+  const isLastTick = tickIndex === lastTickIndex;
+  const crowdsLastTick = Number.isInteger(lastTickIndex) && tickIndex > 0
+    && lastTickIndex - tickIndex < Math.ceil(stride / 2);
+  if (Number.isInteger(tickIndex) && !isLastTick && (tickIndex % stride !== 0 || crowdsLastTick)) {
     return null;
   }
   const value = categoryLabel(field, payload.value);

@@ -1,0 +1,9 @@
+/* The genealogy website owns the frame around its embedded report. */
+#root > .dashboard-root > .dashboard-topbar {
+  display: none;
+}
+
+#root > .dashboard-root {
+  --dashboard-topbar-base-height: 0px;
+  --dashboard-tabs-visible-height: 0px;
+}

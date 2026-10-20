@@ -751,7 +751,7 @@ function StandardChartRenderer({
       tick={
         hideXAxisCategoryTicks ? false : everyCategory || dateTimeCategories ? (
           <CategoryAxisTick field={x} count={Math.ceil(categoryCount / xTickStride)} angled={angledCategories} layout={spec.xTickLabelLayout}
-            tickStride={xTickStride} />
+            tickStride={xTickStride} lastTickIndex={categoryCount - 1} />
         ) : (
           { fontSize: 12 }
         )

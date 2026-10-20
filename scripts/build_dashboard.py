@@ -28,7 +28,9 @@ def resolve_builder() -> tuple[str, Path]:
 
 def main() -> None:
     node, builder = resolve_builder()
-    subprocess.run([node, str(builder), "build", "--project-dir", str(ROOT / "apps/analytics-dashboard"), "--separate-data"], cwd=ROOT, check=True)
+    # The report's decade-axis label stride requires the copied source renderer;
+    # the installed prebuilt renderer does not implement xTickStride.
+    subprocess.run([node, str(builder), "build", "--project-dir", str(ROOT / "apps/analytics-dashboard"), "--source"], cwd=ROOT, check=True)
 
 
 if __name__ == "__main__":

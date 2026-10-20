@@ -23,6 +23,8 @@ export function ReportContent() {
   const { reviewedRows, visible, canEdit, mode, appTitle, setAppTitle } = useDataApp();
   const summaryRows = reviewedRows("summary");
   const [summary] = summaryRows;
+  const surnameRows = reviewedRows("distinct_surnames");
+  const [surnameCount] = surnameRows;
   const completeness = reviewedRows("completeness");
   const completenessHeatmap = reviewedRows("completeness_heatmap");
   const familyStructure = reviewedRows("family_structure");
@@ -76,6 +78,8 @@ export function ReportContent() {
         value={String(summary.maximumGeneration)} description="The longest recorded line of parents and children, counting both endpoints." />}
       {visible("metric-families") && <MetricCard id="metric-families" title="Families" queryId="summary" sourceRows={summaryRows}
         value={String(summary.families)} description="Recorded family or household records." />}
+      {visible("metric-surnames") && <MetricCard id="metric-surnames" title="Surnames" queryId="distinct_surnames" sourceRows={surnameRows}
+        value={String(surnameCount.surnames)} description="Distinct recorded surnames, excluding blanks. Different spellings and male/female forms count separately." />}
       {visible("metric-sources") && <MetricCard id="metric-sources" title="Source charts" queryId="summary" sourceRows={summaryRows}
         value={String(summary.sourceCharts)} description={`${summary.evidenceRecords} relationship-evidence records.`} />}
     </div>
@@ -132,7 +136,7 @@ export function ReportContent() {
       <RichNarrative id="temporal:body" className="report-analysis"
         value="## Recorded births cluster in the early twentieth century\n\nOnly people with an explicit birth year are included. The distribution indicates documentation coverage over time, not the complete historical population." />
       <EvidenceChart id="temporal-chart" queryId="temporal" title="People with recorded births by decade" rows={temporal} sourceRows={temporal} height={340}
-        spec={{ type: "bar", x: "decade", y: "people", colors: chartColors, valueDecimals: 0, xTickStride: 2 }} />
+        spec={{ type: "bar", x: "decade", y: "people", colors: chartColors, valueDecimals: 0, xTickStride: 4 }} />
     </section>
 
     <section className="report-section">

@@ -1,10 +1,40 @@
 {
   "surface": "report",
   "title": "The Muszyna genealogy has nine documented generations",
-  "generatedAt": "2026-10-18T15:50:58-05:00",
+  "generatedAt": "2026-10-20T15:13:31-05:00",
   "buildStatus": "complete",
   "status": "reviewed",
   "queries": {
+    "distinct_surnames": {
+      "rows": [
+        {
+          "surnames": 54
+        }
+      ],
+      "source": {
+        "label": "Distinct recorded surnames",
+        "sourceFiles": [
+          "data/registries/people.csv",
+          "data/registries/families.csv",
+          "data/registries/relationship_evidence.csv",
+          "data/registries/sources.csv",
+          "artifacts/analytics/genealogy_analytics.duckdb"
+        ],
+        "filters": [
+          "Rebuilt from the editable CSV registries through the local DuckDB analytical layer"
+        ],
+        "metricDefinitions": [
+          {
+            "label": "Distinct recorded surnames",
+            "definition": "Distinct nonblank surname values in people.csv, after trimming surrounding whitespace. Spelling, diacritics, and male/female forms remain distinct; family-name groups are not used.",
+            "componentIds": [
+              "metric-surnames"
+            ]
+          }
+        ],
+        "sql": "SELECT COUNT(DISTINCT TRIM(surname))::BIGINT AS surnames FROM people WHERE TRIM(surname) <> ''"
+      }
+    },
     "summary": {
       "rows": [
         {

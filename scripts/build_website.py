@@ -345,6 +345,14 @@ def build_analytics() -> None:
     source = ROOT / "apps/analytics-dashboard/dist"
     target = DIST / "analytics/app"
     shutil.copytree(source, target)
+    # The website supplies its own navigation and title. Omit the embedded
+    # report's authoring toolbar only in this website copy.
+    write("assets/analytics-embed.css", read("website/analytics-embed.css"))
+    dashboard = target / "index.html"
+    content = dashboard.read_text(encoding="utf-8")
+    dashboard.write_text(content.replace(
+        "</head>", '<link rel="stylesheet" href="/assets/analytics-embed.css"></head>', 1
+    ), encoding="utf-8")
     # The embedded Data app recognizes *.chatgpt.site as a hosted dashboard and
     # reads these same-origin endpoints. This static site packages equivalent
     # read-only responses alongside the immutable dashboard snapshot.

@@ -40,7 +40,16 @@ def reviewed_queries(connection: duckdb.DuckDBPyConnection) -> dict[str, Any]:
     domains = {name: query_rows(connection, sql) for name, sql in analytics_queries().items()}
     inventory = metric_map(domains["inventory"])
     tree = metric_map(domains["tree_structure"])
+    surname_sql = "SELECT COUNT(DISTINCT TRIM(surname))::BIGINT AS surnames FROM people WHERE TRIM(surname) <> ''"
     return {
+        "distinct_surnames": {
+            "rows": query_rows(connection, surname_sql),
+            "source": {
+                **source("Distinct recorded surnames", ["metric-surnames"],
+                         "Distinct nonblank surname values in people.csv, after trimming surrounding whitespace. Spelling, diacritics, and male/female forms remain distinct; family-name groups are not used."),
+                "sql": surname_sql,
+            },
+        },
         "summary": {
             "rows": [{
                 "people": inventory["People"], "families": inventory["Families"],
