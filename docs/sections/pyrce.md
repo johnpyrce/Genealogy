@@ -12,14 +12,4 @@ The conventional history of this surname group leads back to **Piers**, a mediev
 
 For this family, **Pyrce** is the spelling used in American records. Earlier documents use several spellings, including **Pyrć**, **Pyrc**, **Puirch**, and **Pyrch**.
 
-## What the records show
-
-Sophie’s 1933 citizenship statement uses **Sophia Pyrch**. Her 1938 naturalization record records a name change to **Sophie Pyrce**. “Sophia” is the form used in the earlier document; this site generally calls her Sophie.
-
-Stanley’s 1941 naturalization court card uses **Pyrce**, while his 1943 pay envelope uses **Pyrc**. These records show that different spellings continued to appear; they do not establish a single sequence of name changes for every member of the family.
-
-## What remains uncertain
-
-The reasons for the earlier spelling variations are not established by these documents. They may reflect record-keeping practices, different ways of writing a Polish name in English, or family choices. Ted Pyrce later attributed the name change to embarrassment about the name sounding “like the fish”; that account is a family recollection.
-
 Read [Joseph and Sophie in America](/america/) for the timeline, linked records, and unresolved conflicts. The [Pyrć and Pyrc page](/names/pyrc/) discusses the Polish spellings.
