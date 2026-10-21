@@ -16,6 +16,7 @@ import tempfile
 from urllib.parse import unquote, urlsplit
 
 from scripts.lib.genealogy_data import ROOT
+from scripts.lib.website_dates import current_publication_date, stamp_publication_date
 
 OUTPUT = ROOT / "artifacts/website"
 DIST = OUTPUT / "dist"
@@ -127,9 +128,15 @@ def stage(checkout: Path) -> None:
     if manifest["input_sha256"] != input_digest() or manifest["output_sha256"] != output_digest(DIST):
         raise ValueError("The website build is stale or modified. Run ./preview_site.sh --build-only first.")
     check_links(DIST)
+    publication_date = current_publication_date()
+    manifest = {**manifest, "publication_date": publication_date.isoformat()}
     if config.get("visitor_access"):
         from scripts.visitor_access import stage_gateway
-        stage_gateway(checkout, DIST, hosting)
+        with tempfile.TemporaryDirectory(prefix="publishing-", dir=OUTPUT) as temporary:
+            publication = Path(temporary) / "dist"
+            shutil.copytree(DIST, publication)
+            stamp_publication_date(publication, publication_date)
+            stage_gateway(checkout, publication, hosting)
         (checkout / "genealogy-build.json").write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
         print(f"Staged protected production gateway in {checkout}. Local preview remains open.")
         return
@@ -141,6 +148,7 @@ def stage(checkout: Path) -> None:
     if target.exists():
         shutil.rmtree(target)
     shutil.copytree(DIST, target)
+    stamp_publication_date(target, publication_date)
     (checkout / "genealogy-build.json").write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
     print(f"Staged verified website in {checkout}. Publish through the Sites workflow; access is unchanged.")
 

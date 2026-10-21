@@ -17,6 +17,10 @@ Preview builds and checks the site but does not publish it. To build without
 starting a server, use `./preview_site.sh --build-only`. To use another port,
 run `./preview_site.sh --port 4177`.
 
+The footer date is set automatically when staging each publication, using the
+America/Chicago calendar date. Local previews show their build date. Republishing
+an older saved version retains that version's original publication date.
+
 ## Content mapping
 
 Edit `website/site.json` to select page source documents and their output paths,

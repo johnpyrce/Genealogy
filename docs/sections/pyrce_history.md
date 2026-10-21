@@ -4,9 +4,9 @@ Józef (Joseph) Pyrć and Zofia (Sophie) Gościńska came from Muszyna, in the
 historical region of Galicia, then part of Austria-Hungary and now in southern
 Poland. Polish records in this collection use the spellings **Pyrć** and **Pyrc**. The accented **ć** is a different Polish letter from **c**; the spellings should not be treated as having identical pronunciation. See the [surname notes](/names/pyrc/) for the distinction.
 
-![Timeline of Joseph and Sophie](./joseph_sophie_timeline_v11.svg)
+![Timeline of Joseph and Sophie](./joseph_sophie_timeline_vertical.svg)
 
-[Open the timeline full size](./joseph_sophie_timeline_v11.svg){target="_blank"}
+[Open the timeline full size](./joseph_sophie_timeline_vertical.svg){target="_blank"}
 
 
 ## US Census, 1930

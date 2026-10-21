@@ -19,6 +19,7 @@ from xml.etree import ElementTree
 
 
 from scripts.lib.genealogy_data import ROOT, load_sources
+from scripts.lib.website_dates import current_publication_date, publication_date_html
 
 CONFIG = json.loads((ROOT / "website/site.json").read_text(encoding="utf-8"))
 DIST = ROOT / "artifacts/website/dist"
@@ -195,7 +196,8 @@ def header() -> str:
 
 
 def footer() -> str:
-    return '''<footer class="site-footer"><span>By John Pyrce · October 2, 2026</span><a href="mailto:rekarpyrce@gmail.com">Comments</a></footer>'''
+    date_html = publication_date_html(current_publication_date())
+    return f'''<footer class="site-footer"><span>By John Pyrce · {date_html}</span><a href="mailto:rekarpyrce@gmail.com">Comments</a></footer>'''
 
 
 def page(title: str, body: str, description: str = "Our Polish Family History") -> str:

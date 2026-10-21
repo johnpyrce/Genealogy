@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"
+      viewBox="0 0 1800 2175" preserveAspectRatio="xMidYMid meet"
+      role="img" aria-labelledby="title description">
+      <title id="title">Joseph and Sophie Pyrce: two lives, one family</title>
+      <desc id="description">Two vertical timelines with one linear year scale.
+      Joseph appears on the left and Sophie on the right. Shared events connect
+      both lines. Shared annotations are displaced slightly when needed, with
+      angled connectors preserving the exact year positions of their event dots.
+      Disputed and possible accounts retain their source qualifications.</desc>
+      <style>text{font-family:Arial,Helvetica,sans-serif;fill:#253439}
+      .small{font-size:21px;fill:#657174}
+      .name{font-family:Georgia,serif;font-size:36px}
+      .event{font-size:30px}
+      .year{font-weight:700}</style>
+      <rect width="1800" height="2175" fill="#faf8f2"/>
+      <text x="350" y="45" text-anchor="middle" class="name" style="fill:#246577">Joseph Pyrce</text>
+      <text x="1450" y="45" text-anchor="middle" class="name" style="fill:#9b574b">Sophie Pyrce</text>
+<line x1="95" x2="1740" y1="114" y2="114" stroke="#deded4" stroke-width="1"/>
+<text x="75" y="120" text-anchor="end" class="small">1880</text>
+<line x1="95" x2="1740" y1="354" y2="354" stroke="#deded4" stroke-width="1"/>
+<text x="75" y="360" text-anchor="end" class="small">1890</text>
+<line x1="95" x2="1740" y1="594" y2="594" stroke="#deded4" stroke-width="1"/>
+<text x="75" y="600" text-anchor="end" class="small">1900</text>
+<line x1="95" x2="1740" y1="834" y2="834" stroke="#deded4" stroke-width="1"/>
+<text x="75" y="840" text-anchor="end" class="small">1910</text>
+<line x1="95" x2="1740" y1="1074" y2="1074" stroke="#deded4" stroke-width="1"/>
+<text x="75" y="1080" text-anchor="end" class="small">1920</text>
+<line x1="95" x2="1740" y1="1314" y2="1314" stroke="#deded4" stroke-width="1"/>
+<text x="75" y="1320" text-anchor="end" class="small">1930</text>
+<line x1="95" x2="1740" y1="1554" y2="1554" stroke="#deded4" stroke-width="1"/>
+<text x="75" y="1560" text-anchor="end" class="small">1940</text>
+<line x1="95" x2="1740" y1="1794" y2="1794" stroke="#deded4" stroke-width="1"/>
+<text x="75" y="1800" text-anchor="end" class="small">1950</text>
+<line x1="95" x2="1740" y1="2034" y2="2034" stroke="#deded4" stroke-width="1"/>
+<text x="75" y="2040" text-anchor="end" class="small">1960</text>
+<line x1="600" x2="600" y1="90" y2="1554" stroke="#246577" stroke-opacity=".55" stroke-width="7"/>
+<line x1="1200" x2="1200" y1="186" y2="2130" stroke="#9b574b" stroke-opacity=".55" stroke-width="7"/>
+<path d="M 600 90 L 582 90" fill="none" stroke="#246577" stroke-width="1.5"/>
+<text x="570" y="100" text-anchor="end" class="event"><tspan class="year" fill="#246577">1879</tspan> · Born Josef Pyrć (disputed)
+</text>
+<circle cx="600" cy="90" r="6" fill="#246577" stroke="#faf8f2" stroke-width="2"/>
+<path d="M 1200 186 L 1218 186" fill="none" stroke="#9b574b" stroke-width="1.5"/>
+<text x="1230" y="178" text-anchor="start" class="event"><tspan class="year" fill="#9b574b">1883</tspan> · Birth year: citizenship paper
+<tspan x="1230" dy="36">(disputed)</tspan>
+</text>
+<circle cx="1200" cy="186" r="6" fill="#9b574b" stroke="#faf8f2" stroke-width="2"/>
+<path d="M 1200 426 L 1218 426" fill="none" stroke="#9b574b" stroke-width="1.5"/>
+<text x="1230" y="418" text-anchor="start" class="event"><tspan class="year" fill="#9b574b">1893</tspan> · Birth year: death certificate
+<tspan x="1230" dy="36">(disputed)</tspan>
+</text>
+<circle cx="1200" cy="426" r="6" fill="#9b574b" stroke="#faf8f2" stroke-width="2"/>
+<path d="M 600 714 L 582 714" fill="none" stroke="#246577" stroke-width="1.5"/>
+<text x="570" y="724" text-anchor="end" class="event"><tspan class="year" fill="#246577">1905</tspan> · Possible arrival: Josef Pyrc
+</text>
+<circle cx="600" cy="714" r="6" fill="#246577" stroke="#faf8f2" stroke-width="2"/>
+<path d="M 600 834 H 635 L 675 811.0 H 1125 L 1165 834 H 1200" fill="none" stroke="#756846" stroke-width="1.5"/>
+<text x="900" y="798.0" text-anchor="middle" class="event"><tspan class="year" fill="#756846">1910</tspan> · Married in Muszyna
+</text>
+<circle cx="600" cy="834" r="6" fill="#246577" stroke="#faf8f2" stroke-width="2"/>
+<circle cx="1200" cy="834" r="6" fill="#9b574b" stroke="#faf8f2" stroke-width="2"/>
+<path d="M 600 858 H 635 L 675 867.0 H 1125 L 1165 858 H 1200" fill="none" stroke="#756846" stroke-width="1.5"/>
+<text x="900" y="854.0" text-anchor="middle" class="event"><tspan class="year" fill="#756846">1911</tspan> · Stanley born in Poland
+</text>
+<circle cx="600" cy="858" r="6" fill="#246577" stroke="#faf8f2" stroke-width="2"/>
+<circle cx="1200" cy="858" r="6" fill="#9b574b" stroke="#faf8f2" stroke-width="2"/>
+<path d="M 600 858 L 582 858" fill="none" stroke="#246577" stroke-width="1.5"/>
+<text x="570" y="868" text-anchor="end" class="event"><tspan class="year" fill="#246577">1911</tspan> · Arrival in petition
+</text>
+<path d="M 1200 882 L 1218 866.0" fill="none" stroke="#9b574b" stroke-width="1.5"/>
+<text x="1230" y="876.0" text-anchor="start" class="event"><tspan class="year" fill="#9b574b">1912</tspan> · U.S. residence
+</text>
+<circle cx="1200" cy="882" r="6" fill="#9b574b" stroke="#faf8f2" stroke-width="2"/>
+<path d="M 1200 906 L 1218 922.0" fill="none" stroke="#9b574b" stroke-width="1.5"/>
+<text x="1230" y="932.0" text-anchor="start" class="event"><tspan class="year" fill="#9b574b">1913</tspan> · Possible manifest
+</text>
+<circle cx="1200" cy="906" r="6" fill="#9b574b" stroke="#faf8f2" stroke-width="2"/>
+<path d="M 600 906 H 635 L 675 923.0 H 1125 L 1165 906 H 1200" fill="none" stroke="#756846" stroke-width="1.5"/>
+<text x="900" y="910.0" text-anchor="middle" class="event"><tspan class="year" fill="#756846">1913</tspan> · Bernice born
+</text>
+<circle cx="600" cy="906" r="6" fill="#246577" stroke="#faf8f2" stroke-width="2"/>
+<path d="M 600 1050 H 635 L 675 1035.0 H 1125 L 1165 1050 H 1200" fill="none" stroke="#756846" stroke-width="1.5"/>
+<text x="900" y="1022.0" text-anchor="middle" class="event"><tspan class="year" fill="#756846">1919</tspan> · Charles born
+</text>
+<circle cx="600" cy="1050" r="6" fill="#246577" stroke="#faf8f2" stroke-width="2"/>
+<circle cx="1200" cy="1050" r="6" fill="#9b574b" stroke="#faf8f2" stroke-width="2"/>
+<path d="M 600 1074 H 635 L 675 1091.0 H 1125 L 1165 1074 H 1200" fill="none" stroke="#756846" stroke-width="1.5"/>
+<text x="900" y="1078.0" text-anchor="middle" class="event"><tspan class="year" fill="#756846">1920</tspan> · Taddeus born
+</text>
+<circle cx="600" cy="1074" r="6" fill="#246577" stroke="#faf8f2" stroke-width="2"/>
+<circle cx="1200" cy="1074" r="6" fill="#9b574b" stroke="#faf8f2" stroke-width="2"/>
+<path d="M 600 1146 H 635 L 675 1147 H 1125 L 1165 1146 H 1200" fill="none" stroke="#756846" stroke-width="1.5"/>
+<text x="900" y="1134" text-anchor="middle" class="event"><tspan class="year" fill="#756846">1923</tspan> · Stella born
+</text>
+<circle cx="600" cy="1146" r="6" fill="#246577" stroke="#faf8f2" stroke-width="2"/>
+<circle cx="1200" cy="1146" r="6" fill="#9b574b" stroke="#faf8f2" stroke-width="2"/>
+<path d="M 600 1314 H 635 L 675 1315 H 1125 L 1165 1314 H 1200" fill="none" stroke="#756846" stroke-width="1.5"/>
+<text x="900" y="1302" text-anchor="middle" class="event"><tspan class="year" fill="#756846">1930</tspan> · Census as Puirch
+</text>
+<circle cx="600" cy="1314" r="6" fill="#246577" stroke="#faf8f2" stroke-width="2"/>
+<circle cx="1200" cy="1314" r="6" fill="#9b574b" stroke="#faf8f2" stroke-width="2"/>
+<path d="M 1200 1386 L 1218 1386" fill="none" stroke="#9b574b" stroke-width="1.5"/>
+<text x="1230" y="1396" text-anchor="start" class="event"><tspan class="year" fill="#9b574b">1933</tspan> · Citizenship app as Sophia Pyrch
+</text>
+<circle cx="1200" cy="1386" r="6" fill="#9b574b" stroke="#faf8f2" stroke-width="2"/>
+<path d="M 1200 1506 L 1218 1506" fill="none" stroke="#9b574b" stroke-width="1.5"/>
+<text x="1230" y="1516" text-anchor="start" class="event"><tspan class="year" fill="#9b574b">1938</tspan> · Naturalized as Sophie Pyrce
+</text>
+<circle cx="1200" cy="1506" r="6" fill="#9b574b" stroke="#faf8f2" stroke-width="2"/>
+<path d="M 600 1554 L 582 1554" fill="none" stroke="#246577" stroke-width="1.5"/>
+<text x="570" y="1564" text-anchor="end" class="event"><tspan class="year" fill="#246577">1940</tspan> · Died auto accident
+</text>
+<circle cx="600" cy="1554" r="6" fill="#246577" stroke="#faf8f2" stroke-width="2"/>
+<path d="M 1200 2130 L 1218 2130" fill="none" stroke="#9b574b" stroke-width="1.5"/>
+<text x="1230" y="2140" text-anchor="start" class="event"><tspan class="year" fill="#9b574b">1964</tspan> · Died heart condition
+</text>
+<circle cx="1200" cy="2130" r="6" fill="#9b574b" stroke="#faf8f2" stroke-width="2"/>
+</svg>
