@@ -86,8 +86,8 @@ The command-line wrapper downloads a tree through the RootsMagic desktop app,
 exports a new GEDCOM, and prepares proposed matches and an import preview:
 
 ```sh
-./genealogy doctor
-./genealogy fetch --person G4ZN-5FR --ancestors 10 --descendants 4
+./genealogy.sh doctor
+./genealogy.sh fetch --person G4ZN-5FR --ancestors 10 --descendants 4
 ```
 
 Run from this repository on an unlocked Mac with RootsMagic 12 in English.

@@ -236,7 +236,7 @@ class RootsMagicUI:
         if not permissions["app_exists"]:
             raise AutomationError(f"RootsMagic is not installed at {self.app}")
         if not permissions["accessibility"] or not permissions["screen_recording"]:
-            raise AutomationError("Enable Accessibility and Screen Recording for your terminal in System Settings → Privacy & Security, restart the terminal, and retry ./genealogy doctor. Permissions are not changed automatically.")
+            raise AutomationError("Enable Accessibility and Screen Recording for your terminal in System Settings → Privacy & Security, restart the terminal, and retry ./genealogy.sh doctor. Permissions are not changed automatically.")
         if not str(permissions["version"]).startswith("12."):
             raise AutomationError("This UI driver supports RootsMagic 12 in English")
         self.stage("Opening RootsMagic")

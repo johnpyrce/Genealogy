@@ -220,7 +220,7 @@ def fetch(args: argparse.Namespace, driver_factory=RootsMagicUI) -> int:
                             families_added=len(report["families_added"]), matches=str((directory / "matches.json").relative_to(ROOT)))
             write_json(manifest_path, manifest)
             print("\nAfter reviewing the proposed matches, rerun the preview with:")
-            print(shlex.join(["./genealogy", "preview", str(gedcom.relative_to(ROOT)), "--matches", str((directory / "matches.json").relative_to(ROOT))]))
+            print(shlex.join(["./genealogy.sh", "preview", str(gedcom.relative_to(ROOT)), "--matches", str((directory / "matches.json").relative_to(ROOT))]))
             return 0 if report["ready"] else 2
         except (Exception, KeyboardInterrupt) as error:
             manifest.update(status="interrupted" if isinstance(error, KeyboardInterrupt) else "failed", error=str(error))

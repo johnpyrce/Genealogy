@@ -1,4 +1,4 @@
-// Local RootsMagic 12 UI driver. Build through `./genealogy doctor`.
+// Local RootsMagic 12 UI driver. Build through `./genealogy.sh doctor`.
 // Commands and results are JSON; credentials are never handled here.
 import AppKit
 import ApplicationServices
@@ -205,7 +205,7 @@ struct Main {
                 return
             }
             guard trusted && screen else {
-                throw DriverError("Enable Accessibility and Screen Recording for the terminal that runs ./genealogy in System Settings → Privacy & Security, then restart that terminal. This helper does not grant permissions automatically.")
+                throw DriverError("Enable Accessibility and Screen Recording for the terminal that runs ./genealogy.sh in System Settings → Privacy & Security, then restart that terminal. This helper does not grant permissions automatically.")
             }
             if action == "launch" {
                 let configuration = NSWorkspace.OpenConfiguration()

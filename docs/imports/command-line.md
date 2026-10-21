@@ -18,7 +18,7 @@ Requirements:
 From the repository root:
 
 ```sh
-./genealogy doctor
+./genealogy.sh doctor
 ```
 
 On first use, `doctor` compiles the repository-owned Swift helper into the ignored
@@ -36,10 +36,10 @@ major layout changes may require updates.
 ## Download and preview
 
 ```sh
-./genealogy fetch --person G4ZN-5FR --ancestors 10 --descendants 4
+./genealogy.sh fetch --person G4ZN-5FR --ancestors 10 --descendants 4
 ```
 
-These are also the defaults, so `./genealogy fetch` downloads from Sophie
+These are also the defaults, so `./genealogy.sh fetch` downloads from Sophie
 Goscinski. The command creates a new local database before downloading. It does
 not upload changes to FamilySearch. If FamilySearch opens a sign-in page, finish
 the sign-in in your browser. The command waits up to ten minutes for sign-in,
@@ -85,7 +85,7 @@ reconciliation before a preview can be prepared.
 Specify a different prior pair with:
 
 ```sh
-./genealogy fetch --person G4ZN-5FR \
+./genealogy.sh fetch --person G4ZN-5FR \
   --previous-gedcom data/source-material/PreviousExport.ged \
   --previous-matches docs/imports/PreviousExport.matches.json
 ```
@@ -101,7 +101,7 @@ supplied as a reviewed `--matches` file, anyone omitted is treated as a new pers
 Discover matches and save proposals and reports:
 
 ```sh
-./genealogy preview data/source-material/YourExport.ged \
+./genealogy.sh preview data/source-material/YourExport.ged \
   --directory artifacts/imports/your-export-review
 ```
 
@@ -111,7 +111,7 @@ To carry proposed matches from an earlier export during discovery, pass both
 After reviewing/editing a generated `matches.json`, preview those exact decisions:
 
 ```sh
-./genealogy preview data/source-material/YourExport.ged \
+./genealogy.sh preview data/source-material/YourExport.ged \
   --matches artifacts/imports/your-export-review/matches.json \
   --report artifacts/imports/your-export-review/reviewed.md
 ```
@@ -144,7 +144,7 @@ A failed fetch retains its database, any partial GEDCOM, `download.json`, and th
 last UI screenshot/recognized labels. Do not import a partial GEDCOM. The command
 does not close dialogs or delete these files on failure. Finish or cancel a
 pending RootsMagic dialog manually before retrying; a new fetch starts a new run.
-Use `./genealogy preview` to review a completed GEDCOM without downloading again.
+Use `./genealogy.sh preview` to review a completed GEDCOM without downloading again.
 
 Only the final export and proposed import are local files. FamilySearch sign-in
 is handled by RootsMagic and your browser; the wrapper does not store passwords
