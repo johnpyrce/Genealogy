@@ -82,6 +82,11 @@
       "output": "america/index.html"
     }
   },
+  "tree_overview": {
+    "source": "artifacts/interactive/generation_overview.html",
+    "output": "tree/overview/app/index.html",
+    "page": "tree/overview/index.html"
+  },
   "timeline": "docs/sections/joseph_sophie_timeline_vertical.svg",
   "coat_of_arms": "docs/sections/doliwa_coat_of_arms.svg",
   "collections": {

@@ -207,3 +207,22 @@ The page mapping, timeline selection, and photo folders are configured in
 [`website/site.json`](website/site.json); templates and styles live in
 `website/templates/`. See [the website workflow](website/README.md) for details.
 When the preview is ready, ask Codex to **publish the latest site**.
+
+## Generation overview
+
+Build the local, offline surname-by-generation overview with:
+
+```sh
+uv run python -m scripts.build_generation_overview
+```
+
+Open `artifacts/interactive/generation_overview.html`. The overview shows
+collection-wide generation totals, a searchable surname count matrix, and
+individual records on selection. It defaults to the 12 largest surname groups;
+choose all groups to include every registry person in the visible rows.
+
+Generations reuse the analytics longest-parent-path calculation. They measure
+recorded ancestry depth, not historical cohorts: people with missing parents
+start at generation 1, and alternative parent accounts remain included without
+being resolved. Surname groups do not imply connected branches. The full build regenerates this overview and includes it on the website at
+`/tree/overview/`, linked as **Overview** from the Family trees page.

@@ -21,6 +21,7 @@ build_all() {
   uv run python -m scripts.export_gedcom
   uv run python -m scripts.build_cytoscape_genealogy_graph
   uv run python -m scripts.build_family_chart
+  uv run python -m scripts.build_generation_overview
 }
 
 command=${1:-all}

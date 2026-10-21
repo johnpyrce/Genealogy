@@ -299,7 +299,10 @@ def build_names() -> None:
 
 def build_tree() -> None:
     title, introduction = markdown(read(CONFIG["documents"]["tree"]["source"]))
+    overview = CONFIG["tree_overview"]
+    overview_url = "/" + str(Path(overview["page"]).parent) + "/"
     links = [
+        (overview_url, "Overview"),
         ("/tree/viewer/", "Family-tree viewer"),
         ("/tree/graph/", "Relationship graph"),
         ("/tree/text/", "Text family tree"),
@@ -311,6 +314,7 @@ def build_tree() -> None:
     )
     write(CONFIG["documents"]["tree"]["output"], page(title, body, title))
     artifacts = ROOT / "artifacts/interactive"
+    copy_file(ROOT / overview["source"], DIST / overview["output"])
     viewer_dir = DIST / "tree/viewer/app"
     graph_dir = DIST / "tree/graph/app"
     viewer_dir.mkdir(parents=True, exist_ok=True)
@@ -320,6 +324,7 @@ def build_tree() -> None:
     for name in ["genealogy_relationship_graph.html", "genealogy_relationship_graph_help.html", "cytoscape_genealogy_graph_elements.png"]:
         copy_file(artifacts / name, graph_dir / name)
     for route, label, src in [
+        (overview["page"], "Overview", "/" + overview["output"]),
         ("tree/viewer/index.html", "Family-tree viewer", "/tree/viewer/app/family_tree.html"),
         ("tree/graph/index.html", "Relationship graph", "/tree/graph/app/genealogy_relationship_graph.html"),
     ]:
