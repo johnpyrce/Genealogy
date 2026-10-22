@@ -162,6 +162,14 @@ preserved, with an additional `occurred_at_utc` timestamp. Historical icon
 records are included. The former CSV output, date and icon CLI filters have
 been replaced by this complete archive operation.
 
+Generate and open the full-history visitor report from the local archive with
+`./visit_report.sh`. Use `./visit_report.sh --export` to archive new online
+events first, or `./visit_report.sh --no-open` to generate without opening a
+browser. The script executes `scripts/templates/visit_analysis.ipynb` and saves
+the executed notebook and HTML report under `artifacts/visitor-access/`.
+Network registrations use the local `network_sources.json` evidence cache;
+addresses without cached evidence are shown as unclassified.
+
 The command downloads a bounded set of current records, commits the local
 transaction, checkpoints and flushes the database, then verifies its saved
 receipts before acknowledging online deletion in batches. Each acknowledgement

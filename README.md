@@ -79,6 +79,9 @@ Use these when you only need to regenerate or work on one part of the project:
 - `uv run python -m scripts.export_gedcom` writes the GEDCOM export.
 - `uv run python -m scripts.build_cytoscape_genealogy_graph` and `uv run python -m scripts.build_family_chart` generate interactive trees.
 - `uv run python -m scripts.build_dashboard` builds the analytics dashboard bundle.
+- `./visit_report.sh` regenerates the visitor report and opens it in your browser;
+  add `--export` to archive the latest online events first, or `--no-open` to
+  generate without opening it.
 
 ## Download from FamilySearch
 

@@ -203,6 +203,7 @@ def export_events(database: Path, url: str, values: dict) -> None:
     connection = None
     committed = False
     try:
+        print(f"Opening visitor archive: {database}", flush=True)
         connection = duckdb.connect(str(database))
         os.chmod(database, 0o600)
         connection.execute("BEGIN TRANSACTION")
@@ -220,6 +221,7 @@ def export_events(database: Path, url: str, values: dict) -> None:
             query = {"after": str(cursor)}
             if through is not None:
                 query["through"] = str(through)
+            print(f"Downloading events after cursor {cursor} (request timeout: 60 seconds)...", flush=True)
             with api(url, "events/archive?" + urlencode(query), values) as result:
                 page = json.load(result)
             if not isinstance(page, dict) or page.get("version") != 1 or not isinstance(page.get("events"), list):
@@ -254,11 +256,13 @@ def export_events(database: Path, url: str, values: dict) -> None:
                                        payload + [url.rstrip('/'), datetime.fromtimestamp(row['occurred_at'], timezone.utc), row['receipt'], row['id']])
                     updated += 1
                 pending.append({"id": row["id"], "receipt": row["receipt"]})
+            print(f"Downloaded {len(pending)} events; cursor {next_cursor} of {through}.", flush=True)
             if page["events"] and last_cursor != next_cursor:
                 raise ValueError("Archive page does not end at its advertised cursor.")
             if next_cursor == cursor:
                 break
             cursor = next_cursor
+        print(f"Saving and verifying {len(pending)} events locally...", flush=True)
         connection.execute("COMMIT")
         connection.execute("CHECKPOINT")
         # Flush the checkpointed database and its directory before any remote deletion.
@@ -273,9 +277,11 @@ def export_events(database: Path, url: str, values: dict) -> None:
             if saved != (item["receipt"],):
                 raise ValueError("Local archive verification failed; online records were retained.")
         committed = True
+        print("Local archive saved and verified. Removing confirmed online copies...", flush=True)
         deleted = missing = retained = 0
         for offset in range(0, len(pending), 50):
             batch = pending[offset:offset + 50]
+            print(f"Processing online copies {offset + 1}–{offset + len(batch)} of {len(pending)} (request timeout: 60 seconds)...", flush=True)
             with api(url, "events/archive/ack", values, "POST", json.dumps({"events": batch}).encode()) as result:
                 counts = json.load(result)
             if any(type(counts.get(key)) is not int or counts[key] < 0 for key in ("deleted", "missing", "retained")) or sum(counts[key] for key in ("deleted", "missing", "retained")) != len(batch):
