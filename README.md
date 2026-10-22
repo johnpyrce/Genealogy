@@ -220,9 +220,20 @@ Open `artifacts/interactive/generation_overview.html`. The overview shows
 collection-wide generation totals, a searchable surname count matrix, and
 individual records on selection. It defaults to the 12 largest surname groups;
 choose all groups to include every registry person in the visible rows.
+Generation labels include the minimum–maximum recorded birth years. Stacked bars
+show known and unknown birth-year counts across the whole generation, unaffected
+by surname filtering. Hover, focus, or tap a segment to see its count. A single
+year is shown once; no known years displays “Dates unknown”. These ranges may
+overlap and never estimate missing dates or affect generation placement.
 
-Generations reuse the analytics longest-parent-path calculation. They measure
-recorded ancestry depth, not historical cohorts: people with missing parents
-start at generation 1, and alternative parent accounts remain included without
-being resolved. Surname groups do not imply connected branches. The full build regenerates this overview and includes it on the website at
+Overview generations use the largest connected family as a reference (ties use
+its lowest person ID). Partners occupy the same level; parent–child links are
+exactly one generation apart. Connections are followed both forward and backward,
+so short ancestry branches align where they join the reference family. Its earliest
+level becomes Gen 1. Disconnected people appear in an Unaligned column, counted
+once but excluded from numbered-generation date ranges. Contradictory constraints
+leave the entire affected component unaligned with a conflict explanation and
+family record references; no alternative account is discarded. These display
+positions differ from the analytics heat map’s independent ancestry depths.
+Surname groups do not imply connected branches. The full build regenerates this overview and includes it on the website at
 `/tree/overview/`, linked as **Overview** from the Family trees page.

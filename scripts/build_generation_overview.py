@@ -2,32 +2,81 @@
 from __future__ import annotations
 
 import argparse
-from collections import Counter
+from collections import Counter, deque
 import json
 from pathlib import Path
 
-import duckdb
+from scripts.lib.genealogy_data import ROOT, load_families, load_people
 
-from scripts.build_genealogy_analytics import create_tables, query_rows
-from scripts.lib.genealogy_data import ROOT, load_people
+
+def generation_layout(people: list[dict], families: list[tuple]) -> dict:
+    """Align exact family steps in both directions within connected components.
+
+    The largest component is the reference family (ties use the lowest person ID).
+    Zero means unaligned, never an inferred generation. A contradictory component
+    is left entirely unaligned so traversal order cannot choose an account.
+    """
+    links = {person['id']: [] for person in people}
+
+    def connect(a: int, b: int, step: int, family_id: int) -> None:
+        links[a].append((b, step, family_id))
+        links[b].append((a, -step, family_id))
+
+    for family_id, (father, mother, children, _) in enumerate(families, 1):
+        if father is not None and mother is not None:
+            connect(father, mother, 0, family_id)
+        for parent in (father, mother):
+            if parent is not None:
+                for child in children:
+                    connect(parent, child, 1, family_id)
+
+    components = []
+    seen = set()
+    for person_id in sorted(links):
+        if person_id in seen:
+            continue
+        levels = {person_id: 0}
+        ready = deque([person_id])
+        conflicts = set()
+        while ready:
+            current = ready.popleft()
+            for other, step, family_id in links[current]:
+                expected = levels[current] + step
+                if other not in levels:
+                    levels[other] = expected
+                    ready.append(other)
+                elif levels[other] != expected:
+                    conflicts.add(family_id)
+        seen.update(levels)
+        components.append({'levels': levels, 'conflicts': sorted(conflicts)})
+    components.sort(key=lambda component: (-len(component['levels']), min(component['levels'])))
+    placements = {}
+    for index, component in enumerate(components):
+        levels = component['levels']
+        status = 'conflict' if component['conflicts'] else ('aligned' if index == 0 else 'disconnected')
+        offset = 1 - min(levels.values())
+        for person_id, level in levels.items():
+            placements[person_id] = {
+                'generation': level + offset if status == 'aligned' else 0,
+                'alignment': status,
+                'component': min(levels),
+                'conflicting_families': component['conflicts'],
+            }
+    return placements
 
 
 def build_data() -> dict:
-    """Reuse analytics generation semantics and count unique registry people."""
-    with duckdb.connect(':memory:') as connection:
-        create_tables(connection)
-        generations = {
-            row['person_id']: row['generation']
-            for row in query_rows(connection, 'SELECT * FROM person_generation')
-        }
-        families = connection.execute('SELECT COUNT(*) FROM families').fetchone()[0]
-    people = [dict(person, generation=generations[person['id']]) for person in load_people()]
+    """Align families for display and count unique registry people."""
+    registry_people = load_people()
+    families = load_families()
+    placements = generation_layout(registry_people, families)
+    people = [dict(person, **placements[person['id']]) for person in registry_people]
     counts = Counter(person['surname_group'] for person in people)
     return {
         'people': people,
         'groups': sorted(counts, key=lambda group: (-counts[group], group)),
-        'generations': max(generations.values(), default=0),
-        'families': families,
+        'generations': max((p['generation'] for p in people), default=0),
+        'families': len(families),
     }
 
 
