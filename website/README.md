@@ -38,6 +38,10 @@ are relative to the generated website. For example, `america/index.html` is the
 | Trees, GEDCOM, analytics | Generated from the authoritative registries |
 | Page frame and styling | `website/templates/` |
 
+Edit `docs/sections/pyrce_events.csv` to update the Joseph and Sophie timeline.
+The full build, including `./preview_site.sh`, regenerates
+`docs/sections/joseph_sophie_timeline_vertical.svg` before building the website.
+
 The Muszyna collection's `first_photo` setting selects the first gallery image;
 the remaining images keep their filename order. `photo_credits` records linked
 source credits shown in the gallery and on each credited image's detail page.
@@ -50,6 +54,16 @@ Muszyna images appear as downloads. Research Markdown notes are not gallery imag
 Synced `.gvid` references in the Sophie and Joseph folder appear as video panels
 among the photographs in filename order; viewers may need Google Drive permission
 to open them.
+
+The history also links to selected documents in `media/Ted` and
+`media/StanleyPyrce`, which point to their respective PyrceFamily Drive folders.
+Their entries in `collections` have `america_related: true`, an explicit `files`
+list, and a `source_prefix` matching the repository shortcut. Only those listed
+images are published, in separate galleries under `/america/photos/ted/` and
+`/america/photos/stanley/`. Add a filename to the appropriate list before linking
+to it from the history. Use a Markdown link such as
+`[Birth certificate](../../media/Ted/1920%20-%20Thaddeus%20Birth%20Certificate.jpg)`.
+Missing selected files stop the build. Keep these Drive folders locally available.
 
 Each Sophie and Joseph image gets a URL derived from its filename, independent
 of its position in the gallery. Adding a new image preserves existing URLs;

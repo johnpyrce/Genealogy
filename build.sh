@@ -17,6 +17,7 @@ build_dashboard() {
 build_all() {
   uv run python -m scripts.validate_genealogy_data
   uv run python -m scripts.build_box_drawing_tree
+  uv run python -m scripts.build_pyrce_timeline
   build_dashboard
   uv run python -m scripts.export_gedcom
   uv run python -m scripts.build_cytoscape_genealogy_graph

@@ -73,6 +73,7 @@ Use these when you only need to regenerate or work on one part of the project:
 
 - `uv run python -m scripts.validate_genealogy_data` validates registry references and evidence.
 - `uv run python -m scripts.build_box_drawing_tree` regenerates `docs/trees/family_tree.md`.
+- `uv run python -m scripts.build_pyrce_timeline` regenerates `docs/sections/joseph_sophie_timeline_vertical.svg` from `docs/sections/pyrce_events.csv`. The full build and website preview also run this step automatically.
 - `uv run python -m scripts.build_genealogy_analytics` recreates the DuckDB database and JSON catalog.
 - `uv run python -m scripts.render_genealogy_analytics_report` renders the analytics report.
 - `uv run python -m scripts.sync_genealogy_analytics_dashboard` refreshes the dashboard data snapshot.

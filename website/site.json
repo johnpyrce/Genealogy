@@ -143,6 +143,27 @@
         "1950s - Jan & Marianna Goscinski Family Wedding-Reimagined.png": "Reconstructed image. Details may differ from the historical scene; use an original photograph for evidence.",
         "Early Muszyna-Reimagined.png": "Reconstructed image. Details may differ from the historical scene; use an original photograph for evidence."
       }
+    },
+    "ted": {
+      "directory": "media/Ted",
+      "source_prefix": "media/Ted",
+      "america_related": true,
+      "title": "Thaddeus Pyrce — documents",
+      "files": [
+        "1920 - Thaddeus Birth Certificate.jpg",
+        "1936 - Thaddeus Birth Cert Correction.jpg"
+      ]
+    },
+    "stanley": {
+      "directory": "media/StanleyPyrce",
+      "source_prefix": "media/StanleyPyrce",
+      "america_related": true,
+      "title": "Stanley Pyrce — citizenship documents",
+      "files": [
+        "1936 - Stanley Cert of Arrival.jpg",
+        "1936 - Stanley Declaration.jpg",
+        "1936 - Stanley Petition for Naturalization.jpg"
+      ]
     }
   },
   "legacy_photo_urls": {

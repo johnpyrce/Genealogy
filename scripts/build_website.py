@@ -14,7 +14,7 @@ import unicodedata
 from string import Template
 from PIL import Image, ImageOps
 from pathlib import Path
-from urllib.parse import quote
+from urllib.parse import quote, unquote
 from xml.etree import ElementTree
 
 
@@ -48,12 +48,12 @@ def inline(text: str, link_map: dict[str, str] | None = None) -> str:
 
     def image(match: re.Match[str]) -> str:
         alt, url = match.group(1), match.group(2).strip("<>")
-        url = link_map.get(url, url)
+        url = link_map.get(url, link_map.get(unquote(url), url))
         return hold(f'<img src="{html.escape(url, quote=True)}" alt="{html.escape(alt, quote=True)}">')
 
     def link(match: re.Match[str]) -> str:
         label, url, new_tab = match.group(1), match.group(2).strip("<>"), match.group(3)
-        url = link_map.get(url, url)
+        url = link_map.get(url, link_map.get(unquote(url), url))
         attributes = ' target="_blank" rel="noopener"' if new_tab else ""
         return hold(f'<a href="{html.escape(url, quote=True)}"{attributes}>{html.escape(label)}</a>')
 
@@ -444,8 +444,16 @@ def image_gallery(
     photo_captions: dict[str, str] | None = None,
     photo_notes: dict[str, str] | None = None,
     linked_videos: list[tuple[str, str]] | None = None,
+    filenames: list[str] | None = None,
 ) -> dict[str, str]:
     files = image_files(source_dir)
+    if filenames is not None:
+        available = {path.name: path for path in files}
+        files = []
+        for name in filenames:
+            if name not in available:
+                raise FileNotFoundError(f"Selected photo is missing: {source_dir / name}")
+            files.append(available[name])
     if first_photo:
         featured = next((source for source in files if source.name == first_photo), None)
         if featured is None:
@@ -545,13 +553,21 @@ def image_gallery(
 
 
 def america_link_map() -> dict[str, str]:
-    directory = ROOT / CONFIG["collections"]["america"]["directory"]
     mapping = {}
-    for path in image_files(directory):
-        source = f"../../media/SophieJoseph/{path.name}"
-        destination = f"/america/photos/{photo_slug(path.name)}/"
-        mapping[source] = destination
-        mapping[quote(source, safe="/")] = destination
+    for key, collection in CONFIG["collections"].items():
+        if key != "america" and not collection.get("america_related"):
+            continue
+        directory = ROOT / collection["directory"]
+        prefix = collection.get("source_prefix", "media/SophieJoseph")
+        gallery_url = "/america/photos/" if key == "america" else f"/america/photos/{key}/"
+        selected = collection.get("files")
+        for path in image_files(directory):
+            if selected is not None and path.name not in selected:
+                continue
+            source = f"../../{prefix}/{path.name}"
+            destination = f"{gallery_url}{photo_slug(path.name)}/"
+            mapping[source] = destination
+            mapping[quote(source, safe="/")] = destination
     return mapping
 
 
@@ -571,6 +587,17 @@ def build_america() -> None:
                   description_html='<p><a href="/america/">Read the America story</a> · <a href="/photos/">Pictures from Muszyna</a>. Select an image to read its notes and open it full size.</p>',
                   photo_captions=collection.get("photo_captions"), photo_notes=collection.get("photo_notes"),
                   linked_videos=linked_video_files(ROOT / collection["directory"]))
+    for key, related in CONFIG["collections"].items():
+        if not related.get("america_related"):
+            continue
+        image_gallery(
+            ROOT / related["directory"], f"assets/photos/{key}", related["title"],
+            f"america/photos/{key}/index.html", convert=True, detail_pages=True,
+            filenames=related["files"],
+            description_html='<p><a href="/america/">Read the America story</a> · '
+                             '<a href="/america/photos/">Family documents and photographs</a></p>',
+            photo_captions=related.get("photo_captions"), photo_notes=related.get("photo_notes"),
+        )
     timeline = ROOT / CONFIG["timeline"]
     copy_file(timeline, DIST / "assets/america" / timeline.name)
     link_map = america_link_map()

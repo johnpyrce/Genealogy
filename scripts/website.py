@@ -78,7 +78,14 @@ def input_digest() -> str:
         directory = ROOT / collection["directory"]
         if not directory.is_dir():
             raise FileNotFoundError(f"Photo collection unavailable: {directory}")
-        paths.extend(p for p in directory.iterdir() if p.is_file() and p.name != ".DS_Store")
+        if "files" in collection:
+            for name in collection["files"]:
+                source = directory / name
+                if not source.is_file():
+                    raise FileNotFoundError(f"Selected photo is missing: {source}")
+                paths.append(source)
+        else:
+            paths.extend(p for p in directory.iterdir() if p.is_file() and p.name != ".DS_Store")
     return digest_files(paths)
 
 

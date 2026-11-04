@@ -56,6 +56,47 @@ class WebsiteTests(unittest.TestCase):
             _, rendered = build_website.markdown(f'[Manifest]({quote(source, safe="/")})', mapping)
             self.assertEqual(rendered, f'<p><a href="/america/photos/{build_website.photo_slug(name)}/">Manifest</a></p>')
 
+    def test_partially_encoded_links_resolve_for_links_and_images(self):
+        source = '../../media/SophieJoseph/1912 - Ship, later name.jpg'
+        mapping = {source: '/america/photos/ship/'}
+        url = quote(source, safe='/,')
+        _, rendered = build_website.markdown(f'[Ship]({url})\n\n![Ship]({url})', mapping)
+        self.assertIn('href="/america/photos/ship/"', rendered)
+        self.assertIn('src="/america/photos/ship/"', rendered)
+
+    def test_related_collection_publishes_only_selected_images(self):
+        from PIL import Image
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / 'main').mkdir()
+            photos = root / 'media/Ted'
+            photos.mkdir(parents=True)
+            name = '1936 - Correction.jpg'
+            Image.new('RGB', (40, 20), 'white').save(photos / name)
+            (photos / 'Unselected.jpg').write_bytes(b'not an image')
+            config = {'collections': {
+                'america': {'directory': 'main'},
+                'ted': {'directory': 'media/Ted', 'source_prefix': 'media/Ted',
+                        'america_related': True, 'files': [name]},
+            }}
+            output = root / 'dist'
+            with patch.object(build_website, 'ROOT', root), patch.object(build_website, 'CONFIG', config), patch.object(build_website, 'DIST', output):
+                mapping = build_website.america_link_map()
+            with patch.object(build_website, 'DIST', output):
+                links = build_website.image_gallery(
+                    photos, 'assets/photos/ted', 'Ted', 'america/photos/ted/index.html',
+                    convert=True, detail_pages=True, filenames=[name],
+                )
+                with self.assertRaisesRegex(FileNotFoundError, 'Selected photo is missing'):
+                    build_website.image_gallery(photos, 'assets/test', 'Ted', 'test/index.html',
+                                                filenames=['Missing.jpg'])
+            self.assertEqual(mapping['../../media/Ted/' + name], links[name])
+            self.assertEqual(len(links), 1)
+            self.assertNotIn('../../media/Ted/Unselected.jpg', mapping)
+            self.assertTrue((output / links[name].strip('/') / 'index.html').is_file())
+            page = (output / links[name].strip('/') / 'index.html').read_text(encoding='utf-8')
+            self.assertIn('href="/america/photos/ted/">All photos', page)
+
     def test_display_captions_preserve_photo_routes_and_scan_resolution(self):
         from PIL import Image
         with tempfile.TemporaryDirectory() as directory:
