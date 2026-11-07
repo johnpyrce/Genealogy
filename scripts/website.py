@@ -74,6 +74,9 @@ def input_digest() -> str:
     for folder in ["data/registries", "data/source-material/charts", "docs", "website", "scripts", "apps/analytics-dashboard/src"]:
         paths.extend(p for p in (ROOT / folder).rglob("*") if p.is_file()
                      and not {"__pycache__", "node_modules"}.intersection(p.parts) and p.name != ".DS_Store")
+    for story in config.get("stories", {}).values():
+        for original in story.get("assets", {}):
+            paths.append((ROOT / story["source"]).parent / original)
     for collection in config["collections"].values():
         directory = ROOT / collection["directory"]
         if not directory.is_dir():

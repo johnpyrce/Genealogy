@@ -10,6 +10,26 @@ from scripts import build_website, website, visitor_access
 
 
 class WebsiteTests(unittest.TestCase):
+    def test_stories_index_and_individual_pages(self):
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory)
+            with patch.object(build_website, 'DIST', output):
+                build_website.build_stories()
+            index = (output / 'stories/index.html').read_text(encoding='utf-8')
+            self.assertIn('Leona Pyrce and Pyrce Park', index)
+            self.assertNotIn('coming soon', index)
+            self.assertNotIn('Prisoner card and translation', index)
+            for story in build_website.CONFIG['stories'].values():
+                route = '/' + story['output'].removesuffix('index.html')
+                self.assertIn(f'href="{route}"', index)
+                content = (output / story['output']).read_text(encoding='utf-8')
+                self.assertIn('href="/stories/">Back to Stories</a>', content)
+                parser = website.Links()
+                parser.feed(content)
+                for asset in story['assets'].values():
+                    self.assertIn('/' + asset, parser.links)
+                    self.assertTrue((output / asset).is_file())
+
     def test_generated_icon_formats_and_versioned_links(self):
         from PIL import Image
         with tempfile.TemporaryDirectory() as directory:

@@ -32,11 +32,19 @@ are relative to the generated website. For example, `america/index.html` is the
 | --- | --- |
 | Homepage, family names, introductions | Markdown files selected in `documents` |
 | America history | `docs/sections/pyrce_history.md` |
+| Stories index | `docs/sections/stories.md` |
+| Individual family stories | `docs/history/`, selected in `stories` |
 | Timeline | SVG selected in `timeline`; use the same filename in the history document |
 | Muszyna photos | Directory selected in `collections.muszyna.directory` |
 | Sophie and Joseph photos | Directory selected in `collections.america.directory` |
 | Trees, GEDCOM, analytics | Generated from the authoritative registries |
 | Page frame and styling | `website/templates/` |
+
+Keep the Stories entry page as a list of links. Add each finished story to
+`stories` in `site.json`, with its Markdown `source`, HTML `output`, and any
+`assets` mapping. Asset keys are paths relative to the story document; values
+are output paths relative to the generated website. Each story page includes
+a link back to the index. Planned stories can be listed without a link until ready.
 
 Edit `docs/sections/pyrce_events.csv` to update the Joseph and Sophie timeline.
 The full build, including `./preview_site.sh`, regenerates

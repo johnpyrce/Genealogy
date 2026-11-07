@@ -73,13 +73,13 @@
       "source": "docs/sections/gedcom.md",
       "output": "download/index.html"
     },
-    "story": {
-      "source": "docs/history/1945 - Bronislaw Goscinski Auschwitz History.md",
-      "output": "stories/index.html"
-    },
     "america": {
       "source": "docs/sections/pyrce_history.md",
       "output": "america/index.html"
+    },
+    "stories": {
+      "source": "docs/sections/stories.md",
+      "output": "stories/index.html"
     }
   },
   "tree_overview": {
@@ -200,5 +200,34 @@
     "31": "1964 - Sophie Funeral Card.tif",
     "32": "Andrew Goscinski, Sophie brother, also came to America.tif",
     "33": "Sophie was from Muszyna, PO.tif"
+  },
+  "stories": {
+    "bronislaw_goscinski": {
+      "source": "docs/history/1945 - Bronislaw Goscinski Auschwitz History.md",
+      "output": "stories/bronislaw-goscinski/index.html",
+      "assets": {
+        "Bronislaw.jpg": "assets/history/Bronislaw.jpg",
+        "BronislawCard.png": "assets/history/BronislawCard.png"
+      }
+    },
+    "stanley_pyrce": {
+      "source": "docs/history/stanley.md",
+      "output": "stories/stanley-pyrce/index.html",
+      "assets": {
+        "../../media/StanleyPyrce/1988 - Monte Battaglia Memorial.jpg": "assets/history/stanley-pyrce/monte-battaglia-memorial.jpg"
+      }
+    },
+    "why": {
+      "source": "docs/history/why.md",
+      "output": "stories/why/index.html",
+      "assets": {}
+    },
+    "leona_pyrce": {
+      "source": "docs/history/leona.md",
+      "output": "stories/leona-pyrce/index.html",
+      "assets": {
+        "leona-pyrce-park-sign.jpg": "assets/history/leona-pyrce/park-sign.jpg"
+      }
+    }
   }
 }

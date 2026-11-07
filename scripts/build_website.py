@@ -388,15 +388,20 @@ def build_download() -> None:
     write(CONFIG["documents"]["download"]["output"], page(title, body, title))
 
 
-def build_story() -> None:
-    history = ROOT / "docs/history"
-    copy_file(history / "Bronislaw.jpg", DIST / "assets/history/Bronislaw.jpg")
-    copy_file(history / "BronislawCard.png", DIST / "assets/history/BronislawCard.png")
+def build_stories() -> None:
     doc_page(
-        CONFIG["documents"]["story"]["source"],
-        CONFIG["documents"]["story"]["output"],
-        link_map={"Bronislaw.jpg": "/assets/history/Bronislaw.jpg", "BronislawCard.png": "/assets/history/BronislawCard.png"},
+        CONFIG["documents"]["stories"]["source"],
+        CONFIG["documents"]["stories"]["output"],
     )
+    for story in CONFIG["stories"].values():
+        source = ROOT / story["source"]
+        link_map = {}
+        for original, output in story.get("assets", {}).items():
+            copy_file(source.parent / original, DIST / output)
+            link_map[original] = "/" + output
+        title, body = markdown(read(story["source"]), link_map)
+        body = f'<article class="document">{body}<p><a href="/stories/">Back to Stories</a></p></article>'
+        write(story["output"], page(title, body, title))
 
 
 def photo_slug(filename: str) -> str:
@@ -647,7 +652,7 @@ def main() -> None:
     build_tree()
     build_analytics()
     build_download()
-    build_story()
+    build_stories()
     muszyna_description = (
         '<p>Muszyna, where Sophie and Joseph Pyrce emigrated from, is today a delightful small Polish spa town near Poland’s southern border with Slovakia. '
         'Learn more about its history and cultural sites at the <a href="https://muszyna.pl/" target="_blank" rel="noopener">official Muszyna city website</a> '
