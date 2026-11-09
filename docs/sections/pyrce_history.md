@@ -47,7 +47,7 @@ to Thaddeus Mathew Pyrch and his father to Joseph Pyrch, effectively changing th
 "Pyrch".  (Its curious that his middle name was changed as well.)
 View the [birth certificate correction](../../media/Ted/1936%20-%20Thaddeus%20Birth%20Cert%20Correction.jpg).
 
-## US Census, 1920:  Porch?  Borch?
+## US Census, 1920:  Porch?
 
 General searches in the 1920 Census with possible names (e.g., Perc, Pyrc, Pyrch, Pirc, Puirch, and Pyrce) did not
 find a match.  However, an address for the family was identified from the Birth Certificate for Thaddeus Pyrce
@@ -74,11 +74,11 @@ between Bernice and Charles because of the long span of years between their birt
 
 ### Comparison with the Pyrce family
 
-The exact proposed address, two Polish-born parents, the given names Joe/Sophia/Stanley, the size of the household, and the children's approximate age pattern make this a strong match.
+The exact address, two Polish-born parents, the given names Joe/Sophia/Stanley, the size of the household, and the children's approximate age pattern make this a strong match.
 
 - **Joe/Joseph:** age 40 is close to the family’s conflicting 1879/1881 birth accounts. Immigration in 1911 agrees with Sophie's later citizenship statement.
 - **Sophia/Sophie:** age 30 agrees with the approximate 1890 birth year in the 1930 and 1940 censuses, while differing from the 1883 account. The immigration year 1910 conflicts with her later statement of continuous residence beginning in May 1912.
-- **Stanley:** age 8 agrees with November 5, 1911, but **Illinois is explicitly recorded**, conflicting with the family’s Poland birthplace. 
+- **Stanley:** age 8 agrees with November 5, 1911, but **Illinois is explicitly recorded**, conflicting with his Poland birthplace. 
 - **Bertha/Bernice:** age 6 is compatible with the August 1913 family birth date. The different given name remains unexplained; the image does not say Bernice.
 - **Louis/Charles Lewis:** Louis is a plausible name connection to Charles Louis in Sophie's citizenship statement, but the image does not call him Charles. His age is written as 1 plus a fraction of a year. 
 - **Thaddeus:** the family's February 17/19, 1920 birth accounts place him after the official census date, so his absence is expected.
@@ -229,7 +229,11 @@ All three of the sons had served in the military in World War II, and Stanley ha
 
 View the [1950 Census](../../media/SophieJoseph/1950%20-%20Census%20as%20Pyrce.jpg).
 
-Note that the 1950 Census is the last that is publically available now.
+Note that the 1950 Census is the last that is currently publically available.
+
+## Sophie's death
+
+Sophie died in 1964.  
 
 
 ## How did the name come to be "Pyrce"?
@@ -273,18 +277,27 @@ Census cells show **approximate birth year (recorded age)**. Approximate years g
 
 "-" indicates that the person was not living at that time.
 
-| Family member | 1920 census | 1930 census | 1940 census | 1950 census | 1933 citizenship statement | Gravestone |
-| --- | --- | --- | --- | --- | --- | --- |
-| Joseph / Józef | c. 1880 (40) | c. 1879 (51) | — | — | 8 Mar 1881 | 1879 |
-| Sophie / Zofia | c. 1890 (30) | c. 1890 (40) | c. 1890 (50) | c. 1892 (58) | 1883 | 1 May 1883 |
-| Stanley / Stanisław | c. 1912 (8) | c. 1913 (17) | c. 1914 (26) | — | 5 Nov 1911 | 5 Nov 1911 |
-| Bernice / Bronisława | c. 1914 (6) | c. 1915 (15) | c. 1916 (24) | c. 1917 (33) | 1 Aug 1914 | 7 Aug 1913 |
-| Charles / Karol | c. 1918 (1+) | c. 1918 (12) | c. 1918 (22) | c. 1920 (30) | 4 May 1919 | 4 Nov 1917 |
-| Thaddeus / Tadeusz | — | c. 1920 (10) | c. 1920 (20) | c. 1921 (29) | 19 Feb 1920 | 17 Feb 1920 |
-| Stephanie / Stefania / Stella | — | c. 1924 (6) | c. 1924 (16) | c. 1925 (25) | 16 Jun 1923 | 16 Jun 1923 |
+| Family member | 1920 census | 1930 census | 1940 census | 1950 census | 1933 citizenship statement | Other | Gravestone |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Joseph / Józef | c. 1880 (40) | c. 1879 (51) | — | — | 8 Mar 1881 | | 1879 |
+| Sophie / Zofia | c. 1890 (30) | c. 1890 (40) | c. 1890 (50) | c. 1892 (58) | 1883 | 1893 [¹](#note-1) | 1 May 1883 |
+| Stanley / Stanisław | c. 1912 (8) | c. 1913 (17) | c. 1914 (26) | — | 5 Nov 1911 | | 5 Nov 1911 |
+| Bernice / Bronisława | c. 1914 (6) | c. 1915 (15) | c. 1916 (24) | c. 1917 (33) | 1 Aug 1914 | 1913 [²](#note-2) | 7 Aug 1913 |
+| Charles / Karol | c. 1918 (1+) | c. 1918 (12) | c. 1918 (22) | c. 1920 (30) | 4 May 1919 | | 4 Nov 1917 |
+| Thaddeus / Tadeusz | — | c. 1920 (10) | c. 1920 (20) | c. 1921 (29) | 19 Feb 1920 | 1920 [³](#note-3) | 17 Feb 1920 |
+| Stephanie / Stefania / Stella | — | c. 1924 (6) | c. 1924 (16) | c. 1925 (25) | 16 Jun 1923 | | 16 Jun 1923 |
 
-The final birth date for Bernice is from a birth certificate that was in her records, and can be seen in the family 
-archive. The birth date for Thaddeus is from a birth certificate, referenced above.
+<a id="note-1"></a>
+
+**1.** Sophie's birth year is given as 1893 in her death certificate.  This can be seen in the family archive.
+
+<a id="note-2"></a>
+
+**2.** Bernice's birth year is given as 1913 in a baptism certificate, available in the family archive.
+
+<a id="note-3"></a>
+
+**3.** A birth certificate, referenced above, is available for Thaddeus.
 
 
 ## Immigration records and unresolved conflicts
