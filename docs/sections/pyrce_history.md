@@ -1,6 +1,6 @@
 # The Pyrce family in America
 
-Józef (Joseph) Pyrć and Zofia (Sophie) Gościńska came from Muszyna (for Sophie, maybe for Joseph), in the
+Zofia (Sophie) Gościńska came from Muszyna, and Józef (Joseph) Pyrć may have come from there as well. The town is in the
 historical region of Galicia, then part of Austria-Hungary and now in southern
 Poland. 
 
@@ -10,15 +10,15 @@ Poland.
 
 ## Arrival in the US
 
-Records indicate that Sophie and Joseph were wed in Muszyna, Poland.  Joseph came to America first, and Sophie followed a year later with their new born son, named "Stanisław" but later called "Stanley".  
+Records indicate that Sophie and Joseph were wed in Muszyna, Poland.  Joseph came to America first, and Sophie followed a year later with their newborn son, named "Stanisław" but later called "Stanley".  
 
 A 
 [Certificate of Arrival](../../media/StanleyPyrce/1936%20-%20Stanley%20Cert%20of%20Arrival.jpg)
-for Stanley in 1936 identified
-his arrival as June 5, 1912 on the SS Königin Luise at the New York Port of Entry, and that his name
-was **Stanislaw Perc**.  
+issued for Stanley in 1936 records
+his arrival on June 5, 1912, aboard the SS Königin Luise at the New York port of entry and lists his name
+as **Stanislaw Perc**.  
 
-The identifying number on this form, along with the date and ship allowed the manifest to be found on Ellis Island.
+The identifying number on this form, along with the date and ship, allowed the manifest to be found on Ellis Island.
 The name on the entry manifest appears to be "Thanislav Perc" and Sophie was identified as "Sofia Perc".
 He was age 1 in 1912, so he was born in 1911.  The origin of "Galicia, Muszyna" was misspelled as "Galiera, Muskyne".  
 
@@ -31,21 +31,21 @@ There are food menus from the Königin Luise [available](https://commons.wikimed
 
 The [family chart S2, “Gościńscy z Wapiennego,”](/sources/#s2) says "Zofia née Gościńska emigrated to Chicago and married there". That conflicts with Sophie’s 1933 statement of a 1910 marriage in Muszyna (see below).
 
-## Bernice Baptism:  1913
+## Bernice’s baptism: 1913
 
 Bernice, the first child born in America, has a 
 [baptism certificate](../../media/SophieJoseph/1913%20-%20Bernice%20Baptism%20Certificate.jpg)
 giving her birth date as August 7, 1913.  This
 lists her name as "Bernice Pyrc" and her parents as "Joseph Pyrc" and "Sophia Goscinski".  
-(Its curious that Sophia's name is given as Goscinski rather than the more appropriate Goscinska.)
+(It’s curious that Sophia's name is given as Goscinski rather than the more appropriate Goscinska.)
 Her name is given as "Bernice" rather than the name "Bronisława" used in the Polish
 genealogical charts.  
 
 She was baptized at St. Casimir, a church founded in 1890 by Polish immigrants in the Little Village neighborhood.  The church
-still exists (although the current building was built between 1917 and 1919) but now is named [Mother of the Americas](https://www.motheroftheamericas.org/english.html?locale=en) after parishes merged, reflecting a changed ethnic population.
+still exists (although the current building was built between 1917 and 1919) but is now named [Mother of the Americas](https://www.motheroftheamericas.org/english.html?locale=en) after parishes merged, reflecting a changed ethnic population.
 The building is in the [Polish cathedral style](https://en.wikipedia.org/wiki/Polish_cathedral_style).
 
-## Thaddeus Birth Certificate:  1920
+## Thaddeus’s birth certificate: 1920
 
 Tadeus/Thaddeus/Ted, the family's fourth child, has his 1920
 [birth certificate](../../media/Ted/1920%20-%20Thaddeus%20Birth%20Certificate.jpg)
@@ -54,9 +54,9 @@ This gives Polish names for his parents:  "Joseph Pyrc" and "Zofia Goscinska".  
 Joseph as 37 and Zofia as 33.  Ted's name is the Polish version, "Tadeuss Joseph Pyrc".
 It identifies them as living on 2127 S. Fairfield Avenue in Chicago.
 
-A Correction to this birth certificate was filed in 1936, 16 years later, changing his name
+A correction to this birth certificate was filed in 1936, 16 years later, changing his name
 to Thaddeus Mathew Pyrch and his father to Joseph Pyrch, effectively changing the name from "Pyrc" to
-"Pyrch".  (Its curious that his middle name was changed as well.)
+"Pyrch".  (It’s curious that his middle name was changed as well.)
 View the [birth certificate correction](../../media/Ted/1936%20-%20Thaddeus%20Birth%20Cert%20Correction.jpg).
 
 Another child, Emil, died very young and there are no dates available for him.
@@ -64,7 +64,7 @@ Another child, Emil, died very young and there are no dates available for him.
 ## US Census, 1920:  Porch?
 
 General searches in the 1920 Census with possible names (e.g., Perc, Pyrc, Pyrch, Pirc, Puirch, and Pyrce) did not
-find a match.  However, an address for the family was identified from the Birth Certificate for Thaddeus Pyrce
+find a match.  However, an address for the family was identified from Thaddeus Pyrce’s birth certificate
 that lists the family as living on 2127 South Fairfield Ave in Chicago at his birth in February 1920.  Using
 that address, a five-person household was identified in unit 188 at that address that looks like a reasonable match.
 The surname appears to read **Porch** but the handwriting is not completely legible.
@@ -176,17 +176,17 @@ The statement uses Americanized forms alongside the Polish names. Some dates dif
 Sophie became a [citizen on March 22, 1938](../../media/SophieJoseph/1938%20-%20Naturalization%20-%20Front.tif).
 The [reverse of her naturalization record](../../media/SophieJoseph/1938%20-%20Naturalization%20-%20Back.tif)
 records a name change to **Sophie Pyrce**. The
-family lived at 2406 S. Spaulding when Sophie filed her 1933 statement, but is lives at
-4307 South Sawyer Ave in 1938.
+family lived at 2406 S. Spaulding when Sophie filed her 1933 statement but was living at
+4307 South Sawyer Ave. in 1938.
 
 ## Joseph's death
 
-Joseph died December 16, 1939.  His death certificate is in the name "Joseph Pyrch", and is certificate number 0034623
-in Cook County, the State of Illinois.  (I have not been able to obtain a copy of the death certificate from
+Joseph died on December 16, 1939.  His death certificate is in the name "Joseph Pyrch", and is certificate number 0034623
+in Cook County, Illinois.  (I have not been able to obtain a copy of the death certificate from
 the county.)
-Joseph's [tomb stone](https://www.findagrave.com/memorial/270123521/joseph-pyrce) gives his name as "Joseph Pyrce".
+Joseph's [tombstone](https://www.findagrave.com/memorial/270123521/joseph-pyrce) gives his name as "Joseph Pyrce".
 
-Curiously the birth date on his tomb stone appears altered. 
+Curiously, the birth date on his tombstone appears altered. 
 
 ## 1940 Census:  Pyrce
 
@@ -208,11 +208,11 @@ Curiously the birth date on his tomb stone appears altered.
 
 ## Stanley Pyrce records:  Perc, Pyrc, Pirc, Pyrch, Pyrce
 
-Stanley, the first child, was born in Poland.  His recorded names run a large gamut.
+Stanley, the first child, was born in Poland.  His recorded names vary widely.
 
 - His name was **Stanislaw Perc** in the manifest on arrival at Ellis Island, as previously mentioned.
-- A [Certificate of Arrival](../../media/StanleyPyrce/1936%20-%20Stanley%20Cert%20of%20Arrival.jpg) dated 1936 attests that Stanley was born November 5, 1911 and arrived June 5, 1912 at New York. His name is listed as "Perc, Stanislaw".
-- A [Declaration of Intention](../../media/StanleyPyrce/1936%20-%20Stanley%20Declaration.jpg) to gain citizenship for Stanley is dated May 1936.  This lists his birthplace as Muszyna, Poland on November 5, 1911.  It gives several alternative names:  Stanley John Pyrc, Stanley John Pyrch, or S. J. Pirc, with "Pyrc" being the name he signed.
+- A [Certificate of Arrival](../../media/StanleyPyrce/1936%20-%20Stanley%20Cert%20of%20Arrival.jpg) dated 1936 attests that Stanley was born on November 5, 1911, and arrived in New York on June 5, 1912. His name is listed as "Perc, Stanislaw".
+- A [Declaration of Intention](../../media/StanleyPyrce/1936%20-%20Stanley%20Declaration.jpg) to gain citizenship for Stanley is dated May 1936.  This lists his birthplace as Muszyna, Poland, and his birth date as November 5, 1911.  It gives several alternative names:  Stanley John Pyrc, Stanley John Pyrch, or S. J. Pirc, with "Pyrc" being the name he signed.
 - His [Petition for Naturalization](../../media/StanleyPyrce/1936%20-%20Stanley%20Petition%20for%20Naturalization.jpg) is dated March 1941 and gives his name as Stanley Perc.
 - His [1941 naturalization court card](../../media/SophieJoseph/1941%20-%20Stanley%20Pyrce%20Court%20Naturalization%20Card.jpg) records him as **Stanley Pyrce** and gives May 20, 1941, as the date of admission.
 - A [1943 pay envelope](https://archive.pyrce.org/#album=1BBN0wvrVgRiKfmurPiiYDShYqHR3hoyI&photo=1RwdAX1K6FQ6R59PHhA3gqM8LM0_K-Rx1) from the Crane Company gives his name as "Stanley Pyrc." This may reflect a spelling used when he began working there, possibly more than a decade earlier.
@@ -230,7 +230,7 @@ Stanley, the first child, was born in Poland.  His recorded names run a large ga
 | Thaddeus Pyrce  | Son                    |           29 | Never married  | Illinois   | Elevator operator, printing press business |
 | Stephanie Pyrce | Daughter               |           25 | Never married  | Illinois   | Office work, electric appliances business  |
 
-All three of the sons had served in the military in World War II, and Stanley had died in Italy.
+All three sons had served in the military in World War II, and Stanley had died in Italy.
 
 
 ### Employment and citizenship details
@@ -242,12 +242,12 @@ All three of the sons had served in the military in World War II, and Stanley ha
 
 View the [1950 Census](../../media/SophieJoseph/1950%20-%20Census%20as%20Pyrce.jpg), lines 4-8.
 
-Note that the 1950 Census is the last that is publically available.
+Note that the 1950 Census is the last that is publicly available.
 
 ## Sophie's death
 
 Sophie died in 1964.  Her [death certificate](../../media/SophieJoseph/1964%20-%20Death%20Certificate.tif) gives her birth year as 1893, which is significantly
-later than other records.
+later than the years given in other records.
 
 
 ## How did the name become "Pyrce"?
@@ -262,13 +262,13 @@ later than other records.
 |Pyrc|1920|Ted's birth certificate|
 |Puirch|1930|Census record; may be an error|
 |Pyrch|1933|Sophie's Citizenship application|
-|Pyrch|1936|Ted birth certificate correction|
-|Pyrc|1936|Stanley Declaration of Intent alternative|
-|Pirc|1936|Stanley Declaration of Intent alternative|
-|Perc|1936|Stanley Declaration of Intent alternative|
+|Pyrch|1936|Ted’s birth certificate correction|
+|Pyrc|1936|Stanley’s Declaration of Intent alternative|
+|Pirc|1936|Stanley’s Declaration of Intent alternative|
+|Perc|1936|Stanley’s Declaration of Intent alternative|
 |Pyrce|1938|Sophie's Naturalization, name change|
-|Pyrch|1939|Joseph death certificate|
-|Pyrce|1939|Joseph tomb stone|
+|Pyrch|1939|Joseph’s death certificate|
+|Pyrce|1939|Joseph’s tombstone|
 |Pyrce|1940|Census record|
 |Pyrc|1943|Stanley's pay envelope; may represent name on initial employment|
 |Pyrce|1944|Stanley's military service certification|
@@ -282,7 +282,7 @@ a minimal change that didn't sound foreign (or at least not Polish) was settled 
 It is notable how fluid names were for the family, both first names and surnames.  
 All of these changed a number of times.
 This is understandable in the early 1900s when there was less bureaucracy, records
-were handwritten, and there were not robust (or any) error correction procedures.
+were handwritten, and there were few, if any, robust error-correction procedures.
 
 Ted Pyrce attributed the final name change to embarrassment over the name sounding “like the fish.” This is a family recollection.
 
@@ -317,7 +317,7 @@ Census cells show **approximate birth year (recorded age)**. Approximate years g
 
 ## Immigration records and unresolved conflicts
 
-- The 1913 passenger manifest for the S.S. *Kaiser Wilhelm II*, sailing from Bremen and arriving February 4, 1913, has an entry for Zofia Goscinska, age 18. It gives Muszyna as her last residence, names Jozef Goscinski as the husband she was joining, and gives Sioux City, Iowa, as her destination.  Muszyna was a small community of about 3,000 in 1913 so it is surprising that there should be another couple with such similar names.  The Goscinski family tree Polish records indicate that Sophie had a brother named Jozef, although it does not indicate that he immigrated. It is possible that this was his wife joining him in America. Sophie had another brother, Andrew, who is recorded in the Polish family tree as having emigrated to Chicago at an unknown date, and there are photos of him in the collection.
+- The 1913 passenger manifest for the S.S. *Kaiser Wilhelm II*, sailing from Bremen and arriving February 4, 1913, has an entry for Zofia Goscinska, age 18. It gives Muszyna as her last residence, names Jozef Goscinski as the husband she was joining, and gives Sioux City, Iowa, as her destination.  Muszyna was a small community of about 3,000 in 1913, so it is surprising that there should be another couple with such similar names.  The Polish records in the Goscinski family tree indicate that Sophie had a brother named Jozef, although those records do not indicate that he immigrated. It is possible that this was his wife joining him in America. Sophie had another brother, Andrew, who is recorded in the Polish family tree as having emigrated to Chicago at an unknown date, and there are photos of him in the collection.
 
 - A separate manifest records a Josef Pyrc, age 23, arriving in New York aboard the S.S. *Pretoria* on December 13, 1905. The name and approximate age make him a possible match for Joseph, but the 1933 statement gives Joseph’s arrival as 1911. The 1905 entry should therefore remain a possible earlier arrival, not be assigned to him as fact. View the [1905 manifest, line 5](../../media/SophieJoseph/1905%20-%20Josef%20Pyrc%20Pretoria%20Manifest%3F%20%28line%205%29.gif).
 
@@ -326,7 +326,7 @@ Census cells show **approximate birth year (recorded age)**. Approximate years g
 
 The records give a significant range of dates.
 
-|Estimated Birth year|Document|
+|Estimated birth year|Document|
 |----------|--------|
 |1885|1912 New York Passenger Arrival list (age 27)|
 |1890|1920 Census (30)|

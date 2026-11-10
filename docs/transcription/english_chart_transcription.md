@@ -138,7 +138,7 @@ This printed chart supplies the Rams branch and its bridge through Bolesław
 Rams and Bronisława née Gościńska. It also includes older Rams households,
 spouse information, and dotted ancestry for the Gościński and Miczulski spouses.
 
-The main boxes are highly legible. The far-right and bottom edge are cropped,
+The main boxes are highly legible. The far-right and bottom edges are cropped,
 so some birth details are incomplete even where a connector remains visible.
 
 A page number suggests that this chart may be part of a larger document.
