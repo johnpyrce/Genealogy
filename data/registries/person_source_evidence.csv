@@ -5,3 +5,931 @@ person_id,source_id,location,transcription,confidence,note
 15,S3,Gościński descendant branch,Jan Gościński with Marianna or Maria née Miczulska,probable,S2 gives Marianna; Maria is retained as the alternative reading from the correction.
 31,S3,Gościński descendant branch,Stanisław Gościński marked deceased,confirmed,No death year is supplied.
 165,S3,Edward and Anna descendant branch,Edward Gościński marked deceased,confirmed,No death year is supplied; surname inferred from his father.
+22,S7,GEDCOM @I1@,"0 @I1@ INDI
+1 NAME Sophie /Goscinski/
+2 GIVN Sophie
+2 SURN Goscinski
+1 SEX F
+1 _UID 046EB89259DCF11193DBDEA6E55C2F1E73FA
+1 _FSFTID G4ZN-5FR
+1 CHAN
+2 DATE 9 NOV 2026
+1 BIRT
+2 DATE 1 MAY 1883
+2 PLAC Muszyna, Nowy Sącz, Kraków, Poland
+1 DEAT
+2 DATE 23 APR 1964
+2 PLAC Chicago, Cook, Illinois, United States
+1 BURI
+2 DATE 25 APR 1964
+2 PLAC Justice, , Illinois
+1 FAMS @F2@
+1 FAMC @F1@",probable,"Identity: explicit match file. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+10,S7,GEDCOM @I2@,"0 @I2@ INDI
+1 NAME Franciscus /Goscinski/
+2 GIVN Franciscus
+2 SURN Goscinski
+1 SEX M
+1 _UID 20C8829359DCF11193DBDEA6E55C2F1EB419
+1 _FSFTID LHYF-YMN
+1 CHAN
+2 DATE 9 NOV 2026
+1 DEAT
+1 FAMS @F1@",probable,"Identity: explicit match file. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+11,S7,GEDCOM @I3@,"0 @I3@ INDI
+1 NAME Josepha /Szost/
+2 GIVN Josepha
+2 SURN Szost
+1 SEX F
+1 _UID 20E6919359DCF11193DBDEA6E55C2F1EE1AD
+1 _FSFTID LHYF-YMJ
+1 CHAN
+2 DATE 9 NOV 2026
+1 DEAT
+1 FAMS @F1@",probable,"Identity: explicit match file. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+83,S7,GEDCOM @I4@,"0 @I4@ INDI
+1 NAME Bernice /Pyrce/
+2 GIVN Bernice
+2 SURN Pyrce
+1 SEX F
+1 _UID 62D0EC9359DCF11193DBDEA6E55C2F1E687D
+1 _FSFTID G2PF-R4M
+1 CHAN
+2 DATE 9 NOV 2026
+1 BIRT
+2 DATE 1913
+2 PLAC Chicago, Cook, Illinois, United States
+1 DEAT
+2 DATE 2009
+1 FAMS @F3@
+1 FAMC @F2@",probable,"Identity: explicit match file. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+172,S7,GEDCOM @I5@,"0 @I5@ INDI
+1 NAME Bruce /Cerny/
+2 GIVN Bruce
+2 SURN Cerny
+1 SEX M
+1 _UID 8269799459DCF11193DBDEA6E55C2F1EAF37
+1 _FSFTID G2PF-Y1T
+1 CHAN
+2 DATE 9 NOV 2026
+1 BIRT
+2 DATE 1922
+1 DEAT
+2 DATE 2003
+1 FAMS @F3@",probable,"Identity: new person. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+84,S7,GEDCOM @I6@,"0 @I6@ INDI
+1 NAME Stephanie Roberta /Pyrce/
+2 GIVN Stephanie Roberta
+2 SURN Pyrce
+1 SEX F
+1 _UID F699A79459DCF11193DBDEA6E55C2F1E81CB
+1 _FSFTID G2PF-PKC
+1 CHAN
+2 DATE 9 NOV 2026
+1 BIRT
+2 DATE 16 JUN 1923
+2 PLAC Cook, Illinois, United States
+1 DEAT
+2 DATE 16 MAR 2018
+1 BURI
+2 PLAC Libertyville, Lake, Illinois, United States of America
+1 FAMS @F4@
+1 FAMC @F2@",probable,"Identity: explicit match file. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+81,S7,GEDCOM @I7@,"0 @I7@ INDI
+1 NAME Thaddeus Matthew /Pyrce/
+2 GIVN Thaddeus Matthew
+2 SURN Pyrce
+1 SEX M
+1 _UID 5416049559DCF11193DBDEA6E55C2F1EBA21
+1 _FSFTID G2PD-V21
+1 CHAN
+2 DATE 9 NOV 2026
+1 BIRT
+2 DATE 17 FEB 1920
+2 PLAC Chicago, Cook, Illinois, United States
+1 DEAT
+2 DATE 12 FEB 2004
+2 PLAC Naperville, DuPage, Illinois, United States
+1 BURI
+2 PLAC Justice, Cook, Illinois, United States of America
+1 FAMS @F5@
+1 FAMC @F2@",probable,"Identity: explicit match file. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+82,S7,GEDCOM @I8@,"0 @I8@ INDI
+1 NAME Charles Louis /Pyrce/
+2 GIVN Charles Louis
+2 SURN Pyrce
+1 SEX M
+1 _UID 4076129559DCF11193DBDEA6E55C2F1E1445
+1 _FSFTID G2PD-VQ1
+1 CHAN
+2 DATE 9 NOV 2026
+1 BIRT
+2 DATE 4 NOV 1917
+2 PLAC Chicago, Cook, Illinois, United States
+1 DEAT
+2 DATE 13 NOV 1994
+2 PLAC Proviso Township, Cook, Illinois, United States
+1 BURI
+2 DATE 16 NOV 1994
+2 PLAC Justice, Cook, Illinois, United States
+1 FAMS @F6@
+1 FAMC @F2@",probable,"Identity: explicit match file. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+80,S7,GEDCOM @I9@,"0 @I9@ INDI
+1 NAME Stanley /Pyrce/
+2 GIVN Stanley
+2 SURN Pyrce
+1 SEX M
+1 _UID 34F5539559DCF11193DBDEA6E55C2F1EC884
+1 _FSFTID PF5R-X4X
+1 CHAN
+2 DATE 9 NOV 2026
+1 BIRT
+2 DATE 5 NOV 1911
+1 DEAT
+2 DATE 3 OCT 1944
+2 PLAC Italy
+1 BURI
+2 PLAC Rock Island National Cemetery, Rock Island, Rock Island, Illinois, United States of America
+1 FAMC @F2@",probable,"Identity: explicit match file. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+173,S7,GEDCOM @I10@,"0 @I10@ INDI
+1 NAME J. Wayne /Hamman/
+2 GIVN J. Wayne
+2 SURN Hamman
+1 SEX M
+1 _UID 4AB6AE9559DCF11193DBDEA6E55C2F1EFA2D
+1 _FSFTID PFBL-THJ
+1 CHAN
+2 DATE 9 NOV 2026
+1 BIRT
+2 DATE 5 MAR 1928
+2 PLAC Kingsley, Plymouth, Iowa, United States
+1 DEAT
+2 DATE 17 OCT 2026
+1 FAMS @F4@",probable,"Identity: new person. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+174,S7,GEDCOM @I11@,"0 @I11@ INDI
+1 NAME Joseph /Hamman/
+2 GIVN Joseph
+2 SURN Hamman
+1 SEX M
+1 _UID 3244CF9559DCF11193DBDEA6E55C2F1E91CD
+1 _FSFTID PN33-SW1
+1 CHAN
+2 DATE 9 NOV 2026
+1 BIRT
+2 PLAC Chicago, Cook, Illinois, United States
+1 FAMS @F7@
+1 FAMC @F4@",probable,"Identity: new person. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+78,S7,GEDCOM @I12@,"0 @I12@ INDI
+1 NAME Josef /Pyrć/
+2 GIVN Josef
+2 SURN Pyrć
+1 SEX M
+1 _UID 0655F49559DCF11193DBDEA6E55C2F1E9B12
+1 _FSFTID G4ZN-PKJ
+1 CHAN
+2 DATE 9 NOV 2026
+1 BIRT
+2 DATE 1879
+2 PLAC Poland
+1 DEAT
+2 DATE 16 DEC 1939
+2 PLAC Cook, Illinois, United States
+1 BURI
+2 PLAC Justice, Cook, Illinois, United States
+1 FAMS @F2@",probable,"Identity: explicit match file. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+175,S7,GEDCOM @I13@,"0 @I13@ INDI
+1 NAME Joyce /Allen/
+2 GIVN Joyce
+2 SURN Allen
+1 SEX F
+1 _UID 2AC7FE9559DCF11193DBDEA6E55C2F1E3B8C
+1 _FSFTID PNST-QVX
+1 CHAN
+2 DATE 9 NOV 2026
+1 BIRT
+2 PLAC Chicago, Cook, Illinois, United States
+1 FAMS @F8@
+1 FAMC @F4@",probable,"Identity: new person. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+176,S7,GEDCOM @I14@,"0 @I14@ INDI
+1 NAME David /Pyrce/
+2 GIVN David
+2 SURN Pyrce
+1 SEX M
+1 _UID 0408029659DCF11193DBDEA6E55C2F1E5B40
+1 _FSFTID PNST-MW7
+1 CHAN
+2 DATE 9 NOV 2026
+1 BIRT
+2 PLAC Berwyn, Cook, Illinois, United States
+1 FAMS @F9@
+1 FAMC @F6@",probable,"Identity: new person. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+177,S7,GEDCOM @I15@,"0 @I15@ INDI
+1 NAME John /Pyrce/
+2 GIVN John
+2 SURN Pyrce
+1 SEX M
+1 _UID 0006089659DCF11193DBDEA6E55C2F1E5B36
+1 _FSFTID PXFC-657
+1 CHAN
+2 DATE 9 NOV 2026
+1 BIRT
+2 DATE 30 APR 1954
+2 PLAC Chicago, Cook, Illinois, United States
+1 FAMS @F10@
+1 FAMC @F5@",probable,"Identity: new person. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+178,S7,GEDCOM @I16@,"0 @I16@ INDI
+1 NAME Janice /Pyrce/
+2 GIVN Janice
+2 SURN Pyrce
+1 SEX F
+1 _UID AA3B1E9659DCF11193DBDEA6E55C2F1E5025
+1 _FSFTID PFYC-3Z2
+1 CHAN
+2 DATE 9 NOV 2026
+1 BIRT
+2 DATE 1951
+2 PLAC Berwyn, Cook, Illinois, United States
+1 FAMS @F11@
+1 FAMC @F6@",probable,"Identity: new person. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+179,S7,GEDCOM @I17@,"0 @I17@ INDI
+1 NAME Sharon /Pyrce/
+2 GIVN Sharon
+2 SURN Pyrce
+1 SEX F
+1 _UID FAFA599659DCF11193DBDEA6E55C2F1E9A90
+1 _FSFTID PF5L-WSJ
+1 CHAN
+2 DATE 9 NOV 2026
+1 BIRT
+2 DATE 24 MAR 1952
+2 PLAC Chicago, Cook, Illinois, United States
+1 FAMS @F12@
+1 FAMC @F5@",probable,"Identity: new person. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+180,S7,GEDCOM @I18@,"0 @I18@ INDI
+1 NAME Phillip /Pyrce/
+2 GIVN Phillip
+2 SURN Pyrce
+1 SEX M
+1 _UID 56135E9659DCF11193DBDEA6E55C2F1E140D
+1 _FSFTID PFY4-BCD
+1 CHAN
+2 DATE 9 NOV 2026
+1 BIRT
+2 PLAC Berwyn, Cook, Illinois, United States
+1 FAMS @F13@
+1 FAMC @F6@",probable,"Identity: new person. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+181,S7,GEDCOM @I19@,"0 @I19@ INDI
+1 NAME James Michael /Hamman/
+2 GIVN James Michael
+2 SURN Hamman
+1 SEX M
+1 _UID B259619659DCF11193DBDEA6E55C2F1EB911
+1 _FSFTID G2PF-JLT
+1 CHAN
+2 DATE 9 NOV 2026
+1 BIRT
+2 DATE 22 DEC 1957
+2 PLAC Chicago, Cook, Illinois, United States
+1 DEAT
+2 DATE 10 JUN 1995
+2 PLAC Chicago, Cook, Illinois, United States
+1 BURI
+2 PLAC Libertyville, Lake, Illinois, United States of America
+1 FAMC @F4@",probable,"Identity: new person. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+182,S7,GEDCOM @I20@,"0 @I20@ INDI
+1 NAME Leona /Iwaniczko/
+2 GIVN Leona
+2 SURN Iwaniczko
+1 SEX F
+1 _UID 5AFD6F9659DCF11193DBDEA6E55C2F1E13F1
+1 _FSFTID G2PD-RPJ
+1 CHAN
+2 DATE 9 NOV 2026
+1 BIRT
+2 DATE 15 JUN 1926
+1 DEAT
+2 DATE 17 MAY 2024
+1 FAMS @F6@",probable,"Identity: new person. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+183,S7,GEDCOM @I21@,"0 @I21@ INDI
+1 NAME Stephanie /Allen/
+2 GIVN Stephanie
+2 SURN Allen
+1 SEX F
+1 _UID 18CA9E9659DCF11193DBDEA6E55C2F1ECD66
+1 _FSFTID PNST-84Q
+1 CHAN
+2 DATE 9 NOV 2026
+1 BIRT
+2 DATE 26 APR 1992
+1 FAMC @F8@",probable,"Identity: new person. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+184,S7,GEDCOM @I22@,"0 @I22@ INDI
+1 NAME Elizabeth /Allen/
+2 GIVN Elizabeth
+2 SURN Allen
+1 SEX F
+1 _UID 1E6DB49659DCF11193DBDEA6E55C2F1E8C87
+1 _FSFTID PNST-CJL
+1 CHAN
+2 DATE 9 NOV 2026
+1 FAMC @F8@",probable,"Identity: new person. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+185,S7,GEDCOM @I23@,"0 @I23@ INDI
+1 NAME Julie /Hamman/
+2 GIVN Julie
+2 SURN Hamman
+1 SEX F
+1 _UID 6446B89659DCF11193DBDEA6E55C2F1EAFD6
+1 _FSFTID PN3S-GBW
+1 CHAN
+2 DATE 9 NOV 2026
+1 BIRT
+2 DATE 7 FEB 1959
+1 FAMS @F7@",probable,"Identity: new person. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+186,S7,GEDCOM @I24@,"0 @I24@ INDI
+1 NAME Charles /Pyrce/
+2 GIVN Charles
+2 SURN Pyrce
+1 SEX M
+1 _UID 386FE39659DCF11193DBDEA6E55C2F1ED7D7
+1 _FSFTID PN7Q-5G7
+1 CHAN
+2 DATE 9 NOV 2026
+1 FAMC @F9@",probable,"Identity: new person. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+187,S7,GEDCOM @I25@,"0 @I25@ INDI
+1 NAME Allison /Hamman/
+2 GIVN Allison
+2 SURN Hamman
+1 SEX F
+1 _UID 143FE79659DCF11193DBDEA6E55C2F1E87FF
+1 _FSFTID PN3S-5VM
+1 CHAN
+2 DATE 9 NOV 2026
+1 FAMS @F14@
+1 FAMC @F7@",probable,"Identity: new person. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+188,S7,GEDCOM @I26@,"0 @I26@ INDI
+1 NAME Laura /Hamman-Ortiz/
+2 GIVN Laura
+2 SURN Hamman-Ortiz
+1 SEX F
+1 _UID 2E9DEC9659DCF11193DBDEA6E55C2F1E0467
+1 _FSFTID PN3S-4MT
+1 CHAN
+2 DATE 9 NOV 2026
+1 BIRT
+2 DATE 28 JUN 1985
+2 PLAC Libertyville, Lake, Illinois, United States
+1 FAMS @F15@
+1 FAMC @F7@",probable,"Identity: new person. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+189,S7,GEDCOM @I27@,"0 @I27@ INDI
+1 NAME Robert /Pyrce/
+2 GIVN Robert
+2 SURN Pyrce
+1 SEX M
+1 _UID E6B5EE9659DCF11193DBDEA6E55C2F1ED66B
+1 _FSFTID PFYH-HPH
+1 CHAN
+2 DATE 9 NOV 2026
+1 BIRT
+2 DATE 2 NOV 1952
+2 PLAC Berwyn, Cook, Illinois, United States
+1 FAMS @F16@
+1 FAMC @F6@",probable,"Identity: new person. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+190,S7,GEDCOM @I28@,"0 @I28@ INDI
+1 NAME Michael /Allen/
+2 GIVN Michael
+2 SURN Allen
+1 SEX M
+1 _UID 98A5069759DCF11193DBDEA6E55C2F1E91F8
+1 _FSFTID PNSR-Y6J
+1 CHAN
+2 DATE 9 NOV 2026
+1 FAMS @F17@
+1 FAMC @F8@",probable,"Identity: new person. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+191,S7,GEDCOM @I29@,"0 @I29@ INDI
+1 NAME Richard /Allen/
+2 GIVN Richard
+2 SURN Allen
+1 SEX M
+1 _UID E2FA0C9759DCF11193DBDEA6E55C2F1E36E7
+1 _FSFTID PNSR-13G
+1 CHAN
+2 DATE 9 NOV 2026
+1 FAMS @F8@",probable,"Identity: new person. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+192,S7,GEDCOM @I30@,"0 @I30@ INDI
+1 NAME Gabriella /Rosa Pyrce/
+2 GIVN Gabriella
+2 SURN Rosa Pyrce
+1 SEX F
+1 _UID D41E109759DCF11193DBDEA6E55C2F1E505B
+1 _FSFTID PN7Q-2XC
+1 CHAN
+2 DATE 9 NOV 2026
+1 FAMS @F18@
+1 FAMC @F9@",probable,"Identity: new person. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+193,S7,GEDCOM @I31@,"0 @I31@ INDI
+1 NAME Becky /Hamman/
+2 GIVN Becky
+2 SURN Hamman
+1 SEX F
+1 _UID 4AF3569759DCF11193DBDEA6E55C2F1EE10A
+1 _FSFTID PNDB-6JP
+1 CHAN
+2 DATE 9 NOV 2026
+1 BIRT
+2 PLAC Libertyville, Lake, Illinois, United States
+1 FAMS @F19@
+1 FAMC @F7@",probable,"Identity: new person. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+194,S7,GEDCOM @I32@,"0 @I32@ INDI
+1 NAME Pamela /Rekar Pyrce/
+2 GIVN Pamela
+2 SURN Rekar Pyrce
+1 SEX F
+1 _UID 5ED1699759DCF11193DBDEA6E55C2F1EE656
+1 _FSFTID PF5L-DQC
+1 CHAN
+2 DATE 9 NOV 2026
+1 BIRT
+2 DATE 24 SEP 1953
+2 PLAC Chicago, Cook, Illinois, United States
+1 FAMS @F10@",probable,"Identity: new person. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+195,S7,GEDCOM @I33@,"0 @I33@ INDI
+1 NAME Damara /Kaminecki/
+2 GIVN Damara
+2 SURN Kaminecki
+1 SEX F
+1 _UID 98D2839759DCF11193DBDEA6E55C2F1E3B71
+1 _FSFTID PF5G-486
+1 CHAN
+2 DATE 9 NOV 2026
+1 BIRT
+2 DATE 1982
+2 PLAC Chicago, Cook, Illinois, United States
+1 FAMC @F12@",probable,"Identity: new person. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+196,S7,GEDCOM @I34@,"0 @I34@ INDI
+1 NAME Gary /Kagan/
+2 GIVN Gary
+2 SURN Kagan
+1 SEX M
+1 _UID 687B8D9759DCF11193DBDEA6E55C2F1EBEE4
+1 _FSFTID PFYH-HPY
+1 CHAN
+2 DATE 9 NOV 2026
+1 BIRT
+2 PLAC Wilmette, Cook, Illinois, United States
+1 FAMS @F11@",probable,"Identity: new person. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+197,S7,GEDCOM @I35@,"0 @I35@ INDI
+1 NAME Meri /Rosa/
+2 GIVN Meri
+2 SURN Rosa
+1 SEX F
+1 _UID 6861989759DCF11193DBDEA6E55C2F1EAFF8
+1 _FSFTID PNSR-WJ5
+1 CHAN
+2 DATE 9 NOV 2026
+1 FAMS @F9@",probable,"Identity: new person. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+198,S7,GEDCOM @I36@,"0 @I36@ INDI
+1 NAME Anna /Pyrce/
+2 GIVN Anna
+2 SURN Pyrce
+1 SEX F
+1 _UID BC69AF9759DCF11193DBDEA6E55C2F1E22F2
+1 _FSFTID PFYH-3TS
+1 CHAN
+2 DATE 9 NOV 2026
+1 BIRT
+2 DATE 2004
+2 PLAC Napa, California, United States
+1 FAMC @F13@",probable,"Identity: new person. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+199,S7,GEDCOM @I37@,"0 @I37@ INDI
+1 NAME Sarah /Pyrce/
+2 GIVN Sarah
+2 SURN Pyrce
+1 SEX F
+1 _UID 76DCB99759DCF11193DBDEA6E55C2F1E59DB
+1 _FSFTID PFYH-9V4
+1 CHAN
+2 DATE 9 NOV 2026
+1 BIRT
+2 DATE 2003
+2 PLAC Napa, California, United States
+1 FAMC @F13@",probable,"Identity: new person. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+200,S7,GEDCOM @I38@,"0 @I38@ INDI
+1 NAME Ronald /Kaminecki/
+2 GIVN Ronald
+2 SURN Kaminecki
+1 SEX M
+1 _UID 1A4ABC9759DCF11193DBDEA6E55C2F1E6EB7
+1 _FSFTID PF5G-77Y
+1 CHAN
+2 DATE 9 NOV 2026
+1 BIRT
+2 DATE 1951
+2 PLAC Chicago, Cook, Illinois, United States
+1 FAMS @F12@",probable,"Identity: new person. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+201,S7,GEDCOM @I39@,"0 @I39@ INDI
+1 NAME Caitlin /Pyrce/
+2 GIVN Caitlin
+2 SURN Pyrce
+1 SEX F
+1 _UID A256C39759DCF11193DBDEA6E55C2F1E094D
+1 _FSFTID PF5L-5WJ
+1 CHAN
+2 DATE 9 NOV 2026
+1 BIRT
+2 DATE 6 JUN 1991
+1 FAMS @F20@
+1 FAMC @F10@",probable,"Identity: new person. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+202,S7,GEDCOM @I40@,"0 @I40@ INDI
+1 NAME Alexandra /Kagan/
+2 GIVN Alexandra
+2 SURN Kagan
+1 SEX F
+1 _UID 40B0C69759DCF11193DBDEA6E55C2F1E049D
+1 _FSFTID PFYH-2H2
+1 CHAN
+2 DATE 9 NOV 2026
+1 BIRT
+2 DATE 1996
+2 PLAC River Forest, Cook, Illinois, United States
+1 FAMS @F21@
+1 FAMC @F11@",probable,"Identity: new person. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+203,S7,GEDCOM @I41@,"0 @I41@ INDI
+1 NAME Estelle /Zrazik/
+2 GIVN Estelle
+2 SURN Zrazik
+1 SEX F
+1 _UID 0C5BDC9759DCF11193DBDEA6E55C2F1E9196
+1 _FSFTID G2PD-DQM
+1 CHAN
+2 DATE 9 NOV 2026
+1 BIRT
+2 DATE 7 DEC 1923
+2 PLAC Glencoe, New Trier Township, Cook, Illinois, United States
+1 DEAT
+2 DATE 6 OCT 2000
+2 PLAC Cook, Illinois, United States
+1 BURI
+2 PLAC Justice, Cook, Illinois, United States of America
+1 FAMS @F5@",probable,"Identity: new person. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+204,S7,GEDCOM @I42@,"0 @I42@ INDI
+1 NAME Kathy /Frain/
+2 GIVN Kathy
+2 SURN Frain
+1 SEX F
+1 _UID 5215E69759DCF11193DBDEA6E55C2F1E9B68
+1 _FSFTID PFYH-8F7
+1 CHAN
+2 DATE 9 NOV 2026
+1 FAMS @F13@",probable,"Identity: new person. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+205,S7,GEDCOM @I43@,"0 @I43@ INDI
+1 NAME Luke /Pyrce/
+2 GIVN Luke
+2 SURN Pyrce
+1 SEX M
+1 _UID CAE1F19759DCF11193DBDEA6E55C2F1EEA76
+1 _FSFTID PFYH-9V6
+1 CHAN
+2 DATE 9 NOV 2026
+1 BIRT
+2 DATE 2004
+2 PLAC Napa, California, United States
+1 FAMC @F13@",probable,"Identity: new person. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+206,S7,GEDCOM @I44@,"0 @I44@ INDI
+1 NAME Meredith Marie /Fogarty/
+2 GIVN Meredith Marie
+2 SURN Fogarty
+1 SEX F
+1 _UID EA1AF89759DCF11193DBDEA6E55C2F1E4A2F
+1 _FSFTID PNR5-7CT
+1 CHAN
+2 DATE 9 NOV 2026
+1 BIRT
+2 DATE 29 SEP 2026
+1 FAMC @F14@",probable,"Identity: new person. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+207,S7,GEDCOM @I45@,"0 @I45@ INDI
+1 NAME Matt /Kaminecki/
+2 GIVN Matt
+2 SURN Kaminecki
+1 SEX M
+1 _UID 8E4B009859DCF11193DBDEA6E55C2F1E28CB
+1 _FSFTID PF5L-T8W
+1 CHAN
+2 DATE 9 NOV 2026
+1 BIRT
+2 DATE 1985
+2 PLAC Chicago, Cook, Illinois, United States
+1 FAMS @F22@
+1 FAMC @F12@",probable,"Identity: new person. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+208,S7,GEDCOM @I46@,"0 @I46@ INDI
+1 NAME Peter /Fogarty/
+2 GIVN Peter
+2 SURN Fogarty
+1 SEX M
+1 _UID FCBC029859DCF11193DBDEA6E55C2F1E0966
+1 _FSFTID PNDB-NPG
+1 CHAN
+2 DATE 9 NOV 2026
+1 BIRT
+2 DATE 26 AUG 2023
+2 PLAC New Orleans, Orleans, Louisiana, United States
+1 FAMC @F14@",probable,"Identity: new person. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+209,S7,GEDCOM @I47@,"0 @I47@ INDI
+1 NAME Johnathan /Fogarty/
+2 GIVN Johnathan
+2 SURN Fogarty
+1 SEX M
+1 _UID D4C10C9859DCF11193DBDEA6E55C2F1EF0BD
+1 _FSFTID PN33-SP5
+1 CHAN
+2 DATE 9 NOV 2026
+1 FAMS @F14@",probable,"Identity: new person. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+210,S7,GEDCOM @I48@,"0 @I48@ INDI
+1 NAME Jonathan /Kagan/
+2 GIVN Jonathan
+2 SURN Kagan
+1 SEX M
+1 _UID 9E53389859DCF11193DBDEA6E55C2F1E7853
+1 _FSFTID PFYH-1NQ
+1 CHAN
+2 DATE 9 NOV 2026
+1 BIRT
+2 DATE 24 JUL 1997
+2 PLAC River Forest, Cook, Illinois, United States
+1 FAMS @F23@
+1 FAMC @F11@",probable,"Identity: new person. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+211,S7,GEDCOM @I49@,"0 @I49@ INDI
+1 NAME Jennifer /Pyrce/
+2 GIVN Jennifer
+2 SURN Pyrce
+1 SEX F
+1 _UID A8454B9859DCF11193DBDEA6E55C2F1E872B
+1 _FSFTID PN7Q-TZ4
+1 CHAN
+2 DATE 9 NOV 2026
+1 FAMC @F16@",probable,"Identity: new person. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+212,S7,GEDCOM @I50@,"0 @I50@ INDI
+1 NAME Mia /Ortiz/
+2 GIVN Mia
+2 SURN Ortiz
+1 SEX F
+1 _UID 5AEB4D9859DCF11193DBDEA6E55C2F1EE121
+1 _FSFTID PNQ6-YMY
+1 CHAN
+2 DATE 9 NOV 2026
+1 BIRT
+2 DATE 2021
+1 FAMC @F15@",probable,"Identity: new person. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+213,S7,GEDCOM @I51@,"0 @I51@ INDI
+1 NAME Sofia /Ortiz/
+2 GIVN Sofia
+2 SURN Ortiz
+1 SEX F
+1 _UID 32C1599859DCF11193DBDEA6E55C2F1E9BD3
+1 _FSFTID PNQ6-KCK
+1 CHAN
+2 DATE 9 NOV 2026
+1 BIRT
+2 DATE 2019
+1 FAMC @F15@",probable,"Identity: new person. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+214,S7,GEDCOM @I52@,"0 @I52@ INDI
+1 NAME Robert /Pyrce/
+2 GIVN Robert
+2 SURN Pyrce
+1 SEX M
+1 _UID CE92649859DCF11193DBDEA6E55C2F1E136C
+1 _FSFTID PN7Q-R5D
+1 CHAN
+2 DATE 9 NOV 2026
+1 FAMC @F16@",probable,"Identity: new person. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+215,S7,GEDCOM @I53@,"0 @I53@ INDI
+1 NAME Thom /Moore/
+2 GIVN Thom
+2 SURN Moore
+1 SEX M
+1 _UID D4C9869859DCF11193DBDEA6E55C2F1E72E1
+1 _FSFTID PNRP-QSV
+1 CHAN
+2 DATE 9 NOV 2026
+1 FAMS @F19@",probable,"Identity: new person. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+216,S7,GEDCOM @I54@,"0 @I54@ INDI
+1 NAME Jennifer /Pyrce/
+2 GIVN Jennifer
+2 SURN Pyrce
+1 SEX F
+1 _UID 886F919859DCF11193DBDEA6E55C2F1ED775
+1 _FSFTID PNR5-C3B
+1 CHAN
+2 DATE 9 NOV 2026
+1 FAMS @F24@
+1 FAMC @F16@",probable,"Identity: new person. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+217,S7,GEDCOM @I55@,"0 @I55@ INDI
+1 NAME Michael /Ortiz/
+2 GIVN Michael
+2 SURN Ortiz
+1 SEX M
+1 _UID 86CE939859DCF11193DBDEA6E55C2F1E3602
+1 _FSFTID PN3S-KVY
+1 CHAN
+2 DATE 9 NOV 2026
+1 FAMS @F15@",probable,"Identity: new person. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+218,S7,GEDCOM @I56@,"0 @I56@ INDI
+1 NAME Hannah /Allen/
+2 GIVN Hannah
+2 SURN Allen
+1 SEX F
+1 _UID 88CF959859DCF11193DBDEA6E55C2F1E3B4D
+1 _FSFTID PNSR-H4Z
+1 CHAN
+2 DATE 9 NOV 2026
+1 FAMS @F17@",probable,"Identity: new person. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+219,S7,GEDCOM @I57@,"0 @I57@ INDI
+1 NAME Jordan /Paris/
+2 GIVN Jordan
+2 SURN Paris
+1 SEX M
+1 _UID 56C8979859DCF11193DBDEA6E55C2F1E04E0
+1 _FSFTID PNST-566
+1 CHAN
+2 DATE 9 NOV 2026
+1 BIRT
+2 DATE 6 AUG 1991
+2 PLAC Florida, United States
+1 FAMS @F20@",probable,"Identity: new person. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+220,S7,GEDCOM @I58@,"0 @I58@ INDI
+1 NAME Kathleen /Pyrce/
+2 GIVN Kathleen
+2 SURN Pyrce
+1 SEX F
+1 _UID DEC6A29859DCF11193DBDEA6E55C2F1E95DC
+1 _FSFTID PN7Q-VGJ
+1 CHAN
+2 DATE 9 NOV 2026
+1 FAMS @F25@
+1 FAMC @F16@",probable,"Identity: new person. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+221,S7,GEDCOM @I59@,"0 @I59@ INDI
+1 NAME Millie Margaret /Murphy/
+2 GIVN Millie Margaret
+2 SURN Murphy
+1 SEX F
+1 _UID 82F8C29859DCF11193DBDEA6E55C2F1E8BCA
+1 _FSFTID PNST-4H6
+1 CHAN
+2 DATE 9 NOV 2026
+1 BIRT
+2 DATE 3 JUN 2026
+1 FAMC @F21@",probable,"Identity: new person. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+222,S7,GEDCOM @I60@,"0 @I60@ INDI
+1 NAME Charlotte /Moore/
+2 GIVN Charlotte
+2 SURN Moore
+1 SEX F
+1 _UID 3865CD9859DCF11193DBDEA6E55C2F1EB927
+1 _FSFTID PNRG-5GM
+1 CHAN
+2 DATE 9 NOV 2026
+1 FAMC @F19@",probable,"Identity: new person. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+223,S7,GEDCOM @I61@,"0 @I61@ INDI
+1 NAME Jose /Aguayo-Martinez/
+2 GIVN Jose
+2 SURN Aguayo-Martinez
+1 SEX M
+1 _UID 7651DA9859DCF11193DBDEA6E55C2F1EF091
+1 _FSFTID PN77-QJB
+1 CHAN
+2 DATE 9 NOV 2026
+1 FAMS @F18@",probable,"Identity: new person. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+224,S7,GEDCOM @I62@,"0 @I62@ INDI
+1 NAME Madison //
+2 GIVN Madison
+1 SEX F
+1 _UID F083E29859DCF11193DBDEA6E55C2F1EA48F
+1 _FSFTID PNR5-YHP
+1 CHAN
+2 DATE 9 NOV 2026
+1 FAMC @F24@",probable,"Identity: new person. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+225,S7,GEDCOM @I63@,"0 @I63@ INDI
+1 NAME Mitchell /Murphy/
+2 GIVN Mitchell
+2 SURN Murphy
+1 SEX M
+1 _UID 38B7E49859DCF11193DBDEA6E55C2F1E2237
+1 _FSFTID PNST-DPR
+1 CHAN
+2 DATE 9 NOV 2026
+1 FAMS @F21@",probable,"Identity: new person. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+226,S7,GEDCOM @I64@,"0 @I64@ INDI
+1 NAME Eva /Kaminecki/
+2 GIVN Eva
+2 SURN Kaminecki
+1 SEX F
+1 _UID E0B7E69859DCF11193DBDEA6E55C2F1ECCD3
+1 _FSFTID PN4W-G4V
+1 CHAN
+2 DATE 9 NOV 2026
+1 BIRT
+2 DATE 16 MAY 2014
+2 PLAC Milwaukee, Wisconsin, United States
+1 FAMC @F22@",probable,"Identity: new person. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+227,S7,GEDCOM @I65@,"0 @I65@ INDI
+1 NAME Ethan //
+2 GIVN Ethan
+1 SEX M
+1 _UID C094E89859DCF11193DBDEA6E55C2F1E8BE2
+1 _FSFTID PNRP-JZK
+1 CHAN
+2 DATE 9 NOV 2026
+1 FAMC @F25@",probable,"Identity: new person. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+228,S7,GEDCOM @I66@,"0 @I66@ INDI
+1 NAME Marcia /Pyrce/
+2 GIVN Marcia
+2 SURN Pyrce
+1 SEX F
+1 _UID 4C83EB9859DCF11193DBDEA6E55C2F1E09CD
+1 _FSFTID PNSR-HWX
+1 CHAN
+2 DATE 9 NOV 2026
+1 FAMS @F16@",probable,"Identity: new person. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+229,S7,GEDCOM @I67@,"0 @I67@ INDI
+1 NAME Lucas /Kaminecki/
+2 GIVN Lucas
+2 SURN Kaminecki
+1 SEX M
+1 _UID 9022EF9859DCF11193DBDEA6E55C2F1EF096
+1 _FSFTID PN4W-9C7
+1 CHAN
+2 DATE 9 NOV 2026
+1 BIRT
+2 DATE 18 SEP 2016
+2 PLAC Milwaukee, Milwaukee, Wisconsin, United States
+1 FAMC @F22@",probable,"Identity: new person. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+230,S7,GEDCOM @I68@,"0 @I68@ INDI
+1 NAME Stephen //
+2 GIVN Stephen
+1 SEX M
+1 _UID 5E4DF19859DCF11193DBDEA6E55C2F1EEB17
+1 _FSFTID PNRP-8H4
+1 CHAN
+2 DATE 9 NOV 2026
+1 FAMC @F25@",probable,"Identity: new person. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+231,S7,GEDCOM @I69@,"0 @I69@ INDI
+1 NAME Maryann /Pyrce/
+2 GIVN Maryann
+2 SURN Pyrce
+1 SEX F
+1 _UID C695F59859DCF11193DBDEA6E55C2F1E9F07
+1 _FSFTID PN77-959
+1 CHAN
+2 DATE 9 NOV 2026
+1 BIRT
+2 DATE 29 APR 1988
+1 FAMS @F26@
+1 FAMC @F16@",probable,"Identity: new person. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+232,S7,GEDCOM @I70@,"0 @I70@ INDI
+1 NAME Julia /Van Treeck/
+2 GIVN Julia
+2 SURN Van Treeck
+1 SEX F
+1 _UID 92A8F89859DCF11193DBDEA6E55C2F1E810E
+1 _FSFTID PN7T-7JN
+1 CHAN
+2 DATE 9 NOV 2026
+1 FAMS @F22@",probable,"Identity: new person. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+233,S7,GEDCOM @I71@,"0 @I71@ INDI
+1 NAME Nicole /Retondo/
+2 GIVN Nicole
+2 SURN Retondo
+1 SEX F
+1 _UID 2C4EFA9859DCF11193DBDEA6E55C2F1EC384
+1 _FSFTID PNSR-J6Z
+1 CHAN
+2 DATE 9 NOV 2026
+1 FAMS @F23@",probable,"Identity: new person. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+234,S7,GEDCOM @I72@,"0 @I72@ INDI
+1 NAME Robbie /Albano/
+2 GIVN Robbie
+2 SURN Albano
+1 SEX M
+1 _UID 7CE42C9959DCF11193DBDEA6E55C2F1EDC17
+1 _FSFTID PNRP-GT7
+1 CHAN
+2 DATE 9 NOV 2026
+1 FAMC @F26@",probable,"Identity: new person. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+235,S7,GEDCOM @I73@,"0 @I73@ INDI
+1 NAME Charlie /Albano/
+2 GIVN Charlie
+2 SURN Albano
+1 SEX M
+1 _UID 20E82F9959DCF11193DBDEA6E55C2F1E87BD
+1 _FSFTID PNRG-1Q2
+1 CHAN
+2 DATE 9 NOV 2026
+1 FAMC @F26@",probable,"Identity: new person. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."
+236,S7,GEDCOM @I74@,"0 @I74@ INDI
+1 NAME Robert /Albano/
+2 GIVN Robert
+2 SURN Albano
+1 SEX M
+1 _UID E642419959DCF11193DBDEA6E55C2F1EB95F
+1 _FSFTID PN7Q-43X
+1 CHAN
+2 DATE 9 NOV 2026
+1 FAMS @F26@",probable,"Identity: new person. Existing registry facts retained. Original GEDCOM values, dates, qualifiers, places and notes preserved verbatim."

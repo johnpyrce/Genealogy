@@ -30,8 +30,8 @@ class GenealogyAnalyticsTests(unittest.TestCase):
             family_headings = re.findall(
                 r"^[│ ]*[└├]── Family (\d+) ·", tree, flags=re.MULTILINE
             )
-            self.assertEqual(len(family_headings), 64)
-            self.assertEqual(len(set(family_headings)), 64)
+            self.assertEqual(len(family_headings), 88)
+            self.assertEqual(len(set(family_headings)), 88)
             self.assertIn("Partner 1: Person 1 · Wawrzyniec Gościński (1760)", tree)
             self.assertRegex(tree, r"Person 14 · Jan Gościński \(1888–1970\)\n[│ ]*└── Family 8")
             self.assertIn(
@@ -79,11 +79,11 @@ class GenealogyAnalyticsTests(unittest.TestCase):
             connection = duckdb.connect(str(database))
             try:
                 create_tables(connection)
-                self.assertEqual(connection.execute("SELECT COUNT(*) FROM people").fetchone()[0], 171)
-                self.assertEqual(connection.execute("SELECT COUNT(*) FROM family_children").fetchone()[0], 109)
-                self.assertEqual(connection.execute("SELECT COUNT(*) FROM parent_child").fetchone()[0], 210)
-                self.assertEqual(connection.execute("SELECT COUNT(*) FROM person_generation").fetchone()[0], 171)
-                self.assertEqual(connection.execute("SELECT COUNT(*) FROM person_component").fetchone()[0], 171)
+                self.assertEqual(connection.execute("SELECT COUNT(*) FROM people").fetchone()[0], 236)
+                self.assertEqual(connection.execute("SELECT COUNT(*) FROM family_children").fetchone()[0], 152)
+                self.assertEqual(connection.execute("SELECT COUNT(*) FROM parent_child").fetchone()[0], 293)
+                self.assertEqual(connection.execute("SELECT COUNT(*) FROM person_generation").fetchone()[0], 236)
+                self.assertEqual(connection.execute("SELECT COUNT(*) FROM person_component").fetchone()[0], 236)
                 self.assertEqual(
                     connection.execute(
                         "SELECT family_id, list_sort(list(child_id)) "
@@ -105,7 +105,7 @@ class GenealogyAnalyticsTests(unittest.TestCase):
                 tree_metrics = {row["measure"]: row["value"] for row in domains["tree_structure"]}
                 self.assertEqual(tree_metrics["Maximum generation"], 9)
                 completeness = {row["field"]: row for row in domains["completeness"]}
-                self.assertEqual(completeness["Family evidence"]["total"], 64)
+                self.assertEqual(completeness["Family evidence"]["total"], 88)
                 self.assertEqual(completeness["Family evidence"]["coverage_pct"], 100.0)
                 family_metrics = {row["measure"]: row["value"] for row in domains["family_structure"]}
                 self.assertNotIn("People in sibling groups", family_metrics)

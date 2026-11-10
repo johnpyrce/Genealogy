@@ -84,3 +84,686 @@ E082,6,parent-child,11,14,S5,Gościński dashed ancestry,Józefa née Szost show
 E083,8,parent-child,14,72,S5,Gościński dashed ancestry,Jan Gościński shown as father of Bronisława Gościńska,confirmed,The dashed couple box points to Bronisława in the S5 chart; other children of the couple are not shown there.
 E084,8,parent-child,15,72,S5,Gościński dashed ancestry,Maria or Marianna née Miczulska shown as mother of Bronisława Gościńska,confirmed,S5 prints Maria; S2 records Marianna. The dashed couple box points to Bronisława.
 E085,56,parent-child,151,94,S5,Gruczelak dashed ancestry,Jan Gruczelak shown as father of Joanna Gruczelak,confirmed,The dashed arrow from Jan points to Joanna in the S5 chart.
+E086,6,spouse,10,11,S7,GEDCOM @F1@,"0 @F1@ FAM
+1 HUSB @I2@
+1 WIFE @I3@
+1 CHIL @I1@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E087,6,parent-child,10,22,S7,GEDCOM @F1@,"0 @F1@ FAM
+1 HUSB @I2@
+1 WIFE @I3@
+1 CHIL @I1@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E088,6,parent-child,11,22,S7,GEDCOM @F1@,"0 @F1@ FAM
+1 HUSB @I2@
+1 WIFE @I3@
+1 CHIL @I1@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E089,25,spouse,78,22,S7,GEDCOM @F2@,"0 @F2@ FAM
+1 HUSB @I12@
+1 WIFE @I1@
+1 CHIL @I9@
+1 CHIL @I4@
+1 CHIL @I8@
+1 CHIL @I7@
+1 CHIL @I6@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E090,25,parent-child,78,80,S7,GEDCOM @F2@,"0 @F2@ FAM
+1 HUSB @I12@
+1 WIFE @I1@
+1 CHIL @I9@
+1 CHIL @I4@
+1 CHIL @I8@
+1 CHIL @I7@
+1 CHIL @I6@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E091,25,parent-child,78,83,S7,GEDCOM @F2@,"0 @F2@ FAM
+1 HUSB @I12@
+1 WIFE @I1@
+1 CHIL @I9@
+1 CHIL @I4@
+1 CHIL @I8@
+1 CHIL @I7@
+1 CHIL @I6@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E092,25,parent-child,78,82,S7,GEDCOM @F2@,"0 @F2@ FAM
+1 HUSB @I12@
+1 WIFE @I1@
+1 CHIL @I9@
+1 CHIL @I4@
+1 CHIL @I8@
+1 CHIL @I7@
+1 CHIL @I6@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E093,25,parent-child,78,81,S7,GEDCOM @F2@,"0 @F2@ FAM
+1 HUSB @I12@
+1 WIFE @I1@
+1 CHIL @I9@
+1 CHIL @I4@
+1 CHIL @I8@
+1 CHIL @I7@
+1 CHIL @I6@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E094,25,parent-child,78,84,S7,GEDCOM @F2@,"0 @F2@ FAM
+1 HUSB @I12@
+1 WIFE @I1@
+1 CHIL @I9@
+1 CHIL @I4@
+1 CHIL @I8@
+1 CHIL @I7@
+1 CHIL @I6@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E095,25,parent-child,22,80,S7,GEDCOM @F2@,"0 @F2@ FAM
+1 HUSB @I12@
+1 WIFE @I1@
+1 CHIL @I9@
+1 CHIL @I4@
+1 CHIL @I8@
+1 CHIL @I7@
+1 CHIL @I6@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E096,25,parent-child,22,83,S7,GEDCOM @F2@,"0 @F2@ FAM
+1 HUSB @I12@
+1 WIFE @I1@
+1 CHIL @I9@
+1 CHIL @I4@
+1 CHIL @I8@
+1 CHIL @I7@
+1 CHIL @I6@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E097,25,parent-child,22,82,S7,GEDCOM @F2@,"0 @F2@ FAM
+1 HUSB @I12@
+1 WIFE @I1@
+1 CHIL @I9@
+1 CHIL @I4@
+1 CHIL @I8@
+1 CHIL @I7@
+1 CHIL @I6@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E098,25,parent-child,22,81,S7,GEDCOM @F2@,"0 @F2@ FAM
+1 HUSB @I12@
+1 WIFE @I1@
+1 CHIL @I9@
+1 CHIL @I4@
+1 CHIL @I8@
+1 CHIL @I7@
+1 CHIL @I6@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E099,25,parent-child,22,84,S7,GEDCOM @F2@,"0 @F2@ FAM
+1 HUSB @I12@
+1 WIFE @I1@
+1 CHIL @I9@
+1 CHIL @I4@
+1 CHIL @I8@
+1 CHIL @I7@
+1 CHIL @I6@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E100,65,spouse,172,83,S7,GEDCOM @F3@,"0 @F3@ FAM
+1 HUSB @I5@
+1 WIFE @I4@
+1 MARR
+2 DATE 1960",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E101,66,spouse,173,84,S7,GEDCOM @F4@,"0 @F4@ FAM
+1 HUSB @I10@
+1 WIFE @I6@
+1 CHIL @I19@
+1 CHIL @I11@
+1 CHIL @I13@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E102,66,parent-child,173,181,S7,GEDCOM @F4@,"0 @F4@ FAM
+1 HUSB @I10@
+1 WIFE @I6@
+1 CHIL @I19@
+1 CHIL @I11@
+1 CHIL @I13@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E103,66,parent-child,173,174,S7,GEDCOM @F4@,"0 @F4@ FAM
+1 HUSB @I10@
+1 WIFE @I6@
+1 CHIL @I19@
+1 CHIL @I11@
+1 CHIL @I13@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E104,66,parent-child,173,175,S7,GEDCOM @F4@,"0 @F4@ FAM
+1 HUSB @I10@
+1 WIFE @I6@
+1 CHIL @I19@
+1 CHIL @I11@
+1 CHIL @I13@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E105,66,parent-child,84,181,S7,GEDCOM @F4@,"0 @F4@ FAM
+1 HUSB @I10@
+1 WIFE @I6@
+1 CHIL @I19@
+1 CHIL @I11@
+1 CHIL @I13@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E106,66,parent-child,84,174,S7,GEDCOM @F4@,"0 @F4@ FAM
+1 HUSB @I10@
+1 WIFE @I6@
+1 CHIL @I19@
+1 CHIL @I11@
+1 CHIL @I13@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E107,66,parent-child,84,175,S7,GEDCOM @F4@,"0 @F4@ FAM
+1 HUSB @I10@
+1 WIFE @I6@
+1 CHIL @I19@
+1 CHIL @I11@
+1 CHIL @I13@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E108,67,spouse,81,203,S7,GEDCOM @F5@,"0 @F5@ FAM
+1 HUSB @I7@
+1 WIFE @I41@
+1 CHIL @I17@
+1 CHIL @I15@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E109,67,parent-child,81,179,S7,GEDCOM @F5@,"0 @F5@ FAM
+1 HUSB @I7@
+1 WIFE @I41@
+1 CHIL @I17@
+1 CHIL @I15@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E110,67,parent-child,81,177,S7,GEDCOM @F5@,"0 @F5@ FAM
+1 HUSB @I7@
+1 WIFE @I41@
+1 CHIL @I17@
+1 CHIL @I15@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E111,67,parent-child,203,179,S7,GEDCOM @F5@,"0 @F5@ FAM
+1 HUSB @I7@
+1 WIFE @I41@
+1 CHIL @I17@
+1 CHIL @I15@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E112,67,parent-child,203,177,S7,GEDCOM @F5@,"0 @F5@ FAM
+1 HUSB @I7@
+1 WIFE @I41@
+1 CHIL @I17@
+1 CHIL @I15@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E113,68,spouse,82,182,S7,GEDCOM @F6@,"0 @F6@ FAM
+1 HUSB @I8@
+1 WIFE @I20@
+1 CHIL @I16@
+1 CHIL @I27@
+1 CHIL @I14@
+1 CHIL @I18@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E114,68,parent-child,82,178,S7,GEDCOM @F6@,"0 @F6@ FAM
+1 HUSB @I8@
+1 WIFE @I20@
+1 CHIL @I16@
+1 CHIL @I27@
+1 CHIL @I14@
+1 CHIL @I18@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E115,68,parent-child,82,189,S7,GEDCOM @F6@,"0 @F6@ FAM
+1 HUSB @I8@
+1 WIFE @I20@
+1 CHIL @I16@
+1 CHIL @I27@
+1 CHIL @I14@
+1 CHIL @I18@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E116,68,parent-child,82,176,S7,GEDCOM @F6@,"0 @F6@ FAM
+1 HUSB @I8@
+1 WIFE @I20@
+1 CHIL @I16@
+1 CHIL @I27@
+1 CHIL @I14@
+1 CHIL @I18@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E117,68,parent-child,82,180,S7,GEDCOM @F6@,"0 @F6@ FAM
+1 HUSB @I8@
+1 WIFE @I20@
+1 CHIL @I16@
+1 CHIL @I27@
+1 CHIL @I14@
+1 CHIL @I18@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E118,68,parent-child,182,178,S7,GEDCOM @F6@,"0 @F6@ FAM
+1 HUSB @I8@
+1 WIFE @I20@
+1 CHIL @I16@
+1 CHIL @I27@
+1 CHIL @I14@
+1 CHIL @I18@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E119,68,parent-child,182,189,S7,GEDCOM @F6@,"0 @F6@ FAM
+1 HUSB @I8@
+1 WIFE @I20@
+1 CHIL @I16@
+1 CHIL @I27@
+1 CHIL @I14@
+1 CHIL @I18@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E120,68,parent-child,182,176,S7,GEDCOM @F6@,"0 @F6@ FAM
+1 HUSB @I8@
+1 WIFE @I20@
+1 CHIL @I16@
+1 CHIL @I27@
+1 CHIL @I14@
+1 CHIL @I18@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E121,68,parent-child,182,180,S7,GEDCOM @F6@,"0 @F6@ FAM
+1 HUSB @I8@
+1 WIFE @I20@
+1 CHIL @I16@
+1 CHIL @I27@
+1 CHIL @I14@
+1 CHIL @I18@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E122,69,spouse,174,185,S7,GEDCOM @F7@,"0 @F7@ FAM
+1 HUSB @I11@
+1 WIFE @I23@
+1 CHIL @I26@
+1 CHIL @I25@
+1 CHIL @I31@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E123,69,parent-child,174,188,S7,GEDCOM @F7@,"0 @F7@ FAM
+1 HUSB @I11@
+1 WIFE @I23@
+1 CHIL @I26@
+1 CHIL @I25@
+1 CHIL @I31@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E124,69,parent-child,174,187,S7,GEDCOM @F7@,"0 @F7@ FAM
+1 HUSB @I11@
+1 WIFE @I23@
+1 CHIL @I26@
+1 CHIL @I25@
+1 CHIL @I31@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E125,69,parent-child,174,193,S7,GEDCOM @F7@,"0 @F7@ FAM
+1 HUSB @I11@
+1 WIFE @I23@
+1 CHIL @I26@
+1 CHIL @I25@
+1 CHIL @I31@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E126,69,parent-child,185,188,S7,GEDCOM @F7@,"0 @F7@ FAM
+1 HUSB @I11@
+1 WIFE @I23@
+1 CHIL @I26@
+1 CHIL @I25@
+1 CHIL @I31@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E127,69,parent-child,185,187,S7,GEDCOM @F7@,"0 @F7@ FAM
+1 HUSB @I11@
+1 WIFE @I23@
+1 CHIL @I26@
+1 CHIL @I25@
+1 CHIL @I31@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E128,69,parent-child,185,193,S7,GEDCOM @F7@,"0 @F7@ FAM
+1 HUSB @I11@
+1 WIFE @I23@
+1 CHIL @I26@
+1 CHIL @I25@
+1 CHIL @I31@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E129,70,spouse,191,175,S7,GEDCOM @F8@,"0 @F8@ FAM
+1 HUSB @I29@
+1 WIFE @I13@
+1 CHIL @I21@
+1 CHIL @I22@
+1 CHIL @I28@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E130,70,parent-child,191,183,S7,GEDCOM @F8@,"0 @F8@ FAM
+1 HUSB @I29@
+1 WIFE @I13@
+1 CHIL @I21@
+1 CHIL @I22@
+1 CHIL @I28@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E131,70,parent-child,191,184,S7,GEDCOM @F8@,"0 @F8@ FAM
+1 HUSB @I29@
+1 WIFE @I13@
+1 CHIL @I21@
+1 CHIL @I22@
+1 CHIL @I28@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E132,70,parent-child,191,190,S7,GEDCOM @F8@,"0 @F8@ FAM
+1 HUSB @I29@
+1 WIFE @I13@
+1 CHIL @I21@
+1 CHIL @I22@
+1 CHIL @I28@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E133,70,parent-child,175,183,S7,GEDCOM @F8@,"0 @F8@ FAM
+1 HUSB @I29@
+1 WIFE @I13@
+1 CHIL @I21@
+1 CHIL @I22@
+1 CHIL @I28@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E134,70,parent-child,175,184,S7,GEDCOM @F8@,"0 @F8@ FAM
+1 HUSB @I29@
+1 WIFE @I13@
+1 CHIL @I21@
+1 CHIL @I22@
+1 CHIL @I28@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E135,70,parent-child,175,190,S7,GEDCOM @F8@,"0 @F8@ FAM
+1 HUSB @I29@
+1 WIFE @I13@
+1 CHIL @I21@
+1 CHIL @I22@
+1 CHIL @I28@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E136,71,spouse,176,197,S7,GEDCOM @F9@,"0 @F9@ FAM
+1 HUSB @I14@
+1 WIFE @I35@
+1 CHIL @I24@
+1 CHIL @I30@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E137,71,parent-child,176,186,S7,GEDCOM @F9@,"0 @F9@ FAM
+1 HUSB @I14@
+1 WIFE @I35@
+1 CHIL @I24@
+1 CHIL @I30@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E138,71,parent-child,176,192,S7,GEDCOM @F9@,"0 @F9@ FAM
+1 HUSB @I14@
+1 WIFE @I35@
+1 CHIL @I24@
+1 CHIL @I30@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E139,71,parent-child,197,186,S7,GEDCOM @F9@,"0 @F9@ FAM
+1 HUSB @I14@
+1 WIFE @I35@
+1 CHIL @I24@
+1 CHIL @I30@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E140,71,parent-child,197,192,S7,GEDCOM @F9@,"0 @F9@ FAM
+1 HUSB @I14@
+1 WIFE @I35@
+1 CHIL @I24@
+1 CHIL @I30@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E141,72,spouse,177,194,S7,GEDCOM @F10@,"0 @F10@ FAM
+1 HUSB @I15@
+1 WIFE @I32@
+1 CHIL @I39@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E142,72,parent-child,177,201,S7,GEDCOM @F10@,"0 @F10@ FAM
+1 HUSB @I15@
+1 WIFE @I32@
+1 CHIL @I39@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E143,72,parent-child,194,201,S7,GEDCOM @F10@,"0 @F10@ FAM
+1 HUSB @I15@
+1 WIFE @I32@
+1 CHIL @I39@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E144,73,spouse,196,178,S7,GEDCOM @F11@,"0 @F11@ FAM
+1 HUSB @I34@
+1 WIFE @I16@
+1 CHIL @I40@
+1 CHIL @I48@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E145,73,parent-child,196,202,S7,GEDCOM @F11@,"0 @F11@ FAM
+1 HUSB @I34@
+1 WIFE @I16@
+1 CHIL @I40@
+1 CHIL @I48@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E146,73,parent-child,196,210,S7,GEDCOM @F11@,"0 @F11@ FAM
+1 HUSB @I34@
+1 WIFE @I16@
+1 CHIL @I40@
+1 CHIL @I48@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E147,73,parent-child,178,202,S7,GEDCOM @F11@,"0 @F11@ FAM
+1 HUSB @I34@
+1 WIFE @I16@
+1 CHIL @I40@
+1 CHIL @I48@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E148,73,parent-child,178,210,S7,GEDCOM @F11@,"0 @F11@ FAM
+1 HUSB @I34@
+1 WIFE @I16@
+1 CHIL @I40@
+1 CHIL @I48@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E149,74,spouse,200,179,S7,GEDCOM @F12@,"0 @F12@ FAM
+1 HUSB @I38@
+1 WIFE @I17@
+1 CHIL @I33@
+1 CHIL @I45@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E150,74,parent-child,200,195,S7,GEDCOM @F12@,"0 @F12@ FAM
+1 HUSB @I38@
+1 WIFE @I17@
+1 CHIL @I33@
+1 CHIL @I45@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E151,74,parent-child,200,207,S7,GEDCOM @F12@,"0 @F12@ FAM
+1 HUSB @I38@
+1 WIFE @I17@
+1 CHIL @I33@
+1 CHIL @I45@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E152,74,parent-child,179,195,S7,GEDCOM @F12@,"0 @F12@ FAM
+1 HUSB @I38@
+1 WIFE @I17@
+1 CHIL @I33@
+1 CHIL @I45@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E153,74,parent-child,179,207,S7,GEDCOM @F12@,"0 @F12@ FAM
+1 HUSB @I38@
+1 WIFE @I17@
+1 CHIL @I33@
+1 CHIL @I45@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E154,75,spouse,180,204,S7,GEDCOM @F13@,"0 @F13@ FAM
+1 HUSB @I18@
+1 WIFE @I42@
+1 CHIL @I37@
+1 CHIL @I36@
+1 CHIL @I43@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E155,75,parent-child,180,199,S7,GEDCOM @F13@,"0 @F13@ FAM
+1 HUSB @I18@
+1 WIFE @I42@
+1 CHIL @I37@
+1 CHIL @I36@
+1 CHIL @I43@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E156,75,parent-child,180,198,S7,GEDCOM @F13@,"0 @F13@ FAM
+1 HUSB @I18@
+1 WIFE @I42@
+1 CHIL @I37@
+1 CHIL @I36@
+1 CHIL @I43@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E157,75,parent-child,180,205,S7,GEDCOM @F13@,"0 @F13@ FAM
+1 HUSB @I18@
+1 WIFE @I42@
+1 CHIL @I37@
+1 CHIL @I36@
+1 CHIL @I43@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E158,75,parent-child,204,199,S7,GEDCOM @F13@,"0 @F13@ FAM
+1 HUSB @I18@
+1 WIFE @I42@
+1 CHIL @I37@
+1 CHIL @I36@
+1 CHIL @I43@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E159,75,parent-child,204,198,S7,GEDCOM @F13@,"0 @F13@ FAM
+1 HUSB @I18@
+1 WIFE @I42@
+1 CHIL @I37@
+1 CHIL @I36@
+1 CHIL @I43@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E160,75,parent-child,204,205,S7,GEDCOM @F13@,"0 @F13@ FAM
+1 HUSB @I18@
+1 WIFE @I42@
+1 CHIL @I37@
+1 CHIL @I36@
+1 CHIL @I43@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E161,76,spouse,209,187,S7,GEDCOM @F14@,"0 @F14@ FAM
+1 HUSB @I47@
+1 WIFE @I25@
+1 CHIL @I46@
+1 CHIL @I44@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E162,76,parent-child,209,208,S7,GEDCOM @F14@,"0 @F14@ FAM
+1 HUSB @I47@
+1 WIFE @I25@
+1 CHIL @I46@
+1 CHIL @I44@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E163,76,parent-child,209,206,S7,GEDCOM @F14@,"0 @F14@ FAM
+1 HUSB @I47@
+1 WIFE @I25@
+1 CHIL @I46@
+1 CHIL @I44@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E164,76,parent-child,187,208,S7,GEDCOM @F14@,"0 @F14@ FAM
+1 HUSB @I47@
+1 WIFE @I25@
+1 CHIL @I46@
+1 CHIL @I44@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E165,76,parent-child,187,206,S7,GEDCOM @F14@,"0 @F14@ FAM
+1 HUSB @I47@
+1 WIFE @I25@
+1 CHIL @I46@
+1 CHIL @I44@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E166,77,spouse,217,188,S7,GEDCOM @F15@,"0 @F15@ FAM
+1 HUSB @I55@
+1 WIFE @I26@
+1 CHIL @I51@
+1 CHIL @I50@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E167,77,parent-child,217,213,S7,GEDCOM @F15@,"0 @F15@ FAM
+1 HUSB @I55@
+1 WIFE @I26@
+1 CHIL @I51@
+1 CHIL @I50@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E168,77,parent-child,217,212,S7,GEDCOM @F15@,"0 @F15@ FAM
+1 HUSB @I55@
+1 WIFE @I26@
+1 CHIL @I51@
+1 CHIL @I50@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E169,77,parent-child,188,213,S7,GEDCOM @F15@,"0 @F15@ FAM
+1 HUSB @I55@
+1 WIFE @I26@
+1 CHIL @I51@
+1 CHIL @I50@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E170,77,parent-child,188,212,S7,GEDCOM @F15@,"0 @F15@ FAM
+1 HUSB @I55@
+1 WIFE @I26@
+1 CHIL @I51@
+1 CHIL @I50@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E171,78,spouse,189,228,S7,GEDCOM @F16@,"0 @F16@ FAM
+1 HUSB @I27@
+1 WIFE @I66@
+1 CHIL @I69@
+1 CHIL @I49@
+1 CHIL @I54@
+1 CHIL @I58@
+1 CHIL @I52@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E172,78,parent-child,189,231,S7,GEDCOM @F16@,"0 @F16@ FAM
+1 HUSB @I27@
+1 WIFE @I66@
+1 CHIL @I69@
+1 CHIL @I49@
+1 CHIL @I54@
+1 CHIL @I58@
+1 CHIL @I52@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E173,78,parent-child,189,211,S7,GEDCOM @F16@,"0 @F16@ FAM
+1 HUSB @I27@
+1 WIFE @I66@
+1 CHIL @I69@
+1 CHIL @I49@
+1 CHIL @I54@
+1 CHIL @I58@
+1 CHIL @I52@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E174,78,parent-child,189,216,S7,GEDCOM @F16@,"0 @F16@ FAM
+1 HUSB @I27@
+1 WIFE @I66@
+1 CHIL @I69@
+1 CHIL @I49@
+1 CHIL @I54@
+1 CHIL @I58@
+1 CHIL @I52@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E175,78,parent-child,189,220,S7,GEDCOM @F16@,"0 @F16@ FAM
+1 HUSB @I27@
+1 WIFE @I66@
+1 CHIL @I69@
+1 CHIL @I49@
+1 CHIL @I54@
+1 CHIL @I58@
+1 CHIL @I52@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E176,78,parent-child,189,214,S7,GEDCOM @F16@,"0 @F16@ FAM
+1 HUSB @I27@
+1 WIFE @I66@
+1 CHIL @I69@
+1 CHIL @I49@
+1 CHIL @I54@
+1 CHIL @I58@
+1 CHIL @I52@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E177,78,parent-child,228,231,S7,GEDCOM @F16@,"0 @F16@ FAM
+1 HUSB @I27@
+1 WIFE @I66@
+1 CHIL @I69@
+1 CHIL @I49@
+1 CHIL @I54@
+1 CHIL @I58@
+1 CHIL @I52@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E178,78,parent-child,228,211,S7,GEDCOM @F16@,"0 @F16@ FAM
+1 HUSB @I27@
+1 WIFE @I66@
+1 CHIL @I69@
+1 CHIL @I49@
+1 CHIL @I54@
+1 CHIL @I58@
+1 CHIL @I52@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E179,78,parent-child,228,216,S7,GEDCOM @F16@,"0 @F16@ FAM
+1 HUSB @I27@
+1 WIFE @I66@
+1 CHIL @I69@
+1 CHIL @I49@
+1 CHIL @I54@
+1 CHIL @I58@
+1 CHIL @I52@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E180,78,parent-child,228,220,S7,GEDCOM @F16@,"0 @F16@ FAM
+1 HUSB @I27@
+1 WIFE @I66@
+1 CHIL @I69@
+1 CHIL @I49@
+1 CHIL @I54@
+1 CHIL @I58@
+1 CHIL @I52@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E181,78,parent-child,228,214,S7,GEDCOM @F16@,"0 @F16@ FAM
+1 HUSB @I27@
+1 WIFE @I66@
+1 CHIL @I69@
+1 CHIL @I49@
+1 CHIL @I54@
+1 CHIL @I58@
+1 CHIL @I52@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E182,79,spouse,190,218,S7,GEDCOM @F17@,"0 @F17@ FAM
+1 HUSB @I28@
+1 WIFE @I56@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E183,80,spouse,223,192,S7,GEDCOM @F18@,"0 @F18@ FAM
+1 HUSB @I61@
+1 WIFE @I30@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E184,81,spouse,215,193,S7,GEDCOM @F19@,"0 @F19@ FAM
+1 HUSB @I53@
+1 WIFE @I31@
+1 CHIL @I60@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E185,81,parent-child,215,222,S7,GEDCOM @F19@,"0 @F19@ FAM
+1 HUSB @I53@
+1 WIFE @I31@
+1 CHIL @I60@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E186,81,parent-child,193,222,S7,GEDCOM @F19@,"0 @F19@ FAM
+1 HUSB @I53@
+1 WIFE @I31@
+1 CHIL @I60@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E187,82,spouse,219,201,S7,GEDCOM @F20@,"0 @F20@ FAM
+1 HUSB @I57@
+1 WIFE @I39@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E188,83,spouse,225,202,S7,GEDCOM @F21@,"0 @F21@ FAM
+1 HUSB @I63@
+1 WIFE @I40@
+1 CHIL @I59@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E189,83,parent-child,225,221,S7,GEDCOM @F21@,"0 @F21@ FAM
+1 HUSB @I63@
+1 WIFE @I40@
+1 CHIL @I59@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E190,83,parent-child,202,221,S7,GEDCOM @F21@,"0 @F21@ FAM
+1 HUSB @I63@
+1 WIFE @I40@
+1 CHIL @I59@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E191,84,spouse,207,232,S7,GEDCOM @F22@,"0 @F22@ FAM
+1 HUSB @I45@
+1 WIFE @I70@
+1 CHIL @I64@
+1 CHIL @I67@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E192,84,parent-child,207,226,S7,GEDCOM @F22@,"0 @F22@ FAM
+1 HUSB @I45@
+1 WIFE @I70@
+1 CHIL @I64@
+1 CHIL @I67@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E193,84,parent-child,207,229,S7,GEDCOM @F22@,"0 @F22@ FAM
+1 HUSB @I45@
+1 WIFE @I70@
+1 CHIL @I64@
+1 CHIL @I67@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E194,84,parent-child,232,226,S7,GEDCOM @F22@,"0 @F22@ FAM
+1 HUSB @I45@
+1 WIFE @I70@
+1 CHIL @I64@
+1 CHIL @I67@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E195,84,parent-child,232,229,S7,GEDCOM @F22@,"0 @F22@ FAM
+1 HUSB @I45@
+1 WIFE @I70@
+1 CHIL @I64@
+1 CHIL @I67@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E196,85,spouse,210,233,S7,GEDCOM @F23@,"0 @F23@ FAM
+1 HUSB @I48@
+1 WIFE @I71@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E197,86,parent-child,216,224,S7,GEDCOM @F24@,"0 @F24@ FAM
+1 WIFE @I54@
+1 CHIL @I62@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E198,87,parent-child,220,227,S7,GEDCOM @F25@,"0 @F25@ FAM
+1 WIFE @I58@
+1 CHIL @I65@
+1 CHIL @I68@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E199,87,parent-child,220,230,S7,GEDCOM @F25@,"0 @F25@ FAM
+1 WIFE @I58@
+1 CHIL @I65@
+1 CHIL @I68@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E200,88,spouse,236,231,S7,GEDCOM @F26@,"0 @F26@ FAM
+1 HUSB @I74@
+1 WIFE @I69@
+1 CHIL @I73@
+1 CHIL @I72@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E201,88,parent-child,236,235,S7,GEDCOM @F26@,"0 @F26@ FAM
+1 HUSB @I74@
+1 WIFE @I69@
+1 CHIL @I73@
+1 CHIL @I72@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E202,88,parent-child,236,234,S7,GEDCOM @F26@,"0 @F26@ FAM
+1 HUSB @I74@
+1 WIFE @I69@
+1 CHIL @I73@
+1 CHIL @I72@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E203,88,parent-child,231,235,S7,GEDCOM @F26@,"0 @F26@ FAM
+1 HUSB @I74@
+1 WIFE @I69@
+1 CHIL @I73@
+1 CHIL @I72@",probable,GEDCOM assertion; source family membership does not establish biological parentage.
+E204,88,parent-child,231,234,S7,GEDCOM @F26@,"0 @F26@ FAM
+1 HUSB @I74@
+1 WIFE @I69@
+1 CHIL @I73@
+1 CHIL @I72@",probable,GEDCOM assertion; source family membership does not establish biological parentage.

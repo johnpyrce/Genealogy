@@ -1,5 +1,6 @@
 """Regression coverage for import identity, provenance, and safe registry writes."""
 
+import csv
 from contextlib import redirect_stdout
 import hashlib
 import io
@@ -31,6 +32,25 @@ class GedcomImportTests(unittest.TestCase):
             shutil.copyfile(path, self.registries / path.name)
         self.decisions = load_decisions(ROOT / "docs/imports/PyrceFamily.matches.json")
 
+    def use_chart_only_baseline(self):
+        """Remove this import only from the temporary copy to exercise first import."""
+        tables = {path.name: load_registry_csv(self.registries / path.name) for path in REGISTRY_PATHS}
+        source_ids = {row["source_id"] for row in tables["sources.csv"][1]
+                      if row["file_name"] == DEFAULT_INPUT.relative_to(ROOT).as_posix()}
+        new_people = {row["person_id"] for row in tables["person_source_evidence.csv"][1]
+                      if row["source_id"] in source_ids and row["note"].startswith("Identity: new person.")}
+        for name, (headers, rows) in tables.items():
+            if name == "people.csv":
+                rows = [row for row in rows if row["id"] not in new_people]
+            elif name == "families.csv":
+                rows = [row for row in rows if not any(row["note"].startswith(source + " ") for source in source_ids)]
+            else:
+                rows = [row for row in rows if row["source_id"] not in source_ids]
+            with (self.registries / name).open("w", encoding="utf-8", newline="") as output:
+                writer = csv.DictWriter(output, fieldnames=headers)
+                writer.writeheader()
+                writer.writerows(rows)
+
     def fixture(self, text):
         path = self.directory / "fixture.ged"
         path.write_text("0 HEAD\n1 CHAR UTF-8\n" + text + "0 TRLR\n", encoding="utf-8")
@@ -38,20 +58,22 @@ class GedcomImportTests(unittest.TestCase):
 
     @unittest.skipUnless(DEFAULT_INPUT.is_file(), "Original GEDCOM is intentionally untracked")
     def test_project_preview_preserves_files_and_reports_expected_overlap(self):
+        self.use_chart_only_baseline()
         original = {path.name: (self.registries / path.name).read_bytes() for path in REGISTRY_PATHS}
         plan = make_plan(DEFAULT_INPUT, self.registries, self.decisions)
         report = plan["report"]
         self.assertTrue(report["ready"])
         self.assertEqual(len(report["people_matched"]), 9)
-        self.assertEqual(len(report["people_added"]), 56)
-        self.assertEqual(len(report["families_added"]), 21)
+        self.assertEqual(len(report["people_added"]), 65)
+        self.assertEqual(len(report["families_added"]), 24)
         self.assertEqual([row["id"] for row in report["families_matched"]], [6, 25])
-        self.assertEqual(len(report["conflicts"]), 2)
+        self.assertEqual(len(report["conflicts"]), 1)
         for name, content in original.items():
             self.assertEqual((self.registries / name).read_bytes(), content)
 
     @unittest.skipUnless(DEFAULT_INPUT.is_file(), "Original GEDCOM is intentionally untracked")
     def test_apply_to_temporary_copy_preserves_facts_and_is_idempotent(self):
+        self.use_chart_only_baseline()
         _, before_people = load_registry_csv(self.registries / "people.csv")
         _, before_families = load_registry_csv(self.registries / "families.csv")
         plan = make_plan(DEFAULT_INPUT, self.registries, self.decisions)
@@ -60,8 +82,8 @@ class GedcomImportTests(unittest.TestCase):
         _, families = load_registry_csv(self.registries / "families.csv")
         self.assertEqual(people[:len(before_people)], before_people)
         self.assertEqual(families[:len(before_families)], before_families)
-        self.assertEqual(len(people), len(before_people) + 56)
-        self.assertEqual(len(families), len(before_families) + 21)
+        self.assertEqual(len(people), len(before_people) + 65)
+        self.assertEqual(len(families), len(before_families) + 24)
         self.assertEqual([row["id"] for row in families], [str(i) for i in range(1, len(families) + 1)])
         # Importing a subset must not attribute all existing siblings to this GEDCOM.
         _, evidence = load_registry_csv(self.registries / "relationship_evidence.csv")
@@ -72,10 +94,10 @@ class GedcomImportTests(unittest.TestCase):
         _, evidence = load_registry_csv(self.registries / "person_source_evidence.csv")
         sophie = next(row for row in evidence if row["location"] == "GEDCOM @I1@")
         self.assertEqual(sophie["person_id"], "22")
-        self.assertIn("1 MAY 1893", sophie["transcription"])
+        self.assertIn("1 MAY 1883", sophie["transcription"])
         self.assertIn("Muszyna, Nowy Sącz", sophie["transcription"])
         josef = next(row for row in evidence if row["source_id"] == plan["report"]["source_id"] and row["person_id"] == "78")
-        self.assertIn("BET 1930 AND 1940", josef["transcription"])
+        self.assertIn("16 DEC 1939", josef["transcription"])
         paths = {name: self.registries / getattr(genealogy_data, name).name for name in (
             "PEOPLE_REGISTRY", "FAMILY_REGISTRY", "SOURCE_REGISTRY", "EVIDENCE_REGISTRY", "PERSON_SOURCE_REGISTRY")}
         with patch.multiple(genealogy_data, **paths), patch.multiple(validate_genealogy_data,
@@ -85,6 +107,21 @@ class GedcomImportTests(unittest.TestCase):
         self.assertEqual(again["changed"], {})
         self.assertEqual(again["report"]["people_added"], [])
         self.assertEqual(again["report"]["families_added"], [])
+
+    @unittest.skipUnless(DEFAULT_INPUT.is_file(), "Original GEDCOM is intentionally untracked")
+    def test_current_project_import_is_idempotent_and_keeps_unknown_surnames(self):
+        plan = make_plan(DEFAULT_INPUT, self.registries, self.decisions)
+        self.assertEqual(plan["changed"], {})
+        self.assertEqual(len(plan["report"]["people_matched"]), 74)
+        _, evidence = load_registry_csv(self.registries / "person_source_evidence.csv")
+        _, people = load_registry_csv(self.registries / "people.csv")
+        by_id = {row["id"]: row for row in people}
+        source_id = plan["report"]["source_id"]
+        for xref in ("@I62@", "@I65@", "@I68@"):
+            row = next(row for row in evidence if row["source_id"] == source_id
+                       and row["location"] == f"GEDCOM {xref}")
+            self.assertEqual(by_id[row["person_id"]]["surname"], "")
+            self.assertEqual(by_id[row["person_id"]]["birth_year"], "")
 
     def test_unique_name_and_date_match_retains_polish_spelling(self):
         path = self.fixture("0 @I1@ INDI\n1 NAME Jan /Goscinski/\n1 BIRT\n2 DATE 27 MAY 1888\n")

@@ -117,6 +117,44 @@ The importer reads `data/source-material/PyrceFamily.ged` by default. Supply a
 different repository path as a positional argument to import another GEDCOM.
 Run the commands below from the repository root.
 
+### Refresh the existing FamilySearch extract
+
+Use `--refresh` when a new RootsMagic export should replace the previous
+FamilySearch snapshot under the same source (S7), rather than add another source.
+Save the new export over `data/source-material/PyrceFamily.ged`, then preview:
+
+```sh
+uv run python -m scripts.import_gedcom --refresh \
+  --report artifacts/imports/PyrceFamily.refresh.md
+```
+
+Review the proposed fact updates, additions, superseded families, absent people,
+and conflicts. When ready, apply and rebuild:
+
+```sh
+uv run python -m scripts.import_gedcom --refresh --apply \
+  --report artifacts/imports/PyrceFamily.refreshed.md
+uv run python -m scripts.validate_genealogy_data
+./build.sh
+uv run python -m unittest discover -s tests
+```
+
+Refresh matches by stable FamilySearch IDs, preserving registry person IDs even
+when GEDCOM numbers change. It updates GEDCOM-managed facts and fills blank
+chart-backed fields, while retaining populated chart-backed facts and local
+corrections. Superseded GEDCOM-only families are replaced; people absent from the
+new extract remain flagged for review. Missing or conflicting identities block
+applying until reviewed with a new `--matches` file; do not reuse an older
+export's match file.
+
+Applied imports save immutable GEDCOM snapshots in
+`data/source-material/gedcom-history/`. Refresh also archives the previous CSVs
+before changing them. For a legacy import without a saved snapshot, apply an
+unchanged append import **before overwriting the old export**, or supply the
+original registered file with `--previous-gedcom`. The previous file's fingerprint
+must match. See [the refresh guide](docs/imports/README.md#refresh-an-existing-source)
+for details. The remaining import instructions describe append mode.
+
 ### How the match file is created
 
 The direct importer **does not generate a match file automatically**. Create or

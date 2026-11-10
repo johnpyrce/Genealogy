@@ -1,6 +1,6 @@
-# Source charts
+# Sources
 
-The Family Tree is derived from a set of original family tree documents.
+The family tree combines six original family charts (S1–S6) with a GEDCOM-formatted export from a manually created family tree in FamilySearch.org (S7).
 Polish personal and
 place names are retained. 
 Dates are normalized to years.
@@ -14,11 +14,11 @@ connections are explicitly identified instead of being presented as source text.
 
 “Spouse ancestry” means a spouse’s ancestors. “Collateral” means siblings and other side branches.
 
-Jump to [S1](#s1), [S2](#s2), [S3](#s3), [S4](#s4), [S5](#s5), or [S6](#s6). Select a chart image or linked chart name to examine the original.
+Jump to [S1](#s1), [S2](#s2), [S3](#s3), [S4](#s4), [S5](#s5), [S6](#s6), or [S7](#s7). Select a chart image, linked source name, or GEDCOM download to examine the original.
 
 ## Source overview
 
-| ID | Chart | Description | Quality | How it is used |
+| ID | Source | Description | Quality | How it is used |
 | --- | --- | --- | --- | --- |
 | S1 | [Drzewo genealogiczne](/assets/charts/Drzewo%20Genealogy.png) | Polished modern tree for Wanda Gościńska's branch | Excellent | All displayed relationships are recorded as confirmed. |
 | S2 | [Gościńscy z Wapiennego](/assets/charts/Goscinscy%20z%20Wapiennego%20Genealogy.png) | Dense printed Gościński chart with several spouse pedigrees | Good, but structurally dense | Clear solid and dotted connectors are recorded; ambiguous annotations remain in notes. |
@@ -26,6 +26,7 @@ Jump to [S1](#s1), [S2](#s2), [S3](#s3), [S4](#s4), [S5](#s5), or [S6](#s6). Sel
 | S4 | [Stanisław and Władysława Miczulska](/assets/charts/Wladusklana%20Mickulska%20Genealogy.png) | Handwritten Antonina and Jerzy Guzyk descendant chart | Fair to good | Family groups are recorded; inferred child surnames and one provisional surname are noted. |
 | S5 | [Rodzina Ramsów](/assets/charts/Rodzina%20Ramsow%20Geneoaogy.png) | Printed Rams chart with Gościński and Miczulski bridges | Good; right and lower edges are cropped | Clear relationships are confirmed; cropped descendant details and isolated labels are marked probable or uncertain. |
 | S6 | [Later Stanisław and Władysława chart](/assets/charts/Mickulska%20Genealogy.png) | Sparse handwritten Stanisław and Władysława descendant chart | Fair | Used to resolve the Małgorzata–Bogdan Pluta branch and to corroborate four children of the head couple. |
+| S7 | [PyrceFamily.ged](/assets/charts/PyrceFamily.ged) | GEDCOM-formatted export from a manually created family tree in FamilySearch.org | Family-created tree; imported assertions are probable | Adds Pyrce family members and relationships; original GEDCOM records and conflicting accounts are preserved in the evidence registries. |
 
 ## Original chart images
 
@@ -181,6 +182,16 @@ clarification is the right-hand branch:
 The chart is sparse but its branch lines are visible. These relationships are
 recorded as confirmed except for the Wiklowski surname normalization, which is
 kept probable pending family confirmation.
+
+<a id="s7"></a>
+
+## S7 — PyrceFamily.ged
+
+PyrceFamily.ged is a **GEDCOM-formatted export from a manually created family tree in FamilySearch.org**, exported through RootsMagic on 9 November 2026. It records 74 people and 26 families, including the American Pyrce descendants.
+
+[Download the original PyrceFamily.ged](/assets/charts/PyrceFamily.ged).
+
+The import matches nine people to existing registry entries and adds 65 people and 24 family groups. Full GEDCOM individual and family records, including dates, places, notes, and FamilySearch identifiers, are retained in the evidence registries. Existing Polish names and conflicting dates remain alongside the incoming account. Missing names and dates remain unknown; imported assertions are recorded as probable rather than independently verified civil or parish facts.
 
 ## Reconciliation and quality policy
 

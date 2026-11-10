@@ -64,10 +64,10 @@ export function ReportContent() {
     {visible("analytics-summary") && <ReportSection id="analytics-summary" title="Executive summary" queryId="summary"
       sourceRows={summaryRows} showHeading={false} className="report-summary">
       <RichNarrative id="analytics-summary:body" className="report-summary-lead" label="Edit executive summary"
-        value={`## What the charts tell us
+        value={`## What the sources tell us
 
 - The collection records **${summary.people} people** in **${summary.families} family groups**, across up to **${summary.maximumGeneration} generations**.
-- The information comes from **${summary.sourceCharts} family charts**, with ${summary.evidenceRecords} records describing the evidence for family relationships.
+- The information comes from **${summary.sourceCharts} source documents**, with ${summary.evidenceRecords} records describing the evidence for family relationships.
 - Some dates and relationships are missing or uncertain. A missing entry means the information has not been recorded here; it does not mean the person or relationship did not exist.`} />
     </ReportSection>}
 
@@ -80,7 +80,7 @@ export function ReportContent() {
         value={String(summary.families)} description="Recorded family or household records." />}
       {visible("metric-surnames") && <MetricCard id="metric-surnames" title="Surnames" queryId="distinct_surnames" sourceRows={surnameRows}
         value={String(surnameCount.surnames)} description="Distinct recorded surnames, excluding blanks. Different spellings and male/female forms count separately." />}
-      {visible("metric-sources") && <MetricCard id="metric-sources" title="Source charts" queryId="summary" sourceRows={summaryRows}
+      {visible("metric-sources") && <MetricCard id="metric-sources" title="Source documents" queryId="summary" sourceRows={summaryRows}
         value={String(summary.sourceCharts)} description={`${summary.evidenceRecords} relationship-evidence records.`} />}
     </div>
 

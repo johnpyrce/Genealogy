@@ -203,12 +203,14 @@ def footer() -> str:
 def page(title: str, body: str, description: str = "Our Polish Family History") -> str:
     template = Template((ROOT / "website/templates/page.html").read_text(encoding="utf-8"))
     stylesheet_version = hashlib.sha256((ROOT / "website/templates/site.css").read_bytes()).hexdigest()[:12]
+    script_version = hashlib.sha256((ROOT / "website/templates/site.js").read_bytes()).hexdigest()[:12]
     icon_version = hashlib.sha256((ROOT / "website/templates/favicon.svg").read_bytes()).hexdigest()[:12]
     site_title = "Our Polish Family History"
     browser_title = site_title if not title or title == site_title else f"{title} · {site_title}"
     return template.substitute(description=html.escape(description, quote=True),
                                title=html.escape(browser_title), header=header(), body=body, footer=footer(),
-                               stylesheet_version=stylesheet_version, icon_version=icon_version)
+                               stylesheet_version=stylesheet_version, script_version=script_version,
+                               icon_version=icon_version)
 
 
 def doc_page(source: str, output: str, *, link_map: dict[str, str] | None = None) -> None:
@@ -271,6 +273,8 @@ def build_sources() -> None:
         source = ROOT / row["file_name"]
         copy_file(source, DIST / "assets/charts" / source.name)
         url = "/assets/charts/" + quote(source.name)
+        if source.suffix.lower() == ".ged":
+            continue  # Linked from the source description; GEDCOM is not an image.
         cards.append(f'''<figure class="media-card"><a href="{url}"><img src="{url}" alt="{html.escape(row['display_name'], quote=True)}" loading="lazy"></a><figcaption>{html.escape(row['source_id'])} · {html.escape(row['display_name'])}</figcaption></figure>''')
     heading = "<h2>Original chart images</h2>"
     if heading not in report:
@@ -328,6 +332,9 @@ def build_tree() -> None:
         ("tree/viewer/index.html", "Family-tree viewer", "/tree/viewer/app/family_tree.html"),
         ("tree/graph/index.html", "Relationship graph", "/tree/graph/app/genealogy_relationship_graph.html"),
     ]:
+        if route == "tree/graph/index.html":
+            graph_version = hashlib.sha256((DIST / src.lstrip("/")).read_bytes()).hexdigest()[:12]
+            src += f"?v={graph_version}"
         body = (f'<section class="tool-page"><h1>{label}</h1>'
                 f'<p class="tool-actions"><a href="{src}" target="_blank" rel="noopener">Open {label.lower()} in a full window</a>'
                 ' · <a href="/tree/">Choose another tree view</a></p>'

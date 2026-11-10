@@ -1,14 +1,14 @@
 {
   "surface": "report",
   "title": "The Muszyna genealogy has nine documented generations",
-  "generatedAt": "2026-11-08T21:13:40-06:00",
+  "generatedAt": "2026-11-10T14:57:39-06:00",
   "buildStatus": "complete",
   "status": "reviewed",
   "queries": {
     "distinct_surnames": {
       "rows": [
         {
-          "surnames": 54
+          "surnames": 76
         }
       ],
       "source": {
@@ -38,14 +38,14 @@
     "summary": {
       "rows": [
         {
-          "people": 171,
-          "families": 64,
-          "familyChildMemberships": 109,
-          "parentChildEdges": 210,
-          "evidenceRecords": 85,
-          "sourceCharts": 6,
+          "people": 236,
+          "families": 88,
+          "familyChildMemberships": 152,
+          "parentChildEdges": 293,
+          "evidenceRecords": 204,
+          "sourceCharts": 7,
           "maximumGeneration": 9,
-          "components": 24
+          "components": 29
         }
       ],
       "source": {
@@ -79,31 +79,31 @@
       "rows": [
         {
           "measure": "People",
-          "value": 171
+          "value": 236
         },
         {
           "measure": "Families",
-          "value": 64
+          "value": 88
         },
         {
           "measure": "Partner associations",
-          "value": 61
+          "value": 83
         },
         {
           "measure": "Family-child memberships",
-          "value": 109
+          "value": 152
         },
         {
           "measure": "Directed parent-child links",
-          "value": 210
+          "value": 293
         },
         {
           "measure": "Source charts",
-          "value": 6
+          "value": 7
         },
         {
           "measure": "Evidence records",
-          "value": 85
+          "value": 204
         }
       ],
       "source": {
@@ -134,63 +134,63 @@
       "rows": [
         {
           "field": "Birth year",
-          "known": 77,
-          "total": 171,
-          "coverage_pct": 45.0
+          "known": 108,
+          "total": 236,
+          "coverage_pct": 45.8
         },
         {
           "field": "Both birth and death",
-          "known": 42,
-          "total": 171,
-          "coverage_pct": 24.6
+          "known": 47,
+          "total": 236,
+          "coverage_pct": 19.9
         },
         {
           "field": "Death year",
-          "known": 42,
-          "total": 171,
-          "coverage_pct": 24.6
+          "known": 47,
+          "total": 236,
+          "coverage_pct": 19.9
         },
         {
           "field": "Family evidence",
-          "known": 64,
-          "total": 64,
+          "known": 88,
+          "total": 88,
           "coverage_pct": 100.0
         },
         {
           "field": "Family-name group",
-          "known": 171,
-          "total": 171,
+          "known": 236,
+          "total": 236,
           "coverage_pct": 100.0
         },
         {
           "field": "First name",
-          "known": 171,
-          "total": 171,
+          "known": 236,
+          "total": 236,
           "coverage_pct": 100.0
         },
         {
           "field": "Generation assigned",
-          "known": 171,
-          "total": 171,
+          "known": 236,
+          "total": 236,
           "coverage_pct": 100.0
         },
         {
           "field": "Named parent",
-          "known": 105,
-          "total": 171,
-          "coverage_pct": 61.4
+          "known": 148,
+          "total": 236,
+          "coverage_pct": 62.7
         },
         {
           "field": "Recorded partner",
-          "known": 118,
-          "total": 171,
-          "coverage_pct": 69.0
+          "known": 162,
+          "total": 236,
+          "coverage_pct": 68.6
         },
         {
           "field": "Surname",
-          "known": 169,
-          "total": 171,
-          "coverage_pct": 98.8
+          "known": 231,
+          "total": 236,
+          "coverage_pct": 97.9
         }
       ],
       "source": {
@@ -220,20 +220,29 @@
     "completeness_heatmap": {
       "rows": [
         {
-          "familyName": "Drzązgowski",
+          "familyName": "Allen",
           "generation": "1",
-          "people": 1,
-          "completenessPct": 66.7,
-          "birthKnown": 1,
-          "deathKnown": 1,
+          "people": 2,
+          "completenessPct": 0.0,
+          "birthKnown": 0,
+          "deathKnown": 0,
           "parentKnown": 0
         },
         {
-          "familyName": "Drzązgowski",
+          "familyName": "Allen",
+          "generation": "7",
+          "people": 1,
+          "completenessPct": 33.3,
+          "birthKnown": 0,
+          "deathKnown": 0,
+          "parentKnown": 1
+        },
+        {
+          "familyName": "Allen",
           "generation": "8",
           "people": 3,
-          "completenessPct": 66.7,
-          "birthKnown": 3,
+          "completenessPct": 44.4,
+          "birthKnown": 1,
           "deathKnown": 0,
           "parentKnown": 3
         },
@@ -346,6 +355,33 @@
           "parentKnown": 2
         },
         {
+          "familyName": "Hamman",
+          "generation": "1",
+          "people": 2,
+          "completenessPct": 50.0,
+          "birthKnown": 2,
+          "deathKnown": 1,
+          "parentKnown": 0
+        },
+        {
+          "familyName": "Hamman",
+          "generation": "7",
+          "people": 2,
+          "completenessPct": 66.7,
+          "birthKnown": 1,
+          "deathKnown": 1,
+          "parentKnown": 2
+        },
+        {
+          "familyName": "Hamman",
+          "generation": "8",
+          "people": 2,
+          "completenessPct": 33.3,
+          "birthKnown": 0,
+          "deathKnown": 0,
+          "parentKnown": 2
+        },
+        {
           "familyName": "Miczulski",
           "generation": "1",
           "people": 2,
@@ -391,24 +427,6 @@
           "parentKnown": 1
         },
         {
-          "familyName": "Pluta",
-          "generation": "1",
-          "people": 1,
-          "completenessPct": 0.0,
-          "birthKnown": 0,
-          "deathKnown": 0,
-          "parentKnown": 0
-        },
-        {
-          "familyName": "Pluta",
-          "generation": "8",
-          "people": 3,
-          "completenessPct": 33.3,
-          "birthKnown": 0,
-          "deathKnown": 0,
-          "parentKnown": 3
-        },
-        {
           "familyName": "Pyrc",
           "generation": "1",
           "people": 1,
@@ -434,6 +452,33 @@
           "birthKnown": 5,
           "deathKnown": 5,
           "parentKnown": 6
+        },
+        {
+          "familyName": "Pyrce",
+          "generation": "1",
+          "people": 1,
+          "completenessPct": 0.0,
+          "birthKnown": 0,
+          "deathKnown": 0,
+          "parentKnown": 0
+        },
+        {
+          "familyName": "Pyrce",
+          "generation": "7",
+          "people": 6,
+          "completenessPct": 55.6,
+          "birthKnown": 4,
+          "deathKnown": 0,
+          "parentKnown": 6
+        },
+        {
+          "familyName": "Pyrce",
+          "generation": "8",
+          "people": 10,
+          "completenessPct": 50.0,
+          "birthKnown": 5,
+          "deathKnown": 0,
+          "parentKnown": 10
         },
         {
           "familyName": "Rams",
@@ -488,33 +533,6 @@
           "birthKnown": 1,
           "deathKnown": 0,
           "parentKnown": 1
-        },
-        {
-          "familyName": "Szost",
-          "generation": "1",
-          "people": 2,
-          "completenessPct": 33.3,
-          "birthKnown": 2,
-          "deathKnown": 0,
-          "parentKnown": 0
-        },
-        {
-          "familyName": "Szost",
-          "generation": "2",
-          "people": 1,
-          "completenessPct": 66.7,
-          "birthKnown": 1,
-          "deathKnown": 0,
-          "parentKnown": 1
-        },
-        {
-          "familyName": "Szost",
-          "generation": "3",
-          "people": 1,
-          "completenessPct": 100.0,
-          "birthKnown": 1,
-          "deathKnown": 1,
-          "parentKnown": 1
         }
       ],
       "source": {
@@ -545,17 +563,17 @@
         {
           "confidence": "confirmed",
           "evidence_records": 72,
-          "share_pct": 84.7
+          "share_pct": 35.3
         },
         {
           "confidence": "probable",
-          "evidence_records": 11,
-          "share_pct": 12.9
+          "evidence_records": 130,
+          "share_pct": 63.7
         },
         {
           "confidence": "uncertain",
           "evidence_records": 2,
-          "share_pct": 2.4
+          "share_pct": 1.0
         }
       ],
       "source": {
@@ -583,6 +601,10 @@
     },
     "source_contribution": {
       "rows": [
+        {
+          "sourceId": "S7",
+          "evidenceRecords": 119
+        },
         {
           "sourceId": "S2",
           "evidenceRecords": 29
@@ -635,15 +657,15 @@
       "rows": [
         {
           "measure": "Connected components",
-          "value": 24
+          "value": 29
         },
         {
           "measure": "Roots",
-          "value": 66
+          "value": 88
         },
         {
           "measure": "Terminal lines",
-          "value": 85
+          "value": 114
         },
         {
           "measure": "Maximum generation",
@@ -651,11 +673,11 @@
         },
         {
           "measure": "Maximum generation width",
-          "value": 66
+          "value": 88
         },
         {
           "measure": "Isolated people",
-          "value": 23
+          "value": 28
         }
       ],
       "source": {
@@ -685,11 +707,11 @@
       "rows": [
         {
           "measure": "Families with recorded children",
-          "value": 45.0
+          "value": 64.0
         },
         {
           "measure": "Mean children per family with children",
-          "value": 2.42
+          "value": 2.38
         },
         {
           "measure": "Median children per family with children",
@@ -775,7 +797,7 @@
         },
         {
           "decade": "1920s",
-          "people": 12
+          "people": 16
         },
         {
           "decade": "1930s",
@@ -783,7 +805,7 @@
         },
         {
           "decade": "1950s",
-          "people": 3
+          "people": 11
         },
         {
           "decade": "1960s",
@@ -791,19 +813,23 @@
         },
         {
           "decade": "1980s",
-          "people": 5
+          "people": 9
         },
         {
           "decade": "1990s",
-          "people": 3
+          "people": 8
         },
         {
           "decade": "2000s",
-          "people": 1
+          "people": 4
+        },
+        {
+          "decade": "2010s",
+          "people": 3
         },
         {
           "decade": "2020s",
-          "people": 2
+          "people": 6
         }
       ],
       "source": {
@@ -840,6 +866,10 @@
           "people": 18
         },
         {
+          "familyName": "Pyrce",
+          "people": 17
+        },
+        {
           "familyName": "Pyrc",
           "people": 10
         },
@@ -850,6 +880,22 @@
         {
           "familyName": "Miczulski",
           "people": 7
+        },
+        {
+          "familyName": "Allen",
+          "people": 6
+        },
+        {
+          "familyName": "Hamman",
+          "people": 6
+        },
+        {
+          "familyName": "Kaminecki",
+          "people": 5
+        },
+        {
+          "familyName": "Unknown",
+          "people": 5
         },
         {
           "familyName": "Drzązgowski",
@@ -864,11 +910,19 @@
           "people": 4
         },
         {
+          "familyName": "Albano",
+          "people": 3
+        },
+        {
           "familyName": "Berduchowski",
           "people": 3
         },
         {
           "familyName": "Bukowski",
+          "people": 3
+        },
+        {
+          "familyName": "Fogarty",
           "people": 3
         },
         {
@@ -884,6 +938,10 @@
           "people": 3
         },
         {
+          "familyName": "Kagan",
+          "people": 3
+        },
+        {
           "familyName": "Kokoszka",
           "people": 3
         },
@@ -893,6 +951,10 @@
         },
         {
           "familyName": "Miąsik",
+          "people": 3
+        },
+        {
+          "familyName": "Ortiz",
           "people": 3
         },
         {
@@ -920,7 +982,15 @@
           "people": 2
         },
         {
+          "familyName": "Moore",
+          "people": 2
+        },
+        {
           "familyName": "Moszczak",
+          "people": 2
+        },
+        {
+          "familyName": "Murphy",
           "people": 2
         },
         {
@@ -929,10 +999,6 @@
         },
         {
           "familyName": "Tryszczyła",
-          "people": 2
-        },
-        {
-          "familyName": "Unknown",
           "people": 2
         },
         {
@@ -948,7 +1014,15 @@
           "people": 2
         },
         {
+          "familyName": "Aguayo-Martinez",
+          "people": 1
+        },
+        {
           "familyName": "Bartmanowicz",
+          "people": 1
+        },
+        {
+          "familyName": "Cerny",
           "people": 1
         },
         {
@@ -976,11 +1050,23 @@
           "people": 1
         },
         {
+          "familyName": "Frain",
+          "people": 1
+        },
+        {
           "familyName": "Grotkowski",
           "people": 1
         },
         {
           "familyName": "Gumulak",
+          "people": 1
+        },
+        {
+          "familyName": "Hamman-Ortiz",
+          "people": 1
+        },
+        {
+          "familyName": "Iwaniczko",
           "people": 1
         },
         {
@@ -1000,7 +1086,27 @@
           "people": 1
         },
         {
+          "familyName": "Paris",
+          "people": 1
+        },
+        {
           "familyName": "Pawłowski",
+          "people": 1
+        },
+        {
+          "familyName": "Rekar Pyrce",
+          "people": 1
+        },
+        {
+          "familyName": "Retondo",
+          "people": 1
+        },
+        {
+          "familyName": "Rosa",
+          "people": 1
+        },
+        {
+          "familyName": "Rosa Pyrce",
           "people": 1
         },
         {
@@ -1024,7 +1130,15 @@
           "people": 1
         },
         {
+          "familyName": "Van Treeck",
+          "people": 1
+        },
+        {
           "familyName": "Walczyk",
+          "people": 1
+        },
+        {
+          "familyName": "Zrazik",
           "people": 1
         },
         {
@@ -1059,23 +1173,23 @@
       "rows": [
         {
           "family_size": 1,
-          "families": 16
+          "families": 20
         },
         {
           "family_size": 2,
-          "families": 13
+          "families": 22
         },
         {
           "family_size": 3,
-          "families": 7
+          "families": 11
         },
         {
           "family_size": 4,
-          "families": 4
+          "families": 5
         },
         {
           "family_size": 5,
-          "families": 1
+          "families": 2
         },
         {
           "family_size": 6,
@@ -1113,7 +1227,7 @@
       "rows": [
         {
           "ageBand": "30–39",
-          "people": 1
+          "people": 2
         },
         {
           "ageBand": "40–49",
@@ -1129,15 +1243,15 @@
         },
         {
           "ageBand": "70–79",
-          "people": 9
+          "people": 10
         },
         {
           "ageBand": "80–89",
-          "people": 12
+          "people": 13
         },
         {
           "ageBand": "90–99",
-          "people": 11
+          "people": 13
         }
       ],
       "source": {
@@ -1168,7 +1282,7 @@
         {
           "span_band": "0–4 years",
           "sort_order": 1,
-          "families": 4
+          "families": 12
         },
         {
           "span_band": "5–9 years",
@@ -1238,37 +1352,37 @@
           "parentRole": "Father",
           "ageBand": "25–29",
           "sortOrder": 3,
-          "observations": 8
+          "observations": 10
         },
         {
           "parentRole": "Mother",
           "ageBand": "25–29",
           "sortOrder": 3,
-          "observations": 10
+          "observations": 14
         },
         {
           "parentRole": "Father",
           "ageBand": "30–34",
           "sortOrder": 4,
-          "observations": 12
+          "observations": 18
         },
         {
           "parentRole": "Mother",
           "ageBand": "30–34",
           "sortOrder": 4,
-          "observations": 10
+          "observations": 16
         },
         {
           "parentRole": "Father",
           "ageBand": "35–39",
           "sortOrder": 5,
-          "observations": 10
+          "observations": 13
         },
         {
           "parentRole": "Mother",
           "ageBand": "35–39",
           "sortOrder": 5,
-          "observations": 5
+          "observations": 7
         },
         {
           "parentRole": "Father",
@@ -1280,7 +1394,7 @@
           "parentRole": "Mother",
           "ageBand": "40 and over",
           "sortOrder": 6,
-          "observations": 5
+          "observations": 7
         }
       ],
       "source": {
@@ -1317,17 +1431,10 @@
         },
         {
           "parentRole": "Mother",
-          "parent": "Józefa Szost",
-          "child": "Józef Gościński",
-          "age": 42,
-          "childBirthYear": 1895
-        },
-        {
-          "parentRole": "Mother",
-          "parent": "Maria Wilczyńska",
-          "child": "Maria Moszczak",
-          "age": 42,
-          "childBirthYear": 1903
+          "parent": "Janice Pyrce",
+          "child": "Jonathan Kagan",
+          "age": 46,
+          "childBirthYear": 1997
         }
       ],
       "source": {
@@ -1358,17 +1465,17 @@
         {
           "ageGapBand": "0–1 years",
           "sortOrder": 0,
-          "couples": 4
+          "couples": 7
         },
         {
           "ageGapBand": "2–3 years",
           "sortOrder": 2,
-          "couples": 2
+          "couples": 3
         },
         {
           "ageGapBand": "4–5 years",
           "sortOrder": 4,
-          "couples": 4
+          "couples": 5
         },
         {
           "ageGapBand": "6–7 years",
@@ -1378,7 +1485,7 @@
         {
           "ageGapBand": "8–9 years",
           "sortOrder": 8,
-          "couples": 1
+          "couples": 3
         },
         {
           "ageGapBand": "10–11 years",
@@ -1419,37 +1526,37 @@
         {
           "id": 2,
           "founder": "Teresa Bartmanowicz",
-          "documentedDescendants": 80
+          "documentedDescendants": 123
         },
         {
           "id": 1,
           "founder": "Wawrzyniec Gościński",
-          "documentedDescendants": 80
+          "documentedDescendants": 123
         },
         {
           "id": 155,
           "founder": "Zofia Matusiewicz",
-          "documentedDescendants": 77
+          "documentedDescendants": 120
         },
         {
           "id": 147,
           "founder": "Józef Szost",
-          "documentedDescendants": 75
+          "documentedDescendants": 118
         },
         {
           "id": 148,
           "founder": "Maria Matusiewicz",
-          "documentedDescendants": 75
+          "documentedDescendants": 118
         },
         {
           "id": 8,
           "founder": "Maria Sasała",
-          "documentedDescendants": 75
+          "documentedDescendants": 118
         },
         {
           "id": 150,
           "founder": "Zofia Wilczyńska",
-          "documentedDescendants": 74
+          "documentedDescendants": 117
         },
         {
           "id": 131,
@@ -1482,14 +1589,14 @@
           "documentedDescendants": 62
         },
         {
-          "id": 140,
-          "founder": "Marianna Kraiowska",
-          "documentedDescendants": 30
+          "id": 77,
+          "founder": "Anna Bukowska",
+          "documentedDescendants": 52
         },
         {
-          "id": 139,
-          "founder": "Michał Homa",
-          "documentedDescendants": 30
+          "id": 76,
+          "founder": "Jan Pyrc",
+          "documentedDescendants": 52
         }
       ],
       "source": {
@@ -1542,6 +1649,10 @@
           "people": 6
         },
         {
+          "firstName": "Anna",
+          "people": 5
+        },
+        {
           "firstName": "Antonina",
           "people": 5
         },
@@ -1552,10 +1663,6 @@
         {
           "firstName": "Katarzyna",
           "people": 5
-        },
-        {
-          "firstName": "Anna",
-          "people": 4
         }
       ],
       "source": {

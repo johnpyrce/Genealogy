@@ -1,6 +1,8 @@
 """Preview or apply a conservative GEDCOM import into the editable CSV registries.
 
-Existing facts are never overwritten. A supplied JSON match file lists only
+Append mode never overwrites existing facts. --refresh replaces a prior GEDCOM
+contribution while protecting other sources and local corrections.
+A supplied JSON match file lists only
 existing-person matches; omitted people are added. Without a match file,
 automatic matching reports ambiguous identities for review before writing.
 """
@@ -14,6 +16,7 @@ from difflib import SequenceMatcher
 import hashlib
 import io
 import json
+import os
 from pathlib import Path
 import re
 import tempfile
@@ -51,10 +54,17 @@ class Node:
 
 def parse_gedcom(path: Path) -> list[Node]:
     """Parse UTF-8 GEDCOM levels, preserving complete original record text."""
+    records = parse_records(path.read_text(encoding="utf-8-sig"))
+    validate_records(records)
+    return records
+
+
+def parse_records(text: str) -> list[Node]:
+    """Read record trees, including individual records retained in evidence."""
     records: list[Node] = []
     stack: list[Node] = []
     xrefs: set[str] = set()
-    for number, line in enumerate(path.read_text(encoding="utf-8-sig").splitlines(), 1):
+    for number, line in enumerate(text.splitlines(), 1):
         if not line.strip():
             continue
         match = re.fullmatch(r"(\d+)\s+(?:(@[^@\s]+@)\s+)?([\w]+)(?:\s(.*))?", line)
@@ -78,6 +88,11 @@ def parse_gedcom(path: Path) -> list[Node]:
             ancestor.lines.append(line)
         if tag in {"CONT", "CONC"} and level:
             stack[level - 1].value += ("\n" if tag == "CONT" else "") + node.value
+    return records
+
+
+def validate_records(records: list[Node]) -> None:
+    """Validate a complete export; isolated evidence records need no family links."""
     if not records or records[0].tag != "HEAD" or records[-1].tag != "TRLR":
         raise ValueError("GEDCOM must begin with HEAD and end with TRLR")
     if records[0].get("CHAR").upper() not in {"", "UTF-8", "UNICODE", "ASCII"}:
@@ -104,7 +119,6 @@ def parse_gedcom(path: Path) -> list[Node]:
                 roles = {"CHIL"} if link.tag == "FAMC" else {"HUSB", "WIFE"}
                 if not any(child.tag in roles and child.value == person.xref for child in family.children):
                     raise ValueError(f"{person.xref}: {link.tag} disagrees with {link.value}")
-    return records
 
 
 def normalized(value: str) -> str:
@@ -189,7 +203,9 @@ def make_plan(path: Path, registry_dir: Path = REGISTRIES,
         relative_path = path.relative_to(ROOT).as_posix()
     except ValueError as error:
         raise ValueError("Keep the original GEDCOM inside the repository for source provenance") from error
-    records = parse_gedcom(path)
+    source_bytes = path.read_bytes()
+    records = parse_records(source_bytes.decode("utf-8-sig"))
+    validate_records(records)
     individuals = [record for record in records if record.tag == "INDI"]
     families = [record for record in records if record.tag == "FAM"]
     reviewed_matches = decisions is not None
@@ -217,7 +233,7 @@ def make_plan(path: Path, registry_dir: Path = REGISTRIES,
     by_id = {int(row["id"]): row for row in people}
     if len(by_id) != len(people):
         raise ValueError("Existing person IDs are duplicated")
-    checksum = hashlib.sha256(path.read_bytes()).hexdigest()
+    checksum = hashlib.sha256(source_bytes).hexdigest()
     fingerprint = f"sha256:{checksum}"
     existing_source = next((row for row in sources if row["file_name"] == relative_path), None)
     if existing_source and source_id and existing_source["source_id"] != source_id:
@@ -385,7 +401,10 @@ def make_plan(path: Path, registry_dir: Path = REGISTRIES,
             changed[name] = content
     report["changed_files"] = list(changed)
     report["ready"] = not report["unresolved"]
-    return dict(report=report, changed=changed, originals=originals, registry_dir=registry_dir)
+    from scripts.lib.gedcom_refresh import snapshot_path
+    return dict(report=report, changed=changed, originals=originals, registry_dir=registry_dir,
+                input_checks={path: source_bytes},
+                archives={snapshot_path(path, source_id, checksum, registry_dir): source_bytes})
 
 
 def apply_plan(plan: dict) -> None:
@@ -396,6 +415,24 @@ def apply_plan(plan: dict) -> None:
     for name, original in plan["originals"].items():
         if (directory / name).read_bytes() != original:
             raise ValueError(f"Registry changed after planning: {name}; generate a fresh preview")
+    for path, original in plan.get("input_checks", {}).items():
+        if path.read_bytes() != original:
+            raise ValueError(f"GEDCOM changed after planning: {path}; generate a fresh preview")
+    # Immutable archives are written before registry replacement. An interrupted
+    # apply can leave a harmless archive, but never an unarchived replacement.
+    for path, content in plan.get("archives", {}).items():
+        if path.exists() and path.read_bytes() != content:
+            raise ValueError(f"Archive already exists with different content: {path}")
+    for path, content in plan.get("archives", {}).items():
+        path.parent.mkdir(parents=True, exist_ok=True)
+        with tempfile.TemporaryDirectory(prefix=".snapshot-", dir=path.parent) as temporary:
+            staged = Path(temporary) / "content"
+            staged.write_bytes(content)
+            try:
+                os.link(staged, path)  # Atomic creation without overwriting an archive.
+            except FileExistsError:
+                if path.read_bytes() != content:
+                    raise ValueError(f"Archive changed during apply: {path}")
     replaced = []
     with tempfile.TemporaryDirectory(prefix=".gedcom-import-", dir=directory) as temporary:
         staging = Path(temporary)
@@ -412,7 +449,8 @@ def apply_plan(plan: dict) -> None:
 
 
 def display_report(report: dict, applied: bool = False) -> None:
-    print("GEDCOM import " + ("applied" if applied else "preview (registries unchanged)"))
+    operation = report.get("operation", "import")
+    print("GEDCOM " + operation + " " + ("applied" if applied else "preview (registries unchanged)"))
     for key, title in (("people_matched", "People matched"), ("people_added", "People added"),
                        ("families_added", "Families added"), ("families_matched", "Families already represented")):
         print(f"\n{title}: {len(report[key])}")
@@ -423,7 +461,14 @@ def display_report(report: dict, applied: bool = False) -> None:
             if "registry_name" in row:
                 print(f"    Registry: {row['registry_name']}; {row['reason']}")
                 for key, difference in row["differences"].items():
-                    print(f"    {key}: registry {difference['registry'] or '(blank)'}; GEDCOM {difference['gedcom']} (evidence only)")
+                    handling = "incoming snapshot" if operation == "refresh" else "evidence only"
+                    print(f"    {key}: registry {difference['registry'] or '(blank)'}; GEDCOM {difference['gedcom']} ({handling})")
+    if operation == "refresh":
+        for key, title in (("people_updated", "People updated"), ("people_absent", "Absent people retained for review"),
+                           ("families_removed", "Superseded families removed"), ("family_ids_changed", "Family IDs renumbered")):
+            print(f"\n{title}: {len(report[key])}")
+            for row in report[key]:
+                print("  " + json.dumps(row, ensure_ascii=False))
     for key in ("conflicts", "warnings", "unresolved"):
         if report[key]:
             print(f"\n{key.title()}: {len(report[key])}")
@@ -439,9 +484,11 @@ def markdown_report(report: dict) -> str:
     def cell(value: object) -> str:
         return str(value).replace("|", "\\|").replace("\n", "<br>")
 
-    lines = ["# GEDCOM import " + report["mode"], "", f"Source: `{report['input']}`", "",
+    operation = report.get("operation", "import")
+    lines = ["# GEDCOM " + operation + " " + report["mode"], "", f"Source: `{report['input']}`", "",
              "Registries unchanged." if report["mode"] == "preview" else "Import applied.", "",
-             "Matches supplied in a decision file are identity proposals until reviewed. Existing registry facts are retained.", ""]
+             ("Refresh replaces this GEDCOM contribution. Chart-backed and locally edited facts are protected; absent people retain their IDs for review."
+              if operation == "refresh" else "Matches supplied in a decision file are identity proposals until reviewed. Existing registry facts are retained."), ""]
     for key, title, columns in (
         ("people_matched", "People matched", ("GEDCOM", "Registry ID", "GEDCOM name", "Registry name")),
         ("people_added", "People added", ("GEDCOM", "Registry ID", "Name", "Birth", "Death")),
@@ -459,6 +506,22 @@ def markdown_report(report: dict) -> str:
                 values = (row["gedcom_id"], row["id"], row["father_id"], row["mother_id"], row["children_ids"])
             lines.append("| " + " | ".join(cell(value) for value in values) + " |")
         lines.append("")
+    if operation == "refresh":
+        for key, title in (("people_updated", "People updated"), ("people_absent", "Absent people retained for review"),
+                           ("families_removed", "Superseded families removed"), ("family_ids_changed", "Family IDs renumbered")):
+            lines.extend([f"## {title}: {len(report[key])}", ""])
+            for row in report[key]:
+                if key == "people_updated":
+                    lines.append(f"- Person {row['id']} · {cell(row['name'])}")
+                    for field, change in row["fields"].items():
+                        lines.append(f"  - {field}: {cell(change['before']) or '(blank)'} → {cell(change['after']) or '(blank)'}")
+                else:
+                    lines.append("- " + cell(json.dumps(row, ensure_ascii=False)))
+            lines.append("")
+        lines.extend(["## Snapshot archives", "", f"Previous SHA-256: `{report['previous_sha256']}`", "",
+                      f"Incoming SHA-256: `{report['sha256']}`", ""])
+        lines.extend(f"- `{path}`" for path in report["archives"])
+        lines.append("")
     for key in ("conflicts", "warnings", "unresolved"):
         if report[key]:
             lines.extend([f"## {key.title()}", ""])
@@ -474,13 +537,23 @@ def main() -> None:
     parser.add_argument("gedcom", type=Path, nargs="?", default=DEFAULT_INPUT)
     parser.add_argument("--matches", type=Path, help='JSON existing-person matches: {"people": {"@I1@": 22}}; omitted people are added')
     parser.add_argument("--apply", action="store_true", help="Write the complete plan; default is preview only")
+    parser.add_argument("--refresh", action="store_true", help="Replace the selected existing GEDCOM source's contribution")
+    parser.add_argument("--previous-gedcom", type=Path, help="Original prior export, if no saved snapshot exists (refresh only)")
     parser.add_argument("--report", type=Path, help="Also save a report (.md for Markdown, otherwise JSON)")
-    parser.add_argument("--source-id", help="Optional unused source ID; defaults to the next available S number")
+    parser.add_argument("--source-id", help="New source ID in append mode; existing source ID to select in refresh mode")
     parser.add_argument("--branch-role", choices=("collateral", "main_line", "spouse_ancestry"), default="collateral")
     args = parser.parse_args()
     try:
-        plan = make_plan(args.gedcom, decisions=load_decisions(args.matches, args.gedcom),
-                         source_id=args.source_id, branch_role=args.branch_role)
+        if args.previous_gedcom and not args.refresh:
+            raise ValueError("--previous-gedcom requires --refresh")
+        planner = make_plan
+        options = {}
+        if args.refresh:
+            from scripts.lib.gedcom_refresh import make_refresh_plan
+            planner = make_refresh_plan
+            options["previous_gedcom"] = args.previous_gedcom
+        plan = planner(args.gedcom, decisions=load_decisions(args.matches, args.gedcom),
+                       source_id=args.source_id, branch_role=args.branch_role, **options)
         applied = args.apply and plan["report"]["ready"]
         if applied:
             apply_plan(plan)

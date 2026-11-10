@@ -63,3 +63,27 @@ id,father_id,mother_id,children_ids,branch_role,note
 62,163,154,,spouse_ancestry,S5 lists Maria née Gruczelak as the second wife of Jan Miczulski born 1868.
 63,163,,15,spouse_ancestry,S5 connects Jan Miczulski born 1868 to Maria or Marianna née Miczulska; the chart does not identify which of his two wives was her mother.
 64,21,20,,main_line,Piotr Szost and Magdalena née Gościńska; S2 shows no children.
+65,172,83,,collateral,S7 @F3@: GEDCOM family account; full record retained in relationship evidence.
+66,173,84,181;174;175,collateral,S7 @F4@: GEDCOM family account; full record retained in relationship evidence.
+67,81,203,179;177,collateral,S7 @F5@: GEDCOM family account; full record retained in relationship evidence.
+68,82,182,178;189;176;180,collateral,S7 @F6@: GEDCOM family account; full record retained in relationship evidence.
+69,174,185,188;187;193,collateral,S7 @F7@: GEDCOM family account; full record retained in relationship evidence.
+70,191,175,183;184;190,collateral,S7 @F8@: GEDCOM family account; full record retained in relationship evidence.
+71,176,197,186;192,collateral,S7 @F9@: GEDCOM family account; full record retained in relationship evidence.
+72,177,194,201,collateral,S7 @F10@: GEDCOM family account; full record retained in relationship evidence.
+73,196,178,202;210,collateral,S7 @F11@: GEDCOM family account; full record retained in relationship evidence.
+74,200,179,195;207,collateral,S7 @F12@: GEDCOM family account; full record retained in relationship evidence.
+75,180,204,199;198;205,collateral,S7 @F13@: GEDCOM family account; full record retained in relationship evidence.
+76,209,187,208;206,collateral,S7 @F14@: GEDCOM family account; full record retained in relationship evidence.
+77,217,188,213;212,collateral,S7 @F15@: GEDCOM family account; full record retained in relationship evidence.
+78,189,228,231;211;216;220;214,collateral,S7 @F16@: GEDCOM family account; full record retained in relationship evidence.
+79,190,218,,collateral,S7 @F17@: GEDCOM family account; full record retained in relationship evidence.
+80,223,192,,collateral,S7 @F18@: GEDCOM family account; full record retained in relationship evidence.
+81,215,193,222,collateral,S7 @F19@: GEDCOM family account; full record retained in relationship evidence.
+82,219,201,,collateral,S7 @F20@: GEDCOM family account; full record retained in relationship evidence.
+83,225,202,221,collateral,S7 @F21@: GEDCOM family account; full record retained in relationship evidence.
+84,207,232,226;229,collateral,S7 @F22@: GEDCOM family account; full record retained in relationship evidence.
+85,210,233,,collateral,S7 @F23@: GEDCOM family account; full record retained in relationship evidence.
+86,,216,224,collateral,S7 @F24@: GEDCOM family account; full record retained in relationship evidence.
+87,,220,227;230,collateral,S7 @F25@: GEDCOM family account; full record retained in relationship evidence.
+88,236,231,235;234,collateral,S7 @F26@: GEDCOM family account; full record retained in relationship evidence.

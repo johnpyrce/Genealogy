@@ -29,14 +29,14 @@ Tree 1
         │           │   │   ├── Registry note: Antoni Gościński and Maria née Sasała; children Franciszek and Magdalena.
         │           │   │   └── Children:
         │           │   │       ├── Person 10 · Franciszek Gościński (1852–1902)
-        │           │   │       │   └── Family 6 · main line · sources: S2, S3, S5
+        │           │   │       │   └── Family 6 · main line · sources: S2, S3, S5, S7
         │           │   │       │       ├── Partner 1: Person 10 · Franciszek Gościński (1852–1902) · ↪ child in Family 4
         │           │   │       │       ├── Partner 2: Person 11 · Józefa Szost (1853–1926) · ↪ child in Family 53
         │           │   │       │       ├── Registry note: S2 shows Wiktoria Zofia Jan Józef Andrzej and Franciszek; S3 repeats Zofia Jan Józef and Andrzej.
         │           │   │       │       └── Children:
         │           │   │       │           ├── Person 162 · Wiktoria Gościńska
         │           │   │       │           ├── Person 22 · Zofia Gościńska (1883–1964)
-        │           │   │       │           │   └── Family 25 · main line · sources: S3, S2
+        │           │   │       │           │   └── Family 25 · main line · sources: S3, S2, S7
         │           │   │       │           │       ├── Partner 1: Person 78 · Józef Pyrc (1879–1940) · ↪ child in Family 24
         │           │   │       │           │       ├── Partner 2: Person 22 · Zofia Gościńska (1883–1964) · ↪ child in Family 6
         │           │   │       │           │       ├── Registry note: S2 shows Bronisława Karol Tadeusz and Stefania; S3 identifies Józef and adds Emil and Stanisław.
@@ -44,9 +44,172 @@ Tree 1
         │           │   │       │           │           ├── Person 79 · Emil Pyrc
         │           │   │       │           │           ├── Person 80 · Stanisław Pyrc (1911–1944)
         │           │   │       │           │           ├── Person 81 · Tadeusz Pyrc (1920–2004)
+        │           │   │       │           │           │   └── Family 67 · collateral · sources: S7
+        │           │   │       │           │           │       ├── Partner 1: Person 81 · Tadeusz Pyrc (1920–2004) · ↪ child in Family 25
+        │           │   │       │           │           │       ├── Partner 2: Person 203 · Estelle Zrazik (1923–2000)
+        │           │   │       │           │           │       ├── Registry note: S7 @F5@: GEDCOM family account; full record retained in relationship evidence.
+        │           │   │       │           │           │       └── Children:
+        │           │   │       │           │           │           ├── Person 179 · Sharon Pyrce (1952)
+        │           │   │       │           │           │           │   └── Family 74 · collateral · sources: S7
+        │           │   │       │           │           │           │       ├── Partner 1: Person 200 · Ronald Kaminecki (1951)
+        │           │   │       │           │           │           │       ├── Partner 2: Person 179 · Sharon Pyrce (1952) · ↪ child in Family 67
+        │           │   │       │           │           │           │       ├── Registry note: S7 @F12@: GEDCOM family account; full record retained in relationship evidence.
+        │           │   │       │           │           │           │       └── Children:
+        │           │   │       │           │           │           │           ├── Person 195 · Damara Kaminecki (1982)
+        │           │   │       │           │           │           │           └── Person 207 · Matt Kaminecki (1985)
+        │           │   │       │           │           │           │               └── Family 84 · collateral · sources: S7
+        │           │   │       │           │           │           │                   ├── Partner 1: Person 207 · Matt Kaminecki (1985) · ↪ child in Family 74
+        │           │   │       │           │           │           │                   ├── Partner 2: Person 232 · Julia Van Treeck
+        │           │   │       │           │           │           │                   ├── Registry note: S7 @F22@: GEDCOM family account; full record retained in relationship evidence.
+        │           │   │       │           │           │           │                   └── Children:
+        │           │   │       │           │           │           │                       ├── Person 226 · Eva Kaminecki (2014)
+        │           │   │       │           │           │           │                       └── Person 229 · Lucas Kaminecki (2016)
+        │           │   │       │           │           │           └── Person 177 · John Pyrce (1954)
+        │           │   │       │           │           │               └── Family 72 · collateral · sources: S7
+        │           │   │       │           │           │                   ├── Partner 1: Person 177 · John Pyrce (1954) · ↪ child in Family 67
+        │           │   │       │           │           │                   ├── Partner 2: Person 194 · Pamela Rekar Pyrce (1953)
+        │           │   │       │           │           │                   ├── Registry note: S7 @F10@: GEDCOM family account; full record retained in relationship evidence.
+        │           │   │       │           │           │                   └── Children:
+        │           │   │       │           │           │                       └── Person 201 · Caitlin Pyrce (1991)
+        │           │   │       │           │           │                           └── Family 82 · collateral · sources: S7
+        │           │   │       │           │           │                               ├── Partner 1: Person 219 · Jordan Paris (1991)
+        │           │   │       │           │           │                               ├── Partner 2: Person 201 · Caitlin Pyrce (1991) · ↪ child in Family 72
+        │           │   │       │           │           │                               ├── Registry note: S7 @F20@: GEDCOM family account; full record retained in relationship evidence.
+        │           │   │       │           │           │                               └── Children: none recorded
         │           │   │       │           │           ├── Person 82 · Karol Pyrc (1917–1994)
+        │           │   │       │           │           │   └── Family 68 · collateral · sources: S7
+        │           │   │       │           │           │       ├── Partner 1: Person 82 · Karol Pyrc (1917–1994) · ↪ child in Family 25
+        │           │   │       │           │           │       ├── Partner 2: Person 182 · Leona Iwaniczko (1926–2024)
+        │           │   │       │           │           │       ├── Registry note: S7 @F6@: GEDCOM family account; full record retained in relationship evidence.
+        │           │   │       │           │           │       └── Children:
+        │           │   │       │           │           │           ├── Person 178 · Janice Pyrce (1951)
+        │           │   │       │           │           │           │   └── Family 73 · collateral · sources: S7
+        │           │   │       │           │           │           │       ├── Partner 1: Person 196 · Gary Kagan
+        │           │   │       │           │           │           │       ├── Partner 2: Person 178 · Janice Pyrce (1951) · ↪ child in Family 68
+        │           │   │       │           │           │           │       ├── Registry note: S7 @F11@: GEDCOM family account; full record retained in relationship evidence.
+        │           │   │       │           │           │           │       └── Children:
+        │           │   │       │           │           │           │           ├── Person 202 · Alexandra Kagan (1996)
+        │           │   │       │           │           │           │           │   └── Family 83 · collateral · sources: S7
+        │           │   │       │           │           │           │           │       ├── Partner 1: Person 225 · Mitchell Murphy
+        │           │   │       │           │           │           │           │       ├── Partner 2: Person 202 · Alexandra Kagan (1996) · ↪ child in Family 73
+        │           │   │       │           │           │           │           │       ├── Registry note: S7 @F21@: GEDCOM family account; full record retained in relationship evidence.
+        │           │   │       │           │           │           │           │       └── Children:
+        │           │   │       │           │           │           │           │           └── Person 221 · Millie Margaret Murphy (2026)
+        │           │   │       │           │           │           │           └── Person 210 · Jonathan Kagan (1997)
+        │           │   │       │           │           │           │               └── Family 85 · collateral · sources: S7
+        │           │   │       │           │           │           │                   ├── Partner 1: Person 210 · Jonathan Kagan (1997) · ↪ child in Family 73
+        │           │   │       │           │           │           │                   ├── Partner 2: Person 233 · Nicole Retondo
+        │           │   │       │           │           │           │                   ├── Registry note: S7 @F23@: GEDCOM family account; full record retained in relationship evidence.
+        │           │   │       │           │           │           │                   └── Children: none recorded
+        │           │   │       │           │           │           ├── Person 189 · Robert Pyrce (1952)
+        │           │   │       │           │           │           │   └── Family 78 · collateral · sources: S7
+        │           │   │       │           │           │           │       ├── Partner 1: Person 189 · Robert Pyrce (1952) · ↪ child in Family 68
+        │           │   │       │           │           │           │       ├── Partner 2: Person 228 · Marcia Pyrce
+        │           │   │       │           │           │           │       ├── Registry note: S7 @F16@: GEDCOM family account; full record retained in relationship evidence.
+        │           │   │       │           │           │           │       └── Children:
+        │           │   │       │           │           │           │           ├── Person 231 · Maryann Pyrce (1988)
+        │           │   │       │           │           │           │           │   └── Family 88 · collateral · sources: S7
+        │           │   │       │           │           │           │           │       ├── Partner 1: Person 236 · Robert Albano
+        │           │   │       │           │           │           │           │       ├── Partner 2: Person 231 · Maryann Pyrce (1988) · ↪ child in Family 78
+        │           │   │       │           │           │           │           │       ├── Registry note: S7 @F26@: GEDCOM family account; full record retained in relationship evidence.
+        │           │   │       │           │           │           │           │       └── Children:
+        │           │   │       │           │           │           │           │           ├── Person 235 · Charlie Albano
+        │           │   │       │           │           │           │           │           └── Person 234 · Robbie Albano
+        │           │   │       │           │           │           │           ├── Person 211 · Jennifer Pyrce
+        │           │   │       │           │           │           │           ├── Person 216 · Jennifer Pyrce
+        │           │   │       │           │           │           │           │   └── Family 86 · collateral · sources: S7
+        │           │   │       │           │           │           │           │       ├── Partner 1: not recorded
+        │           │   │       │           │           │           │           │       ├── Partner 2: Person 216 · Jennifer Pyrce · ↪ child in Family 78
+        │           │   │       │           │           │           │           │       ├── Registry note: S7 @F24@: GEDCOM family account; full record retained in relationship evidence.
+        │           │   │       │           │           │           │           │       └── Children:
+        │           │   │       │           │           │           │           │           └── Person 224 · Madison
+        │           │   │       │           │           │           │           ├── Person 220 · Kathleen Pyrce
+        │           │   │       │           │           │           │           │   └── Family 87 · collateral · sources: S7
+        │           │   │       │           │           │           │           │       ├── Partner 1: not recorded
+        │           │   │       │           │           │           │           │       ├── Partner 2: Person 220 · Kathleen Pyrce · ↪ child in Family 78
+        │           │   │       │           │           │           │           │       ├── Registry note: S7 @F25@: GEDCOM family account; full record retained in relationship evidence.
+        │           │   │       │           │           │           │           │       └── Children:
+        │           │   │       │           │           │           │           │           ├── Person 227 · Ethan
+        │           │   │       │           │           │           │           │           └── Person 230 · Stephen
+        │           │   │       │           │           │           │           └── Person 214 · Robert Pyrce
+        │           │   │       │           │           │           ├── Person 176 · David Pyrce
+        │           │   │       │           │           │           │   └── Family 71 · collateral · sources: S7
+        │           │   │       │           │           │           │       ├── Partner 1: Person 176 · David Pyrce · ↪ child in Family 68
+        │           │   │       │           │           │           │       ├── Partner 2: Person 197 · Meri Rosa
+        │           │   │       │           │           │           │       ├── Registry note: S7 @F9@: GEDCOM family account; full record retained in relationship evidence.
+        │           │   │       │           │           │           │       └── Children:
+        │           │   │       │           │           │           │           ├── Person 186 · Charles Pyrce
+        │           │   │       │           │           │           │           └── Person 192 · Gabriella Rosa Pyrce
+        │           │   │       │           │           │           │               └── Family 80 · collateral · sources: S7
+        │           │   │       │           │           │           │                   ├── Partner 1: Person 223 · Jose Aguayo-Martinez
+        │           │   │       │           │           │           │                   ├── Partner 2: Person 192 · Gabriella Rosa Pyrce · ↪ child in Family 71
+        │           │   │       │           │           │           │                   ├── Registry note: S7 @F18@: GEDCOM family account; full record retained in relationship evidence.
+        │           │   │       │           │           │           │                   └── Children: none recorded
+        │           │   │       │           │           │           └── Person 180 · Phillip Pyrce
+        │           │   │       │           │           │               └── Family 75 · collateral · sources: S7
+        │           │   │       │           │           │                   ├── Partner 1: Person 180 · Phillip Pyrce · ↪ child in Family 68
+        │           │   │       │           │           │                   ├── Partner 2: Person 204 · Kathy Frain
+        │           │   │       │           │           │                   ├── Registry note: S7 @F13@: GEDCOM family account; full record retained in relationship evidence.
+        │           │   │       │           │           │                   └── Children:
+        │           │   │       │           │           │                       ├── Person 199 · Sarah Pyrce (2003)
+        │           │   │       │           │           │                       ├── Person 198 · Anna Pyrce (2004)
+        │           │   │       │           │           │                       └── Person 205 · Luke Pyrce (2004)
         │           │   │       │           │           ├── Person 83 · Bronisława Pyrc (1913–2009)
+        │           │   │       │           │           │   └── Family 65 · collateral · sources: S7
+        │           │   │       │           │           │       ├── Partner 1: Person 172 · Bruce Cerny (1922–2003)
+        │           │   │       │           │           │       ├── Partner 2: Person 83 · Bronisława Pyrc (1913–2009) · ↪ child in Family 25
+        │           │   │       │           │           │       ├── Registry note: S7 @F3@: GEDCOM family account; full record retained in relationship evidence.
+        │           │   │       │           │           │       └── Children: none recorded
         │           │   │       │           │           └── Person 84 · Stefania Pyrc (1923–2018)
+        │           │   │       │           │               └── Family 66 · collateral · sources: S7
+        │           │   │       │           │                   ├── Partner 1: Person 173 · J. Wayne Hamman (1928–2026)
+        │           │   │       │           │                   ├── Partner 2: Person 84 · Stefania Pyrc (1923–2018) · ↪ child in Family 25
+        │           │   │       │           │                   ├── Registry note: S7 @F4@: GEDCOM family account; full record retained in relationship evidence.
+        │           │   │       │           │                   └── Children:
+        │           │   │       │           │                       ├── Person 181 · James Michael Hamman (1957–1995)
+        │           │   │       │           │                       ├── Person 174 · Joseph Hamman
+        │           │   │       │           │                       │   └── Family 69 · collateral · sources: S7
+        │           │   │       │           │                       │       ├── Partner 1: Person 174 · Joseph Hamman · ↪ child in Family 66
+        │           │   │       │           │                       │       ├── Partner 2: Person 185 · Julie Hamman (1959)
+        │           │   │       │           │                       │       ├── Registry note: S7 @F7@: GEDCOM family account; full record retained in relationship evidence.
+        │           │   │       │           │                       │       └── Children:
+        │           │   │       │           │                       │           ├── Person 188 · Laura Hamman-Ortiz (1985)
+        │           │   │       │           │                       │           │   └── Family 77 · collateral · sources: S7
+        │           │   │       │           │                       │           │       ├── Partner 1: Person 217 · Michael Ortiz
+        │           │   │       │           │                       │           │       ├── Partner 2: Person 188 · Laura Hamman-Ortiz (1985) · ↪ child in Family 69
+        │           │   │       │           │                       │           │       ├── Registry note: S7 @F15@: GEDCOM family account; full record retained in relationship evidence.
+        │           │   │       │           │                       │           │       └── Children:
+        │           │   │       │           │                       │           │           ├── Person 213 · Sofia Ortiz (2019)
+        │           │   │       │           │                       │           │           └── Person 212 · Mia Ortiz (2021)
+        │           │   │       │           │                       │           ├── Person 187 · Allison Hamman
+        │           │   │       │           │                       │           │   └── Family 76 · collateral · sources: S7
+        │           │   │       │           │                       │           │       ├── Partner 1: Person 209 · Johnathan Fogarty
+        │           │   │       │           │                       │           │       ├── Partner 2: Person 187 · Allison Hamman · ↪ child in Family 69
+        │           │   │       │           │                       │           │       ├── Registry note: S7 @F14@: GEDCOM family account; full record retained in relationship evidence.
+        │           │   │       │           │                       │           │       └── Children:
+        │           │   │       │           │                       │           │           ├── Person 208 · Peter Fogarty (2023)
+        │           │   │       │           │                       │           │           └── Person 206 · Meredith Marie Fogarty (2026)
+        │           │   │       │           │                       │           └── Person 193 · Becky Hamman
+        │           │   │       │           │                       │               └── Family 81 · collateral · sources: S7
+        │           │   │       │           │                       │                   ├── Partner 1: Person 215 · Thom Moore
+        │           │   │       │           │                       │                   ├── Partner 2: Person 193 · Becky Hamman · ↪ child in Family 69
+        │           │   │       │           │                       │                   ├── Registry note: S7 @F19@: GEDCOM family account; full record retained in relationship evidence.
+        │           │   │       │           │                       │                   └── Children:
+        │           │   │       │           │                       │                       └── Person 222 · Charlotte Moore
+        │           │   │       │           │                       └── Person 175 · Joyce Allen
+        │           │   │       │           │                           └── Family 70 · collateral · sources: S7
+        │           │   │       │           │                               ├── Partner 1: Person 191 · Richard Allen
+        │           │   │       │           │                               ├── Partner 2: Person 175 · Joyce Allen · ↪ child in Family 66
+        │           │   │       │           │                               ├── Registry note: S7 @F8@: GEDCOM family account; full record retained in relationship evidence.
+        │           │   │       │           │                               └── Children:
+        │           │   │       │           │                                   ├── Person 183 · Stephanie Allen (1992)
+        │           │   │       │           │                                   ├── Person 184 · Elizabeth Allen
+        │           │   │       │           │                                   └── Person 190 · Michael Allen
+        │           │   │       │           │                                       └── Family 79 · collateral · sources: S7
+        │           │   │       │           │                                           ├── Partner 1: Person 190 · Michael Allen · ↪ child in Family 70
+        │           │   │       │           │                                           ├── Partner 2: Person 218 · Hannah Allen
+        │           │   │       │           │                                           ├── Registry note: S7 @F17@: GEDCOM family account; full record retained in relationship evidence.
+        │           │   │       │           │                                           └── Children: none recorded
         │           │   │       │           ├── Person 14 · Jan Gościński (1888–1970)
         │           │   │       │           │   └── Family 8 · main line · sources: S2, S3, S5
         │           │   │       │           │       ├── Partner 1: Person 14 · Jan Gościński (1888–1970) · ↪ child in Family 6

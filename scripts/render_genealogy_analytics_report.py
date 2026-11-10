@@ -58,7 +58,7 @@ def render_report(connection: duckdb.DuckDBPyConnection, title: str = DEFAULT_TI
         f"- **{inventory['People']} people** are represented in **{inventory['Families']} family records**.",
         f"- The normalized relationship model contains **{inventory['Family-child memberships']} family-child memberships** and **{inventory['Directed parent-child links']} directed parent-child links**.",
         f"- The longest documented parent-child path reaches **{structure['Maximum generation']} generations**; the registry has **{structure['Connected components']} connected components** when spouses are excluded.",
-        f"- **{inventory['Evidence records']} evidence records** cite **{inventory['Source charts']} original source charts**.",
+        f"- **{inventory['Evidence records']} evidence records** cite **{inventory['Source charts']} source documents**.",
         "",
         "## Inventory",
         "",

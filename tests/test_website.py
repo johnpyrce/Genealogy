@@ -10,6 +10,39 @@ from scripts import build_website, website, visitor_access
 
 
 class WebsiteTests(unittest.TestCase):
+    def test_script_url_changes_when_wheel_handling_changes(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            templates = root / 'website/templates'
+            templates.mkdir(parents=True)
+            for name in ['page.html', 'site.css', 'site.js', 'favicon.svg']:
+                (templates / name).write_bytes((build_website.ROOT / 'website/templates' / name).read_bytes())
+            with patch.object(build_website, 'ROOT', root):
+                before = website.Links()
+                before.feed(build_website.page('Relationship graph', '<p>Graph</p>'))
+                script = templates / 'site.js'
+                script.write_text(script.read_text(encoding='utf-8') + '\n// Updated handling\n', encoding='utf-8')
+                after = website.Links()
+                after.feed(build_website.page('Relationship graph', '<p>Graph</p>'))
+            before_script = next(link for link in before.links if '/assets/site.js' in link)
+            after_script = next(link for link in after.links if '/assets/site.js' in link)
+            self.assertIn('?v=', before_script)
+            self.assertNotEqual(before_script, after_script)
+
+    def test_sources_include_gedcom_description_and_download_without_image(self):
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory)
+            with patch.object(build_website, "DIST", output):
+                build_website.build_sources()
+            page = (output / "sources/index.html").read_text(encoding="utf-8")
+            self.assertIn('<a id="s7"></a>', page)
+            self.assertIn('GEDCOM-formatted export from a manually created family tree in FamilySearch.org', page)
+            self.assertIn('<td>S7</td>', page)
+            self.assertIn('href="/assets/charts/PyrceFamily.ged"', page)
+            self.assertNotIn('src="/assets/charts/PyrceFamily.ged"', page)
+            self.assertEqual((output / "assets/charts/PyrceFamily.ged").read_bytes(),
+                             (build_website.ROOT / "data/source-material/PyrceFamily.ged").read_bytes())
+
     def test_stories_index_and_individual_pages(self):
         with tempfile.TemporaryDirectory() as directory:
             output = Path(directory)
