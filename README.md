@@ -279,3 +279,9 @@ family record references; no alternative account is discarded. These display
 positions differ from the analytics heat map’s independent ancestry depths.
 Surname groups do not imply connected branches. The full build regenerates this overview and includes it on the website at
 `/tree/overview/`, linked as **Overview** from the Family trees page.
+
+## Backups
+
+- The GED files and registeries with only the Muszyna data and the GED file with
+only the Pyrce family data from FamilySearch.org are backed up to
+artifacts/backups/before-familysearch-merge.  Use these to recover just these states.
