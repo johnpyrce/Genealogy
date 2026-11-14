@@ -1,6 +1,9 @@
 """Regression coverage for the Cytoscape graph viewer and its help page."""
 
 import unittest
+import json
+import shutil
+import subprocess
 from collections import defaultdict
 
 from scripts.build_cytoscape_genealogy_graph import (
@@ -92,6 +95,50 @@ class CytoscapeGenealogyGraphTests(unittest.TestCase):
         self.assertEqual(len(visited), 51)
         self.assertIn("163", visited)  # Jan Miczulski joins the Gościński bridge.
         self.assertNotIn("97", graph)  # Józef Drost has no clear connector in S5.
+
+    @unittest.skipUnless(shutil.which("node"), "Node.js is needed to execute browser export logic")
+    def test_browser_exports_preserve_dates_alternative_families_and_filtered_members(self):
+        html = render_html({"people": [], "families": [], "evidence": [], "sources": []})
+        code = html[html.index("  function exportData()"):html.index("  function downloadExport(")]
+        fixture = {
+            "people": [
+                {"id": "1", "first_name": "Józef", "surname": "Pyrć", "birth_year": "1816", "death_year": "", "note": "Approximate date"},
+                {"id": "2", "first_name": "Zofia", "surname": "Gościńska", "birth_year": "", "death_year": "1902", "note": "First line\n0 @FAKE@ INDI"},
+                {"id": "3", "first_name": "Jan", "surname": "Pyrć", "birth_year": "1852", "death_year": "1926"},
+            ],
+            "families": [
+                {"id": "1", "father_id": "1", "mother_id": "2", "children": ["3"], "branch_role": "main_line", "note": "First account"},
+                {"id": "2", "father_id": "1", "mother_id": "", "children": ["3"], "branch_role": "collateral", "note": "Alternative account"},
+                {"id": "3", "father_id": "3", "mother_id": "", "children": ["1"], "branch_role": "collateral", "note": "Cycle retained"},
+            ],
+        }
+        harness = r"""
+const assert=require('node:assert/strict');
+const document={getElementById:()=>({value:'all'})};
+const fullName=p=>p.first_name+' '+p.surname;
+const evidenceForCurrentSource=()=>[{source_id:'S1',confidence:'uncertain',relationship:'family',note:'Conflicting account'}];
+const people=new Map(fixture.people.map(p=>[p.id,p]));
+const activeData=()=>({activeFamilies:fixture.families,activePeople:new Set(['1','2','3'])});
+const personCategoryVisible=id=>id!=='2';
+const text=textExport(fixture), ged=gedcomExport(fixture);
+assert.match(text,/Józef Pyrć \(born 1816\)/);
+assert.match(text,/Zofia Gościńska \(died 1902\)/);
+assert.match(text,/born 1852; died 1926/);
+assert.match(text,/expanded elsewhere/);
+assert.match(text,/Alternative account/);
+assert.match(ged,/1 FAMC @F1@\n1 FAMC @F2@/);
+assert.match(ged,/1 BIRT\n2 DATE 1816/);
+assert.match(ged,/2 CONT 0 @@FAKE@@ INDI/);
+assert.ok(!ged.includes('\n0 @FAKE@ INDI'));
+assert.ok(ged.endsWith('0 TRLR\n'));
+const filtered=exportData();
+assert.deepEqual(filtered.people.map(p=>p.id),['1','3']);
+assert.equal(filtered.families[0].mother_id,'');
+const individuals=new Set([...ged.matchAll(/^0 (@I\d+@) INDI$/gm)].map(m=>m[1]));
+for(const match of ged.matchAll(/^1 (?:HUSB|WIFE|CHIL) (@I\d+@)$/gm))assert.ok(individuals.has(match[1]));
+"""
+        result = subprocess.run([shutil.which("node"), "-e", "const fixture=" + json.dumps(fixture) + ";\n" + code + harness], capture_output=True, text=True)
+        self.assertEqual(result.returncode, 0, result.stderr)
 
     def test_viewer_and_help_page_link_to_each_other(self):
         html = render_html({"people": [], "families": [], "evidence": [], "sources": []})

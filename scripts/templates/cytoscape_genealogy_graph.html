@@ -30,6 +30,10 @@
     .menu-panel .control { display:grid; gap:6px; margin-bottom:14px; color:#3b5357; font-size:14px; font-weight:700; }
     .menu-panel .control:last-child { margin-bottom:0; }
     .menu-panel input[type="text"], .menu-panel select { width:100%; }
+    .download-options { width:160px; display:grid; gap:2px; padding:5px; }
+    .toolbar-actions .download-options button { display:block; width:100%; min-height:34px; padding:7px 12px; border:0; border-radius:4px; background:transparent; text-align:left; font-weight:400; }
+    .toolbar-actions .download-options button:hover, .toolbar-actions .download-options button:focus-visible { background:#eaf3f0; color:#173b3f; }
+    .toolbar-actions .download-options button:focus-visible { outline:2px solid var(--accent); outline-offset:-2px; }
     .checks { display:grid; gap:9px; font-weight:400; } .checks label { display:flex; gap:8px; align-items:center; }
     input[type="checkbox"] { accent-color:var(--accent); padding:0; } input[type="color"] { width:44px; height:36px; padding:3px; }
     .color-match-row { display:grid; grid-template-columns:minmax(0,1fr) 44px; gap:8px; }
@@ -80,7 +84,11 @@
           <label class="control">Color matching people<div class="color-match-row"><input id="match-string" type="text" placeholder="Part of a name" autocomplete="off"><input id="match-color" type="color" value="#7c3aed" aria-label="Matching people color"></div></label>
         </div></details>
         <button id="reset" type="button">Reset</button>
-        <button id="download" type="button">Download PNG</button>
+        <details id="download" class="control-menu"><summary>Download</summary><div class="menu-panel download-options" aria-label="Download format">
+          <button type="button" data-export="image">Image</button>
+          <button type="button" data-export="text">Text</button>
+          <button type="button" data-export="gedcom">GEDCOM</button>
+        </div></details>
       </div>
     </div>
   </section>
@@ -303,7 +311,7 @@
       component.nodes.forEach(node=>{const point=node.position();node.position({x:point.x+cursorX,y:point.y+cursorY});});
       cursorX+=component.width+componentGap; rowHeight=Math.max(rowHeight,component.height);
     });
-    cy.fit(cy.elements(),42); overviewZoom=cy.zoom();
+    const view=fittedGraphView();cy.viewport(view);overviewZoom=view.zoom;
   }
   function radialLayout() {
     const ringGap=120, padding=74, componentGap=170, positioned=[];
@@ -375,7 +383,7 @@
       component.nodes.forEach(node=>{const point=node.position();node.position({x:point.x+cursorX,y:point.y+cursorY});});
       cursorX+=component.width+componentGap;rowHeight=Math.max(rowHeight,component.height);
     });
-    cy.fit(cy.elements(),42);overviewZoom=cy.zoom();
+    const view=fittedGraphView();cy.viewport(view);overviewZoom=view.zoom;
   }
   function applyLayout(){const radial=document.getElementById('layout').value==='radial';if(radial)cy.nodes().addClass('radial-layout');else cy.nodes().removeClass('radial-layout');radial?radialLayout():pedigreeLayout();}
   function applySelectionHighlight(){
@@ -404,9 +412,9 @@
     updateLabels();
     if(focused){const node=cy.getElementById(`p:${focused}`);if(node.length){cy.animate({center:{eles:node},zoom:Math.max(cy.zoom(),1.05)},{duration:180});}}
   }
-  function fittedGraphView(padding=42){const bounds=cy.elements().boundingBox({includeLabels:false}), availableWidth=Math.max(1,cy.width()-padding*2), availableHeight=Math.max(1,cy.height()-padding*2), zoom=Math.min(availableWidth/Math.max(1,bounds.w),availableHeight/Math.max(1,bounds.h));return {zoom,pan:{x:(cy.width()-bounds.w*zoom)/2-bounds.x1*zoom,y:(cy.height()-bounds.h*zoom)/2-bounds.y1*zoom}};}
+  function fittedGraphView(padding=42){const topPadding=76, bounds=cy.elements().boundingBox({includeLabels:false}), availableWidth=Math.max(1,cy.width()-padding*2), availableHeight=Math.max(1,cy.height()-topPadding-padding), zoom=Math.min(availableWidth/Math.max(1,bounds.w),availableHeight/Math.max(1,bounds.h));return {zoom,pan:{x:(cy.width()-bounds.w*zoom)/2-bounds.x1*zoom,y:topPadding-bounds.y1*zoom}};}
   function fitEntireGraph(){if(!cy.nodes(':visible').length)return;const view=fittedGraphView();cy.stop();cy.animate({zoom:view.zoom,pan:view.pan},{duration:220,complete:()=>{overviewZoom=view.zoom;updateLabels();}});}
-  function showReadableView(){if(!cy.nodes(':visible').length)return;const bounds=cy.elements().boundingBox({includeLabels:false}), zoom=Math.max(overviewZoom*1.85,.85), pan={x:(cy.width()-bounds.w*zoom)/2-bounds.x1*zoom,y:18-bounds.y1*zoom};cy.stop();cy.animate({zoom,pan},{duration:240,complete:updateLabels});}
+  function showReadableView(){if(!cy.nodes(':visible').length)return;const bounds=cy.elements().boundingBox({includeLabels:false}), zoom=Math.max(overviewZoom*1.85,.85), pan={x:(cy.width()-bounds.w*zoom)/2-bounds.x1*zoom,y:76-bounds.y1*zoom};cy.stop();cy.animate({zoom,pan},{duration:240,complete:updateLabels});}
   function compactLayout(){return window.matchMedia('(max-width:900px)').matches;}
   function resizeDetails(size){const available=compactLayout()?workspace.clientHeight:workspace.clientWidth, minimum=compactLayout()?160:220, maximum=Math.max(minimum,Math.floor(available*.6)), next=Math.min(Math.max(size,minimum),maximum);document.documentElement.style.setProperty('--details-size',`${next}px`);cy.resize();updateLabels();}
   function escapeHtml(value){return String(value??'').replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));}
@@ -472,7 +480,102 @@
   document.querySelectorAll('.role').forEach(input=>input.addEventListener('change',()=>{clearSelectedNode();refreshSearchMatches();render();}));
   document.getElementById('ancestors').addEventListener('click',()=>{if(showingAncestors){showingAncestors=false;ancestorAnchorId=null;spotlightInAncestors=false;}else{if(!selectedPersonId)return;ancestorAnchorId=selectedPersonId;showingAncestors=true;spotlightInAncestors=false;}updateAncestorButton();refreshSearchMatches();render();});
   document.getElementById('reset').addEventListener('click',()=>{disabledColorCategories.clear();clearSearchSelection();document.getElementById('search').value='';document.getElementById('match-string').value='';document.getElementById('match-color').value='#7c3aed';document.getElementById('layout').value='pedigree';document.getElementById('labels').value='auto';document.getElementById('person-colors').value='uniform';document.getElementById('source').value='all';document.querySelectorAll('.role').forEach(input=>input.checked=true);controlMenus.forEach(menu=>menu.open=false);updateColorLegend();updateSourceStatus();refreshSearchMatches();render();});
-  document.getElementById('download').addEventListener('click',()=>{const link=document.createElement('a');link.download='muszyna-genealogy-cytoscape.png';link.href=cy.png({full:true,scale:2,bg:'#f7f4ed'});link.click();});
+  // Export only the chart/branches currently selected, retaining stable IDs and notes.
+  function exportData(){
+    const {activeFamilies,activePeople}=activeData();
+    const selectedPeople=new Set([...activePeople].filter(personCategoryVisible));
+    const selectedFamilies=activeFamilies.map(f=>({...f,
+      father_id:selectedPeople.has(f.father_id)?f.father_id:'',
+      mother_id:selectedPeople.has(f.mother_id)?f.mother_id:'',
+      children:f.children.filter(id=>selectedPeople.has(id))
+    })).filter(f=>f.father_id||f.mother_id||f.children.length);
+    return {people:[...people.values()].filter(p=>selectedPeople.has(p.id)),families:selectedFamilies};
+  }
+  function exportPersonLabel(person){
+    const dates=[person.birth_year?`born ${person.birth_year}`:'',person.death_year?`died ${person.death_year}`:''].filter(Boolean);
+    return `Person ${person.id} · ${fullName(person)}${dates.length?' ('+dates.join('; ')+')':''}`;
+  }
+  function textExport(data){
+    const peopleById=new Map(data.people.map(p=>[p.id,p])), unions=new Map(), childIds=new Set(), rendered=new Set(), mentioned=new Set();
+    data.families.forEach(f=>{
+      [f.father_id,f.mother_id].filter(Boolean).forEach(id=>{const list=unions.get(id)||[];list.push(f);unions.set(id,list);});
+      f.children.forEach(id=>childIds.add(id));
+    });
+    const source=document.getElementById('source').value;
+    const lines=['Muszyna family tree',`Source chart: ${source==='all'?'All charts':source}`,
+      'Recorded dates only. Missing dates and relationships remain unknown.',
+      'Repeated family references preserve shared branches and alternative parentage.',''];
+    const label=id=>{mentioned.add(id);return exportPersonLabel(peopleById.get(id));};
+    function appendFamily(f,prefix=''){
+      if(rendered.has(f.id)){lines.push(`${prefix}↪ Family ${f.id} (expanded elsewhere)`);return;}
+      rendered.add(f.id);
+      lines.push(`${prefix}Family ${f.id} · ${f.branch_role}`);
+      lines.push(`${prefix}├── Partner 1: ${f.father_id?label(f.father_id):'not recorded'}`);
+      lines.push(`${prefix}├── Partner 2: ${f.mother_id?label(f.mother_id):'not recorded'}`);
+      if(f.note)lines.push(`${prefix}├── Note: ${f.note}`);
+      const citations=evidenceForCurrentSource(f);
+      citations.forEach(row=>lines.push(`${prefix}├── Evidence: ${row.source_id} · ${row.confidence} · ${row.relationship}${row.note?' · '+row.note:''}`));
+      lines.push(`${prefix}└── Children:${f.children.length?'':' none recorded'}`);
+      f.children.forEach((id,index)=>{
+        const last=index===f.children.length-1;
+        lines.push(`${prefix}    ${last?'└──':'├──'} ${label(id)}`);
+        (unions.get(id)||[]).filter(other=>other.id!==f.id).forEach(other=>appendFamily(other,prefix+(last?'        ':'    │   ')));
+      });
+    }
+    const roots=data.families.filter(f=>![f.father_id,f.mother_id].some(id=>childIds.has(id)));
+    [...roots,...data.families].forEach(f=>{if(!rendered.has(f.id)){appendFamily(f);lines.push('');}});
+    data.people.filter(p=>!mentioned.has(p.id)).forEach(p=>lines.push(exportPersonLabel(p)));
+    lines.push('','Person notes:');
+    data.people.filter(p=>p.note).forEach(p=>lines.push(`Person ${p.id}: ${p.note}`));
+    return lines.join('\n')+'\n';
+  }
+  function gedcomExport(data){
+    const lines=['0 HEAD','1 SOUR MUSZYNA-GRAPH','1 GEDC','2 VERS 5.5.1','2 FORM LINEAGE-LINKED','1 CHAR UTF-8',
+      '1 NOTE Export of the selected chart and branches; alternative family accounts are retained.'];
+    // GEDCOM continuation records prevent notes from injecting structural records.
+    function field(level,tag,value){
+      String(value||'').replace(/@/g,'@@').split(/\r?\n/).forEach((part,index)=>{
+        const chunks=Array.from(part);let first=true;
+        do{lines.push(`${index===0&&first?level:level+1} ${index===0&&first?tag:first?'CONT':'CONC'} ${chunks.splice(0,180).join('')}`);first=false;}while(chunks.length);
+      });
+    }
+    data.people.forEach(p=>{
+      lines.push(`0 @I${p.id}@ INDI`);
+      field(1,'NAME',p.first_name+(p.surname&&p.surname!=='Unknown'?` /${p.surname}/`:''));
+      [['BIRT',p.birth_year],['DEAT',p.death_year]].forEach(([tag,value])=>{if(value){lines.push(`1 ${tag}`);field(2,'DATE',value);}});
+      if(p.note)field(1,'NOTE',p.note);
+      data.families.forEach(f=>{
+        if(f.father_id===p.id||f.mother_id===p.id)lines.push(`1 FAMS @F${f.id}@`);
+        if(f.children.includes(p.id))lines.push(`1 FAMC @F${f.id}@`);
+      });
+    });
+    data.families.forEach(f=>{
+      lines.push(`0 @F${f.id}@ FAM`);
+      if(f.father_id)lines.push(`1 HUSB @I${f.father_id}@`);
+      if(f.mother_id)lines.push(`1 WIFE @I${f.mother_id}@`);
+      f.children.forEach(id=>lines.push(`1 CHIL @I${id}@`));
+      if(f.note)field(1,'NOTE',f.note);
+      field(1,'NOTE',`Branch role: ${f.branch_role}`);
+      evidenceForCurrentSource(f).forEach(row=>field(1,'NOTE',
+        `Evidence: ${row.source_id}; confidence: ${row.confidence}; relationship: ${row.relationship}; person: ${row.person_id||''}; related person: ${row.related_person_id||''}; location: ${row.location||''}; ${row.note||''}\n${row.transcription||''}`));
+    });
+    lines.push('0 TRLR');return lines.join('\n')+'\n';
+  }
+  function downloadExport(format){
+    const link=document.createElement('a');let objectUrl=null;
+    if(format==='image'){
+      link.download='Family-tree.png';
+      objectUrl=URL.createObjectURL(cy.png({output:'blob',full:true,scale:2,bg:'#f7f4ed'}));link.href=objectUrl;
+    }else{
+      const data=exportData(), gedcom=format==='gedcom';
+      objectUrl=URL.createObjectURL(new Blob([gedcom?gedcomExport(data):textExport(data)],{type:'text/plain;charset=utf-8'}));
+      link.download=`Family-tree.${gedcom?'ged':'txt'}`;link.href=objectUrl;
+    }
+    document.body.appendChild(link);link.click();link.remove();
+    if(objectUrl)setTimeout(()=>URL.revokeObjectURL(objectUrl),1000);
+    document.getElementById('download').open=false;
+  }
+  document.querySelectorAll('[data-export]').forEach(button=>button.addEventListener('click',()=>downloadExport(button.dataset.export)));
   populateSources();updateAncestorButton();updateColorLegend();updateSourceStatus();render();
   </script>
 </body>
