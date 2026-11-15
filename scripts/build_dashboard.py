@@ -15,15 +15,23 @@ def resolve_builder() -> tuple[str, Path]:
     codex_dir = Path(os.environ.get("CODEX_HOME", Path.home() / ".codex"))
     candidates = [Path(override)] if override else list(
         (codex_dir / "plugins/cache/openai-curated-remote/data-analytics").glob("*"))
-    candidates = [p for p in candidates if (p / "scripts/data-app.mjs").is_file()]
-    if not candidates:
+    # Data 1.2 keeps its HTML tooling below output_formats/html; older
+    # versions expose the same CLI at the plugin root. Overrides may name either.
+    builders = []
+    for plugin in candidates:
+        for relative in ("output_formats/html/scripts/data-app.mjs", "scripts/data-app.mjs"):
+            builder = plugin / relative
+            if builder.is_file():
+                builders.append((plugin, builder))
+                break
+    if not builders:
         raise RuntimeError("Installed Data builder not found. Enable the Data plugin or set DATA_ANALYTICS_PLUGIN to its installed directory.")
-    plugin = max(candidates, key=lambda p: tuple(int(n) for n in re.findall(r"\d+", p.name)))
+    _, builder = max(builders, key=lambda pair: tuple(int(n) for n in re.findall(r"\d+", pair[0].name)))
     bundled = Path.home() / ".cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node"
     node = os.environ.get("CODEX_NODE") or (str(bundled) if bundled.is_file() else shutil.which("node"))
     if not node:
         raise RuntimeError("Node unavailable. Set CODEX_NODE to the installed Node executable.")
-    return node, plugin / "scripts/data-app.mjs"
+    return node, builder
 
 
 def main() -> None:

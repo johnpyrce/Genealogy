@@ -10,6 +10,6 @@ The conventional history of this surname group leads back to **Piers**, a mediev
 
 ## This family’s name
 
-For this family, **Pyrce** is the spelling used in American records. Earlier documents use several spellings, including **Pyrć**, **Pyrc**, **Puirch**, and **Pyrch**.
+For this family, **Pyrce** is the spelling used in American records. Earlier documents use several spellings, including **Pyrć**, **Pyrc**, **Perc**, **Pirc**, **Puirch**, and **Pyrch**.
 
 Read [Joseph and Sophie in America](/america/) for the timeline, linked records, and unresolved conflicts. The [Pyrć and Pyrc page](/names/pyrc/) discusses the Polish spellings.

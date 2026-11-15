@@ -275,7 +275,7 @@ later than the years given in other records.
 |Pyrce|1950|Census record|
 
 It is purely conjecture, but the pronunciation of the Polish diacritic "ć" in the original name may have posed a challenge from the
-time of immigration.  The Polish pronunciation of the name **Pyrć** is **pirts**, but that is not how this is pronounced in English once
+time of immigration.  The Polish pronunciation of the [name](/names/pyrc/) **Pyrć** is **pirts**, but that is not how this is pronounced in English once
 the nonexistent diacritic is removed.  Variations that preserved the original pronunciation may have been tried
 (e.g., "Puirch", "Pyrch") until finally
 a minimal change that didn't sound foreign (or at least not Polish) was settled on.
