@@ -87,6 +87,16 @@
     "output": "tree/overview/app/index.html",
     "page": "tree/overview/index.html"
   },
+  "tree_surnames": {
+    "source": "artifacts/interactive/surname_stream.html",
+    "output": "tree/surnames/app/index.html",
+    "page": "tree/surnames/index.html"
+  },
+  "tree_atlas": {
+    "source": "artifacts/interactive/generation_atlas_views.html",
+    "output": "tree/atlas/app/index.html",
+    "page": "tree/atlas/index.html"
+  },
   "timeline": "docs/sections/joseph_sophie_timeline_vertical.svg",
   "coat_of_arms": "docs/sections/doliwa_coat_of_arms.svg",
   "collections": {

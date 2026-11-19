@@ -10,6 +10,45 @@ from scripts import build_website, website, visitor_access
 
 
 class WebsiteTests(unittest.TestCase):
+    def test_generated_tree_views_use_configured_routes_and_related_links(self):
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory)
+            config = dict(build_website.CONFIG, tree_surnames={
+                'source': 'artifacts/interactive/surname_stream.html',
+                'output': 'tree/surname-test/app/index.html',
+                'page': 'tree/surname-test/index.html',
+            }, tree_atlas={
+                'source': 'artifacts/interactive/generation_atlas_views.html',
+                'output': 'tree/atlas-test/app/index.html',
+                'page': 'tree/atlas-test/index.html',
+            })
+
+            def copy_fixture(source, target):
+                target.parent.mkdir(parents=True, exist_ok=True)
+                target.write_text(source.name, encoding='utf-8')
+
+            with patch.object(build_website, 'DIST', output), \
+                 patch.object(build_website, 'CONFIG', config), \
+                 patch.object(build_website, 'copy_file', side_effect=copy_fixture):
+                build_website.build_tree()
+            index = (output / 'tree/index.html').read_text(encoding='utf-8')
+            stream = (output / config['tree_surnames']['page']).read_text(encoding='utf-8')
+            overview = (output / config['tree_overview']['page']).read_text(encoding='utf-8')
+            self.assertIn('href="/tree/surname-test/">Surname streams</a>', index)
+            self.assertIn('src="/tree/surname-test/app/index.html" title="Surname streams"', stream)
+            self.assertIn('href="/tree/overview/">Explore the generation overview</a>', stream)
+            self.assertIn('href="/tree/surname-test/">Explore surname streams</a>', overview)
+            self.assertEqual((output / config['tree_surnames']['output']).read_text(encoding='utf-8'),
+                             'surname_stream.html')
+            atlas = (output / config['tree_atlas']['page']).read_text(encoding='utf-8')
+            viewer = (output / 'tree/viewer/index.html').read_text(encoding='utf-8')
+            self.assertIn('href="/tree/atlas-test/">Generation Atlas</a>', index)
+            self.assertIn('src="/tree/atlas-test/app/index.html" title="Generation Atlas"', atlas)
+            self.assertIn('href="/tree/viewer/">Explore the family-tree viewer</a>', atlas)
+            self.assertIn('href="/tree/atlas-test/">Explore Generation Atlas</a>', viewer)
+            self.assertEqual((output / config['tree_atlas']['output']).read_text(encoding='utf-8'),
+                             'generation_atlas_views.html')
+
     def test_script_url_changes_when_wheel_handling_changes(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

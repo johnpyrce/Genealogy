@@ -280,6 +280,27 @@ positions differ from the analytics heat map’s independent ancestry depths.
 Surname groups do not imply connected branches. The full build regenerates this overview and includes it on the website at
 `/tree/overview/`, linked as **Overview** from the Family trees page.
 
+## Surname streams
+
+Run `uv run python -m scripts.build_surname_stream`, then open
+`artifacts/interactive/surname_stream.html`. This offline chart reuses the
+generation overview's placement rules. Ribbons show surname-group counts or
+shares by generation; select a surname and generation to inspect exact counts
+and individual records. Unaligned people are listed separately. Hide “Other
+surnames” to focus on the largest groups; the chart rescales to visible counts
+or shares, while the table retains counts and shares of all surnames.
+The full build regenerates this chart and includes it at `/tree/surnames/`,
+linked as **Surname streams** from the Family trees page and Overview.
+
+## Generation Atlas
+
+Run `uv run python -m scripts.build_generation_atlas_views` to generate
+`artifacts/interactive/generation_atlas_views.html`. Generation Atlas shares
+the overview's relationship-based generation assignments and offers labels,
+dots, and lifelines with person search, surname highlighting, and relative
+navigation. The full build includes it at `/tree/atlas/`, linked from the Family
+trees page and the family-tree viewer.
+
 ## Backups
 
 - The GED files and registeries with only the Muszyna data and the GED file with

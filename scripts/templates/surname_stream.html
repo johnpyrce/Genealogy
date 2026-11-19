@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Surname streams · Family archive</title>
+<style>
+:root{color-scheme:light;--paper:#f7f5ef;--ink:#233d38;--muted:#62746c;--line:#d9dfd5;--panel:#fffef9}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.55 system-ui,sans-serif}main{max-width:1440px;margin:auto;padding:34px 4vw 48px}.eyebrow{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}h1{font:400 clamp(30px,4vw,50px)/1.12 Georgia,serif;margin:14px 0}h2{font:400 25px Georgia,serif;margin:0 0 8px}p{margin:8px 0}.intro{max-width:780px;color:var(--muted)}.summary{display:flex;gap:28px;flex-wrap:wrap;margin:26px 0}.summary strong{font:400 29px Georgia,serif;margin-right:6px}.summary span{font-size:13px;color:var(--muted)}.toolbar{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid var(--line);padding:20px 0 10px}.controls{display:flex;gap:16px;flex-wrap:wrap;align-items:center}label{font-size:13px}select,button,input{font:inherit;color:inherit;background:var(--panel);border:1px solid #b9c6ba;border-radius:6px;padding:8px 12px}select{margin-left:6px}button{cursor:pointer}button:hover{background:#e8eee4}:focus-visible{outline:3px solid #a45e24;outline-offset:3px}.modes{display:flex;gap:4px}.modes button[aria-pressed=true]{background:var(--ink);color:var(--panel);border-color:var(--ink)}.chart{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:10px;margin:14px 0 8px;overflow:hidden}svg{display:block;width:100%;height:440px}.stream{cursor:pointer;transition:opacity .15s}.tick{fill:var(--muted);font-size:12px}.total{fill:var(--ink);font-size:13px;font-weight:600}.guide{stroke:var(--line);stroke-width:1}.caption{font-size:12px;color:var(--muted)}.legend{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 28px}.legend button{display:flex;align-items:center;gap:8px;font-size:13px;padding:7px 10px;background:transparent}.legend button[aria-pressed=true]{border-color:var(--ink);box-shadow:0 0 0 1px var(--ink)}.swatch{width:11px;height:11px;border-radius:3px;display:inline-block;flex-shrink:0}.count{color:var(--muted);font-variant-numeric:tabular-nums}.details{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:32px;border-top:1px solid var(--line);padding-top:24px}.detail-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.table-wrap{overflow:auto}table{border-collapse:collapse;width:100%;font-size:13px;margin-top:14px}th,td{text-align:right;padding:10px 8px;border-bottom:1px solid var(--line);white-space:nowrap}th:first-child,td:first-child{text-align:left}th{font-weight:500;color:var(--muted)}td button{padding:4px 8px;border-color:transparent;background:transparent}td button[aria-pressed=true]{background:var(--ink);color:white}.people{max-height:290px;overflow:auto;margin-top:14px;padding-right:6px}.person{border-bottom:1px solid var(--line);padding:9px 0}.person small{color:var(--muted);display:block}.empty{color:var(--muted);padding:18px 0}details{margin-top:28px;border-top:1px solid var(--line);padding-top:18px}summary{cursor:pointer}details p{max-width:850px;font-size:13px;color:var(--muted)}.tooltip{position:fixed;pointer-events:none;z-index:5;background:var(--ink);color:#fffef9;padding:9px 13px;border-radius:6px;font-size:13px;box-shadow:0 4px 20px #233d3825;max-width:260px}.tooltip[hidden]{display:none}.status{font-size:13px;color:var(--muted)}@media(max-width:700px){main{padding:24px 18px}.details{grid-template-columns:1fr;gap:26px}.summary{gap:16px}.summary strong{font-size:24px}svg{height:350px}.toolbar{gap:12px}.controls{gap:10px}select{max-width:180px}.legend{gap:6px}.tick{font-size:11px}}
+</style>
+</head>
+<body>
+<main>
+<div class="eyebrow">Family archive / Surname streams</div>
+<h1>Surnames through generations</h1>
+<p class="intro">Follow the changing mix of recorded surname groups, from the earliest aligned generation to the latest. Each ribbon’s thickness shows how many people share that group.</p>
+<div class="summary" id="summary"></div>
+<div class="toolbar">
+ <div class="controls"><label>Surname groups <select id="limit"><option value="8">Largest 8</option><option value="12" selected>Largest 12</option><option value="all">All surname groups</option></select></label><label><input id="show-other" type="checkbox" checked> Show other surnames</label></div>
+ <div class="modes" aria-label="Stream width measure"><button id="counts" aria-pressed="true">People</button><button id="shares" aria-pressed="false">Share of generation</button></div>
+</div>
+<div class="chart" id="chart"><svg id="stream" role="img" aria-label="Surname counts across generations. Exact counts and selections are available below."></svg></div>
+<p class="caption" id="caption"></p>
+<div class="legend" id="legend" aria-label="Highlight a surname group"></div>
+<div class="details">
+ <section><div class="detail-head"><h2 id="detail-title">All surname groups</h2><button id="clear" hidden>Clear highlight</button></div><p class="status" id="selection" aria-live="polite"></p><div class="table-wrap" id="table"></div></section>
+ <section><div class="detail-head"><h2 id="people-title">Recorded people</h2><label>Generation <select id="generation"></select></label></div><div class="people" id="people"></div></section>
+</div>
+<details><summary id="method-title">How to read this chart</summary><p>Generation positions reuse the family overview: partners share a level and each recorded parent–child link is one generation apart. The largest connected family supplies the reference. Disconnected people and components with contradictory constraints remain unaligned and are listed separately. Dates never determine placement.</p><p>The ribbons use a centered baseline. In People mode, one vertical scale is shared across generations and adjusts to the largest visible total. Widths are exact at the labeled generation positions; curves between positions are visual interpolation. Generations are discrete family steps, not equal spans of years. A continuous surname ribbon does not establish descent or a relationship between its members. “Other surnames” combines the remaining recorded groups; “Unknown” is the registry’s unknown surname group.</p><p>Birth ranges use recorded years only and may overlap. Missing birth or death years remain unknown; a missing death year does not establish that someone is living. Counts and generation positions are derived from the current registries.</p></details>
+</main><div class="tooltip" id="tooltip" hidden></div>
+<script id="stream-data" type="application/json">__STREAM_DATA__</script>
+<script>
+(() => {
+'use strict';
+const data=JSON.parse(document.getElementById('stream-data').textContent);
+const $=id=>document.getElementById(id), ns='http://www.w3.org/2000/svg';
+const palette=['#41776e','#b57b47','#7c8e53','#789bb1','#a77486','#b9a24d','#5e719b','#b66e59','#89a99a','#8e7caa','#8c976e','#bd9680'];
+const aligned=data.people.filter(p=>p.alignment==='aligned');
+const unaligned=data.people.filter(p=>p.alignment!=='aligned');
+const groupTotals=new Map(data.groups.map(g=>[g,aligned.filter(p=>p.surname_group===g).length]));
+const ranked=data.groups.filter(g=>groupTotals.get(g)>0).sort((a,b)=>groupTotals.get(b)-groupTotals.get(a)||a.localeCompare(b,'pl'));
+const generations=Array.from({length:data.generations},(_,i)=>i+1);
+const totals=generations.map(g=>aligned.filter(p=>p.generation===g).length);
+let selected=null, measure='counts', series=[], matrix=[], gen=totals.indexOf(Math.max(...totals))+1;
+const colors=new Map(ranked.map((g,i)=>[g, i<12?palette[i]:`hsl(${(i*137.508)%360} 28% ${42+(i%3)*9}%)`]));
+const other='__other__';colors.set(other,'#c9cec0');
+const name=g=>g===other?'Other surnames':g;
+const escape=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function members(generation=undefined){return (generation===0?unaligned:aligned).filter(p=>(generation===undefined||generation===0||p.generation===generation)&&(!selected||(selected===other?!series.includes(p.surname_group):p.surname_group===selected)));}
+function range(g){const years=aligned.filter(p=>p.generation===g&&p.birth!==null).map(p=>p.birth);if(!years.length)return 'Dates unknown';const lo=Math.min(...years),hi=Math.max(...years);return lo===hi?String(lo):`${lo}–${hi}`;}
+function element(tag,attrs,text){const n=document.createElementNS(ns,tag);for(const [k,v] of Object.entries(attrs))n.setAttribute(k,v);if(text!==undefined)n.textContent=text;return n;}
+$('summary').innerHTML=`<div><strong>${aligned.length}</strong><span>aligned people</span></div><div><strong>${data.generations}</strong><span>generations</span></div><div><strong>${ranked.length}</strong><span>aligned surname groups</span></div><div><strong>${unaligned.length}</strong><span>unaligned · listed separately</span></div>`;
+for(const g of generations){const option=document.createElement('option');option.value=g;option.textContent=`Gen ${g}`;$('generation').append(option);}
+if(unaligned.length){const option=document.createElement('option');option.value=0;option.textContent='Unaligned';$('generation').append(option);}
+$('generation').value=gen;
+function visible(group){return group!==other||$('show-other').checked;}
+function prepare(){const n=$('limit').value==='all'?ranked.length:Number($('limit').value);series=ranked.slice(0,n);if(n<ranked.length)series.push(other);$('show-other').disabled=!series.includes(other);if(selected&&(!series.includes(selected)||!visible(selected)))selected=null;matrix=series.map(group=>generations.map(g=>aligned.filter(p=>p.generation===g&&(group===other?!series.includes(p.surname_group):p.surname_group===group)).length));}
+function pick(group){selected=selected===group?null:group;draw();details();legend();}
+function legend(){$('legend').replaceChildren();series.forEach((group,i)=>{if(!visible(group))return;const b=document.createElement('button');b.type='button';b.setAttribute('aria-pressed',String(selected===group));b.innerHTML=`<span class="swatch" style="background:${colors.get(group)}"></span>${escape(name(group))} <span class="count">${matrix[i].reduce((a,b)=>a+b,0)}</span>`;b.onclick=()=>pick(group);$('legend').append(b);});}
+// Shared smoothstep boundaries keep ribbons nonnegative, including where a group disappears.
+function line(points,reverse=false){const p=reverse?[...points].reverse():points;return p.slice(1).reduce((s,b,i)=>{const a=p[i],mid=(a[0]+b[0])/2;return s+` C ${mid},${a[1]} ${mid},${b[1]} ${b[0]},${b[1]}`;},`${p[0][0]},${p[0][1]}`);}
+function draw(){
+ const svg=$('stream'),w=$('chart').clientWidth,h=w<700?350:440,left=38,right=w-38,top=48,bottom=h-66,inner=bottom-top;
+ svg.setAttribute('viewBox',`0 0 ${w} ${h}`);svg.replaceChildren();
+ if(!generations.length){svg.append(element('text',{x:24,y:60},'No aligned generations available'));return;}
+ const x=i=>generations.length===1?(left+right)/2:left+i*(right-left)/(generations.length-1);
+ const shownTotals=totals.map((_,i)=>matrix.reduce((sum,row,j)=>sum+(visible(series[j])?row[i]:0),0));
+ const max=Math.max(1,...shownTotals),scale=inner/(measure==='counts'?max:1),y=v=>(top+bottom)/2-v*scale;
+ const offsets=shownTotals.map(t=>-(measure==='counts'?t:(t?1:0))/2);
+ const boundaries=[offsets];matrix.forEach((row,j)=>boundaries.push(row.map((v,i)=>boundaries[boundaries.length-1][i]+(visible(series[j])?(measure==='counts'?v:(shownTotals[i]?v/shownTotals[i]:0)):0))));
+ generations.forEach((g,i)=>{svg.append(element('line',{x1:x(i),x2:x(i),y1:top-8,y2:bottom+5,class:'guide'}));svg.append(element('text',{x:x(i),y:25,'text-anchor':'middle',class:'total'},measure==='counts'?`${shownTotals[i]}`:shownTotals[i]?'100%':'0%'));});
+ series.forEach((group,j)=>{
+  if(!visible(group))return;
+  const lower=boundaries[j].map((v,i)=>[x(i),y(v)]),upper=boundaries[j+1].map((v,i)=>[x(i),y(v)]);
+  const path=element('path',{d:`M ${line(lower)} L ${line(upper,true)} Z`,fill:colors.get(group),opacity:selected&&selected!==group?'.16':'.94',class:'stream','data-group':group});
+  path.append(element('title',{},`${name(group)}: ${matrix[j].join(', ')} people across generations`));
+  path.onclick=()=>pick(group);
+  path.onpointermove=e=>{const rect=svg.getBoundingClientRect(),i=Math.max(0,Math.min(data.generations-1,Math.round((e.clientX-rect.left-left)/(right-left)*(data.generations-1))));const tip=$('tooltip');tip.textContent=`${name(group)} · Gen ${i+1}: ${matrix[j][i]} people (${shownTotals[i]?(100*matrix[j][i]/shownTotals[i]).toFixed(1):'0'}% of shown surnames)`;tip.hidden=false;tip.style.left=Math.max(8,Math.min(window.innerWidth-tip.offsetWidth-8,e.clientX+14))+'px';tip.style.top=Math.max(8,Math.min(window.innerHeight-tip.offsetHeight-8,e.clientY+14))+'px';};
+  path.onpointerleave=()=>{$('tooltip').hidden=true;};svg.append(path);
+ });
+ const narrow=w<550;
+ generations.forEach((g,i)=>{if(narrow&&i%2&&i!==generations.length-1)return;svg.append(element('text',{x:x(i),y:h-38,'text-anchor':'middle',class:'tick'},`Gen ${g}`));if(!narrow)svg.append(element('text',{x:x(i),y:h-17,'text-anchor':'middle',class:'tick'},range(g)));});
+ const hidden=series.includes(other)&&!$('show-other').checked;
+ $('caption').textContent=(measure==='counts'?'Totals above each generation count the visible surnames. The vertical scale fits the largest visible generation.':'Each nonempty generation has equal total thickness. Percentages in the chart refer to the visible surnames.')+(hidden?' Other surnames are hidden. The table and records below still include all surnames.':' Select a surname below or a ribbon to highlight it. Exact counts remain available below.');
+}
+function details(){
+ $('detail-title').textContent=selected?name(selected):'All surname groups';$('clear').hidden=!selected;
+ const people=members();$('selection').textContent=`${people.length} aligned people${selected?' in this selection':''}. Choose a generation count to inspect its records.`;
+ const rows=generations.map((g,i)=>{const count=members(g).length;return `<tr><td>Gen ${g}</td><td>${range(g)}</td><td><button data-gen="${g}" aria-label="Show ${count} people in generation ${g}" aria-pressed="${gen===g}">${count}</button></td><td>${totals[i]?(count/totals[i]*100).toFixed(1):'0'}%</td></tr>`;});
+ if(unaligned.length)rows.push(`<tr><td>Unaligned</td><td>Outside stream</td><td><button data-gen="0" aria-label="Show unaligned people" aria-pressed="${gen===0}">${members(0).length}</button></td><td>—</td></tr>`);
+ $('table').innerHTML=`<table><thead><tr><th>Generation</th><th>Known births</th><th>People</th><th>Share of all</th></tr></thead><tbody>${rows.join('')}</tbody></table>`;
+ $('table').querySelectorAll('button').forEach(b=>b.onclick=()=>{gen=Number(b.dataset.gen);$('generation').value=gen;details();});
+ const list=members(gen);$('people-title').textContent=`${gen?'Gen '+gen:'Unaligned'} · ${list.length} people`;
+ $('people').innerHTML=list.length?list.sort((a,b)=>(a.surname+' '+a.first).localeCompare(b.surname+' '+b.first,'pl')).map(p=>`<div class="person">${escape((p.first+' '+p.surname).trim()||'Name unknown')} <small>ID ${p.id} · ${p.birth===null?'Birth unknown':'Born '+p.birth} · ${p.death===null?'Death unknown':'Died '+p.death}${gen===0?' · '+escape(p.alignment):''}</small></div>`).join(''):'<p class="empty">No people in this selection.</p>';
+}
+$('limit').onchange=()=>{prepare();draw();legend();details();};
+$('show-other').onchange=()=>{$('tooltip').hidden=true;prepare();draw();legend();details();};
+for(const mode of ['counts','shares'])$(mode).onclick=()=>{measure=mode;for(const id of ['counts','shares'])$(id).setAttribute('aria-pressed',String(mode===id));draw();};
+$('clear').onclick=()=>{selected=null;draw();legend();details();};
+$('generation').onchange=()=>{gen=Number($('generation').value);details();};
+new ResizeObserver(draw).observe($('chart'));
+prepare();draw();legend();details();
+})();
+</script>
+</body>
+</html>

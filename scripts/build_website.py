@@ -304,9 +304,15 @@ def build_names() -> None:
 def build_tree() -> None:
     title, introduction = markdown(read(CONFIG["documents"]["tree"]["source"]))
     overview = CONFIG["tree_overview"]
+    surnames = CONFIG["tree_surnames"]
+    atlas = CONFIG["tree_atlas"]
     overview_url = "/" + str(Path(overview["page"]).parent) + "/"
+    surnames_url = "/" + str(Path(surnames["page"]).parent) + "/"
+    atlas_url = "/" + str(Path(atlas["page"]).parent) + "/"
     links = [
         (overview_url, "Overview"),
+        (surnames_url, "Surname streams"),
+        (atlas_url, "Generation Atlas"),
         ("/tree/viewer/", "Family-tree viewer"),
         ("/tree/graph/", "Relationship graph"),
         ("/tree/text/", "Text family tree"),
@@ -319,6 +325,8 @@ def build_tree() -> None:
     write(CONFIG["documents"]["tree"]["output"], page(title, body, title))
     artifacts = ROOT / "artifacts/interactive"
     copy_file(ROOT / overview["source"], DIST / overview["output"])
+    copy_file(ROOT / surnames["source"], DIST / surnames["output"])
+    copy_file(ROOT / atlas["source"], DIST / atlas["output"])
     viewer_dir = DIST / "tree/viewer/app"
     graph_dir = DIST / "tree/graph/app"
     viewer_dir.mkdir(parents=True, exist_ok=True)
@@ -329,14 +337,26 @@ def build_tree() -> None:
         copy_file(artifacts / name, graph_dir / name)
     for route, label, src in [
         (overview["page"], "Overview", "/" + overview["output"]),
+        (surnames["page"], "Surname streams", "/" + surnames["output"]),
+        (atlas["page"], "Generation Atlas", "/" + atlas["output"]),
         ("tree/viewer/index.html", "Family-tree viewer", "/tree/viewer/app/family_tree.html"),
         ("tree/graph/index.html", "Relationship graph", "/tree/graph/app/genealogy_relationship_graph.html"),
     ]:
         if route == "tree/graph/index.html":
             graph_version = hashlib.sha256((DIST / src.lstrip("/")).read_bytes()).hexdigest()[:12]
             src += f"?v={graph_version}"
+        related = ""
+        if route == overview["page"]:
+            related = f' · <a href="{surnames_url}">Explore surname streams</a>'
+        elif route == surnames["page"]:
+            related = f' · <a href="{overview_url}">Explore the generation overview</a>'
+        elif route == "tree/viewer/index.html":
+            related = f' · <a href="{atlas_url}">Explore Generation Atlas</a>'
+        elif route == atlas["page"]:
+            related = ' · <a href="/tree/viewer/">Explore the family-tree viewer</a>'
         body = (f'<section class="tool-page"><h1>{label}</h1>'
                 f'<p class="tool-actions"><a href="{src}" target="_blank" rel="noopener">Open {label.lower()} in a full window</a>'
+                f'{related}'
                 ' · <a href="/tree/">Choose another tree view</a></p>'
                 f'<iframe src="{src}" title="{label}"></iframe></section>')
         write(route, page(label, body, label))
