@@ -301,6 +301,19 @@ dots, and lifelines with person search, surname highlighting, and relative
 navigation. The full build includes it at `/tree/atlas/`, linked from the Family
 trees page and the family-tree viewer.
 
+## Family profile
+
+Run `uv run python -m scripts.build_family_profile` to generate
+`artifacts/interactive/family_profile.html`. Family profile characterizes the
+family tree along two dimensions: time, encoded by generation with recorded
+birth years overlaid (missing dates are never estimated), and lineage, encoded
+by the recorded main-line families. Four linked lenses show the shape of the
+family (lineage segments, people per generation, and first-class gaps),
+surnames by generation coloured by the dominant lineage segment, per-segment
+detail, and per-surname detail; clicking a segment, surname, or generation
+highlights it across all lenses. Unlike the views above, it is standalone: the
+full build and the website do not include it.
+
 ## Backups
 
 - The GED files and registeries with only the Muszyna data and the GED file with
