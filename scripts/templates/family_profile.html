@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Family profile</title>
+<style>
+:root{font-family:system-ui,-apple-system,sans-serif;color:#24353a;background:#f5f5ef;font-size:15px}*{box-sizing:border-box}body{margin:0}main{max-width:1200px;margin:auto;padding:40px 32px}h1{font-family:Georgia,serif;font-size:46px;font-weight:400;margin:8px 0 12px}h2{font-size:20px;margin:0 0 6px}h3{font-size:14px;margin:0 0 6px}.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:2px;color:#59706a}.intro{max-width:760px;color:#526366;line-height:1.6}.stats{display:flex;gap:40px;flex-wrap:wrap;margin:28px 0}.stat strong{display:block;font-size:28px;font-weight:500}.stat span,.muted{color:#647575;font-size:13px}.panel{background:white;border:1px solid #dde3dd;border-radius:12px;padding:24px;margin-top:24px}.panelhead{display:flex;flex-wrap:wrap;gap:8px 20px;align-items:baseline;margin-bottom:4px}.sub{font-size:13px;color:#526366;margin:0 0 12px}.duo{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px}@media(max-width:900px){.duo{grid-template-columns:1fr}}.controls{display:flex;flex-wrap:wrap;gap:12px;align-items:end;margin:0 0 10px}label{display:grid;gap:6px;font-size:12px;color:#526366}input,select,button{font:inherit}input{padding:10px;border:1px solid #b8c7c1;border-radius:6px;background:white;color:#24353a;width:220px}.clear{padding:10px 14px;border:1px solid #b8c7c1;border-radius:6px;background:white;color:#24353a;cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #c18431;outline-offset:2px}.scope{font-size:12px;color:#647575;margin:0 0 8px}.chart{overflow:auto;border:1px solid #e3e8e2;border-radius:8px;background:#fcfdfb;padding:10px}table{width:100%;border-spacing:5px;table-layout:fixed;min-width:900px}th{font-size:12px;font-weight:500}th:first-child{width:150px;text-align:left}th:last-child{width:48px}td{text-align:center}.surname{width:100%;text-align:left;border:0;background:none;padding:6px 2px;font-weight:500;overflow-wrap:anywhere;font-size:13px;color:#24353a;cursor:pointer}.surname:hover{outline:2px solid #55786c}.cell{border:1px solid transparent;border-radius:4px;width:100%;min-height:34px;font-size:13px;color:white}.cell:hover{outline:2px solid #243f34;cursor:pointer}.cell.zero{color:#82918b;background:#f3f5f2!important}.gaps{display:flex;gap:16px;flex-wrap:wrap;margin-top:18px}.gap{flex:1 1 240px;border:1px solid #e3d9cf;border-radius:8px;padding:12px 14px;background:#fbfaf7}.gap strong{display:block;font-size:20px}.gap span{font-size:12px;color:#647575}.gap ul{margin:8px 0 0;padding-left:16px;font-size:12px;color:#526366}.legend{display:flex;flex-wrap:wrap;gap:6px 12px;margin-top:12px;font-size:12px;color:#526366}.swatch{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:5px;vertical-align:-1px}.lenswrap{max-height:520px;overflow:auto}.ltab{width:100%;border-spacing:4px;min-width:760px}.ltab thead th{position:sticky;top:0;background:#fcfdfb;font-size:11px;font-weight:600;color:#526366;text-align:left;border-bottom:1px solid #dde3dd;padding:6px 6px;letter-spacing:.3px}.ltab td{padding:8px 6px;font-size:13px;text-align:left;vertical-align:middle;border-bottom:1px solid #f0f3ee}.ltab tr.focusable{cursor:pointer}.ltab tr.focusable:hover td{background:#f3f6f2}.dim{opacity:.18}.segltr td:first-child{font-weight:500}.segchip{display:inline-block;margin:1px 4px 1px 0;padding:2px 8px;border-radius:999px;font-size:11px;color:#white}.variants{color:#647575;font-size:12px}.badge{display:inline-block;background:#eef3ed;border:1px solid #b9cec2;color:#2e5238;border-radius:999px;padding:2px 8px;font-size:11px}.badge.muted{background:#f3f5f2;border-color:#d5ded8;color:#647575}#focusbar{display:none;margin-top:14px;padding:10px 14px;border:1px solid #c9b8a8;background:#fbf6ee;border-radius:8px;font-size:13px;color:#526366;align-items:center;gap:10px}#focusbar button{border:1px solid #c9b8a8;background:white;border-radius:6px;padding:4px 10px;cursor:pointer;font-size:12px;color:#24353a}details{margin-top:24px;font-size:14px;color:#42545a;line-height:1.7}summary{cursor:pointer;font-weight:500}.footer{margin-top:26px;font-size:12px;color:#82918b}.tip{position:fixed;pointer-events:none;background:#243f34;color:#f5f5ef;padding:8px 10px;border-radius:8px;font-size:12px;line-height:1.5;box-shadow:0 4px 16px rgba(0,0,0,.25);z-index:10;max-width:300px}
+svg text{font-family:system-ui,-apple-system,sans-serif}.gaxis{font-size:10px;fill:#82918b;text-anchor:middle}.riblabel{font-size:12px;fill:#fff}.ribcount{font-size:10px;fill:#e7efe8}.otherlabel{font-size:12px;fill:#42545a}.sublabel{font-size:9px;fill:#82918b}.barval{font-size:11px;fill:#42545a;text-anchor:middle}.focusval{font-size:10px;fill:#b5651d;font-weight:600;text-anchor:middle}.barlab{font-size:9px;fill:#82918b;text-anchor:middle}.hval{font-size:10px;fill:#42545a;text-anchor:middle}.hdec{font-size:10px;fill:#82918b;text-anchor:middle}g[data-seg],g[data-gen],g[data-other]{cursor:pointer}
+</style></head><body><main>
+<p class="eyebrow">Standalone family profile</p>
+<h1>The shape of this family</h1>
+<p class="intro">A characterization of the recorded family collection along two dimensions — <strong>time</strong>, primarily by generation (many people carry no recorded dates, with recorded birth years overlaid), and <strong>lineage</strong>, the succession of main-line surnames, the branches that leave them, and the ancestry brought in by marriage — across four linked lenses. Click any segment, surname, or generation to highlight it across every lens. Nothing here estimates missing facts.</p>
+<div class="stats" id="stats"></div>
+<div id="focusbar"><span>Highlighting across all lenses:</span><strong id="focuslabel"></strong><button id="clearfocus" type="button">Clear</button></div>
+
+<section class="panel" aria-label="The shape of the family">
+<div class="panelhead"><h2>Lens 1 · Shape</h2></div>
+<p class="sub">How many people, in which generations, and through which lineages the main line has passed.</p>
+<div class="duo">
+<div><h3>Lineage ribbon — main-line segments</h3><div class="chart" id="ribbon"></div><div class="legend" id="ribbonlegend"></div></div>
+<div><h3>People per generation</h3><div class="chart" id="genbars"></div><p class="muted" style="font-size:12px">Dark: recorded birth year · light: birth year unknown. Unaligned: no established generation. Click a column to focus it.</p></div>
+</div>
+<div class="gaps" id="gaps"></div>
+</section>
+
+<section class="panel" aria-label="Surnames over time">
+<div class="panelhead"><h2>Lens 2 · Surnames over time</h2></div>
+<p class="sub">People per surname group per generation, coloured by the lineage segment that dominates the cell; recorded birth years by decade beneath.</p>
+<div class="controls"><label>Find a surname<input id="search" type="search" placeholder="e.g. Gościński" autocomplete="off"></label><label>Show<select id="limit"><option value="12">12 largest groups</option><option value="24">24 largest groups</option><option value="all">All surname groups</option></select></label></div>
+<p class="scope" id="scope" aria-live="polite"></p>
+<div class="chart" id="matrix"></div>
+<h3 style="margin-top:18px">Recorded birth years, by decade</h3>
+<div class="chart" id="hist"></div>
+</section>
+
+<section class="panel" aria-label="Lineage segments">
+<div class="panelhead"><h2>Lens 3 · Lineage</h2></div>
+<p class="sub">Each main-line segment in detail: who it runs through, which surnames it carries, and which recorded families branch off it. Click a row to focus that segment.</p>
+<div class="chart lenswrap" id="lens3"></div>
+</section>
+
+<section class="panel" aria-label="Surnames">
+<div class="panelhead"><h2>Lens 4 · Surnames</h2></div>
+<p class="sub">Each recorded surname group in detail: where it appears across generations and lineages, its recorded spellings, and its role. Click a row to focus that surname.</p>
+<div class="chart lenswrap" id="lens4"></div>
+</section>
+
+<details><summary>How to read this profile</summary>
+<p><strong>Generations</strong> follow the alignment shared with the overview and atlas views: the largest connected family sets Gen 1; partners share a generation, parents one earlier, children one later. The 5 people with no established position count as Unaligned; no generation is invented for them.</p>
+<p><strong>Lineage segments</strong> are computed from the main-line families recorded in families.csv. Each segment begins at a main-line father who is not recorded as the child of a main-line family, and then follows main-line links: the partners of that segment’s main-line families and their children join the segment. This collection’s main line is not one descent but a succession of named lineages (for example Gościński, later Szost, Pyrc, Rams…), and the ribbon shows each segment across the generations it reaches. People recorded in collateral or spouse-ancestry families are not assigned to a segment; they appear in the grey “branches &amp; spouse ancestry” band and count as “other” in the matrix.</p>
+<p><strong>Lens 3</strong> adds the per-segment view: “offshoots” counts recorded collateral families that share at least one person with the segment; “ancestry traced” counts recorded spouse-ancestry families that share at least one person with the segment; the mini bars show the segment’s members per generation.</p>
+<p><strong>Lens 4</strong> lists every recorded surname group with its generation span, the segments its people belong to, recorded spelling variants, and its role: a segment’s founding surname is its <em>bearer</em>; surnames whose people otherwise sit in main-line segments are partner surnames that joined the main line; the rest belong to branches and traced spouse ancestry.</p>
+<p><strong>Matrix cells</strong> count people per surname group and generation. A cell’s colour is the segment with the most people in that cell; hover for the exact breakdown. <strong>Birth-year decades</strong> count only recorded birth years; unknown dates contribute nothing and are never estimated.</p>
+<p><strong>Focus</strong>: clicking a ribbon band, generation column, matrix cell or row, or a Lens 3/4 row highlights that segment, surname, or generation across all lenses and dims the rest; the decade histogram recomputes for surname and segment focus. Click the same item again, press the Clear button, or press Escape to clear.</p>
+<p><strong>Gaps</strong> are first-class here: people without recorded birth years, unaligned people, and main-line fathers whose recorded parentage forms contradictory links. Contradictions are reported, not resolved.</p>
+<p>Source: data/registries/people.csv and families.csv. Generated by scripts.build_family_profile; standalone, not part of the website build.</p>
+</details>
+<div class="footer">Counts reflect the recorded family collection. Missing information remains unknown.</div>
+</main><div id="tip" class="tip" role="status" hidden></div><script>
+const data=__PROFILE_DATA__;
+const el=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const normalize=s=>s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/ł/g,'l').replace(/Ł/g,'L').toLowerCase();
+const segColor=i=>{const P=['#2e5238','#c18431','#4f7cac','#a63d40','#7d5ba6','#3a7d7b','#b5651d','#6a8532','#c26a8a','#5b6470'];return P[i%P.length];};
+const OTHER='#a9b5ae';
+const tip=el('tip');
+function moveTip(x,y){tip.style.left=`${Math.max(8,Math.min(x+14,window.innerWidth-tip.offsetWidth-8))}px`;tip.style.top=`${Math.max(8,Math.min(y+14,window.innerHeight-tip.offsetHeight-8))}px`;}
+function showTip(html,x,y){tip.innerHTML=html;tip.hidden=false;moveTip(x,y);}
+const S=data.stats,G=data.gaps;
+el('stats').innerHTML=[[S.people,'people recorded'],[`${S.families} families`,'main line · branches · spouses'],[S.generations,'generations'],[S.groups,'surname groups'],[data.segments.length,'main-line segments'],[S.dated,'recorded birth years']].map(([v,l])=>`<div class="stat"><strong>${v}</strong><span>${l}</span></div>`).join('');
+const segMembers=data.segments.map(()=>new Set());
+const genMembers=new Array(S.generations+1).fill(null).map(()=>new Set());
+const otherSet=new Set();
+for(const p of data.people){
+ if(p.segment!==null)segMembers[p.segment].add(p.id);
+ genMembers[p.generation].add(p.id);
+ if(p.segment===null&&p.generation>0)otherSet.add(p.id);
+}
+/* Lens 1a: lineage ribbon */
+(function(){
+ const N=S.generations,unit=94,left=56,top=30,bh=34,gap=10;
+ const gx=g=>left+unit*(g-1);
+ const rows=data.segments.slice();
+ let otherGens=data.people.filter(p=>p.segment===null&&p.generation>0).map(p=>p.generation);
+ const W=left+unit*N+46,H=top+rows.length*(bh+gap)+(otherGens.length?bh+gap:0)+16;
+ const parts=[`<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto;display:block" role="img" aria-label="Lineage ribbon">`];
+ for(let g=1;g<=N;g++)parts.push(`<text class="gaxis" x="${gx(g)+unit/2}" y="${top-10}">Gen ${g}</text>`);
+ rows.forEach((s,i)=>{
+  const y=top+i*(bh+gap);
+  let x1,x2;
+  if(s.min_generation>0){x1=gx(s.min_generation);x2=gx(s.max_generation)+unit;}
+  else{x1=left+unit*N+4;x2=left+unit*N+42;}
+  const w=Math.max(26,x2-x1);
+  parts.push(`<g data-seg="${i}"><rect x="${x1}" y="${y}" width="${w}" height="${bh}" fill="${segColor(s.index)}" rx="5"/>`);
+  parts.push(`<text class="riblabel" x="${x1+8}" y="${y+bh/2+4}">${esc(s.group)} <tspan class="ribcount">(${s.members})</tspan></text>`);
+  parts.push(`<text class="sublabel" x="${x1+8}" y="${y+bh+11}">from Gen ${s.start_generation>0?s.start_generation:'?'} · ${esc(s.label)}</text></g>`);
+ });
+ if(otherGens.length){
+  const y=top+rows.length*(bh+gap),o1=Math.min(...otherGens),o2=Math.max(...otherGens);
+  const x1=gx(o1),x2=gx(o2)+unit;
+  const n=otherSet.size;
+  parts.push(`<g data-other="1"><rect x="${x1}" y="${y}" width="${Math.max(26,x2-x1)}" height="${bh}" fill="${OTHER}" opacity="0.55" rx="5"/>`);
+  parts.push(`<text class="otherlabel" x="${x1+8}" y="${y+bh/2+4}">branches &amp; spouse ancestry (${n})</text></g>`);
+ }
+ parts.push('</svg>');
+ el('ribbon').innerHTML=parts.join('');
+ el('ribbonlegend').innerHTML=data.segments.map(s=>`<span><span class="swatch" style="background:${segColor(s.index)}"></span>${esc(s.group)} — ${esc(s.label)}, Gen ${s.start_generation>0?s.start_generation:'?'}</span>`).join('')+`<span><span class="swatch" style="background:${OTHER};opacity:.6"></span>not main line</span>`;
+ el('ribbon').addEventListener('click',e=>{
+  const g=e.target.closest('g[data-seg]');
+  if(g){setFocus('segment',Number(g.dataset.seg));return;}
+  if(e.target.closest('g[data-other]'))setFocus('other',null);
+ });
+})();
+/* Lens 1b: people per generation */
+(function(){
+ const gens=[...Array.from({length:S.generations},(_,i)=>i+1),0];
+ const statsByGen=gens.map(g=>{
+  const ps=data.people.filter(p=>p.generation===g);
+  return{g,total:ps.length,dated:ps.filter(p=>p.birth!==null).length};
+ });
+ const bw=56,gap=14,left=24,top=40;
+ const maxT=Math.max(1,...statsByGen.map(s=>s.total));
+ const H=196,W=left+statsByGen.length*(bw+gap)+10;
+ const base=H-34;
+ const parts=[`<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto;display:block" role="img" aria-label="People per generation">`];
+ parts.push(`<line x1="${left-6}" y1="${base}" x2="${W-4}" y2="${base}" stroke="#c4cdc6"/>`);
+ statsByGen.forEach((s,i)=>{
+  const x=left+i*(bw+gap);
+  const h=s.total/maxT*(base-top),hd=s.dated/maxT*(base-top);
+  parts.push(`<g data-gen="${s.g}">`);
+  parts.push(`<rect x="${x}" y="${base-h}" width="${bw}" height="${Math.max(0,h-hd)}" fill="#d9e5da"/>`);
+  if(hd>0)parts.push(`<rect x="${x}" y="${base-h}" width="${bw}" height="${hd}" fill="#2e5238"/>`);
+  parts.push(`<text class="focusval" x="${x+bw/2}" y="${top-8}"></text>`);
+  parts.push(`<text class="barval" x="${x+bw/2}" y="${base-h-5}">${s.total}</text>`);
+  parts.push(`<text class="barlab" x="${x+bw/2}" y="${base-14}">${s.g===0?'Unaligned':'Gen '+s.g}</text>`);
+  parts.push(`<text class="barlab" x="${x+bw/2}" y="${base-3}">${s.dated}/${s.total} dated</text>`);
+  parts.push('</g>');
+ });
+ parts.push('</svg>');
+ el('genbars').innerHTML=parts.join('');
+ el('genbars').addEventListener('click',e=>{
+  const g=e.target.closest('g[data-gen]');
+  if(g)setFocus('generation',Number(g.dataset.gen));
+ });
+})();
+/* Gaps */
+(function(){
+ const inc=G.inconsistencies.length;
+ el('gaps').innerHTML=`
+ <div class="gap"><strong>${G.undated} of ${S.people}</strong><span>people without a recorded birth year — generation placement is unaffected; dates are never estimated</span></div>
+ <div class="gap"><strong>${G.unaligned}</strong><span>people with no established generation in the reference family</span></div>
+ <div class="gap"><strong>${inc}</strong><span>main-line fathers with contradictory parentage links — reported, not resolved</span>${inc?`<ul>${G.inconsistencies.map(x=>`<li>${esc(x.name)} — recorded as a child of main-line family${x.child_of.length>1?'ies':''} ${x.child_of.join(', ')}, yet head${x.heads.length>1?'':'s'} main-line family${x.heads.length>1?'ies':''} ${x.heads.join(', ')}</li>`).join('')}</ul>`:''}</div>`;
+})();
+/* Lens 2a: surname x generation matrix */
+const groups={};
+for(const p of data.people){
+ (groups[p.group]??={total:0,cells:new Array(S.generations+2).fill(null),ids:new Set()});
+ const c=groups[p.group];c.total++;c.ids.add(p.id);
+ const gi=p.generation===0?S.generations:p.generation-1;
+ const cell=c.cells[gi]??={count:0,seg:{},other:0,ids:[]};
+ c.cells[gi]=cell;cell.count++;cell.ids.push(p.id);
+ if(p.segment===null)cell.other++;else cell.seg[p.segment]=(cell.seg[p.segment]||0)+1;
+}
+function dominant(cell){
+ let best=null,bn=-1;
+ for(const k in cell.seg)if(cell.seg[k]>bn){bn=cell.seg[k];best=Number(k);}
+ if(best===null||bn<cell.other)best=null;
+ return best;
+}
+function segNames(cell){
+ const parts=[];
+ for(const k in cell.seg)parts.push(`${esc(data.segments[Number(k)].group)} line ×${cell.seg[k]}`);
+ if(cell.other)parts.push(`branches/spouses ×${cell.other}`);
+ return parts.join(' · ');
+}
+function renderMatrix(){
+ const q=normalize(el('search').value.trim());
+ const names=Object.keys(groups).sort((a,b)=>groups[b].total-groups[a].total||a.localeCompare(b,'pl'));
+ const matching=names.filter(g=>normalize(g).includes(q)||data.people.some(p=>p.group===g&&normalize(p.surname).includes(q)));
+ const visible=matching.slice(0,el('limit').value==='all'?undefined:Number(el('limit').value));
+ el('scope').textContent=`Showing ${visible.length} of ${matching.length} matching groups · ${visible.reduce((s,g)=>s+groups[g].total,0)} of ${S.people} people`;
+ const cols=[...Array.from({length:S.generations},(_,i)=>i+1),0];
+ el('matrix').innerHTML=`<table><thead><tr><th scope="col">Surname group</th>${cols.map(g=>`<th scope="col" title="${g===0?'No established generation':`Generation ${g}`}">${g===0?'Unaligned':'Gen '+g}</th>`).join('')}<th scope="col">Total</th></tr></thead><tbody>${visible.map(g=>{
+  const c=groups[g];
+  return `<tr data-row="${esc(g)}"><th scope="row"><button class="surname" data-group="${esc(g)}" title="Click to focus this surname">${esc(g)}</button></th>${cols.map((gi,i)=>{
+   const cell=c.cells[i];
+   if(!cell)return `<td><span class="cell zero">–</span></td>`;
+   const d=dominant(cell);
+   const bg=d===null?OTHER:segColor(d);
+   const label=d===null?`${cell.count} (mixed)`:`${cell.count}`;
+   return `<td><span class="cell" style="background:${bg}" data-ids="${cell.ids.join(' ')}" data-gen="${gi}" data-tip="${esc(g)} · ${gi===0?'Unaligned':'Gen '+gi}: ${cell.count} people — ${segNames(cell)}">${label}</span></td>`;
+  }).join('')}<td>${c.total}</td></tr>`;
+ }).join('')}</tbody></table>`;
+ el('matrix').querySelectorAll('[data-tip]').forEach(t=>{
+  t.addEventListener('mouseenter',e=>showTip(`<strong>${esc(t.dataset.tip.split(' — ')[0])}</strong><br>${esc(t.dataset.tip.split(' — ')[1]||'')}`,e.clientX,e.clientY));
+  t.addEventListener('mousemove',e=>moveTip(e.clientX,e.clientY));
+  t.addEventListener('mouseleave',()=>tip.hidden=true);
+  t.addEventListener('click',()=>setFocus('generation',Number(t.dataset.gen)));
+ });
+ el('matrix').querySelectorAll('.surname').forEach(b=>b.addEventListener('click',()=>setFocus('surname',b.dataset.group)));
+}
+el('search').addEventListener('input',renderMatrix);
+el('limit').addEventListener('change',renderMatrix);
+renderMatrix();
+/* Lens 2b: birth decades (recomputes under surname/segment focus) */
+function renderHist(people){
+ const decades={};
+ for(const p of people)if(p.birth!==null){const k=`${Math.floor(p.birth/10)*10}s`;decades[k]=(decades[k]||0)+1;}
+ const entries=Object.entries(decades).sort((a,b)=>parseInt(a[0])-parseInt(b[0]));
+ if(!entries.length){el('hist').innerHTML='<p class="muted">No recorded birth years in this focus.</p>';return;}
+ const bw=44,gap=8,left=16,top=26,maxT=Math.max(...entries.map(d=>d[1])),H=150,base=H-34;
+ const W=left+entries.length*(bw+gap)+10;
+ const parts=[`<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto;display:block" role="img" aria-label="Recorded birth years by decade">`];
+ parts.push(`<line x1="${left-4}" y1="${base}" x2="${W-4}" y2="${base}" stroke="#c4cdc6"/>`);
+ entries.forEach(([label,count],i)=>{
+  const x=left+i*(bw+gap),h=count/maxT*(base-top);
+  parts.push(`<rect x="${x}" y="${base-h}" width="${bw}" height="${h}" fill="#c18431" opacity="0.85"/>`);
+  parts.push(`<text class="hval" x="${x+bw/2}" y="${base-h-4}">${count}</text>`);
+  if(i%2===0)parts.push(`<text class="hdec" x="${x+bw/2}" y="${base-12}">${label}</text>`);
+ });
+ parts.push('</svg>');
+ el('hist').innerHTML=parts.join('');
+}
+renderHist(data.people);
+/* Lens 3: lineage segments table */
+(function(){
+ const byId=new Map(data.people.map(p=>[p.id,p]));
+ const famsByPerson=new Map();
+ for(const f of data.families)for(const pid of [...f.parents,...f.children]){
+  let roles=famsByPerson.get(pid);
+  if(!roles)famsByPerson.set(pid,roles=new Map());
+  roles.set(f.id,f.role);
+ }
+ const rows=data.segments.map(s=>{
+  const memberIds=[...segMembers[s.index]];
+  const dated=memberIds.filter(id=>byId.get(id).birth!==null).length;
+  const genCount={};
+  for(const id of memberIds)genCount[byId.get(id).generation]=(genCount[byId.get(id).generation]||0)+1;
+  const surnames={};
+  for(const id of memberIds)surnames[byId.get(id).group]=(surnames[byId.get(id).group]||0)+1;
+  const topSur=Object.entries(surnames).sort((a,b)=>b[1]-a[1]).slice(0,3).map(([g,n])=>`${esc(g)} ×${n}`).join(', ');
+  let off=0,anc=0;
+  for(const id of memberIds)for(const role of (famsByPerson.get(id)||new Map()).values()){
+   if(role==='collateral')off++;
+   if(role==='spouse_ancestry')anc++;
+  }
+  return{...s,memberIds,dated,genCount,topSur,off,anc};
+ });
+ function spark(r){
+  if(!r.min_generation||!r.max_generation)return'<span class="muted">no established generation</span>';
+  const span=r.max_generation-r.min_generation+1,bw=12,bs=Math.max(...Object.values(r.genCount),1);
+  const W=span*(bw+3)+4,H=30;
+  let parts=`<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}">`;
+  for(let g=r.min_generation;g<=r.max_generation;g++){
+   const n=r.genCount[g]||0,h=n/bs*(H-4);
+   parts+=`<rect x="${1+(g-r.min_generation)*(bw+3)}" y="${H-2-h}" width="${bw}" height="${h}" fill="${segColor(r.index)}" opacity="0.85"/>`;
+  }
+  return parts+'</svg>';
+ }
+ el('lens3').innerHTML=`<table class="ltab"><thead><tr><th>Segment</th><th>Generations</th><th>Members</th><th>Surnames carried</th><th>Offshoots</th><th>Ancestry traced</th><th>Profile by generation</th></tr></thead><tbody>${rows.map(r=>`
+ <tr class="focusable segltr" data-seg="${r.index}" title="Click to focus this segment">
+  <td><span class="swatch" style="background:${segColor(r.index)}"></span>${esc(r.group)}<div class="muted" style="font-size:11px">${esc(r.label)}, from Gen ${r.start_generation>0?r.start_generation:'?'}</div></td>
+  <td>${r.min_generation>0?`${r.min_generation}–${r.max_generation}`:'—'}</td>
+  <td>${r.members}<div class="muted" style="font-size:11px">${r.dated} dated</div></td>
+  <td style="font-size:12px">${r.topSur}</td>
+  <td>${r.off}</td><td>${r.anc}</td>
+  <td>${spark(r)}</td>
+ </tr>`).join('')}</tbody></table>`;
+ el('lens3').querySelectorAll('tr[data-seg]').forEach(tr=>tr.addEventListener('click',()=>setFocus('segment',Number(tr.dataset.seg))));
+})();
+/* Lens 4: surnames table */
+(function(){
+ const byId=new Map(data.people.map(p=>[p.id,p]));
+ const rowlist=Object.keys(groups).map(g=>{
+  const c=groups[g];
+  const gens=[...c.ids].map(id=>byId.get(id).generation).filter(x=>x>0);
+  const span=gens.length?`${Math.min(...gens)}–${Math.max(...gens)}`:'—';
+  const segs={};
+  for(const id of c.ids){const p=byId.get(id);if(p.segment!==null)segs[p.segment]=(segs[p.segment]||0)+1;}
+  const chips=Object.entries(segs).sort((a,b)=>b[1]-a[1]).slice(0,4).map(([k,n])=>`<span class="segchip" style="background:${segColor(Number(k))}">${esc(data.segments[Number(k)].group)} ×${n}</span>`).join('')+(Object.keys(segs).length>4?`<span class="muted" style="font-size:11px">+${Object.keys(segs).length-4} more</span>`:'');
+  const variants=[...new Set([...c.ids].map(id=>byId.get(id).surname).filter(Boolean))].sort();
+  const varText=variants.slice(0,3).map(esc).join(', ')+(variants.length>3?` +${variants.length-3}`:'');
+  const bearer=data.segments.find(s=>s.group===g);
+  const role=bearer?`<span class="badge">main-line bearer — ${esc(bearer.label)} segment</span>`:
+   c.ids.size&&[...c.ids].some(id=>byId.get(id).segment!==null)?`<span class="badge muted">joins the main line as a partner</span>`:
+   `<span class="badge muted">branches &amp; spouse ancestry</span>`;
+  return{g, total:c.total, html:`<tr class="focusable" data-group="${esc(g)}" title="Click to focus this surname">
+   <td style="font-weight:500">${esc(g)}</td>
+   <td>${c.total}</td>
+   <td>${span}</td>
+   <td>${chips||'<span class="muted">—</span>'}</td>
+   <td class="variants">${varText||'—'}</td>
+   <td>${role}</td>
+  </tr>`};
+ }).sort((a,b)=>b.total-a.total||a.g.localeCompare(b.g,'pl')).map(r=>r.html).join('');
+ el('lens4').innerHTML=`<table class="ltab"><thead><tr><th>Surname group</th><th>People</th><th>Generation span</th><th>Lineage segments</th><th>Recorded spellings</th><th>Role</th></tr></thead><tbody>${rowlist}</tbody></table>`;
+ el('lens4').querySelectorAll('tr[data-group]').forEach(tr=>tr.addEventListener('click',()=>setFocus('surname',tr.dataset.group)));
+})();
+/* Cross-lens focus */
+let focus=null;
+function focusSet(){
+ if(!focus)return null;
+ const match=p=>focus.kind==='segment'?p.segment===focus.value:
+  focus.kind==='surname'?p.group===focus.value:
+  focus.kind==='other'?p.segment===null&&p.generation>0:
+  p.generation===focus.value;
+ const set=new Set(data.people.filter(match).map(p=>p.id));
+ return set.size?set:null;
+}
+function focusLabel(f){
+ if(f.kind==='segment'){const s=data.segments[f.value];return`${s.group} main-line segment (${s.members} people)`;}
+ if(f.kind==='other')return'branches &amp; spouse ancestry';
+ if(f.kind==='surname')return`${f.value} (${groups[f.value]?groups[f.value].total:0} people)`;
+ return`Generation ${f.value===0?'— (unaligned)':f.value} (${[...genMembers[f.value]].length} people)`;
+}
+function bandHit(memberSet,set){
+ if(!set)return true;
+ for(const id of memberSet)if(set.has(id))return true;
+ return false;
+}
+function applyFocus(){
+ const set=focusSet();
+ const bar=el('focusbar');
+ if(focus){bar.style.display='flex';el('focuslabel').textContent=focusLabel(focus).replace(/&amp;/g,'&');}
+ else bar.style.display='none';
+ el('ribbon').querySelectorAll('g[data-seg]').forEach(g=>{
+  g.classList.toggle('dim',!!focus&&!bandHit(segMembers[Number(g.dataset.seg)],set));
+ });
+ el('ribbon').querySelectorAll('g[data-other]').forEach(g=>{
+  g.classList.toggle('dim',!!focus&&!bandHit(otherSet,set));
+ });
+ el('genbars').querySelectorAll('g[data-gen]').forEach(g=>{
+  const gm=genMembers[Number(g.dataset.gen)];
+  const hit=bandHit(gm,set);
+  g.classList.toggle('dim',!!focus&&!hit);
+  const fv=g.querySelector('.focusval');
+  if(set&&hit){let n=0;for(const id of gm)if(set.has(id))n++;fv.textContent=`${n} in focus`;}
+  else fv.textContent='';
+ });
+ el('matrix').querySelectorAll('tr[data-row]').forEach(tr=>{
+  tr.classList.toggle('dim',!!set&&![...tr.querySelectorAll('.cell[data-ids]')].some(c=>c.dataset.ids.split(' ').some(id=>set.has(Number(id)))));
+ });
+ el('matrix').querySelectorAll('.cell[data-ids]').forEach(c=>{
+  c.classList.toggle('dim',!!set&&!c.dataset.ids.split(' ').some(id=>set.has(Number(id))));
+ });
+ el('lens3').querySelectorAll('tr[data-seg]').forEach(tr=>{
+  tr.classList.toggle('dim',!!focus&&!bandHit(segMembers[Number(tr.dataset.seg)],set));
+ });
+ el('lens4').querySelectorAll('tr[data-group]').forEach(tr=>{
+  const c=groups[tr.dataset.group];
+  tr.classList.toggle('dim',!!set&&![...c.ids].some(id=>set.has(id)));
+ });
+ if(focus&&(focus.kind==='segment'||focus.kind==='surname'))renderHist(data.people.filter(p=>focusSet().has(p.id)));
+ else if(focus&&focus.kind==='other')renderHist(data.people.filter(p=>p.segment===null&&p.generation>0));
+ else renderHist(data.people);
+}
+function setFocus(kind,value){
+ if(focus&&focus.kind===kind&&focus.value===value)focus=null;
+ else focus={kind,value};
+ applyFocus();
+}
+el('clearfocus').addEventListener('click',()=>{focus=null;applyFocus();});
+document.addEventListener('keydown',event=>{if(event.key==='Escape'){focus=null;applyFocus();}});
+applyFocus();
+</script></body></html>
