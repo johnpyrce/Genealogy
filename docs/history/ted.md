@@ -8,7 +8,7 @@ commanded by 1st Lieutenant James Hewitt, Pilot and Commander in Pyote, Texas wh
 before being sent to the Pacific theatre.
 He was 22 at the time.
 
-Ted became ill with influenza just as the crew was to be deployed, and was so sick that he required hospitalization.  
+Ted became ill with influenza just as the crew was to be deployed, and was so sick that he required hospitalization.
 Since the crew was being deployed, he was replaced by one of the radio operator trainers, T/Sg. William Andrews, who
 had recently returned from serving in Europe.
 
@@ -16,7 +16,7 @@ When Ted recovered, he became an instructor in turn and served in that capacity 
 complete.
 ![Ted Pyrce portrait.](../../media/Ted/1940s%20-%20Aviator.jpg)
 
-The crew was stationed on Guam in the Mariana Islands in the Pacific, which a base for air operations against 
+The crew was stationed on Guam in the Mariana Islands in the Pacific, which was a base for air operations against
 Japan.  They were part of the 28th Bomber Squadron, 19th Bomber Group.  The war was almost over, and Japanese air defenses
 were degraded.
 
@@ -53,12 +53,12 @@ including decapitation.  One group was executed before the surrender, the second
 disguise what had been done.
 
 Charles Appleby, the Navigator, was 21 when he died.  He had married his high school sweetheart as a teenager and
-they had a young daughter together.  He carried on an extensive correspondance with his wife, Marilyn, and other
+they had a young daughter together.  He carried on an extensive correspondence with his wife, Marilyn, and other
 friends and family members.  These were the basis of a book, **When the Letters Stopped**, by Heather Buchanan, a
-descendant of Appleby.  Besides the correspondance, it
+descendant of Appleby.  Besides the correspondence, it
 is the result of extensive research into the time, accounts
 of survivors, and testimony from Japanese records and war crime trials after the war.  This book contains
-a remarkably detailed account focused on Appleby and his friends and relatives, including a recreation 
+a remarkably detailed account focused on Appleby and his friends and relatives, including a recreation
 of what their experiences in Japan must have been like. Ted is a minor character.
 
 
@@ -70,4 +70,3 @@ of what their experiences in Japan must have been like. Ted is a minor character
 - [Charles Appleby profile](https://www.honorstates.org/profiles/33659/)
 - [Execution of the B-29 crew members](https://www.mansell.com/pow_resources/camplists/fukuoka/fuk_01_fukuoka/fukuoka_01/Page06.htm)
 - [When the letters stopped, by Heather Buchanan](https://www.amazon.com/When-Letters-Stopped-navigator-Charles/dp/1737740176/ref=sr_1_1?crid=NRGI5R11J834&dib=eyJ2IjoiMSJ9.Oe--8m1p-T40R6OjOAIovBDNnqdNRFEpd2_nnNoR4avn7ZVdo7_YdX3jorjf3bTVVD9nI5Ih-a_cGCzXOo4VAeUWTSiHTqJ_MxF4JXcNtfg.vFXwY2_QRjgu4Cz55Tg6J56C0gZP08tDOR7watVZsok&dib_tag=se&keywords=when%2Bthe%2Bletters%2Bstopped&qid=1795456037&sprefix=When%2Bthe%2Bletters%2B%2Caps%2C290&sr=8-1&th=1)
-
