@@ -430,8 +430,10 @@ def build_stories() -> None:
         source = ROOT / story["source"]
         link_map = {}
         for original, output in story.get("assets", {}).items():
-            copy_file(source.parent / original, DIST / output)
-            link_map[original] = "/" + output
+            target = DIST / output
+            copy_file(source.parent / original, target)
+            version = hashlib.sha256(target.read_bytes()).hexdigest()[:12]
+            link_map[original] = f"/{output}?v={version}"
         title, body = markdown(read(story["source"]), link_map)
         body = f'<article class="document">{body}<p><a href="/stories/">Back to Stories</a></p></article>'
         write(story["output"], page(title, body, title))

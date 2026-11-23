@@ -1,4 +1,5 @@
 """Regressions for photo link stability and publication integrity."""
+import hashlib
 import json
 from pathlib import Path
 import tempfile
@@ -107,8 +108,8 @@ class WebsiteTests(unittest.TestCase):
                 parser = website.Links()
                 parser.feed(content)
                 for asset in story['assets'].values():
-                    self.assertIn('/' + asset, parser.links)
-                    self.assertTrue((output / asset).is_file())
+                    version = hashlib.sha256((output / asset).read_bytes()).hexdigest()[:12]
+                    self.assertIn(f'/{asset}?v={version}', parser.links)
 
     def test_generated_icon_formats_and_versioned_links(self):
         from PIL import Image
