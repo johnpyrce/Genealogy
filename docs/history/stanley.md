@@ -33,8 +33,13 @@ Exhausted, battered, and having suffered nearly 50% casualties, the American def
 
 The victory was absolute but came at a staggering cost. More than 2,000 Allied casualties were sustained in the immediate sector. The intense artillery duels completely pulverized what remained of the medieval fortress, leaving only the hollowed trunk of the tower standing today. In recognition of their extraordinary heroism, the 350th Infantry Regiment was awarded the Distinguished Unit Citation and proudly adopted the official regimental special designation: "Mount Battaglia". 
 
+## More information
+
+See the [Stanley Pyrce album in the Family Archive](https://archive.pyrce.org/#album=1BBN0wvrVgRiKfmurPiiYDShYqHR3hoyI) for more on Stanley's life.
+
 ## References
 
+- [Stanley Pyrce Family Archive](https://archive.pyrce.org/#album=1BBN0wvrVgRiKfmurPiiYDShYqHR3hoyI)
 - [Stanley Pyrce Memorial Page](https://www.uswarmemorials.org/html/people_details.php?PeopleID=25590)
 - [Monte Battaglia, Wikipedia](https://en.wikipedia.org/wiki/Monte_Battaglia)
 - [88th Infantry Division Blue Devils Archive](https://88thinfantrydivisionarchive.com/inmemory.htm)

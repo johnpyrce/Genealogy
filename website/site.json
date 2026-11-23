@@ -227,6 +227,14 @@
         "../../media/StanleyPyrce/1988 - Monte Battaglia Memorial.jpg": "assets/history/stanley-pyrce/monte-battaglia-memorial.jpg"
       }
     },
+    "ted-pyrce": {
+      "source": "docs/history/ted.md",
+      "output": "stories/ted-pyrce/index.html",
+      "assets": {
+        "../../media/Ted/1940s - B29 Lost - Ted Top Row in Picture.jpg": "assets/history/ted-pyrce/hewitt-b29-crew.jpg",
+        "../../media/Ted/1940s - Aviator.jpg": "assets/history/ted-pyrce/ted-pyrce-portrait.jpg"
+      }
+    },
     "why": {
       "source": "docs/history/why.md",
       "output": "stories/why/index.html",
