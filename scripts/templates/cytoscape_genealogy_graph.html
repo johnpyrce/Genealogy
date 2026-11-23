@@ -15,6 +15,7 @@
     .search-control { display:grid; gap:5px; flex:1 1 280px; min-width:220px; color:#3b5357; font-size:12px; font-weight:700; }
     .search-control input { width:100%; }
     .search-status { min-height:14px; color:#64777a; font-size:12px; font-weight:400; }
+    .graph-view { display:grid; gap:5px; color:#3b5357; font-size:12px; font-weight:700; }
     .toolbar-actions { display:flex; gap:8px; align-items:center; flex-wrap:wrap; padding-top:17px; }
     input, select, button, summary { font:inherit; }
     input, select, button { border:1px solid #b8c5c4; border-radius:7px; padding:8px 10px; background:#fff; color:var(--ink); }
@@ -28,6 +29,7 @@
     .control-menu[open] summary { background:#eaf3f0; border-color:#86aaa3; }
     .menu-panel { position:absolute; z-index:20; top:calc(100% + 7px); right:0; width:290px; padding:15px; border:1px solid #c7d2d0; border-radius:10px; background:#fff; box-shadow:0 12px 32px rgba(23,59,63,.16); }
     .menu-panel .control { display:grid; gap:6px; margin-bottom:14px; color:#3b5357; font-size:14px; font-weight:700; }
+    .menu-panel .people-option[hidden] { display:none; }
     .menu-panel .control:last-child { margin-bottom:0; }
     .menu-panel input[type="text"], .menu-panel select { width:100%; }
     .download-options { width:160px; display:grid; gap:2px; padding:5px; }
@@ -67,10 +69,11 @@
   </style>
 </head>
 <body>
-  <header><h1>Muszyna family history: relationship graph</h1><p>People are circles; square family hubs connect parents to their children. Choose a top-down pedigree or radial-tree layout, then hover to identify, click for source evidence, and pan or zoom to explore. <a href="__GRAPH_HELP_FILE__">Help and guide</a></p></header>
+  <header><h1>Muszyna family history: relationship graph</h1><p>Use People to follow individual relationships or Families to see how households connect. Hover for names and select a node or connection for source evidence. <a href="__GRAPH_HELP_FILE__">Help and guide</a></p></header>
   <section id="controls" aria-label="Graph controls">
     <div class="toolbar">
       <label class="search-control">Find a person<input id="search" placeholder="Name or person ID" autocomplete="off"><span id="search-status" class="search-status" aria-live="polite"></span></label>
+      <label class="graph-view">Graph view<select id="graph-view"><option value="people">People</option><option value="families">Families</option></select></label>
       <div class="toolbar-actions">
         <button id="ancestors" type="button" disabled>Direct ancestors</button>
         <details class="control-menu"><summary>Filters</summary><div class="menu-panel">
@@ -80,8 +83,8 @@
         <details class="control-menu"><summary>Appearance</summary><div class="menu-panel">
           <label class="control">Layout<select id="layout"><option value="pedigree" selected>Pedigree (top-down)</option><option value="radial">Radial tree</option></select></label>
           <label class="control">Labels<select id="labels"><option value="auto" selected>Auto</option><option value="none">None</option><option value="all">All</option></select></label>
-          <label class="control">Color people by<select id="person-colors"><option value="uniform" selected>Uniform</option><option value="lineage">Main line versus spouses</option><option value="source">Source chart</option></select></label>
-          <label class="control">Color matching people<div class="color-match-row"><input id="match-string" type="text" placeholder="Part of a name" autocomplete="off"><input id="match-color" type="color" value="#7c3aed" aria-label="Matching people color"></div></label>
+          <label class="control people-option">Color people by<select id="person-colors"><option value="uniform" selected>Uniform</option><option value="lineage">Main line versus spouses</option><option value="source">Source chart</option></select></label>
+          <label class="control people-option">Color matching people<div class="color-match-row"><input id="match-string" type="text" placeholder="Part of a name" autocomplete="off"><input id="match-color" type="color" value="#7c3aed" aria-label="Matching people color"></div></label>
         </div></details>
         <button id="reset" type="button">Reset</button>
         <details id="download" class="control-menu"><summary>Download</summary><div class="menu-panel download-options" aria-label="Download format">
@@ -92,7 +95,7 @@
       </div>
     </div>
   </section>
-  <div class="legend"><button type="button" class="uniform-legend legend-toggle" data-category="uniform:person" aria-pressed="true"><i class="swatch" style="background:#197278"></i>Person</button><button type="button" class="lineage-legend legend-toggle" data-category="lineage:main" aria-pressed="true" hidden><i class="swatch" style="background:#197278"></i>Main-line descendant</button><button type="button" class="lineage-legend legend-toggle" data-category="lineage:spouse" aria-pressed="true" hidden><i class="swatch" style="background:#c2185b"></i>Spouse joining main line</button><button type="button" class="lineage-legend legend-toggle" data-category="lineage:other" aria-pressed="true" hidden><i class="swatch" style="background:#768186"></i>Other person</button><span class="source-legend" hidden></span><span><i class="swatch" style="background:#d19a2a;border-radius:2px"></i>Family hub</span><span><i class="swatch" style="background:#e4572e"></i>Selected node</span><span>Solid: main line · dashed: spouse ancestry · dotted: collateral</span></div>
+  <div class="legend"><button type="button" class="uniform-legend legend-toggle" data-category="uniform:person" aria-pressed="true"><i class="swatch" style="background:#197278"></i>Person</button><button type="button" class="lineage-legend legend-toggle" data-category="lineage:main" aria-pressed="true" hidden><i class="swatch" style="background:#197278"></i>Main-line descendant</button><button type="button" class="lineage-legend legend-toggle" data-category="lineage:spouse" aria-pressed="true" hidden><i class="swatch" style="background:#c2185b"></i>Spouse joining main line</button><button type="button" class="lineage-legend legend-toggle" data-category="lineage:other" aria-pressed="true" hidden><i class="swatch" style="background:#768186"></i>Other person</button><span class="source-legend" hidden></span><span><i class="swatch" style="background:#d19a2a;border-radius:2px"></i>Family hub</span><span><i class="swatch" style="background:#e4572e"></i>Selected node</span><span id="people-key">Solid: main line · dashed: spouse ancestry · dotted: collateral</span><span id="families-key" hidden>Arrow: child in one family, parent or partner in the next · dotted line: shared partner</span><span id="graph-count" role="status" hidden></span></div>
   <main id="workspace">
     <div class="graph-stage">
       <div id="cy" aria-label="Interactive Cytoscape genealogy graph"></div>
@@ -117,17 +120,31 @@
   const mainLineChildren=new Set(families.filter(f=>f.branch_role==='main_line').flatMap(f=>f.children));
   const mainLineSpouses=new Set(families.filter(f=>f.branch_role==='main_line'&&[f.father_id,f.mother_id].some(id=>mainLineChildren.has(id))).flatMap(f=>[f.father_id,f.mother_id].filter(id=>id&&!mainLineChildren.has(id))));
   const evidenceByFamily = new Map(); DATA.evidence.forEach(row => { const list=evidenceByFamily.get(row.family_id)||[]; list.push(row); evidenceByFamily.set(row.family_id,list); });
-  const details=document.getElementById('details'); const tooltip=document.getElementById('tooltip'); const workspace=document.getElementById('workspace'); const detailsResizer=document.getElementById('details-resizer'); let focused=null, highlightedNodeId=null, selectedPersonId=null, ancestorAnchorId=null, showingAncestors=false, spotlightInAncestors=false, overviewZoom=1, searchMatches=[], searchIndex=-1, detailsDrag=null;
+  const details=document.getElementById('details'); const tooltip=document.getElementById('tooltip'); const workspace=document.getElementById('workspace'); const detailsResizer=document.getElementById('details-resizer'); let focused=null, highlightedElementId=null, selectedPersonId=null, ancestorAnchorId=null, showingAncestors=false, spotlightInAncestors=false, overviewZoom=1, searchMatches=[], searchIndex=-1, detailsDrag=null;
+  const familiesMode=()=>document.getElementById('graph-view').value==='families';
   function fullName(person) { return `${person.first_name}${person.surname && person.surname !== 'Unknown' ? ' '+person.surname : ''}`; }
   function matchText(value) { return String(value).normalize('NFD').toLowerCase().replace(/[\u0300-\u036f]/g,'').replace(/ł/g,'l'); }
   function lastName(person) { return person && person.surname && person.surname !== 'Unknown' ? person.surname : 'Unknown'; }
+  function familyHeading(family) {
+    return [family.father_id,family.mother_id].filter(Boolean).map(id=>fullName(people.get(id))).join(' + ')||'Unnamed parents';
+  }
   function familyLabel(family) { return !family.father_id&&!family.mother_id?'Unnamed parents':`${lastName(people.get(family.father_id))} + ${lastName(people.get(family.mother_id))}`; }
   function evidenceFor(family) { return evidenceByFamily.get(family.id)||[]; } function sourceIds(family) { return [...new Set(evidenceFor(family).map(row=>row.source_id))]; }
   function evidenceForCurrentSource(family){const source=document.getElementById('source').value, rows=evidenceFor(family);return source==='all'?rows:rows.filter(row=>row.source_id===source);}
-  function familyForSource(family,source){if(source==='all')return family;const rows=evidenceFor(family).filter(row=>row.source_id===source);if(!rows.length)return null;if(rows.some(row=>row.relationship==='family'))return family;const hasRelationship=rows.some(row=>row.relationship==='spouse'||row.relationship==='parent-child'), childIds=new Set(rows.filter(row=>row.relationship==='parent-child').map(row=>row.related_person_id));return {...family,father_id:hasRelationship?family.father_id:null,mother_id:hasRelationship?family.mother_id:null,children:family.children.filter(id=>childIds.has(id))};}
+  function familyForSource(family,source,explicitMembers=false){
+    if(source==='all')return family;
+    const rows=evidenceFor(family).filter(row=>row.source_id===source);
+    if(!rows.length)return null;
+    if(rows.some(row=>row.relationship==='family'))return family;
+    const links=rows.filter(row=>row.relationship==='spouse'||row.relationship==='parent-child');
+    const childIds=new Set(links.filter(row=>row.relationship==='parent-child').map(row=>row.related_person_id));
+    const adultIds=new Set(links.flatMap(row=>row.relationship==='spouse'?[row.person_id,row.related_person_id]:[row.person_id]));
+    const adult=id=>links.length&&(!explicitMembers||adultIds.has(id))?id:null;
+    return {...family,father_id:adult(family.father_id),mother_id:adult(family.mother_id),children:family.children.filter(id=>childIds.has(id))};
+  }
   function selectedRoles() { return new Set([...document.querySelectorAll('.role:checked')].map(input=>input.value)); }
   function ancestorSets(anchor='81') { const byChild=new Map(); families.forEach(f=>f.children.forEach(child=>{const rows=byChild.get(child)||[];rows.push(f);byChild.set(child,rows)})); const p=new Set([anchor]), f=new Set(), queue=[anchor]; while(queue.length){const child=queue.shift();(byChild.get(child)||[]).forEach(family=>{f.add(family.id);[family.father_id,family.mother_id].filter(Boolean).forEach(parent=>{if(!p.has(parent)){p.add(parent);queue.push(parent)}})})} return {people:p,families:f}; }
-  function activeData() { const source=document.getElementById('source').value, roles=selectedRoles(), anchor=showingAncestors?ancestorAnchorId:null, ancestors=anchor?ancestorSets(anchor):null; const activeFamilies=families.filter(f=>roles.has(f.branch_role)&&(!ancestors||ancestors.families.has(f.id))).map(f=>familyForSource(f,source)).filter(Boolean); const activePeople=new Set(); activeFamilies.forEach(f=>[f.father_id,f.mother_id,...f.children].filter(Boolean).forEach(id=>activePeople.add(id))); if(anchor)activePeople.add(anchor); return {activeFamilies,activePeople}; }
+  function activeData() { const explicitMembers=familiesMode(), source=document.getElementById('source').value, roles=selectedRoles(), anchor=showingAncestors?ancestorAnchorId:null, ancestors=anchor?ancestorSets(anchor):null; const activeFamilies=families.filter(f=>roles.has(f.branch_role)&&(!ancestors||ancestors.families.has(f.id))).map(f=>familyForSource(f,source,explicitMembers)).filter(f=>f&&(!explicitMembers||f.father_id||f.mother_id||f.children.length)); const activePeople=new Set(); activeFamilies.forEach(f=>[f.father_id,f.mother_id,...f.children].filter(Boolean).forEach(id=>activePeople.add(id))); if(anchor&&!explicitMembers)activePeople.add(anchor); return {activeFamilies,activePeople}; }
   const graphContainer=document.getElementById('cy'), wheelSensitivity=.2;
   // Own wheel events before Cytoscape's listener: its recent-page-scroll guard
   // otherwise lets gestures over the graph keep scrolling the surrounding page.
@@ -153,9 +170,13 @@
     {selector:'node.family.radial-layout',style:{'width':32,'height':32}},
     {selector:'node.string-match',style:{'pie-size':0,'background-color':'data(matchColor)','border-color':'#173b3f','border-width':3,'width':34,'height':34}},
     {selector:'node.show-label',style:{'label':'data(label)','font-size':'data(labelSize)','color':'#808080','text-outline-color':'#f7f4ed','text-outline-width':'data(labelOutline)','text-valign':'bottom','text-margin-y':-5}},
+    {selector:'node.household.show-label',style:{'color':'#365054'}},
     {selector:'node.highlight',style:{'pie-size':0,'background-color':'#e4572e','border-width':6,'border-color':'#fbbf24','width':40,'height':40}},
     {selector:'node.neighbor',style:{'border-width':4,'border-color':'#fbbf24'}},
     {selector:'edge',style:{'width':1.6,'line-color':'#789096','target-arrow-color':'#789096','curve-style':'bezier','target-arrow-shape':'triangle','arrow-scale':.8}},
+    {selector:'edge.shared-partner',style:{'line-style':'dotted','target-arrow-shape':'none'}},
+    {selector:'edge.family-link.show-label',style:{'label':'data(label)','font-size':'data(labelSize)','color':'#173b3f','text-background-color':'#f7f4ed','text-background-opacity':1,'text-background-padding':2}},
+    {selector:'edge.highlight',style:{'width':3,'line-color':'#e4572e','target-arrow-color':'#e4572e'}},
     {selector:'edge.spouse_ancestry',style:{'line-style':'dashed'}},{selector:'edge.collateral',style:{'line-style':'dotted'}},
     {selector:':selected',style:{'border-color':'#0f766e','border-width':4}},
     {selector:'.dimmed',style:{'opacity':.16}},
@@ -163,16 +184,20 @@
   ],wheelSensitivity});
   function overlaps(a,b){return a.left<b.right&&a.right>b.left&&a.top<b.bottom&&a.bottom>b.top;}
   function updateLabels(){
-    cy.nodes().removeClass('show-label');
+    cy.elements().removeClass('show-label');
     const zoom=Math.max(cy.zoom(),.01), renderedFont=Math.max(11,12*zoom);
     cy.nodes().data('labelSize',Math.max(12,11/zoom));
     cy.nodes().data('labelOutline',Math.max(1.8,2/zoom));
     const mode=document.getElementById('labels').value;
     if(mode==='none')return;
-    if(mode==='all'){cy.nodes().addClass('show-label');return;}
     const relativeZoom=cy.zoom()/overviewZoom, occupied=[];
+    const familyLinks=cy.edges('.family-link');
+    familyLinks.data('labelSize',Math.max(12,11/zoom));
+    if(mode==='all'||relativeZoom>=2.4)familyLinks.addClass('show-label');
+    else familyLinks.filter('.highlight').addClass('show-label');
+    if(mode==='all'){cy.nodes().addClass('show-label');return;}
     const candidates=[];
-    if(highlightedNodeId){const selected=cy.getElementById(highlightedNodeId);if(selected.length)candidates.push(selected);}
+    candidates.push(...cy.nodes('.highlight').toArray());
     if(relativeZoom>=1)candidates.push(...cy.nodes('.family').toArray());
     if(relativeZoom>=1.8)candidates.push(...cy.nodes('.person').toArray());
     [...new Map(candidates.map(node=>[node.id(),node])).values()].filter(node=>!node.hasClass('legend-hidden')).forEach(node=>{
@@ -193,12 +218,13 @@
   }
   function updateColorLegend(){
     const mode=document.getElementById('person-colors').value, legend=document.querySelector('.source-legend');
-    legend.hidden=mode!=='source';
+    const familyView=familiesMode();
+    legend.hidden=familyView||mode!=='source';
     if(!legend.children.length){
       legend.innerHTML=colorSources.map(source=>`<button type="button" class="legend-toggle" data-category="source:${escapeHtml(source.source_id)}" aria-pressed="true"><i class="swatch" style="background:${sourceColors.get(source.source_id)}"></i>${escapeHtml(source.source_id)} — ${escapeHtml(source.display_name)}</button>`).join('')+'<button type="button" class="legend-toggle" data-category="source:none" aria-pressed="true"><i class="swatch" style="background:#768186"></i>No source assigned</button><span>Split colors: multiple sources · Click a category to hide or show it</span>';
     }
-    document.querySelectorAll('.lineage-legend').forEach(item=>item.hidden=mode!=='lineage');
-    document.querySelector('.uniform-legend').hidden=mode!=='uniform';
+    document.querySelectorAll('.lineage-legend').forEach(item=>item.hidden=familyView||mode!=='lineage');
+    document.querySelector('.uniform-legend').hidden=familyView||mode!=='uniform';
     document.querySelectorAll('.legend-toggle').forEach(button=>{
       const enabled=!disabledColorCategories.has(button.dataset.category);
       button.setAttribute('aria-pressed',String(enabled));
@@ -207,6 +233,7 @@
     });
   }
   function applyLegendCategories(){
+    if(familiesMode())return;
     cy.batch(()=>{
       cy.elements().removeClass('legend-hidden');
       cy.nodes('.person').forEach(node=>{
@@ -219,6 +246,58 @@
     });
   }
   function elementsFor(activeFamilies,activePeople) { const matchString=matchText(document.getElementById('match-string').value.trim()), matchColor=document.getElementById('match-color').value; const nodes=[...activePeople].filter(id=>people.has(id)).map(id=>{const person=people.get(id),matches=matchString&&matchText(fullName(person)).includes(matchString);return {data:{id:`p:${id}`,kind:'person',personId:id,label:fullName(person),matchColor,personColor:personColor(id),sourceIds:(person.source_ids||'').split(';').filter(id=>sourceColors.has(id))},classes:`person${document.getElementById('person-colors').value==='source'?' source-colors':''}${matches?' string-match':''}`};}); const edges=[]; activeFamilies.forEach(f=>{nodes.push({data:{id:`f:${f.id}`,kind:'family',familyId:f.id,label:familyLabel(f)},classes:`family ${f.branch_role}`});[f.father_id,f.mother_id].filter(Boolean).forEach(id=>edges.push({data:{id:`p:${id}>f:${f.id}`,source:`p:${id}`,target:`f:${f.id}`},classes:f.branch_role}));f.children.forEach(id=>edges.push({data:{id:`f:${f.id}>p:${id}`,source:`f:${f.id}`,target:`p:${id}`},classes:f.branch_role}));});return {nodes,edges}; }
+  function familyGraphElements(records) {
+    const childhoodFamilies=new Map(), adultFamilies=new Map(), edges=[];
+    const index=(map,ids,family)=>{
+      for(const id of new Set(ids.filter(Boolean))){
+        if(!map.has(id))map.set(id,[]);
+        map.get(id).push(family);
+      }
+    };
+    const nodes=records.map(family=>{
+      const adults=[family.father_id,family.mother_id].filter(Boolean);
+      index(adultFamilies,adults,family.id);
+      index(childhoodFamilies,family.children,family.id);
+      const count=new Set(family.children).size;
+      const names=adults.map(id=>lastName(people.get(id))).join(' + ')||'Unnamed parents';
+      return {data:{id:`f:${family.id}`,kind:'family',familyId:family.id,
+        memberIds:[...adults,...family.children],label:`${names} · ${count}`,
+        heading:familyHeading(family)},classes:'family household'};
+    });
+    function connect(source,target,personId,type){
+      if(source===target)return;
+      edges.push({data:{id:`${type}:${source}:${target}:${personId}`,source:`f:${source}`,target:`f:${target}`,
+        sourceFamilyId:source,targetFamilyId:target,personId,type,label:fullName(people.get(personId))},
+        classes:`family-link ${type}`});
+    }
+    for(const [id,households] of adultFamilies){
+      households.forEach((target,index)=>{
+        for(const source of childhoodFamilies.get(id)||[])connect(source,target,id,'family-descent');
+        for(const other of households.slice(0,index))connect(other,target,id,'shared-partner');
+      });
+    }
+    return {nodes,edges};
+  }
+  function familyRanks(nodes){
+    const ranks=new Map(), incoming=new Map(), ready=[];
+    for(const node of nodes){
+      const count=node.incomers('edge.family-descent').length;
+      ranks.set(node.id(),0);
+      incoming.set(node.id(),count);
+      if(!count)ready.push(node);
+    }
+    for(const node of ready){
+      for(const edge of node.outgoers('edge.family-descent')){
+        const child=edge.target(), id=child.id();
+        ranks.set(id,Math.max(ranks.get(id),ranks.get(node.id())+1));
+        const remaining=incoming.get(id)-1;
+        incoming.set(id,remaining);
+        if(!remaining)ready.push(child);
+      }
+    }
+    // Cyclic accounts stay visible without inventing a generation order for them.
+    return ranks;
+  }
   function connectedComponents() {
     const unseen=new Set(cy.nodes().map(node=>node.id())), components=[];
     while(unseen.size){
@@ -235,13 +314,14 @@
     return components.sort((a,b)=>b.length-a.length);
   }
   function pedigreeLayout() {
-    const tierHeight=105, nodeGap=50, padding=48, componentGap=150;
+    const householdView=familiesMode();
+    const tierHeight=105, nodeGap=householdView?112:50, padding=48, componentGap=householdView?90:150;
     const positioned=[];
     connectedComponents().forEach(nodes=>{
       // Give every relationship an exact one-tier step: person → family → person.
       // Walking the component in both directions lets a spouse's ancestry reposition
       // the other spouse's ancestral family, rather than leaving a large vertical gap.
-      const ranks=new Map(), queue=[];
+      const ranks=householdView?familyRanks(nodes):new Map(), queue=[];
       nodes.forEach(start=>{
         if(ranks.has(start.id())) return;
         ranks.set(start.id(),0); queue.push(start);
@@ -260,6 +340,8 @@
       const tiers=new Map();
       nodes.forEach(node=>{const rank=ranks.get(node.id());const tier=tiers.get(rank)||[];tier.push(node);tiers.set(rank,tier);});
       const tierEntries=[...tiers.entries()].sort((a,b)=>a[0]-b[0]);
+      const incomingNodes=node=>householdView?node.incomers('edge.family-descent').sources():node.incomers().nodes();
+      const outgoingNodes=node=>householdView?node.outgoers('edge.family-descent').targets():node.outgoers().nodes();
       const order=new Map();
       tierEntries.forEach(([,tier])=>{tier.sort((a,b)=>a.id().localeCompare(b.id()));tier.forEach((node,index)=>order.set(node.id(),index));});
       const reorder=(rank,tier,neighbors)=>{
@@ -274,8 +356,8 @@
       // Alternate downward and upward barycenter sweeps to keep children beneath
       // their family hub while also bringing families toward their children.
       for(let pass=0;pass<4;pass+=1){
-        for(let index=1;index<tierEntries.length;index+=1){const [rank,tier]=tierEntries[index];reorder(rank-1,tier,node=>node.incomers().nodes());}
-        for(let index=tierEntries.length-2;index>=0;index-=1){const [rank,tier]=tierEntries[index];reorder(rank+1,tier,node=>node.outgoers().nodes());}
+        for(let index=1;index<tierEntries.length;index+=1){const [rank,tier]=tierEntries[index];reorder(rank-1,tier,incomingNodes);}
+        for(let index=tierEntries.length-2;index>=0;index-=1){const [rank,tier]=tierEntries[index];reorder(rank+1,tier,outgoingNodes);}
       }
       // Set the lowest row first, then work upward. A family hub adopts the
       // midpoint of its children, so it remains over its own descendant branch
@@ -286,7 +368,7 @@
         const desired=new Map();
         tier.sort((a,b)=>order.get(a.id())-order.get(b.id()));
         tier.forEach((node,index)=>{
-          const descendants=node.outgoers().nodes().filter(other=>ranks.get(other.id())===rank+1&&xByNode.has(other.id()));
+          const descendants=outgoingNodes(node).filter(other=>ranks.get(other.id())===rank+1&&xByNode.has(other.id()));
           desired.set(node.id(),descendants.length ? descendants.reduce((sum,other)=>sum+xByNode.get(other.id()),0)/descendants.length : index*nodeGap);
         });
         // Keep adjacent nodes distinct. Centering the resolved row back on its
@@ -300,7 +382,7 @@
       const xValues=nodes.map(node=>xByNode.get(node.id()));
       const minX=Math.min(...xValues), maxX=Math.max(...xValues);
       const width=Math.max(maxX-minX,nodeGap)+padding*2;
-      const height=(tierEntries.length-1)*tierHeight+padding*2;
+      const height=tierEntries.at(-1)[0]*tierHeight+padding*2;
       tierEntries.forEach(([rank,tier])=>tier.forEach(node=>node.position({x:xByNode.get(node.id())-minX+padding,y:padding+rank*tierHeight})));
       positioned.push({nodes,width,height});
     });
@@ -385,32 +467,45 @@
     });
     const view=fittedGraphView();cy.viewport(view);overviewZoom=view.zoom;
   }
-  function applyLayout(){const radial=document.getElementById('layout').value==='radial';if(radial)cy.nodes().addClass('radial-layout');else cy.nodes().removeClass('radial-layout');radial?radialLayout():pedigreeLayout();}
+  function applyLayout(){const radial=!familiesMode()&&document.getElementById('layout').value==='radial';if(radial)cy.nodes().addClass('radial-layout');else cy.nodes().removeClass('radial-layout');radial?radialLayout():pedigreeLayout();}
+  function searchNodes(){
+    if(!focused)return cy.collection();
+    return familiesMode()?cy.nodes('.household').filter(node=>node.data('memberIds').includes(focused)):
+      cy.getElementById(`p:${focused}`);
+  }
   function applySelectionHighlight(){
     cy.elements().removeClass('dimmed neighbor highlight');
-    if(!highlightedNodeId)return;
-    const node=cy.getElementById(highlightedNodeId);
-    if(!node.length)return;
-    if(showingAncestors&&!spotlightInAncestors){node.addClass('highlight');return;}
+    const selected=highlightedElementId?cy.getElementById(highlightedElementId):searchNodes();
+    if(!selected.length)return;
+    if(showingAncestors&&!spotlightInAncestors){selected.addClass('highlight');return;}
     cy.elements().addClass('dimmed');
-    const edges=node.connectedEdges();
-    edges.removeClass('dimmed');
-    edges.connectedNodes().removeClass('dimmed').addClass('neighbor');
-    node.removeClass('dimmed neighbor').addClass('highlight');
+    const links=selected.connectedEdges().union(selected.edges());
+    links.removeClass('dimmed');
+    links.connectedNodes().removeClass('dimmed').addClass('neighbor');
+    selected.removeClass('dimmed neighbor').addClass('highlight');
   }
   function updateViewStatus(){
     const status=document.getElementById('view-status'), anchor=people.get(ancestorAnchorId);
     status.textContent=showingAncestors?`Direct ancestors of ${anchor?fullName(anchor):'selected person'}`:'';
     status.hidden=!showingAncestors;
+    const count=document.getElementById('graph-count');
+    count.hidden=!familiesMode();
+    if(!count.hidden)count.textContent=`${cy.nodes().length} family records · ${cy.edges('.family-descent').length} generational links`;
   }
   function render() {
-    const {activeFamilies,activePeople}=activeData(); const elements=elementsFor(activeFamilies,activePeople);
+    const {activeFamilies,activePeople}=activeData(); const elements=familiesMode()?familyGraphElements(activeFamilies):elementsFor(activeFamilies,activePeople);
+    tooltip.style.display='none';
+    cy.stop(true,false);
     cy.elements().remove();cy.add(elements.nodes);cy.add(elements.edges);applyLayout();
     updateViewStatus();
     applySelectionHighlight();
     applyLegendCategories();
     updateLabels();
-    if(focused){const node=cy.getElementById(`p:${focused}`);if(node.length){cy.animate({center:{eles:node},zoom:Math.max(cy.zoom(),1.05)},{duration:180});}}
+    const matches=searchNodes();
+    if(matches.length){
+      if(familiesMode())cy.animate({center:{eles:matches}},{duration:180});
+      else cy.animate({center:{eles:matches},zoom:Math.max(cy.zoom(),1.05)},{duration:180});
+    }
   }
   function fittedGraphView(padding=42){const topPadding=76, bounds=cy.elements().boundingBox({includeLabels:false}), availableWidth=Math.max(1,cy.width()-padding*2), availableHeight=Math.max(1,cy.height()-topPadding-padding), zoom=Math.min(availableWidth/Math.max(1,bounds.w),availableHeight/Math.max(1,bounds.h));return {zoom,pan:{x:(cy.width()-bounds.w*zoom)/2-bounds.x1*zoom,y:topPadding-bounds.y1*zoom}};}
   function fitEntireGraph(){if(!cy.nodes(':visible').length)return;const view=fittedGraphView();cy.stop();cy.animate({zoom:view.zoom,pan:view.pan},{duration:220,complete:()=>{overviewZoom=view.zoom;updateLabels();}});}
@@ -436,25 +531,70 @@
     }).join('') : 'No source evidence is assigned.';
   }
   function personDisplayNote(person){return (person.note||'').replace(/Imported from [^,;\n]+, @[^@]+@; full source record in person_source_evidence\.csv\./g,'').trim();}
-  function showDetails(data) { const activeFamilies=activeData().activeFamilies;if(data.kind==='person'){const person=people.get(data.personId), note=personDisplayNote(person), related=activeFamilies.filter(f=>f.father_id===data.personId||f.mother_id===data.personId||f.children.includes(data.personId));details.innerHTML=`<h2>${fullName(person)}</h2><div class="detail-label">Registry</div><div class="detail-value">Person ID ${person.id}${person.birth_year||person.death_year?`<br>${person.birth_year||'?'}–${person.death_year||''}`:''}${note?`<br>${escapeHtml(note)}`:''}</div><div class="detail-label">Recorded families</div>${related.length?related.map(f=>`<div class="detail-value">${familyLabel(f)} · Family ${f.id}</div>`).join(''):'<div class="detail-value">No family record</div>'}<div class="detail-label">Evidence</div>${evidenceHtml(related.flatMap(evidenceForCurrentSource))}`;}else{const family=activeFamilies.find(f=>f.id===data.familyId)||families.find(f=>f.id===data.familyId),members=[family.father_id,family.mother_id,...family.children].filter(Boolean).map(id=>fullName(people.get(id))).join(', ');details.innerHTML=`<h2>${familyLabel(family)}</h2><div class="detail-label">Family record</div><div class="detail-value">Family ${family.id}</div><div class="detail-label">Members</div><div class="detail-value">${members}</div><div class="detail-label">Evidence</div>${evidenceHtml(evidenceForCurrentSource(family))}`;}}
+  function showDetails(data) {
+    const {activeFamilies}=activeData();
+    const findFamily=id=>activeFamilies.find(family=>family.id===id);
+    const names=ids=>ids.filter(Boolean).map(id=>escapeHtml(fullName(people.get(id)))).join(', ')||'—';
+    const heading=family=>`${escapeHtml(familyHeading(family))} · Family ${escapeHtml(family.id)}`;
+    const person=people.get(data.personId);
+    if(data.type){
+      const first=findFamily(data.sourceFamilyId), second=findFamily(data.targetFamilyId);
+      const connection=data.type==='shared-partner'
+        ? 'Recorded as a partner or parent in both families.'
+        : 'Recorded as a child in the first family and as a partner or parent in the second.';
+      details.innerHTML=`<h2>${escapeHtml(fullName(person))}</h2><p>${connection}</p>
+        ${[first,second].map(family=>`<div class="detail-label">${heading(family)}</div>
+          ${evidenceHtml(evidenceForCurrentSource(family))}`).join('')}`;
+    }else if(data.kind==='person'){
+      const note=personDisplayNote(person);
+      const related=activeFamilies.filter(f=>f.father_id===data.personId||f.mother_id===data.personId||f.children.includes(data.personId));
+      details.innerHTML=`<h2>${escapeHtml(fullName(person))}</h2><div class="detail-label">Registry</div>
+        <div class="detail-value">Person ID ${escapeHtml(person.id)}${person.birth_year||person.death_year?`<br>${escapeHtml(person.birth_year||'?')}–${escapeHtml(person.death_year)}`:''}${note?`<br>${escapeHtml(note)}`:''}</div>
+        <div class="detail-label">Recorded families</div>
+        ${related.length?related.map(f=>`<div class="detail-value">${heading(f)}</div>`).join(''):'<div class="detail-value">No family record</div>'}
+        <div class="detail-label">Evidence</div>${evidenceHtml(related.flatMap(evidenceForCurrentSource))}`;
+    }else{
+      const family=findFamily(data.familyId);
+      details.innerHTML=`<h2>${escapeHtml(familyHeading(family))}</h2><div class="detail-label">Family record</div>
+        <div class="detail-value">Family ${escapeHtml(family.id)}</div>
+        <div class="detail-label">Recorded parents or partners</div><div class="detail-value">${names([family.father_id,family.mother_id])}</div>
+        <div class="detail-label">Recorded children · ${new Set(family.children).size}</div><div class="detail-value">${names(family.children)}</div>
+        <div class="detail-label">Evidence</div>${evidenceHtml(evidenceForCurrentSource(family))}`;
+    }
+    details.scrollTop=0;
+  }
+  function showGraphInstructions(){
+    details.innerHTML=familiesMode()
+      ? '<h2>Explore families</h2><p>Each node shows a family record and its number of recorded children. Select a family for its roster, or a connection to see who links the two records.</p>'
+      : '<h2>Explore the graph</h2><p>Click a person or family hub to inspect the registry information and evidence.</p>';
+    details.scrollTop=0;
+  }
+  function updateGraphView(){
+    const familyView=familiesMode();
+    document.getElementById('layout').disabled=familyView;
+    document.getElementById('people-key').hidden=familyView;
+    document.getElementById('families-key').hidden=!familyView;
+    document.querySelectorAll('.people-option').forEach(control=>control.hidden=familyView);
+    updateColorLegend();
+  }
   function updateAncestorButton(){const button=document.getElementById('ancestors');const canShowAncestors=Boolean(selectedPersonId)&&!showingAncestors;button.textContent=showingAncestors?'Full graph':'Direct ancestors';button.disabled=!showingAncestors&&!selectedPersonId;button.classList.toggle('has-selection',canShowAncestors);}
   function updateSourceStatus(){const select=document.getElementById('source'), status=document.getElementById('source-status'), source=sources.get(select.value);status.value=select.value;status.classList.remove('source-s1','source-s2','source-s3','source-s4','source-s5','source-s6');if(source)status.classList.add(`source-${source.source_id.toLowerCase()}`);}
-  function clearSelectedNode(){focused=null;highlightedNodeId=null;selectedPersonId=null;spotlightInAncestors=false;updateAncestorButton();}
+  function clearSelectedNode(){focused=null;highlightedElementId=null;selectedPersonId=null;spotlightInAncestors=false;updateAncestorButton();}
   function clearSearchSelection(){ancestorAnchorId=null;showingAncestors=false;clearSelectedNode();}
-  function refreshSearchMatches(){const query=matchText(document.getElementById('search').value.trim()), status=document.getElementById('search-status');searchMatches=[];searchIndex=-1;if(!query){status.textContent='';return;}const {activePeople}=activeData();searchMatches=[...people.values()].filter(person=>activePeople.has(person.id)&&personCategoryVisible(person.id)&&(person.id===query||matchText(fullName(person)).includes(query)));status.textContent=searchMatches.length?`${searchMatches.length} match${searchMatches.length===1?'':'es'} · Press Return to cycle`:'No matches';}
-  function showSearchMatch(index){const person=searchMatches[index];if(!person)return;searchIndex=index;focused=person.id;highlightedNodeId=`p:${person.id}`;selectedPersonId=person.id;spotlightInAncestors=showingAncestors;showDetails({kind:'person',personId:person.id});updateAncestorButton();document.getElementById('search-status').textContent=`${searchIndex+1} of ${searchMatches.length} matches · Return for next` ;render();}
-  cy.on('tap','node',event=>{
+  function refreshSearchMatches(){const query=matchText(document.getElementById('search').value.trim()), status=document.getElementById('search-status');searchMatches=[];searchIndex=-1;if(!query){status.textContent='';return;}const {activePeople}=activeData();searchMatches=[...people.values()].filter(person=>activePeople.has(person.id)&&(familiesMode()||personCategoryVisible(person.id))&&(person.id===query||matchText(fullName(person)).includes(query)));status.textContent=searchMatches.length?`${searchMatches.length} match${searchMatches.length===1?'':'es'} · Press Return to cycle`:'No matches';}
+  function showSearchMatch(index){const person=searchMatches[index];if(!person)return;searchIndex=index;focused=person.id;highlightedElementId=familiesMode()?null:`p:${person.id}`;selectedPersonId=person.id;spotlightInAncestors=showingAncestors;showDetails({kind:'person',personId:person.id});updateAncestorButton();document.getElementById('search-status').textContent=`${searchIndex+1} of ${searchMatches.length} matches · Return for next` ;render();}
+  cy.on('tap','node, edge.family-link',event=>{
     const node=event.target,isPerson=node.data('kind')==='person';
     node.unselect();
-    if(highlightedNodeId===node.id()){
-      focused=null;highlightedNodeId=null;selectedPersonId=null;spotlightInAncestors=false;
+    if(highlightedElementId===node.id()){
+      focused=null;highlightedElementId=null;selectedPersonId=null;spotlightInAncestors=false;
       updateAncestorButton();applySelectionHighlight();updateLabels();
       return;
     }
-    focused=null;highlightedNodeId=node.id();selectedPersonId=isPerson?node.data('personId'):null;
+    focused=null;highlightedElementId=node.id();selectedPersonId=isPerson?node.data('personId'):null;
     spotlightInAncestors=showingAncestors;
     updateAncestorButton();showDetails(node.data());applySelectionHighlight();updateLabels();
-  });cy.on('mouseover','node',event=>{tooltip.textContent=event.target.data('label');tooltip.style.display='block';const point=event.renderedPosition;const box=document.getElementById('cy').getBoundingClientRect();tooltip.style.left=`${box.left+point.x+12}px`;tooltip.style.top=`${box.top+point.y+12}px`;});cy.on('mouseout','node',()=>tooltip.style.display='none');
+  });cy.on('mouseover','node, edge.family-link',event=>{tooltip.textContent=event.target.data('heading')||event.target.data('label');tooltip.style.display='block';const point=event.renderedPosition;const box=document.getElementById('cy').getBoundingClientRect();tooltip.style.left=`${box.left+point.x+12}px`;tooltip.style.top=`${box.top+point.y+12}px`;});cy.on('mouseout','node, edge.family-link',()=>tooltip.style.display='none');
   function populateSources(){const select=document.getElementById('source'), shortcut=document.getElementById('source-status');[...sources.values()].sort((a,b)=>a.source_id.localeCompare(b.source_id)).forEach(source=>{const label=`${source.source_id} — ${source.display_name}`;select.add(new Option(label,source.source_id));shortcut.add(new Option(label,source.source_id));});}
   const controlMenus=[...document.querySelectorAll('.control-menu')];controlMenus.forEach(menu=>menu.addEventListener('toggle',()=>{if(menu.open)controlMenus.filter(other=>other!==menu).forEach(other=>other.open=false);}));document.addEventListener('click',event=>{if(!event.target.closest('.control-menu'))controlMenus.forEach(menu=>menu.open=false);});
   document.getElementById('search').addEventListener('input',()=>{clearSelectedNode();refreshSearchMatches();render();});document.getElementById('search').addEventListener('keydown',event=>{if(event.key!=='Enter'||!searchMatches.length)return;event.preventDefault();const nextIndex=searchIndex===-1?(event.shiftKey?searchMatches.length-1:0):(searchIndex+(event.shiftKey?-1:1)+searchMatches.length)%searchMatches.length;showSearchMatch(nextIndex);});
@@ -462,6 +602,9 @@
   detailsResizer.addEventListener('mousedown',event=>{if(event.button!==0)return;event.preventDefault();detailsDrag={startX:event.clientX,startY:event.clientY,startSize:parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--details-size'))};detailsResizer.classList.add('dragging');});document.addEventListener('mousemove',event=>{if(!detailsDrag)return;const delta=compactLayout()?detailsDrag.startY-event.clientY:detailsDrag.startX-event.clientX;resizeDetails(detailsDrag.startSize+delta);});document.addEventListener('mouseup',()=>{if(!detailsDrag)return;detailsDrag=null;detailsResizer.classList.remove('dragging');});window.addEventListener('resize',()=>{cy.resize();updateLabels();});
   document.getElementById('match-string').addEventListener('input',render);
   document.getElementById('match-color').addEventListener('input',render);
+  document.getElementById('graph-view').addEventListener('change',()=>{
+    clearSelectedNode();showGraphInstructions();updateGraphView();refreshSearchMatches();render();
+  });
   document.getElementById('layout').addEventListener('change',render);
   document.getElementById('labels').addEventListener('change',updateLabels);
   document.querySelector('.legend').addEventListener('click',event=>{
@@ -474,16 +617,16 @@
     updateColorLegend();applyLegendCategories();applySelectionHighlight();updateLabels();refreshSearchMatches();
   });
   document.getElementById('person-colors').addEventListener('change',()=>{updateColorLegend();refreshSearchMatches();render();});
-  function changeSource(value){document.getElementById('source').value=value;clearSelectedNode();updateSourceStatus();refreshSearchMatches();render();}
+  function changeSource(value){document.getElementById('source').value=value;clearSelectedNode();showGraphInstructions();updateSourceStatus();refreshSearchMatches();render();}
   document.getElementById('source').addEventListener('change',event=>changeSource(event.target.value));
   document.getElementById('source-status').addEventListener('change',event=>changeSource(event.target.value));
-  document.querySelectorAll('.role').forEach(input=>input.addEventListener('change',()=>{clearSelectedNode();refreshSearchMatches();render();}));
+  document.querySelectorAll('.role').forEach(input=>input.addEventListener('change',()=>{clearSelectedNode();showGraphInstructions();refreshSearchMatches();render();}));
   document.getElementById('ancestors').addEventListener('click',()=>{if(showingAncestors){showingAncestors=false;ancestorAnchorId=null;spotlightInAncestors=false;}else{if(!selectedPersonId)return;ancestorAnchorId=selectedPersonId;showingAncestors=true;spotlightInAncestors=false;}updateAncestorButton();refreshSearchMatches();render();});
-  document.getElementById('reset').addEventListener('click',()=>{disabledColorCategories.clear();clearSearchSelection();document.getElementById('search').value='';document.getElementById('match-string').value='';document.getElementById('match-color').value='#7c3aed';document.getElementById('layout').value='pedigree';document.getElementById('labels').value='auto';document.getElementById('person-colors').value='uniform';document.getElementById('source').value='all';document.querySelectorAll('.role').forEach(input=>input.checked=true);controlMenus.forEach(menu=>menu.open=false);updateColorLegend();updateSourceStatus();refreshSearchMatches();render();});
+  document.getElementById('reset').addEventListener('click',()=>{disabledColorCategories.clear();clearSearchSelection();document.getElementById('search').value='';document.getElementById('match-string').value='';document.getElementById('match-color').value='#7c3aed';document.getElementById('graph-view').value='people';document.getElementById('layout').value='pedigree';document.getElementById('labels').value='auto';document.getElementById('person-colors').value='uniform';document.getElementById('source').value='all';document.querySelectorAll('.role').forEach(input=>input.checked=true);controlMenus.forEach(menu=>menu.open=false);showGraphInstructions();updateGraphView();updateSourceStatus();refreshSearchMatches();render();});
   // Export only the chart/branches currently selected, retaining stable IDs and notes.
   function exportData(){
     const {activeFamilies,activePeople}=activeData();
-    const selectedPeople=new Set([...activePeople].filter(personCategoryVisible));
+    const selectedPeople=new Set([...activePeople].filter(id=>familiesMode()||personCategoryVisible(id)));
     const selectedFamilies=activeFamilies.map(f=>({...f,
       father_id:selectedPeople.has(f.father_id)?f.father_id:'',
       mother_id:selectedPeople.has(f.mother_id)?f.mother_id:'',
@@ -576,7 +719,7 @@
     document.getElementById('download').open=false;
   }
   document.querySelectorAll('[data-export]').forEach(button=>button.addEventListener('click',()=>downloadExport(button.dataset.export)));
-  populateSources();updateAncestorButton();updateColorLegend();updateSourceStatus();render();
+  populateSources();updateAncestorButton();updateGraphView();updateSourceStatus();render();
   </script>
 </body>
 </html>
