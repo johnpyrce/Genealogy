@@ -12,6 +12,14 @@ from scripts.build_cytoscape_genealogy_graph import (
 
 
 class CytoscapeGenealogyGraphTests(unittest.TestCase):
+    def test_reference_generation_has_one_founding_family(self):
+        families = {family["id"]: family for family in dataset()["families"]}
+        self.assertEqual(
+            [family["id"] for family in families.values() if family["generation"] == "1"],
+            ["1"],
+        )
+        self.assertEqual([families[id]["generation"] for id in ("2", "44", "51")], ["2", "2", "2"])
+
     def test_source_colors_use_only_explicit_person_and_relationship_citations(self):
         people = [{'id': str(i)} for i in range(1, 6)]
         families = [{'id': '1', 'father_id': '1', 'mother_id': '2', 'children_ids': '3;4'}]

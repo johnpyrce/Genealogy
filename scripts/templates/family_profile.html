@@ -8,6 +8,10 @@ svg text{font-family:system-ui,-apple-system,sans-serif}.barval{font-size:11px;f
 @media (max-width: 560px) {
  main { padding: 24px 14px; }
 }
+.view-tabs { display:flex; gap:6px; border-bottom:1px solid #b8c7c1; margin-top:20px; }
+.view-tabs button { padding:10px 14px; border:0; border-bottom:3px solid transparent; background:transparent; color:inherit; cursor:pointer; }
+.view-tabs [aria-selected="true"] { border-color:#2e5238; background:#e8eee5; font-weight:600; }
+.graph-frame { display:block; width:100%; height:max(620px, 76vh); border:1px solid #dde3dd; border-radius:8px; margin-top:18px; }
 .shape-charts > div + div { margin-top: 22px; }
 .ribbon-grid { min-width: var(--ribbon-width); }
 .ribbon-row {
@@ -47,6 +51,11 @@ html:not(.gedcom) #lens3 { max-height: none; }
 <p class="eyebrow">Standalone family profile</p>
 <h1>The shape of this family</h1>
 <p id="source" class="muted" hidden></p>
+<div class="view-tabs" role="tablist" aria-label="Family views">
+<button id="profile-tab" type="button" role="tab" aria-selected="true" aria-controls="profile-panel">Family Profile</button>
+<button id="graph-tab" type="button" role="tab" aria-selected="false" aria-controls="graph-panel" tabindex="-1">Relationship Graph</button>
+</div>
+<div id="profile-panel" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
 <p class="intro" id="intro">A characterization of the recorded family collection along two dimensions — <strong>time</strong>, primarily by generation (many people carry no recorded dates, with recorded birth years overlaid), and <strong>lineage</strong>, the succession of main-line surnames, the branches that leave them, and the ancestry brought in by marriage — across four linked lenses. Click any segment, surname, or generation to highlight it across every lens. Nothing here estimates missing facts.</p>
 <div class="stats" id="stats"></div>
 <div id="focusbar"><span>Highlighting across all lenses:</span><strong id="focuslabel"></strong><button id="clearfocus" type="button">Clear</button></div>
@@ -86,6 +95,11 @@ html:not(.gedcom) #lens3 { max-height: none; }
 <div class="chart lenswrap" id="lens4"></div>
 </section>
 
+<details id="gedcom-differences" hidden>
+<summary>Differences between GEDCOM files</summary>
+<p>When recorded years disagree, the charts leave that year unplaced.</p>
+<ul id="gedcom-difference-list"></ul>
+</details>
 <details><summary>How to read this profile</summary>
 <p><strong>Generations</strong> follow the alignment shared with the overview and atlas views: the largest connected family sets Gen 1; partners share a generation, parents one earlier, children one later. People without an established position appear under Unaligned.</p>
 <p data-registry-only><strong>Lineage segments</strong> are computed from the main-line families recorded in families.csv. Each segment begins at a main-line father who is not recorded as the child of a main-line family, and then follows main-line links: the partners of that segment’s main-line families and their children join the segment. This collection’s main line is not one descent but a succession of named lineages (for example Gościński, later Szost, Pyrc, Rams…), and the ribbon shows each segment across the generations it reaches. People recorded in collateral or spouse-ancestry families are not assigned to a segment; they appear in the grey “branches &amp; spouse ancestry” band when their generation is established.</p>
@@ -96,9 +110,37 @@ html:not(.gedcom) #lens3 { max-height: none; }
 <p data-registry-only>Source: data/registries/people.csv and families.csv.</p>
 </details>
 <div class="footer">Counts reflect the recorded family collection. Missing information remains unknown.</div>
-</main><script>
+</div>
+<div id="graph-panel" role="tabpanel" aria-labelledby="graph-tab" hidden>
+<iframe id="relationship-graph" class="graph-frame" title="Relationship Graph" sandbox="allow-scripts allow-downloads"></iframe>
+</div>
+</main>
+<script id="graph-document" type="application/json">__PROFILE_GRAPH__</script>
+<script>
 const data=__PROFILE_DATA__;
 const el=id=>document.getElementById(id);
+const viewTabs=[el('profile-tab'),el('graph-tab')];
+function selectTab(index){
+ viewTabs.forEach((tab,i)=>{
+  tab.setAttribute('aria-selected',String(i===index));
+  tab.tabIndex=i===index?0:-1;
+  el(tab.getAttribute('aria-controls')).hidden=i!==index;
+ });
+ const graph=el('relationship-graph');
+ if(index===1&&!graph.hasAttribute('srcdoc')){
+  graph.srcdoc=JSON.parse(el('graph-document').textContent);
+ }
+}
+viewTabs.forEach((tab,index)=>{
+ tab.addEventListener('click',()=>selectTab(index));
+ tab.addEventListener('keydown',event=>{
+  const next={ArrowLeft:1-index,ArrowRight:1-index,Home:0,End:1}[event.key];
+  if(next===undefined)return;
+  event.preventDefault();
+  selectTab(next);
+  viewTabs[next].focus();
+ });
+});
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const normalize=s=>s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/ł/g,'l').replace(/Ł/g,'L').toLowerCase();
 const segColor=i=>{const P=['#2e5238','#c18431','#4f7cac','#a63d40','#7d5ba6','#3a7d7b','#b5651d','#6a8532','#c26a8a','#5b6470'];return P[i%P.length];};
@@ -113,6 +155,11 @@ if(fromGedcom){
  el('lineage-title').textContent='Lens 3 · Recorded families';
  el('lineage-description').textContent='Each GEDCOM family record lists its recorded parents or partners and children. Project branch roles are unavailable for this source.';
  el('surname-description').textContent='Select a surname to highlight its people across the profile.';
+ const differences=data.people.filter(person=>person.merge_note);
+ el('gedcom-differences').hidden=!differences.length;
+ el('gedcom-difference-list').innerHTML=differences.map(person=>
+  `<li><strong>${esc([person.first,person.surname].filter(Boolean).join(' ')||'Name unknown')}</strong>
+   · ${esc(person.merge_note)}<br><span class="muted">${esc(person.reference)}</span></li>`).join('');
 }
 el('stats').innerHTML=[[S.people,'people recorded'],[`${S.families} families`,fromGedcom?'GEDCOM family records':'main line · branches · spouses'],[S.generations,'generations'],[S.groups,'surname groups'],...(fromGedcom?[]:[[data.segments.length,'main-line segments']]),[S.dated,'recorded birth years']].map(([v,l])=>`<div class="stat"><strong>${v}</strong><span>${l}</span></div>`).join('');
 const segMembers=data.segments.map(()=>new Set());
@@ -188,7 +235,7 @@ if(!fromGedcom)(function(){
 (function(){
  const inc=G.inconsistencies.length;
  el('gaps').innerHTML=`
- <div class="gap"><strong>${G.undated} of ${S.people}</strong><span>people without a recorded birth year — generation placement is unaffected; dates are never estimated</span></div>
+ <div class="gap"><strong>${G.undated} of ${S.people}</strong><span>people without ${fromGedcom?'an agreed':'a recorded'} birth year — generation placement is unaffected; dates are never estimated</span></div>
  <div class="gap"><strong>${G.unaligned}</strong><span>people with no established generation in the reference family</span></div>
  ${fromGedcom?`<div class="gap"><strong>${G.conflicting}</strong><span>people in families with conflicting generation links</span></div>`:`<div class="gap"><strong>${inc}</strong><span>main-line fathers with contradictory parentage links — reported, not resolved</span>${inc?`<ul>${G.inconsistencies.map(x=>`<li>${esc(x.name)} — recorded as a child of main-line family${x.child_of.length>1?'ies':''} ${x.child_of.join(', ')}, yet head${x.heads.length>1?'':'s'} main-line family${x.heads.length>1?'ies':''} ${x.heads.join(', ')}</li>`).join('')}</ul>`:''}</div>`}`;
 })();

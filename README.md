@@ -262,11 +262,27 @@ a surname-by-generation heat map shaded by the number of people, per-segment
 detail, and per-surname detail; clicking a segment, surname, or generation
 highlights it across all lenses.
 
+The **Relationship Graph** tab uses the same source and offers both People and
+Families views. The graph loads Cytoscape.js from a CDN when you open the tab.
+
 To build and open a profile directly from a UTF-8 GEDCOM export, run:
 
 ```sh
 ./family_profile.sh --gedcom path/to/tree.ged
 ```
+
+To combine several exports in one profile, pass all the files together:
+
+```sh
+./family_profile.sh --gedcom path/to/first.ged path/to/second.ged
+```
+
+The combined view opens `artifacts/interactive/merged_family_profile.html`.
+Shared, unambiguous FamilySearch IDs or GEDCOM UIDs link people across files.
+File-local record IDs and names alone do not link people. Identical family
+memberships appear once with their source references. Different family accounts
+stay separate, and disagreements in recorded years are shown in the profile
+and person details.
 
 The script opens `artifacts/interactive/tree_family_profile.html`. Pass
 `--output` to choose another destination. The builder reads people and

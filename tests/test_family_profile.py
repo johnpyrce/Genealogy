@@ -15,6 +15,7 @@ from scripts.build_family_profile import (
     render_html,
 )
 from scripts.build_generation_overview import generation_layout
+from scripts.build_cytoscape_genealogy_graph import render_html as render_graph_html
 from scripts.lib.genealogy_data import load_people
 
 GEDCOM = """0 HEAD
@@ -111,7 +112,7 @@ class ProfileDataTests(unittest.TestCase):
             command = [sys.executable, "-m", "scripts.build_family_profile", "--gedcom", str(gedcom)]
             subprocess.run([*command, "--output", str(output)], check=True, capture_output=True)
             html = output.read_text(encoding="utf-8")
-            data = json.loads(html.split("const data=", 1)[1].split(";\n", 1)[0])
+            data = json.loads(html.split("\nconst data=", 1)[1].split(";\n", 1)[0])
             self.assertEqual(data["gedcom"], "tree.ged")
             self.assertEqual(
                 [(p["first"], p["group"], p["birth"], p["generation"]) for p in data["people"]],
@@ -121,6 +122,15 @@ class ProfileDataTests(unittest.TestCase):
                 {"id": 1, "parents": [1], "children": [2], "role": None, "reference": "@F9@"},
             ])
             self.assertEqual(data["segments"], [])
+            graph_html = json.loads(html.split('id="graph-document" type="application/json">', 1)[1]
+                                    .split("</script>", 1)[0])
+            graph = json.loads(graph_html.split("const DATA = ", 1)[1].split(";\n", 1)[0])
+            self.assertEqual(graph["sourceName"], "tree.ged")
+            self.assertEqual([person["reference"] for person in graph["people"]], ["@P1@", "@P2@", "@P3@"])
+            self.assertEqual(graph["families"], [
+                {"id": "1", "father_id": "", "mother_id": "1", "children_ids": "2",
+                 "branch_role": "", "reference": "@F9@", "generation": "1"},
+            ])
             self.assertEqual(gedcom.read_text(encoding="utf-8"), GEDCOM)
 
             gedcom.write_text(GEDCOM.replace("1 CHIL @P2@", "1 CHIL @missing@"), encoding="utf-8")
@@ -128,6 +138,64 @@ class ProfileDataTests(unittest.TestCase):
             self.assertNotEqual(result.returncode, 0)
             self.assertIn("unknown person reference", result.stderr)
             self.assertEqual(output.read_text(encoding="utf-8"), html)
+
+    def test_gedcom_cli_merges_persistent_ids_and_retains_alternative_records(self):
+        first = GEDCOM.replace("1 NAME Jan /Żak/", "1 NAME Jan /Żak/\n1 _FSFTID ABCD-123")
+        first = first.replace("1 NAME Anna /Żak/", "1 NAME Anna /Żak/\n1 _UID child-uid")
+        second = """0 HEAD
+1 CHAR UTF-8
+0 @OTHER@ INDI
+1 NAME John /Żak/
+1 _FSFTID ABCD-123
+1 BIRT
+2 DATE 1901
+0 @P4@ INDI
+1 NAME Anna /Żak/
+1 UID child-uid
+0 @P3@ INDI
+1 NAME Maria /Rams/
+0 @F9@ FAM
+1 WIFE @OTHER@
+1 CHIL @P4@
+0 @F10@ FAM
+1 WIFE @P3@
+1 CHIL @P4@
+0 TRLR
+"""
+        with TemporaryDirectory() as directory:
+            first_path = Path(directory) / "first.ged"
+            second_path = Path(directory) / "second.ged"
+            output = Path(directory) / "merged.html"
+            first_path.write_text(first, encoding="utf-8")
+            second_path.write_text(second, encoding="utf-8")
+            command = [sys.executable, "-m", "scripts.build_family_profile",
+                       "--gedcom", str(first_path), str(second_path)]
+            subprocess.run([*command, "--output", str(output)], check=True, capture_output=True)
+            html = output.read_text(encoding="utf-8")
+            data = json.loads(html.split("\nconst data=", 1)[1].split(";\n", 1)[0])
+            self.assertEqual(data["gedcom"], "first.ged, second.ged")
+            self.assertEqual(len(data["people"]), 4)
+            jan = data["people"][0]
+            self.assertIsNone(jan["birth"])
+            self.assertIn("Recorded names: Jan Żak; John Żak", jan["merge_note"])
+            self.assertIn("Conflicting birth years: 1900, 1901", jan["merge_note"])
+            self.assertEqual([family["reference"] for family in data["families"]],
+                             ["first.ged @F9@; second.ged @F9@", "second.ged @F10@"])
+            self.assertEqual([family["children"] for family in data["families"]], [[2], [2]])
+            self.assertNotEqual(data["families"][0]["parents"], data["families"][1]["parents"])
+            graph_html = json.loads(html.split('id="graph-document" type="application/json">', 1)[1]
+                                    .split("</script>", 1)[0])
+            graph = json.loads(graph_html.split("const DATA = ", 1)[1].split(";\n", 1)[0])
+            self.assertEqual(len(graph["people"]), 4)
+            self.assertEqual(graph["people"][0]["reference"], "first.ged @P1@; second.ged @OTHER@")
+            self.assertEqual(graph["people"][0]["note"], jan["merge_note"])
+            self.assertEqual(graph["families"][1]["children_ids"], "2")
+
+            result = subprocess.run([*command, "--output", str(second_path)],
+                                    capture_output=True, text=True)
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn("must differ from every input", result.stderr)
+            self.assertEqual(second_path.read_text(encoding="utf-8"), second)
 
     def test_payload_covers_every_person_exactly_once(self):
         data = build_data()
@@ -154,10 +222,14 @@ class ProfileDataTests(unittest.TestCase):
 
     def test_render_is_safe_and_complete(self):
         payload = json.dumps(build_data(), ensure_ascii=False).replace("<", "\\u003c")
-        html = render_html(payload)
+        graph = render_graph_html({"people": [], "families": [], "evidence": [], "sources": []},
+                                  embedded=True, source_name="</script>.ged")
+        html = render_html(payload, graph)
         self.assertNotIn("__PROFILE_DATA__", html)
-        self.assertNotIn('role="tablist"', html)
-        embedded = html.split("const data=", 1)[1].split(";\n", 1)[0]
+        self.assertNotIn("__PROFILE_GRAPH__", html)
+        self.assertIn('aria-controls="graph-panel"', html)
+        self.assertEqual(html.count("</script>"), 2)
+        embedded = html.split("\nconst data=", 1)[1].split(";\n", 1)[0]
         self.assertNotIn("<", embedded)
         self.assertEqual(len(json.loads(embedded)["people"]), len(load_people()))
 

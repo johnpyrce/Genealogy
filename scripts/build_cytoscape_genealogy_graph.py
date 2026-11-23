@@ -7,6 +7,7 @@ import re
 from pathlib import Path
 from shutil import copyfile
 
+from scripts.build_generation_overview import generation_layout
 from scripts.lib.genealogy_data import ROOT, REGISTRIES, load_registry_csv
 
 OUTPUT = ROOT / "artifacts" / "interactive" / "genealogy_relationship_graph.html"
@@ -68,6 +69,27 @@ def add_readable_family_evidence(
             row["summary"] = "\n".join(summary)
 
 
+def add_family_generations(
+    people: list[dict[str, str]], families: list[dict[str, str]]
+) -> None:
+    """Align families to the same reference generations as the generation overview."""
+    links = [
+        (
+            int(family["father_id"]) if family["father_id"] else None,
+            int(family["mother_id"]) if family["mother_id"] else None,
+            [int(child) for child in family["children_ids"].split(";") if child],
+            family["branch_role"],
+        )
+        for family in families
+    ]
+    placements = generation_layout([{"id": int(person["id"])} for person in people], links)
+    for family, (father, mother, children, _) in zip(families, links, strict=True):
+        generations = {placements[parent]["generation"] for parent in (father, mother) if parent is not None}
+        generations.update(placements[child]["generation"] - 1 for child in children)
+        generation = generations.pop() if len(generations) == 1 else 0
+        family["generation"] = str(generation) if generation > 0 else ""
+
+
 def dataset() -> dict[str, list[dict[str, str]]]:
     """Load the registry tables embedded in the standalone graph page."""
     files = {
@@ -82,16 +104,24 @@ def dataset() -> dict[str, list[dict[str, str]]]:
     person_evidence = load_registry_csv(REGISTRIES / "person_source_evidence.csv")[1]
     add_readable_family_evidence(result["evidence"], result["people"], person_evidence)
     add_person_sources(result["people"], result["families"], result["evidence"], person_evidence)
+    add_family_generations(result["people"], result["families"])
     return result
 
 
-def render_html(data: dict[str, list[dict[str, str]]]) -> str:
+def render_html(
+    data: dict[str, list[dict[str, str]]],
+    *,
+    embedded: bool = False,
+    source_name: str | None = None,
+) -> str:
     """Embed graph data in the viewer template."""
-    payload = json.dumps(data, ensure_ascii=False).replace("</", "<\\/")
+    payload = json.dumps({**data, "sourceName": source_name}, ensure_ascii=False)
+    payload = payload.replace("<", "\\u003c")
+    help_link = "" if embedded else f' <a href="{HELP_OUTPUT.name}">Help and guide</a>'
     return (
         TEMPLATE.read_text(encoding="utf-8")
+        .replace("__GRAPH_HELP_LINK__", help_link)
         .replace("__GRAPH_DATA__", payload)
-        .replace("__GRAPH_HELP_FILE__", HELP_OUTPUT.name)
     )
 
 
