@@ -16,10 +16,9 @@
     .embedded-graph > header { display:none; }
     #controls { position:relative; padding:14px 20px 10px; background:var(--panel); border-bottom:1px solid #d9ddd7; }
     .toolbar, .toolbar-actions { display:flex; align-items:flex-end; flex-wrap:wrap; gap:8px; }
-    .toolbar { gap:12px; }
-    .toolbar-actions { margin-left:auto; }
+    .toolbar { row-gap:12px; }
     .search-control, .view-control { display:grid; gap:5px; margin:0; color:var(--muted); font-size:12px; font-weight:600; }
-    .search-control { flex:1 1 200px; min-width:160px; max-width:380px; }
+    .search-control { flex:1 1 200px; min-width:160px; }
     input, select, button, summary { font:inherit; }
     input, select, button { border:1px solid #b8c5c4; border-radius:7px; padding:8px 10px; background:var(--panel); color:var(--ink); }
     button, summary { cursor:pointer; font-weight:600; }
@@ -57,7 +56,8 @@
     #generation-labels { position:absolute; inset:0; pointer-events:none; overflow:hidden; }
     .generation-label { position:absolute; left:12px; transform:translateY(-50%); padding:2px 5px; border-radius:4px; background:var(--paper); color:var(--ink); font-size:12px; font-weight:700; }
     .viewport-controls { position:absolute; z-index:6; top:12px; right:14px; display:flex; gap:6px; }
-    .viewport-controls button { min-height:34px; padding:0 9px; font-size:12px; }
+    .viewport-controls button { display:grid; place-items:center; width:34px; height:34px; padding:0; font-size:18px; line-height:1; }
+    .viewport-controls svg { width:17px; height:17px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
     .embedded-graph #cy { min-height:0; }
     .details-resizer { position:relative; background:#edf1ef; cursor:col-resize; touch-action:none; } .details-resizer::after { content:""; position:absolute; top:0; bottom:0; left:3px; width:2px; background:#c1cfcb; } .details-resizer:hover, .details-resizer.dragging { background:#d8e9e4; } .details-resizer:hover::after, .details-resizer.dragging::after { background:var(--accent); }
     aside { min-width:0; background:#fbfaf6; padding:19px; overflow:auto; } aside h2 { margin:0 0 10px; font:700 20px Georgia,serif; } aside p { color:var(--muted); line-height:1.45; }
@@ -77,14 +77,12 @@
     }
     @media (max-width:700px) {
       header, #controls, .legend { padding-inline:14px; }
-      .toolbar-actions { margin-left:0; }
       .toolbar .control-menu { position:static; }
       .toolbar .menu-panel { left:14px; right:auto; width:min(290px,calc(100% - 28px)); }
       .toolbar .download-options { width:160px; }
     }
     @media (max-width:460px) {
-      .search-control { flex:1 1 100%; max-width:none; }
-      .toolbar { column-gap:8px; }
+      .search-control { flex:1 1 100%; }
     }
   </style>
 </head>
@@ -133,8 +131,11 @@
       <div id="generation-labels" aria-hidden="true"></div>
       <div id="view-status" class="view-annotation" role="status" aria-live="polite" hidden></div>
       <div class="viewport-controls" aria-label="Diagram view controls">
-        <button id="fit-graph" type="button">Fit graph</button>
-        <button id="zoom-in" type="button">Zoom in</button>
+        <button id="fit-graph" type="button" aria-label="Fit graph" title="Fit graph">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m3 11 9-8 9 8M5 9.2V21h5v-6h4v6h5V9.2"/></svg>
+        </button>
+        <button id="zoom-out" type="button" aria-label="Zoom out" title="Zoom out">−</button>
+        <button id="zoom-in" type="button" aria-label="Zoom in" title="Zoom in">+</button>
       </div>
     </div>
     <div id="details-resizer" class="details-resizer" role="separator" aria-label="Resize details panel" tabindex="0"></div>
@@ -570,10 +571,10 @@
     return {zoom,pan:{x:gutter+(cy.width()-gutter-bounds.w*zoom)/2-bounds.x1*zoom,y:topPadding-bounds.y1*zoom}};
   }
   function fitEntireGraph(){if(!cy.nodes(':visible').length)return;const view=fittedGraphView();cy.stop();cy.animate({zoom:view.zoom,pan:view.pan},{duration:220,complete:()=>{overviewZoom=view.zoom;updateLabels();}});}
-  function zoomIn(){
+  function adjustZoom(factor){
     if(!cy.nodes(':visible').length)return;
     cy.stop(true,false);
-    const level=Math.min(cy.maxZoom(),cy.zoom()*1.3);
+    const level=Math.max(cy.minZoom(),Math.min(cy.maxZoom(),cy.zoom()*factor));
     cy.animate({zoom:{level,renderedPosition:{x:cy.width()/2,y:cy.height()/2}}},{duration:180});
   }
   function compactLayout(){return window.matchMedia('(max-width:900px)').matches;}
@@ -685,7 +686,9 @@
   }
   const controlMenus=[...document.querySelectorAll('.control-menu')];controlMenus.forEach(menu=>menu.addEventListener('toggle',()=>{if(menu.open)controlMenus.filter(other=>other!==menu).forEach(other=>other.open=false);}));document.addEventListener('click',event=>{if(!event.target.closest('.control-menu'))controlMenus.forEach(menu=>menu.open=false);});
   document.getElementById('search').addEventListener('input',()=>{clearSelectedNode();refreshSearchMatches();render();});document.getElementById('search').addEventListener('keydown',event=>{if(event.key!=='Enter'||!searchMatches.length)return;event.preventDefault();const nextIndex=searchIndex===-1?(event.shiftKey?searchMatches.length-1:0):(searchIndex+(event.shiftKey?-1:1)+searchMatches.length)%searchMatches.length;showSearchMatch(nextIndex);});
-  document.getElementById('fit-graph').addEventListener('click',fitEntireGraph);document.getElementById('zoom-in').addEventListener('click',zoomIn);
+  document.getElementById('fit-graph').addEventListener('click',fitEntireGraph);
+  document.getElementById('zoom-out').addEventListener('click',()=>adjustZoom(1/1.3));
+  document.getElementById('zoom-in').addEventListener('click',()=>adjustZoom(1.3));
   detailsResizer.addEventListener('mousedown',event=>{if(event.button!==0)return;event.preventDefault();detailsDrag={startX:event.clientX,startY:event.clientY,startSize:parseFloat(getComputedStyle(workspace).getPropertyValue('--details-size'))};detailsResizer.classList.add('dragging');});document.addEventListener('mousemove',event=>{if(!detailsDrag)return;const delta=compactLayout()?detailsDrag.startY-event.clientY:detailsDrag.startX-event.clientX;resizeDetails(detailsDrag.startSize+delta);});document.addEventListener('mouseup',()=>{if(!detailsDrag)return;detailsDrag=null;detailsResizer.classList.remove('dragging');});window.addEventListener('resize',()=>{cy.resize();updateLabels();});
   document.getElementById('match-string').addEventListener('input',render);
   document.getElementById('match-color').addEventListener('input',render);
