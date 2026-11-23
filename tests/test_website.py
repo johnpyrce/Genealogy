@@ -42,12 +42,20 @@ class WebsiteTests(unittest.TestCase):
                              'surname_stream.html')
             atlas = (output / config['tree_atlas']['page']).read_text(encoding='utf-8')
             viewer = (output / 'tree/viewer/index.html').read_text(encoding='utf-8')
+            graph = (output / 'tree/graph/index.html').read_text(encoding='utf-8')
             self.assertIn('href="/tree/atlas-test/">Generation Atlas</a>', index)
             self.assertIn('src="/tree/atlas-test/app/index.html" title="Generation Atlas"', atlas)
             self.assertIn('href="/tree/viewer/">Explore the family-tree viewer</a>', atlas)
             self.assertIn('href="/tree/atlas-test/">Explore Generation Atlas</a>', viewer)
             self.assertEqual((output / config['tree_atlas']['output']).read_text(encoding='utf-8'),
                              'generation_atlas_views.html')
+            graph_links = website.Links()
+            graph_links.feed(graph)
+            graph_app = '/tree/graph/app/genealogy_relationship_graph.html'
+            graph_url = next(link for link in graph_links.links if link.startswith(graph_app + '?v='))
+            self.assertRegex(graph_url, r'\?v=[0-9a-f]{12}$')
+            self.assertIn(f'{graph_url}&embed=1', graph_links.links)
+            self.assertIn('/tree/graph/app/genealogy_relationship_graph_help.html', graph_links.links)
 
     def test_script_url_changes_when_wheel_handling_changes(self):
         with tempfile.TemporaryDirectory() as directory:

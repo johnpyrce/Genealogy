@@ -342,10 +342,16 @@ def build_tree() -> None:
         ("tree/viewer/index.html", "Family-tree viewer", "/tree/viewer/app/family_tree.html"),
         ("tree/graph/index.html", "Relationship graph", "/tree/graph/app/genealogy_relationship_graph.html"),
     ]:
+        frame_attributes = ""
+        related = ""
         if route == "tree/graph/index.html":
             graph_version = hashlib.sha256((DIST / src.lstrip("/")).read_bytes()).hexdigest()[:12]
             src += f"?v={graph_version}"
-        related = ""
+            frame_src = f"{src}&embed=1"
+            frame_attributes = ' class="relationship-graph-frame"'
+            related = ' · <a href="/tree/graph/app/genealogy_relationship_graph_help.html">Relationship graph help</a>'
+        else:
+            frame_src = src
         if route == overview["page"]:
             related = f' · <a href="{surnames_url}">Explore surname streams</a>'
         elif route == surnames["page"]:
@@ -358,7 +364,7 @@ def build_tree() -> None:
                 f'<p class="tool-actions"><a href="{src}" target="_blank" rel="noopener">Open {label.lower()} in a full window</a>'
                 f'{related}'
                 ' · <a href="/tree/">Choose another tree view</a></p>'
-                f'<iframe src="{src}" title="{label}"></iframe></section>')
+                f'<iframe{frame_attributes} src="{html.escape(frame_src, quote=True)}" title="{label}"></iframe></section>')
         write(route, page(label, body, label))
     tree_document = read(CONFIG["documents"]["text_tree"]["source"])
     _, separator, remainder = tree_document.partition("```text\n")

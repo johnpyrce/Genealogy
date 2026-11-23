@@ -155,7 +155,9 @@
   const evidenceByFamily = new Map(); DATA.evidence.forEach(row => { const list=evidenceByFamily.get(row.family_id)||[]; list.push(row); evidenceByFamily.set(row.family_id,list); });
   const details=document.getElementById('details'); const tooltip=document.getElementById('tooltip'); const workspace=document.getElementById('workspace'); const detailsResizer=document.getElementById('details-resizer'); let focused=null, highlightedElementId=null, selectedPersonId=null, ancestorAnchorId=null, showingAncestors=false, spotlightInAncestors=false, overviewZoom=1, searchMatches=[], searchIndex=-1, detailsDrag=null;
   const viewButtons=[...document.querySelectorAll('[data-graph-view]')];
-  let graphView=new URLSearchParams(location.search).get('view')==='families'?'families':'people';
+  const graphParams=new URLSearchParams(location.search);
+  if(graphParams.get('embed')==='1')document.body.classList.add('embedded-graph');
+  let graphView=graphParams.get('view')==='families'?'families':'people';
   const familiesMode=()=>graphView==='families';
   function fullName(person) { return `${person.first_name}${person.surname && person.surname !== 'Unknown' ? ' '+person.surname : ''}`; }
   function matchText(value) { return String(value).normalize('NFD').toLowerCase().replace(/[\u0300-\u036f]/g,'').replace(/ł/g,'l'); }
