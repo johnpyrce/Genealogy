@@ -120,6 +120,7 @@ def render_html(
     help_link = "" if embedded else f' <a href="{HELP_OUTPUT.name}">Help and guide</a>'
     return (
         TEMPLATE.read_text(encoding="utf-8")
+        .replace("__GRAPH_BODY_CLASS__", "embedded-graph" if embedded else "")
         .replace("__GRAPH_HELP_LINK__", help_link)
         .replace("__GRAPH_DATA__", payload)
     )

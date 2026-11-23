@@ -10,23 +10,35 @@
     * { box-sizing:border-box; } body { min-height:100vh; margin:0; display:flex; flex-direction:column; font-family:Arial,sans-serif; color:var(--ink); background:var(--paper); }
     header { padding:16px 28px 12px; border-bottom:1px solid #d9ddd7; background:#fbfaf6; } h1 { margin:0; font:700 27px Georgia,serif; }
     header p { margin:6px 0 0; color:var(--muted); line-height:1.4; }
-    #controls { position:relative; padding:12px 28px; background:#fff; border-bottom:1px solid #d9ddd7; }
-    .toolbar { display:flex; gap:14px; align-items:flex-start; width:100%; }
-    .search-control { display:grid; gap:5px; flex:1 1 280px; min-width:220px; color:#3b5357; font-size:12px; font-weight:700; }
-    .search-control input { width:100%; }
-    .search-status { min-height:14px; color:#64777a; font-size:12px; font-weight:400; }
-    .graph-view { display:grid; gap:5px; color:#3b5357; font-size:12px; font-weight:700; }
-    .toolbar-actions { display:flex; gap:8px; align-items:center; flex-wrap:wrap; padding-top:17px; }
+    [hidden] { display:none !important; }
+    :focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+    .embedded-graph { height:100vh; min-height:0; overflow:hidden; }
+    .embedded-graph > header { display:none; }
+    #controls { position:relative; padding:14px 20px 10px; background:var(--panel); border-bottom:1px solid #d9ddd7; }
+    .toolbar, .toolbar-actions { display:flex; align-items:flex-end; flex-wrap:wrap; gap:8px; }
+    .toolbar { gap:12px; }
+    .toolbar-actions { margin-left:auto; }
+    .search-control, .view-control { display:grid; gap:5px; margin:0; color:var(--muted); font-size:12px; font-weight:600; }
+    .search-control { flex:1 1 200px; min-width:160px; max-width:380px; }
     input, select, button, summary { font:inherit; }
-    input, select, button { border:1px solid #b8c5c4; border-radius:7px; padding:8px 10px; background:#fff; color:var(--ink); }
-    button, summary { min-height:36px; cursor:pointer; font-weight:700; }
-    button { background:#fff; } button:hover:not(:disabled), summary:hover { background:#edf5f2; }
+    input, select, button { border:1px solid #b8c5c4; border-radius:7px; padding:8px 10px; background:var(--panel); color:var(--ink); }
+    button, summary { cursor:pointer; font-weight:600; }
+    button:hover:not(:disabled), summary:hover { background:#edf5f2; }
     button:disabled { cursor:not-allowed; opacity:.48; }
-#ancestors { max-width:310px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-#ancestors.has-selection { background:#e1efeb; border-color:#9ebfb8; }
+    #search, .toolbar-control, .view-switch button { height:38px; padding:0 11px; font-size:14px; }
+    #search { width:100%; font-weight:400; }
+    .view-switch { display:flex; border:1px solid #b8c5c4; border-radius:7px; background:var(--panel); }
+    .view-switch button { height:36px; border:none; border-radius:6px; }
+    .view-switch button[aria-pressed="true"] { background:#e0ede5; color:#234a36; }
+    #ancestors { background:#e1efeb; border-color:#9ebfb8; }
     .control-menu { position:relative; }
-    .control-menu summary { padding:8px 11px; border:1px solid #b8c5c4; border-radius:7px; color:var(--ink); background:#fff; user-select:none; }
+    .control-menu summary { display:inline-flex; align-items:center; gap:7px; list-style:none; border:1px solid #b8c5c4; border-radius:7px; color:var(--ink); background:var(--panel); white-space:nowrap; }
+    .control-menu summary::-webkit-details-marker { display:none; }
+    .control-menu summary::after { content:""; width:5px; height:5px; border:solid currentColor; border-width:0 1px 1px 0; transform:translateY(-1px) rotate(45deg); }
     .control-menu[open] summary { background:#eaf3f0; border-color:#86aaa3; }
+    .graph-context { display:flex; flex-wrap:wrap; align-items:baseline; gap:3px 14px; margin-top:10px; color:var(--muted); font-size:12px; overflow-wrap:anywhere; }
+    #graph-scope { color:var(--ink); }
+    #search-status:empty { display:none; }
     .menu-panel { position:absolute; z-index:20; top:calc(100% + 7px); right:0; width:290px; padding:15px; border:1px solid #c7d2d0; border-radius:10px; background:#fff; box-shadow:0 12px 32px rgba(23,59,63,.16); }
     .menu-panel .control { display:grid; gap:6px; margin-bottom:14px; color:#3b5357; font-size:14px; font-weight:700; }
     .menu-panel .control[hidden] { display:none; }
@@ -40,23 +52,13 @@
     input[type="checkbox"] { accent-color:var(--accent); padding:0; } input[type="color"] { width:44px; height:36px; padding:3px; }
     .color-match-row { display:grid; grid-template-columns:minmax(0,1fr) 44px; gap:8px; }
     main { display:grid; grid-template-columns:minmax(0,1fr) 8px var(--details-size); flex:1 1 auto; min-height:0; } .graph-stage { position:relative; min-width:0; min-height:0; } #cy { width:100%; height:100%; min-height:420px; background:var(--paper); }
-    .source-annotation { position:absolute; z-index:5; top:12px; left:14px; max-width:calc(100% - 126px); padding:6px 9px; border:1px solid rgba(120,144,150,.55); border-radius:6px; background:rgba(251,250,246,.92); box-shadow:0 2px 8px rgba(23,59,63,.08); color:#173b3f; font-size:12px; font-weight:700; cursor:pointer; text-overflow:ellipsis; }
-    .source-annotation:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
-    .source-annotation.source-s1 { border-color:#60a5fa; background:rgba(219,234,254,.95); color:#1e3a8a; }
-    .source-annotation.source-s2 { border-color:#d97706; background:rgba(254,243,199,.95); color:#78350f; }
-    .source-annotation.source-s3 { border-color:#8b5cf6; background:rgba(237,233,254,.95); color:#4c1d95; }
-    .source-annotation.source-s4 { border-color:#fb7185; background:rgba(255,228,230,.95); color:#881337; }
-    .source-annotation.source-s5 { border-color:#4ade80; background:rgba(220,252,231,.95); color:#14532d; }
-    .source-annotation.source-s6 { border-color:#22d3ee; background:rgba(207,250,254,.95); color:#164e63; }
-    .view-annotation { position:absolute; z-index:5; top:60px; left:14px; max-width:calc(100% - 28px); padding:7px 10px; border:1px solid #a78bfa; border-radius:6px; background:rgba(237,233,254,.96); box-shadow:0 2px 8px rgba(23,59,63,.08); color:#4c1d95; font-size:12px; font-weight:700; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; pointer-events:none; }
+    .view-annotation { position:absolute; z-index:5; top:12px; left:14px; max-width:calc(100% - 172px); padding:7px 9px; border:1px solid #b8c5c4; border-radius:6px; background:#fbfaf6; color:var(--ink); font-size:12px; font-weight:600; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; pointer-events:none; }
     .view-annotation[hidden] { display:none; }
     #generation-labels { position:absolute; inset:0; pointer-events:none; overflow:hidden; }
     .generation-label { position:absolute; left:12px; transform:translateY(-50%); padding:2px 5px; border-radius:4px; background:var(--paper); color:var(--ink); font-size:12px; font-weight:700; }
-    .viewport-controls { position:absolute; z-index:6; top:12px; right:14px; display:flex; gap:6px; padding:4px; border:1px solid rgba(120,144,150,.55); border-radius:9px; background:rgba(251,250,246,.92); box-shadow:0 2px 8px rgba(23,59,63,.1); }
-    .viewport-controls button { display:grid; place-items:center; width:34px; height:34px; min-height:0; padding:0; border:0; border-radius:6px; background:transparent; color:#31585d; }
-    .viewport-controls button:hover { background:#e2efec; color:#0f5f59; }
-    .viewport-controls button:focus-visible { outline:2px solid var(--accent); outline-offset:1px; }
-    .viewport-controls svg { width:20px; height:20px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; pointer-events:none; }
+    .viewport-controls { position:absolute; z-index:6; top:12px; right:14px; display:flex; gap:6px; }
+    .viewport-controls button { min-height:34px; padding:0 9px; font-size:12px; }
+    .embedded-graph #cy { min-height:0; }
     .details-resizer { position:relative; background:#edf1ef; cursor:col-resize; touch-action:none; } .details-resizer::after { content:""; position:absolute; top:0; bottom:0; left:3px; width:2px; background:#c1cfcb; } .details-resizer:hover, .details-resizer.dragging { background:#d8e9e4; } .details-resizer:hover::after, .details-resizer.dragging::after { background:var(--accent); }
     aside { min-width:0; background:#fbfaf6; padding:19px; overflow:auto; } aside h2 { margin:0 0 10px; font:700 20px Georgia,serif; } aside p { color:var(--muted); line-height:1.45; }
     .detail-label { margin-top:15px; color:#547176; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; } .detail-value { margin-top:3px; line-height:1.4; word-break:break-word; }
@@ -66,47 +68,73 @@
     #tooltip { display:none; position:fixed; z-index:10; pointer-events:none; max-width:230px; padding:7px 9px; border-radius:6px; background:#173b3f; color:#fff; font-size:13px; box-shadow:0 4px 16px rgba(0,0,0,.2); }
     .legend { display:flex; gap:14px; flex-wrap:wrap; padding:8px 28px; border-bottom:1px solid #d9ddd7; background:#fbfaf6; color:var(--muted); font-size:12px; }
     .swatch { display:inline-block; width:11px; height:11px; margin-right:4px; vertical-align:-1px; border-radius:50%; }
-    @media (max-width:900px) { .toolbar { align-items:stretch; flex-wrap:wrap; } .search-control { flex-basis:100%; } .toolbar-actions { width:100%; padding-top:0; } main { grid-template-columns:1fr; grid-template-rows:minmax(520px,1fr) 8px var(--details-size); } .graph-stage { min-height:520px; } .details-resizer { cursor:row-resize; } .details-resizer::after { top:3px; right:0; bottom:auto; left:0; width:auto; height:2px; } #cy { min-height:0; height:100%; } }
-    @media (max-width:600px) { header, #controls { padding-left:16px; padding-right:16px; } .legend { padding-left:16px; padding-right:16px; } .toolbar-actions { display:grid; grid-template-columns:1fr 1fr; } #ancestors { grid-column:1 / -1; max-width:none; } .control-menu summary, .toolbar-actions button { justify-content:center; width:100%; } .menu-panel { width:min(290px,calc(100vw - 32px)); } }
+    @media (max-width:900px) {
+      main { grid-template-columns:1fr; grid-template-rows:minmax(420px,1fr) 8px var(--details-size); }
+      .embedded-graph main { grid-template-rows:minmax(0,1fr) 8px var(--details-size); --details-size:235px; }
+      .details-resizer { cursor:row-resize; }
+      .details-resizer::after { top:3px; right:0; bottom:auto; left:0; width:auto; height:2px; }
+      #cy { min-height:0; }
+    }
+    @media (max-width:700px) {
+      header, #controls, .legend { padding-inline:14px; }
+      .toolbar-actions { margin-left:0; }
+      .toolbar .control-menu { position:static; }
+      .toolbar .menu-panel { left:14px; right:auto; width:min(290px,calc(100% - 28px)); }
+      .toolbar .download-options { width:160px; }
+    }
+    @media (max-width:460px) {
+      .search-control { flex:1 1 100%; max-width:none; }
+      .toolbar { column-gap:8px; }
+    }
   </style>
 </head>
-<body>
-  <header><h1 id="graph-title">Muszyna family history: relationship graph</h1><p>Use People to follow individual relationships or Families to see how households connect. Hover for names and select a node or connection for source evidence.__GRAPH_HELP_LINK__</p><p id="graph-source" hidden></p></header>
+<body class="__GRAPH_BODY_CLASS__">
+  <header><h1 id="graph-title">Muszyna family history: relationship graph</h1><p>Use People to follow individual relationships or Families to see how households connect. Hover for names and select a node or connection for source evidence.__GRAPH_HELP_LINK__</p></header>
   <section id="controls" aria-label="Graph controls">
     <div class="toolbar">
-      <label class="search-control">Find a person<input id="search" placeholder="Name or person ID" autocomplete="off"><span id="search-status" class="search-status" aria-live="polite"></span></label>
-      <label class="graph-view">Graph view<select id="graph-view"><option value="people">People</option><option value="families">Families</option></select></label>
-      <div class="toolbar-actions">
-        <button id="ancestors" type="button" disabled>Direct ancestors</button>
-        <details class="control-menu" id="graph-filters"><summary>Filters</summary><div class="menu-panel">
+      <div class="view-control">
+        <span id="view-control-label">Graph view</span>
+        <div class="view-switch" role="group" aria-labelledby="view-control-label">
+          <button type="button" data-graph-view="people" aria-pressed="true">People</button>
+          <button type="button" data-graph-view="families" aria-pressed="false">Families</button>
+        </div>
+      </div>
+      <label class="search-control">Find a person<input id="search" placeholder="Name or record ID" aria-describedby="search-status" autocomplete="off"></label>
+      <button id="ancestors" class="toolbar-control" type="button" hidden>Direct ancestors</button>
+        <details class="control-menu" id="graph-filters"><summary class="toolbar-control">Filters</summary><div class="menu-panel">
           <label class="control">Source chart<select id="source"><option value="all">All source charts</option></select></label>
           <div class="control">Branches<div class="checks"><label><input class="role" type="checkbox" value="main_line" checked> Main line</label><label><input class="role" type="checkbox" value="spouse_ancestry" checked> Spouse ancestry</label><label><input class="role" type="checkbox" value="collateral" checked> Collateral</label></div></div>
         </div></details>
-        <details class="control-menu"><summary>Appearance</summary><div class="menu-panel">
+      <div class="toolbar-actions">
+        <details class="control-menu"><summary class="toolbar-control">Appearance</summary><div class="menu-panel">
           <label class="control">Layout<select id="layout"><option value="pedigree" selected>Pedigree (top-down)</option><option value="radial">Radial tree</option></select></label>
           <label class="control">Labels<select id="labels"><option value="auto" selected>Auto</option><option value="none">None</option><option value="all">All</option></select></label>
           <label class="control people-option">Color people by<select id="person-colors"><option value="uniform" selected>Uniform</option><option value="lineage">Main line versus spouses</option><option value="source">Source chart</option></select></label>
           <label class="control people-option">Color matching people<div class="color-match-row"><input id="match-string" type="text" placeholder="Part of a name" autocomplete="off"><input id="match-color" type="color" value="#7c3aed" aria-label="Matching people color"></div></label>
         </div></details>
-        <button id="reset" type="button">Reset</button>
-        <details id="download" class="control-menu"><summary>Download</summary><div class="menu-panel download-options" aria-label="Download format">
+        <details id="download" class="control-menu"><summary class="toolbar-control">Download</summary><div class="menu-panel download-options" aria-label="Download format">
           <button type="button" data-export="image">Image</button>
           <button type="button" data-export="text">Text</button>
           <button type="button" data-export="gedcom">GEDCOM</button>
         </div></details>
+        <button id="reset" class="toolbar-control" type="button">Reset</button>
       </div>
     </div>
+    <div class="graph-context">
+      <span id="graph-scope" role="status"></span>
+      <span id="graph-count" role="status"></span>
+      <span id="search-status" aria-live="polite"></span>
+    </div>
   </section>
-  <div class="legend"><button type="button" class="uniform-legend legend-toggle" data-category="uniform:person" aria-pressed="true"><i class="swatch" style="background:#197278"></i>Person</button><button type="button" class="lineage-legend legend-toggle" data-category="lineage:main" aria-pressed="true" hidden><i class="swatch" style="background:#197278"></i>Main-line descendant</button><button type="button" class="lineage-legend legend-toggle" data-category="lineage:spouse" aria-pressed="true" hidden><i class="swatch" style="background:#c2185b"></i>Spouse joining main line</button><button type="button" class="lineage-legend legend-toggle" data-category="lineage:other" aria-pressed="true" hidden><i class="swatch" style="background:#768186"></i>Other person</button><span class="source-legend" hidden></span><span><i class="swatch" style="background:#d19a2a;border-radius:2px"></i>Family hub</span><span><i class="swatch" style="background:#e4572e"></i>Selected node</span><span id="people-key">Solid: main line · dashed: spouse ancestry · dotted: collateral</span><span id="families-key" hidden>Arrow: child in one family, parent or partner in the next · dotted line: shared partner</span><span id="graph-count" role="status" hidden></span></div>
+  <div class="legend"><button type="button" class="uniform-legend legend-toggle" data-category="uniform:person" aria-pressed="true"><i class="swatch" style="background:#197278"></i>Person</button><button type="button" class="lineage-legend legend-toggle" data-category="lineage:main" aria-pressed="true" hidden><i class="swatch" style="background:#197278"></i>Main-line descendant</button><button type="button" class="lineage-legend legend-toggle" data-category="lineage:spouse" aria-pressed="true" hidden><i class="swatch" style="background:#c2185b"></i>Spouse joining main line</button><button type="button" class="lineage-legend legend-toggle" data-category="lineage:other" aria-pressed="true" hidden><i class="swatch" style="background:#768186"></i>Other person</button><span class="source-legend" hidden></span><span><i class="swatch" style="background:#d19a2a;border-radius:2px"></i>Family hub</span><span><i class="swatch" style="background:#e4572e"></i>Selected node</span><span id="people-key">Solid: main line · dashed: spouse ancestry · dotted: collateral</span><span id="families-key" hidden>Arrow: child in one family, parent or partner in the next · dotted line: shared partner</span></div>
   <main id="workspace">
     <div class="graph-stage">
       <div id="cy" aria-label="Interactive Cytoscape genealogy graph"></div>
       <div id="generation-labels" aria-hidden="true"></div>
-      <select id="source-status" class="source-annotation" aria-label="Source chart" title="Choose source chart"><option value="all">All charts</option></select>
       <div id="view-status" class="view-annotation" role="status" aria-live="polite" hidden></div>
       <div class="viewport-controls" aria-label="Diagram view controls">
-        <button id="fit-graph" type="button" aria-label="Fit entire graph" title="Fit entire graph"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"/></svg></button>
-        <button id="readable-view" type="button" aria-label="Show readable view from top" title="Show readable view from top"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16M7 9v3m5-3v7m5-7v3"/><circle cx="7" cy="15" r="2.5"/><circle cx="12" cy="19" r="2.5"/><circle cx="17" cy="15" r="2.5"/></svg></button>
+        <button id="fit-graph" type="button">Fit graph</button>
+        <button id="zoom-in" type="button">Zoom in</button>
       </div>
     </div>
     <div id="details-resizer" class="details-resizer" role="separator" aria-label="Resize details panel" tabindex="0"></div>
@@ -125,7 +153,9 @@
   const mainLineSpouses=new Set(families.filter(f=>f.branch_role==='main_line'&&[f.father_id,f.mother_id].some(id=>mainLineChildren.has(id))).flatMap(f=>[f.father_id,f.mother_id].filter(id=>id&&!mainLineChildren.has(id))));
   const evidenceByFamily = new Map(); DATA.evidence.forEach(row => { const list=evidenceByFamily.get(row.family_id)||[]; list.push(row); evidenceByFamily.set(row.family_id,list); });
   const details=document.getElementById('details'); const tooltip=document.getElementById('tooltip'); const workspace=document.getElementById('workspace'); const detailsResizer=document.getElementById('details-resizer'); let focused=null, highlightedElementId=null, selectedPersonId=null, ancestorAnchorId=null, showingAncestors=false, spotlightInAncestors=false, overviewZoom=1, searchMatches=[], searchIndex=-1, detailsDrag=null;
-  const familiesMode=()=>document.getElementById('graph-view').value==='families';
+  const viewButtons=[...document.querySelectorAll('[data-graph-view]')];
+  let graphView=new URLSearchParams(location.search).get('view')==='families'?'families':'people';
+  const familiesMode=()=>graphView==='families';
   function fullName(person) { return `${person.first_name}${person.surname && person.surname !== 'Unknown' ? ' '+person.surname : ''}`; }
   function matchText(value) { return String(value).normalize('NFD').toLowerCase().replace(/[\u0300-\u036f]/g,'').replace(/ł/g,'l'); }
   function lastName(person) { return person && person.surname && person.surname !== 'Unknown' ? person.surname : 'Unknown'; }
@@ -509,8 +539,10 @@
     status.textContent=showingAncestors?`Direct ancestors of ${anchor?fullName(anchor):'selected person'}`:'';
     status.hidden=!showingAncestors;
     const count=document.getElementById('graph-count');
-    count.hidden=!familiesMode();
-    if(!count.hidden)count.textContent=`${cy.nodes().length} family records · ${cy.edges('.family-descent').length} generational links`;
+    const familyCount=cy.nodes('.family:visible').length;
+    count.textContent=familiesMode()
+      ? `${familyCount} family records · ${cy.edges('.family-descent').length} generational links`
+      : `${cy.nodes('.person:visible').length} people · ${familyCount} family records`;
   }
   function render() {
     const {activeFamilies,activePeople}=activeData(); const elements=familiesMode()?familyGraphElements(activeFamilies):elementsFor(activeFamilies,activePeople);
@@ -519,9 +551,9 @@
     cy.autoungrabify(familiesMode());
     cy.elements().remove();cy.add(elements.nodes);cy.add(elements.edges);applyLayout();
     renderGenerationLabels();
-    updateViewStatus();
     applySelectionHighlight();
     applyLegendCategories();
+    updateViewStatus();
     updateLabels();
     const matches=searchNodes();
     if(matches.length){
@@ -538,9 +570,14 @@
     return {zoom,pan:{x:gutter+(cy.width()-gutter-bounds.w*zoom)/2-bounds.x1*zoom,y:topPadding-bounds.y1*zoom}};
   }
   function fitEntireGraph(){if(!cy.nodes(':visible').length)return;const view=fittedGraphView();cy.stop();cy.animate({zoom:view.zoom,pan:view.pan},{duration:220,complete:()=>{overviewZoom=view.zoom;updateLabels();}});}
-  function showReadableView(){if(!cy.nodes(':visible').length)return;const bounds=cy.elements().boundingBox({includeLabels:false}), zoom=Math.max(overviewZoom*1.85,.85), pan={x:(cy.width()-bounds.w*zoom)/2-bounds.x1*zoom,y:76-bounds.y1*zoom};cy.stop();cy.animate({zoom,pan},{duration:240,complete:updateLabels});}
+  function zoomIn(){
+    if(!cy.nodes(':visible').length)return;
+    cy.stop(true,false);
+    const level=Math.min(cy.maxZoom(),cy.zoom()*1.3);
+    cy.animate({zoom:{level,renderedPosition:{x:cy.width()/2,y:cy.height()/2}}},{duration:180});
+  }
   function compactLayout(){return window.matchMedia('(max-width:900px)').matches;}
-  function resizeDetails(size){const available=compactLayout()?workspace.clientHeight:workspace.clientWidth, minimum=compactLayout()?160:220, maximum=Math.max(minimum,Math.floor(available*.6)), next=Math.min(Math.max(size,minimum),maximum);document.documentElement.style.setProperty('--details-size',`${next}px`);cy.resize();updateLabels();}
+  function resizeDetails(size){const available=compactLayout()?workspace.clientHeight:workspace.clientWidth, minimum=compactLayout()?160:220, maximum=Math.max(minimum,Math.floor(available*.6)), next=Math.min(Math.max(size,minimum),maximum);workspace.style.setProperty('--details-size',`${next}px`);cy.resize();updateLabels();}
   function escapeHtml(value){return String(value??'').replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));}
   function evidenceHtml(rows) {
     const seen=new Set();
@@ -603,14 +640,28 @@
   }
   function updateGraphView(){
     const familyView=familiesMode();
+    viewButtons.forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.graphView===graphView)));
     document.getElementById('layout').disabled=familyView;
     document.getElementById('people-key').hidden=familyView||fromGedcom;
     document.getElementById('families-key').hidden=!familyView;
     document.querySelectorAll('.people-option').forEach(control=>control.hidden=familyView||(fromGedcom&&control.contains(document.getElementById('person-colors'))));
     updateColorLegend();
   }
-  function updateAncestorButton(){const button=document.getElementById('ancestors');const canShowAncestors=Boolean(selectedPersonId)&&!showingAncestors;button.textContent=showingAncestors?'Full graph':'Direct ancestors';button.disabled=!showingAncestors&&!selectedPersonId;button.classList.toggle('has-selection',canShowAncestors);}
-  function updateSourceStatus(){const select=document.getElementById('source'), status=document.getElementById('source-status'), source=sources.get(select.value);status.value=select.value;status.classList.remove('source-s1','source-s2','source-s3','source-s4','source-s5','source-s6');if(source)status.classList.add(`source-${source.source_id.toLowerCase()}`);}
+  function updateAncestorButton(){
+    const button=document.getElementById('ancestors');
+    button.textContent=showingAncestors?'Full graph':'Direct ancestors';
+    button.hidden=!showingAncestors&&!selectedPersonId;
+  }
+  function updateSourceStatus(){
+    const status=document.getElementById('graph-scope');
+    if(fromGedcom){status.textContent='GEDCOM · '+DATA.sourceName;return;}
+    const source=sources.get(document.getElementById('source').value);
+    const branches=[...document.querySelectorAll('.role')];
+    const enabled=branches.filter(input=>input.checked);
+    const branchNames=enabled.map(input=>input.closest('label').textContent.trim());
+    const scope=enabled.length===branches.length?'All branches':branchNames.join(', ')||'No branches selected';
+    status.textContent=`${source?.display_name||'All source charts'} · ${scope}`;
+  }
   function clearSelectedNode(){focused=null;highlightedElementId=null;selectedPersonId=null;spotlightInAncestors=false;updateAncestorButton();}
   function clearSearchSelection(){ancestorAnchorId=null;showingAncestors=false;clearSelectedNode();}
   function refreshSearchMatches(){const query=matchText(document.getElementById('search').value.trim()), status=document.getElementById('search-status');searchMatches=[];searchIndex=-1;if(!query){status.textContent='';return;}const {activePeople}=activeData();searchMatches=[...people.values()].filter(person=>activePeople.has(person.id)&&(familiesMode()||personCategoryVisible(person.id))&&(person.id===query||person.reference?.toLowerCase().split('; ').some(reference=>reference===query||reference.endsWith(' '+query))||matchText(fullName(person)).includes(query)));status.textContent=searchMatches.length?`${searchMatches.length} match${searchMatches.length===1?'':'es'} · Press Return to cycle`:'No matches';}
@@ -627,16 +678,22 @@
     spotlightInAncestors=showingAncestors;
     updateAncestorButton();showDetails(node.data());applySelectionHighlight();updateLabels();
   });cy.on('mouseover','node, edge.family-link',event=>{tooltip.textContent=event.target.data('heading')||event.target.data('label');tooltip.style.display='block';const point=event.renderedPosition;const box=document.getElementById('cy').getBoundingClientRect();tooltip.style.left=`${box.left+point.x+12}px`;tooltip.style.top=`${box.top+point.y+12}px`;});cy.on('mouseout','node, edge.family-link',()=>tooltip.style.display='none');
-  function populateSources(){const select=document.getElementById('source'), shortcut=document.getElementById('source-status');[...sources.values()].sort((a,b)=>a.source_id.localeCompare(b.source_id)).forEach(source=>{const label=`${source.source_id} — ${source.display_name}`;select.add(new Option(label,source.source_id));shortcut.add(new Option(label,source.source_id));});}
+  function populateSources(){
+    const select=document.getElementById('source');
+    [...sources.values()].sort((a,b)=>a.source_id.localeCompare(b.source_id))
+      .forEach(source=>select.add(new Option(`${source.source_id} — ${source.display_name}`,source.source_id)));
+  }
   const controlMenus=[...document.querySelectorAll('.control-menu')];controlMenus.forEach(menu=>menu.addEventListener('toggle',()=>{if(menu.open)controlMenus.filter(other=>other!==menu).forEach(other=>other.open=false);}));document.addEventListener('click',event=>{if(!event.target.closest('.control-menu'))controlMenus.forEach(menu=>menu.open=false);});
   document.getElementById('search').addEventListener('input',()=>{clearSelectedNode();refreshSearchMatches();render();});document.getElementById('search').addEventListener('keydown',event=>{if(event.key!=='Enter'||!searchMatches.length)return;event.preventDefault();const nextIndex=searchIndex===-1?(event.shiftKey?searchMatches.length-1:0):(searchIndex+(event.shiftKey?-1:1)+searchMatches.length)%searchMatches.length;showSearchMatch(nextIndex);});
-  document.getElementById('fit-graph').addEventListener('click',fitEntireGraph);document.getElementById('readable-view').addEventListener('click',showReadableView);
-  detailsResizer.addEventListener('mousedown',event=>{if(event.button!==0)return;event.preventDefault();detailsDrag={startX:event.clientX,startY:event.clientY,startSize:parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--details-size'))};detailsResizer.classList.add('dragging');});document.addEventListener('mousemove',event=>{if(!detailsDrag)return;const delta=compactLayout()?detailsDrag.startY-event.clientY:detailsDrag.startX-event.clientX;resizeDetails(detailsDrag.startSize+delta);});document.addEventListener('mouseup',()=>{if(!detailsDrag)return;detailsDrag=null;detailsResizer.classList.remove('dragging');});window.addEventListener('resize',()=>{cy.resize();updateLabels();});
+  document.getElementById('fit-graph').addEventListener('click',fitEntireGraph);document.getElementById('zoom-in').addEventListener('click',zoomIn);
+  detailsResizer.addEventListener('mousedown',event=>{if(event.button!==0)return;event.preventDefault();detailsDrag={startX:event.clientX,startY:event.clientY,startSize:parseFloat(getComputedStyle(workspace).getPropertyValue('--details-size'))};detailsResizer.classList.add('dragging');});document.addEventListener('mousemove',event=>{if(!detailsDrag)return;const delta=compactLayout()?detailsDrag.startY-event.clientY:detailsDrag.startX-event.clientX;resizeDetails(detailsDrag.startSize+delta);});document.addEventListener('mouseup',()=>{if(!detailsDrag)return;detailsDrag=null;detailsResizer.classList.remove('dragging');});window.addEventListener('resize',()=>{cy.resize();updateLabels();});
   document.getElementById('match-string').addEventListener('input',render);
   document.getElementById('match-color').addEventListener('input',render);
-  document.getElementById('graph-view').addEventListener('change',()=>{
+  viewButtons.forEach(button=>button.addEventListener('click',()=>{
+    if(graphView===button.dataset.graphView)return;
+    graphView=button.dataset.graphView;
     clearSelectedNode();showGraphInstructions();updateGraphView();refreshSearchMatches();render();
-  });
+  }));
   document.getElementById('layout').addEventListener('change',render);
   document.getElementById('labels').addEventListener('change',updateLabels);
   document.querySelector('.legend').addEventListener('click',event=>{
@@ -646,15 +703,14 @@
     if(disabledColorCategories.has(category))disabledColorCategories.delete(category);else disabledColorCategories.add(category);
     if(selectedPersonId&&!personCategoryVisible(selectedPersonId))clearSelectedNode();
     tooltip.style.display='none';
-    updateColorLegend();applyLegendCategories();applySelectionHighlight();updateLabels();refreshSearchMatches();
+    updateColorLegend();applyLegendCategories();applySelectionHighlight();updateViewStatus();updateLabels();refreshSearchMatches();
   });
   document.getElementById('person-colors').addEventListener('change',()=>{updateColorLegend();refreshSearchMatches();render();});
   function changeSource(value){document.getElementById('source').value=value;clearSelectedNode();showGraphInstructions();updateSourceStatus();refreshSearchMatches();render();}
   document.getElementById('source').addEventListener('change',event=>changeSource(event.target.value));
-  document.getElementById('source-status').addEventListener('change',event=>changeSource(event.target.value));
-  document.querySelectorAll('.role').forEach(input=>input.addEventListener('change',()=>{clearSelectedNode();showGraphInstructions();refreshSearchMatches();render();}));
+  document.querySelectorAll('.role').forEach(input=>input.addEventListener('change',()=>{clearSelectedNode();showGraphInstructions();updateSourceStatus();refreshSearchMatches();render();}));
   document.getElementById('ancestors').addEventListener('click',()=>{if(showingAncestors){showingAncestors=false;ancestorAnchorId=null;spotlightInAncestors=false;}else{if(!selectedPersonId)return;ancestorAnchorId=selectedPersonId;showingAncestors=true;spotlightInAncestors=false;}updateAncestorButton();refreshSearchMatches();render();});
-  document.getElementById('reset').addEventListener('click',()=>{disabledColorCategories.clear();clearSearchSelection();document.getElementById('search').value='';document.getElementById('match-string').value='';document.getElementById('match-color').value='#7c3aed';document.getElementById('graph-view').value='people';document.getElementById('layout').value='pedigree';document.getElementById('labels').value='auto';document.getElementById('person-colors').value='uniform';document.getElementById('source').value='all';document.querySelectorAll('.role').forEach(input=>input.checked=true);controlMenus.forEach(menu=>menu.open=false);showGraphInstructions();updateGraphView();updateSourceStatus();refreshSearchMatches();render();});
+  document.getElementById('reset').addEventListener('click',()=>{disabledColorCategories.clear();clearSearchSelection();document.getElementById('search').value='';document.getElementById('match-string').value='';document.getElementById('match-color').value='#7c3aed';graphView='people';document.getElementById('layout').value='pedigree';document.getElementById('labels').value='auto';document.getElementById('person-colors').value='uniform';document.getElementById('source').value='all';document.querySelectorAll('.role').forEach(input=>input.checked=true);controlMenus.forEach(menu=>menu.open=false);showGraphInstructions();updateGraphView();updateSourceStatus();refreshSearchMatches();render();});
   // Export only the chart/branches currently selected, retaining stable IDs and notes.
   function exportData(){
     const {activeFamilies,activePeople}=activeData();
@@ -754,18 +810,11 @@
   if(fromGedcom){
     document.title='Relationship Graph';
     document.getElementById('graph-title').textContent='Relationship Graph';
-    const source=document.getElementById('graph-source');
-    source.textContent='GEDCOM source · '+DATA.sourceName;
-    source.hidden=false;
     document.getElementById('graph-filters').hidden=true;
-    document.getElementById('source-status').hidden=true;
     document.querySelectorAll('#person-colors option:not([value="uniform"])').forEach(option=>option.hidden=true);
     document.getElementById('person-colors').closest('label').hidden=true;
   }
-  if(new URLSearchParams(location.search).get('view')==='families'){
-    document.getElementById('graph-view').value='families';
-    showGraphInstructions();
-  }
+  if(familiesMode())showGraphInstructions();
   populateSources();updateAncestorButton();updateGraphView();updateSourceStatus();render();
   </script>
 </body>

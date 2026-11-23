@@ -11,7 +11,10 @@ svg text{font-family:system-ui,-apple-system,sans-serif}.barval{font-size:11px;f
 .view-tabs { display:flex; gap:6px; border-bottom:1px solid #b8c7c1; margin-top:20px; }
 .view-tabs button { padding:10px 14px; border:0; border-bottom:3px solid transparent; background:transparent; color:inherit; cursor:pointer; }
 .view-tabs [aria-selected="true"] { border-color:#2e5238; background:#e8eee5; font-weight:600; }
-.graph-frame { display:block; width:100%; height:max(620px, 76vh); border:1px solid #dde3dd; border-radius:8px; margin-top:18px; }
+.graph-frame { display:block; width:100%; height:clamp(580px, 76vh, 800px); border:1px solid #dde3dd; border-radius:8px; margin-top:12px; }
+@media (max-width:960px) {
+ .graph-frame { height:880px; }
+}
 .shape-charts > div + div { margin-top: 22px; }
 .ribbon-grid { min-width: var(--ribbon-width); }
 .ribbon-row {
