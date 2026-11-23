@@ -25,6 +25,9 @@ def generation_layout(people: list[dict], families: list[tuple]) -> dict:
     for family_id, (father, mother, children, _) in enumerate(families, 1):
         if father is not None and mother is not None:
             connect(father, mother, 0, family_id)
+        if father is None and mother is None and children:
+            for sibling in children[1:]:
+                connect(children[0], sibling, 0, family_id)
         for parent in (father, mother):
             if parent is not None:
                 for child in children:

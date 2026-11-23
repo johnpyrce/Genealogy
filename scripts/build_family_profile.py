@@ -3,8 +3,8 @@
 Two dimensions: time, encoded primarily by generation (to cope with the many
 missing dates) and secondarily by recorded birth years; and lineage, encoded
 by main-line segments, branches, and spouse ancestry. This generator is fully
-separate from the website build chain: it reads only the registries and writes
-one self-contained HTML artifact.
+separate from the website build chain. It reads the registries by default or
+uses a supplied GEDCOM file to write a self-contained HTML artifact.
 """
 from __future__ import annotations
 
@@ -12,8 +12,10 @@ import argparse
 from collections import Counter, defaultdict
 import json
 from pathlib import Path
+import webbrowser
 
 from scripts.build_generation_overview import generation_layout
+from scripts.import_gedcom import incoming_person, parse_gedcom
 from scripts.lib.genealogy_data import FAMILY_REGISTRY, ROOT, load_people, load_registry_csv
 
 TEMPLATE = ROOT / "scripts/templates/family_profile.html"
@@ -113,10 +115,48 @@ def compute_segments(
     return assignment, segments, inconsistencies
 
 
-def build_data() -> dict:
-    """Assemble the profile payload from the registries."""
-    people = load_people()
-    families = load_families_with_roles()
+def load_gedcom_profile(path: Path) -> tuple[list[dict], list[tuple], list[str]]:
+    """Load people and family links directly from a validated GEDCOM export."""
+    records = parse_gedcom(path)
+    people = []
+    ids = {}
+    for record in records:
+        if record.tag != "INDI":
+            continue
+        facts = incoming_person(record)
+        person_id = len(people) + 1
+        ids[record.xref] = person_id
+        people.append({
+            "id": person_id,
+            "first": facts["first_name"],
+            "surname": facts["surname"],
+            "surname_group": facts["family_name_group"],
+            "birth": int(facts["birth_year"]) if facts["birth_year"] else None,
+            "death": int(facts["death_year"]) if facts["death_year"] else None,
+        })
+
+    families = []
+    references = []
+    for record in records:
+        if record.tag == "FAM":
+            families.append((
+                ids.get(record.get("HUSB")),
+                ids.get(record.get("WIFE")),
+                [ids[child.value] for child in record.all("CHIL")],
+                None,
+            ))
+            references.append(record.xref)
+    return people, families, references
+
+
+def build_data(gedcom: Path | None = None) -> dict:
+    """Assemble the profile from the selected source."""
+    if gedcom is None:
+        people = load_people()
+        families = load_families_with_roles()
+        references = []
+    else:
+        people, families, references = load_gedcom_profile(gedcom)
     placements = generation_layout(people, families)
     assignment, segments, inconsistencies = compute_segments(people, families, placements)
 
@@ -145,6 +185,7 @@ def build_data() -> dict:
             decades[key] = decades.get(key, 0) + 1
 
     return {
+        "gedcom": gedcom.name if gedcom is not None else None,
         "people": out_people,
         "segments": segments,
         "families": [
@@ -153,6 +194,7 @@ def build_data() -> dict:
                 "parents": [parent for parent in (father, mother) if parent is not None],
                 "children": children,
                 "role": role,
+                **({"reference": references[family_id - 1]} if references else {}),
             }
             for family_id, (father, mother, children, role) in enumerate(families, 1)
         ],
@@ -168,6 +210,7 @@ def build_data() -> dict:
             "main_line_people": len(assignment),
         },
         "gaps": {
+            "conflicting": sum(1 for p in out_people if p["alignment"] == "conflict"),
             "undated": sum(1 for p in out_people if p["birth"] is None),
             "unaligned": sum(1 for p in out_people if p["generation"] == 0),
             "inconsistencies": [
@@ -189,13 +232,23 @@ def render_html(payload: str) -> str:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--output", type=Path,
-                        default=ROOT / "artifacts/interactive/family_profile.html")
+    parser.add_argument("--gedcom", type=Path, help="Read people and family links from a UTF-8 GEDCOM file")
+    parser.add_argument("--output", type=Path, help="Destination HTML path")
+    parser.add_argument("--open", action="store_true", help="Open the generated HTML in the default browser")
     args = parser.parse_args()
-    payload = json.dumps(build_data(), ensure_ascii=False).replace("<", "\\u003c")
-    args.output.parent.mkdir(parents=True, exist_ok=True)
-    args.output.write_text(render_html(payload), encoding="utf-8")
-    print(f"Wrote {args.output}")
+    filename = f"{args.gedcom.stem}_family_profile.html" if args.gedcom else "family_profile.html"
+    output = args.output or ROOT / "artifacts/interactive" / filename
+    try:
+        if args.gedcom is not None and output.exists() and output.samefile(args.gedcom):
+            parser.error("--output must differ from the input GEDCOM")
+        payload = json.dumps(build_data(args.gedcom), ensure_ascii=False).replace("<", "\\u003c")
+        output.parent.mkdir(parents=True, exist_ok=True)
+        output.write_text(render_html(payload), encoding="utf-8")
+    except (OSError, ValueError) as error:
+        parser.exit(1, f"{parser.prog}: {error}\n")
+    print(f"Wrote {output}")
+    if args.open and not webbrowser.open(output.resolve().as_uri()):
+        parser.exit(1, f"{parser.prog}: Could not open {output} in a browser\n")
 
 
 if __name__ == "__main__":

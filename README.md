@@ -250,69 +250,32 @@ The page mapping, timeline selection, and photo folders are configured in
 `website/templates/`. See [the website workflow](website/README.md) for details.
 When the preview is ready, ask Codex to **publish the latest site**.
 
-## Generation overview
-
-Build the local, offline surname-by-generation overview with:
-
-```sh
-uv run python -m scripts.build_generation_overview
-```
-
-Open `artifacts/interactive/generation_overview.html`. The overview shows
-collection-wide generation totals, a searchable surname count matrix, and
-individual records on selection. It defaults to the 12 largest surname groups;
-choose all groups to include every registry person in the visible rows.
-Generation labels include the minimum–maximum recorded birth years. Stacked bars
-show known and unknown birth-year counts across the whole generation, unaffected
-by surname filtering. Hover, focus, or tap a segment to see its count. A single
-year is shown once; no known years displays “Dates unknown”. These ranges may
-overlap and never estimate missing dates or affect generation placement.
-
-Overview generations use the largest connected family as a reference (ties use
-its lowest person ID). Partners occupy the same level; parent–child links are
-exactly one generation apart. Connections are followed both forward and backward,
-so short ancestry branches align where they join the reference family. Its earliest
-level becomes Gen 1. Disconnected people appear in an Unaligned column, counted
-once but excluded from numbered-generation date ranges. Contradictory constraints
-leave the entire affected component unaligned with a conflict explanation and
-family record references; no alternative account is discarded. These display
-positions differ from the analytics heat map’s independent ancestry depths.
-Surname groups do not imply connected branches. The full build regenerates this overview and includes it on the website at
-`/tree/overview/`, linked as **Overview** from the Family trees page.
-
-## Surname streams
-
-Run `uv run python -m scripts.build_surname_stream`, then open
-`artifacts/interactive/surname_stream.html`. This offline chart reuses the
-generation overview's placement rules. Ribbons show surname-group counts or
-shares by generation; select a surname and generation to inspect exact counts
-and individual records. Unaligned people are listed separately. Hide “Other
-surnames” to focus on the largest groups; the chart rescales to visible counts
-or shares, while the table retains counts and shares of all surnames.
-The full build regenerates this chart and includes it at `/tree/surnames/`,
-linked as **Surname streams** from the Family trees page and Overview.
-
-## Generation Atlas
-
-Run `uv run python -m scripts.build_generation_atlas_views` to generate
-`artifacts/interactive/generation_atlas_views.html`. Generation Atlas shares
-the overview's relationship-based generation assignments and offers labels,
-dots, and lifelines with person search, surname highlighting, and relative
-navigation. The full build includes it at `/tree/atlas/`, linked from the Family
-trees page and the family-tree viewer.
-
 ## Family profile
 
-Run `uv run python -m scripts.build_family_profile` to generate
-`artifacts/interactive/family_profile.html`. Family profile characterizes the
-family tree along two dimensions: time, encoded by generation with recorded
-birth years overlaid (missing dates are never estimated), and lineage, encoded
+Run `./family_profile.sh` to build the profile from the project registries and
+open `artifacts/interactive/family_profile.html` in your default browser. Family
+profile characterizes the family tree along two dimensions: time, encoded by
+generation with recorded birth years overlaid, and lineage, encoded
 by the recorded main-line families. Four linked lenses show the shape of the
 family (lineage segments, people per generation, and first-class gaps),
-surnames by generation coloured by the dominant lineage segment, per-segment
+a surname-by-generation heat map shaded by the number of people, per-segment
 detail, and per-surname detail; clicking a segment, surname, or generation
-highlights it across all lenses. Unlike the views above, it is standalone: the
-full build and the website do not include it.
+highlights it across all lenses.
+
+To build and open a profile directly from a UTF-8 GEDCOM export, run:
+
+```sh
+./family_profile.sh --gedcom path/to/tree.ged
+```
+
+The script opens `artifacts/interactive/tree_family_profile.html`. Pass
+`--output` to choose another destination. The builder reads people and
+relationships directly from the GEDCOM and leaves the registries untouched.
+The GEDCOM profile displays recorded parents, partners, and children alongside
+generation and surname views. Branch roles are unavailable in this mode.
+
+To generate the HTML without opening a browser, run
+`uv run python -m scripts.build_family_profile` with the same input and output options.
 
 ## Backups
 

@@ -1,6 +1,10 @@
 """Regression coverage for the standalone family profile computation and HTML."""
 
 import json
+from pathlib import Path
+import subprocess
+import sys
+from tempfile import TemporaryDirectory
 import unittest
 
 from scripts.build_family_profile import (
@@ -12,6 +16,24 @@ from scripts.build_family_profile import (
 )
 from scripts.build_generation_overview import generation_layout
 from scripts.lib.genealogy_data import load_people
+
+GEDCOM = """0 HEAD
+1 CHAR UTF-8
+0 @P1@ INDI
+1 NAME Jan /Żak/
+1 BIRT
+2 DATE 1900
+0 @P2@ INDI
+1 NAME Anna /Żak/
+1 BIRT
+2 DATE ABT 1930
+0 @P3@ INDI
+1 NAME Maria /Rams/
+0 @F9@ FAM
+1 WIFE @P1@
+1 CHIL @P2@
+0 TRLR
+"""
 
 
 def person(person_id, name="Test", group="Test", birth=None, death=None):
@@ -81,6 +103,32 @@ class SegmentComputationTests(unittest.TestCase):
 
 
 class ProfileDataTests(unittest.TestCase):
+    def test_gedcom_cli_builds_profile_from_file(self):
+        with TemporaryDirectory() as directory:
+            gedcom = Path(directory) / "tree.ged"
+            output = Path(directory) / "profile.html"
+            gedcom.write_text(GEDCOM, encoding="utf-8")
+            command = [sys.executable, "-m", "scripts.build_family_profile", "--gedcom", str(gedcom)]
+            subprocess.run([*command, "--output", str(output)], check=True, capture_output=True)
+            html = output.read_text(encoding="utf-8")
+            data = json.loads(html.split("const data=", 1)[1].split(";\n", 1)[0])
+            self.assertEqual(data["gedcom"], "tree.ged")
+            self.assertEqual(
+                [(p["first"], p["group"], p["birth"], p["generation"]) for p in data["people"]],
+                [("Jan", "Żak", 1900, 1), ("Anna", "Żak", None, 2), ("Maria", "Rams", None, 0)],
+            )
+            self.assertEqual(data["families"], [
+                {"id": 1, "parents": [1], "children": [2], "role": None, "reference": "@F9@"},
+            ])
+            self.assertEqual(data["segments"], [])
+            self.assertEqual(gedcom.read_text(encoding="utf-8"), GEDCOM)
+
+            gedcom.write_text(GEDCOM.replace("1 CHIL @P2@", "1 CHIL @missing@"), encoding="utf-8")
+            result = subprocess.run([*command, "--output", str(output)], capture_output=True, text=True)
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn("unknown person reference", result.stderr)
+            self.assertEqual(output.read_text(encoding="utf-8"), html)
+
     def test_payload_covers_every_person_exactly_once(self):
         data = build_data()
         registry_ids = {p["id"] for p in load_people()}
@@ -108,6 +156,7 @@ class ProfileDataTests(unittest.TestCase):
         payload = json.dumps(build_data(), ensure_ascii=False).replace("<", "\\u003c")
         html = render_html(payload)
         self.assertNotIn("__PROFILE_DATA__", html)
+        self.assertNotIn('role="tablist"', html)
         embedded = html.split("const data=", 1)[1].split(";\n", 1)[0]
         self.assertNotIn("<", embedded)
         self.assertEqual(len(json.loads(embedded)["people"]), len(load_people()))
@@ -115,10 +164,20 @@ class ProfileDataTests(unittest.TestCase):
     def test_template_has_all_lenses(self):
         template = TEMPLATE.read_text(encoding="utf-8")
         for marker in ('id="ribbon"', 'id="genbars"', 'id="gaps"', 'id="matrix"',
-                       'id="hist"', 'data-tip', 'main-line segments',
+                       'id="hist"', 'id="heat-key"', 'main-line segments',
                        'id="lens3"', 'id="lens4"', 'id="focusbar"',
                        'function applyFocus()', 'function renderHist('):
             self.assertIn(marker, template)
+
+    def test_family_with_only_children_still_connects_siblings(self):
+        placements = generation_layout(
+            [person(i) for i in range(1, 4)],
+            [(None, None, [2, 3], None)],
+        )
+        self.assertEqual(
+            [(placements[i]["component"], placements[i]["generation"]) for i in (1, 2, 3)],
+            [(1, 0), (2, 1), (2, 1)],
+        )
 
 
 if __name__ == "__main__":
