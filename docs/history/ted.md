@@ -28,7 +28,8 @@ On July 27, 1945, B-29A 42-94098 with the Hewitt crew of twelve took off for a b
 The raid consisted of 350 B-29s.  Shortly after dropping their bombs, they were hit by flak and possibly attacked
 by Japanese Zero fighters.  The crew abandoned the damaged bomber, which broke into several pieces and
 crashed into a mountainous area.  Several crew members were killed in the crash or immediately after.
-Although this was a rural area, all of the survivors were captured by the KempehTai, the Japanese military police,
+Although this was a rural area, all of the survivors were captured and interrogated by the KempehTai
+(the Japanese military police)
 within a few days and sent to the prison camp
 at Fukuoka.  They were the only plane that was lost in this raid.
 
@@ -47,28 +48,29 @@ Here was the crew roster:
 - Cpl. Robert R. Sawdye — Tail Gunner
 - Capt. Louis W. Nelson — Observer
 
-Very shortly after the crew was captured, the US dropped Hiroshima and Nagasaki with atomic bombs, and Japan surrendered.
+Very shortly after the crew was captured, the US attacked the cities of Hiroshima and Nagasaki with atomic bombs
+and Japan surrendered.
 
-The treatment of war prisoners by the Japanese in World War II was brutal. The Japanese
+The treatment of war prisoners by the Japanese in World War II was cruel and brutal. The Japanese
 military held a cultural belief that surrendering to
-an enemy was dishonorable.  US airmen were also considered to be war criminals because of
-the bombing of civilian areas with incendiary bombs, causing extensive civilian casualties.
+an enemy was dishonorable.  And US airmen were considered to be war criminals because of
+the bombing of civilian areas with incendiary bombs which caused extensive civilian casualties.
 
 The surviving B-29 crew members were executed by their Japanese captors in two groups with gruesome methods
-including decapitation.  This was done at the direction of the camp commander, and was not approved
+including decapitation.  This was done at the direction of the camp commander, and was not sanctioned
 by the Japanese military command. One group was executed before the Japanese surrender, the second group after the surrender 
-to disguise what had been done.
+to try to disguise what had been done.
 
-Charles Appleby, the Navigator, was 21 when he died.  He had married in
+Charles Appleby, the navigator, was 21 when he died.  He had married in
 high school as a teenager and already
 had a young daughter.  He carried on an extensive correspondence with his wife, Marilyn, and other
 friends and family members while enlisted in the military.  These were the basis of a book,
-[When the Letters Stopped](https://www.amazon.com/When-Letters-Stopped-navigator-Charles/dp/1737740176/ref=sr_1_1?crid=NRGI5R11J834&dib=eyJ2IjoiMSJ9.Oe--8m1p-T40R6OjOAIovBDNnqdNRFEpd2_nnNoR4avn7ZVdo7_YdX3jorjf3bTVVD9nI5Ih-a_cGCzXOo4VAeUWTSiHTqJ_MxF4JXcNtfg.vFXwY2_QRjgu4Cz55Tg6J56C0gZP08tDOR7watVZsok&dib_tag=se&keywords=when%2Bthe%2Bletters%2Bstopped&qid=1795456037&sprefix=When%2Bthe%2Bletters%2B%2Caps%2C290&sr=8-1&th=1), by Heather Buchanan, a
+[When the Letters Stopped](https://www.amazon.com/When-Letters-Stopped-navigator-Charles/dp/1737740176/ref=sr_1_1?crid=NRGI5R11J834&dib=eyJ2IjoiMSJ9.Oe--8m1p-T40R6OjOAIovBDNnqdNRFEpd2_nnNoR4avn7ZVdo7_YdX3jorjf3bTVVD9nI5Ih-a_cGCzXOo4VAeUWTSiHTqJ_MxF4JXcNtfg.vFXwY2_QRjgu4Cz55Tg6J56C0gZP08tDOR7watVZsok&dib_tag=se&keywords=when%2Bthe%2Bletters%2Bstopped&qid=1795456037&sprefix=When%2Bthe%2Bletters%2B%2Caps%2C290&sr=8-1&th=1) by Heather Buchanan, a
 descendant of Appleby.  Besides the correspondence, the book
 is the result of extensive research into the time, accounts
 of survivors, and testimony from Japanese records and war crime trials after the war.  This book contains
 a remarkably detailed account focused on Appleby and his friends and relatives, including a recreation
-of what their experiences in Japan might have been like. Ted appears as a minor character.
+of what their experiences as prisoners in Japan might have been like. Ted appears as a minor character.
 
 
 ## References
