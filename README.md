@@ -264,6 +264,12 @@ highlights it across all lenses.
 
 The **Relationship Graph** tab uses the same source and offers both People and
 Families views. The graph loads Cytoscape.js from a CDN when you open the tab.
+The **Generation layers** tab shows a rotatable 3D tree, with older generations
+above younger ones, siblings side by side, and spouses paired front to back.
+Choose a person to highlight their recorded family connections. The Tree
+control appears when there are multiple connected groups to plot. People
+without recorded connections can be reviewed and selected from the Data
+issues dialog.
 
 To build and open a profile directly from a UTF-8 GEDCOM export, run:
 

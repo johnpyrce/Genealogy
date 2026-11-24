@@ -9,12 +9,15 @@ from pathlib import Path
 from scripts.lib.genealogy_data import ROOT, load_families, load_people
 
 
-def generation_layout(people: list[dict], families: list[tuple]) -> dict:
+def generation_layout(
+    people: list[dict], families: list[tuple], *, include_component_generation: bool = False,
+) -> dict:
     """Align exact family steps in both directions within connected components.
 
     The largest component is the reference family (ties use the lowest person ID).
     Zero means unaligned, never an inferred generation. A contradictory component
     is left entirely unaligned so traversal order cannot choose an account.
+    The optional component generation ranks each consistent component independently.
     """
     links = {person['id']: [] for person in people}
 
@@ -65,6 +68,10 @@ def generation_layout(people: list[dict], families: list[tuple]) -> dict:
                 'component': min(levels),
                 'conflicting_families': component['conflicts'],
             }
+            if include_component_generation:
+                placements[person_id]['component_generation'] = (
+                    level + offset if not component['conflicts'] else 0
+                )
     return placements
 
 

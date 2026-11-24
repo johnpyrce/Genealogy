@@ -24,6 +24,7 @@ from scripts.import_gedcom import incoming_person, parse_gedcom
 from scripts.lib.genealogy_data import FAMILY_REGISTRY, ROOT, load_people, load_registry_csv
 
 TEMPLATE = ROOT / "scripts/templates/family_profile.html"
+LAYERS_SCRIPT = TEMPLATE.with_name("generation_layers.js")
 
 
 def load_families_with_roles() -> list[tuple[int | None, int | None, list[int], str]]:
@@ -262,7 +263,7 @@ def build_data(gedcom: Path | None = None) -> dict:
 def profile_data(
     people: list[dict], families: list[tuple], references: list[str], source_name: str | None,
 ) -> dict:
-    placements = generation_layout(people, families)
+    placements = generation_layout(people, families, include_component_generation=True)
     assignment, segments, inconsistencies = compute_segments(people, families, placements)
 
     by_id = {person["id"]: person for person in people}
@@ -273,6 +274,8 @@ def profile_data(
             "surname": person["surname"],
             "group": person["surname_group"],
             "generation": placements[person["id"]]["generation"],
+            "component": placements[person["id"]]["component"],
+            "component_generation": placements[person["id"]]["component_generation"],
             "birth": person["birth"],
             "death": person["death"],
             "segment": assignment.get(person["id"]),
@@ -366,10 +369,11 @@ def gedcom_graph_data(
 
 
 def render_html(payload: str, graph_html: str) -> str:
-    """Embed both views in a self-contained profile page."""
+    """Embed the profile and both tree viewers in a self-contained page."""
     graph_payload = json.dumps(graph_html, ensure_ascii=False).replace("<", "\\u003c")
     template = TEMPLATE.read_text(encoding="utf-8")
     before, after = template.split("__PROFILE_DATA__", 1)
+    after = after.replace("__GENERATION_LAYERS_JS__", LAYERS_SCRIPT.read_text(encoding="utf-8"), 1)
     return before.replace("__PROFILE_GRAPH__", graph_payload, 1) + payload + after
 
 

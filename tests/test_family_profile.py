@@ -227,7 +227,9 @@ class ProfileDataTests(unittest.TestCase):
         html = render_html(payload, graph)
         self.assertNotIn("__PROFILE_DATA__", html)
         self.assertNotIn("__PROFILE_GRAPH__", html)
+        self.assertNotIn("__GENERATION_LAYERS_JS__", html)
         self.assertIn('aria-controls="graph-panel"', html)
+        self.assertIn('aria-controls="layers-panel"', html)
         self.assertEqual(html.count("</script>"), 2)
         embedded = html.split("\nconst data=", 1)[1].split(";\n", 1)[0]
         self.assertNotIn("<", embedded)
@@ -246,11 +248,13 @@ class ProfileDataTests(unittest.TestCase):
         placements = generation_layout(
             [person(i) for i in range(1, 4)],
             [(None, None, [2, 3], None)],
+            include_component_generation=True,
         )
         self.assertEqual(
             [(placements[i]["component"], placements[i]["generation"]) for i in (1, 2, 3)],
             [(1, 0), (2, 1), (2, 1)],
         )
+        self.assertEqual([placements[i]["component_generation"] for i in (1, 2, 3)], [1, 1, 1])
 
 
 if __name__ == "__main__":
