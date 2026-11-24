@@ -59,8 +59,6 @@ to Thaddeus Mathew Pyrch and his father to Joseph Pyrch, effectively changing th
 "Pyrch".  (It’s curious that his middle name was changed as well.)
 View the [birth certificate correction](../../media/Ted/1936%20-%20Thaddeus%20Birth%20Cert%20Correction.jpg).
 
-Another child, Emil, died very young and there are no dates available for him.
-
 ## US Census, 1920:  Porch?
 
 General searches in the 1920 Census with possible names (e.g., Perc, Pyrc, Pyrch, Pirc, Puirch, and Pyrce) did not
@@ -163,7 +161,7 @@ in the United States in 1911. The form gave Joseph’s birth date as March 8,
 The statement lists five children. The handwritten entries give these dates
 and places of birth (some handwriting is difficult to read):
 
-| Name as written | Date and place in the statement | Original Polish form |
+| Name as written | Date and place in the statement | Polish form |
 | --- | --- | --- |
 | Stanley John | November 5, 1911, Poland | Stanisław |
 | Bernice Rose | August 1, 1914, Chicago | Bronisława |
@@ -212,7 +210,7 @@ Stanley, the first child, was born in Poland.  His recorded names vary widely.
 
 - His name was **Stanislaw Perc** in the manifest on arrival at Ellis Island, as previously mentioned.
 - A [Certificate of Arrival](../../media/StanleyPyrce/1936%20-%20Stanley%20Cert%20of%20Arrival.jpg) dated 1936 attests that Stanley was born on November 5, 1911, and arrived in New York on June 5, 1912. His name is listed as "Perc, Stanislaw".
-- A [Declaration of Intention](../../media/StanleyPyrce/1936%20-%20Stanley%20Declaration.jpg) to gain citizenship for Stanley is dated May 1936.  This lists his birthplace as Muszyna, Poland, and his birth date as November 5, 1911.  It gives several alternative names:  Stanley John Pyrc, Stanley John Pyrch, or S. J. Pirc, with "Pyrc" being the name he signed.
+- A [Declaration of Intention](../../media/StanleyPyrce/1936%20-%20Stanley%20Declaration.jpg) to gain citizenship for Stanley is dated May 1936.  This lists his birthplace as Muszyna, Poland, and his birth date as November 5, 1911.  It gives several alternative names that he had used:  Stanley John Pyrc, Stanley John Pyrch, or S. J. Pirc, with "Pyrc" being the name he signed.
 - His [Petition for Naturalization](../../media/StanleyPyrce/1936%20-%20Stanley%20Petition%20for%20Naturalization.jpg) is dated March 1941 and gives his name as Stanley Perc.
 - His [1941 naturalization court card](../../media/SophieJoseph/1941%20-%20Stanley%20Pyrce%20Court%20Naturalization%20Card.jpg) records him as **Stanley Pyrce** and gives May 20, 1941, as the date of admission.
 - A [1943 pay envelope](https://archive.pyrce.org/#album=1BBN0wvrVgRiKfmurPiiYDShYqHR3hoyI&photo=1RwdAX1K6FQ6R59PHhA3gqM8LM0_K-Rx1) from the Crane Company gives his name as "Stanley Pyrc." This may reflect a spelling used when he began working there, possibly more than a decade earlier.
@@ -317,9 +315,9 @@ Census cells show **approximate birth year (recorded age)**. Approximate years g
 
 ## Immigration records and unresolved conflicts
 
-- The 1913 passenger manifest for the S.S. *Kaiser Wilhelm II*, sailing from Bremen and arriving February 4, 1913, has an entry for Zofia Goscinska, age 18. It gives Muszyna as her last residence, names Jozef Goscinski as the husband she was joining, and gives Sioux City, Iowa, as her destination.  Muszyna was a small community of about 3,000 in 1913, so it is surprising that there should be another couple with such similar names.  The Polish records in the Goscinski family tree indicate that Sophie had a brother named Jozef, although those records do not indicate that he immigrated. It is possible that this was his wife joining him in America. Sophie had another brother, Andrew, who is recorded in the Polish family tree as having emigrated to Chicago at an unknown date, and there are photos of him in the collection.
+- The 1913 passenger manifest for the S.S. *Kaiser Wilhelm II* at Ellis Island, sailing from Bremen and arriving February 4, 1913, has an entry for Zofia Goscinska, age 18. It gives Muszyna as her last residence, names Jozef Goscinski as the husband she was joining, and gives Sioux City, Iowa, as her destination.  Muszyna was a small community of about 3,000 in 1913, so it is surprising that there should be another couple with such similar names.  The Polish records in the Goscinski family tree indicate that Sophie had a brother named Jozef, although those records do not indicate that he immigrated. It is possible that this was his wife joining him in America. Sophie had another brother, Andrew, who is recorded in the Polish family tree as having emigrated to Chicago at an unknown date, and there are photos of him in the collection.
 
-- A separate manifest records a Josef Pyrc, age 23, arriving in New York aboard the S.S. *Pretoria* on December 13, 1905. The name and approximate age make him a possible match for Joseph, but the 1933 statement gives Joseph’s arrival as 1911. The 1905 entry should therefore remain a possible earlier arrival, not be assigned to him as fact. View the [1905 manifest, line 5](../../media/SophieJoseph/1905%20-%20Josef%20Pyrc%20Pretoria%20Manifest%3F%20%28line%205%29.gif).
+- A separate Ellis Island manifest records a Josef Pyrc, age 23, arriving in New York aboard the S.S. *Pretoria* on December 13, 1905. The name and approximate age make him a possible match for Joseph, but the 1933 statement gives Joseph’s arrival as 1911. The 1905 entry should therefore remain a possible earlier arrival, not be assigned to him as fact. View the [1905 manifest, line 5](../../media/SophieJoseph/1905%20-%20Josef%20Pyrc%20Pretoria%20Manifest%3F%20%28line%205%29.gif).
 
 
 ### Sophie’s birth year
@@ -329,10 +327,10 @@ The records give a significant range of dates.
 |Estimated birth year|Document|
 |----------|--------|
 |1885|1912 New York Passenger Arrival list (age 27)|
-|1890|1920 Census (30)|
-|1890|1930 Census (40)|
-|1890|1940 Census (50)|
-|1892|1950 Census (58)|
+|1890|1920 Census (age 30)|
+|1890|1930 Census (age 40)|
+|1890|1940 Census (age 50)|
+|1892|1950 Census (age 58)|
 |1883|1933 Citizenship Application|
 |1883|1938 Naturalization Papers|
 |1893|1964 Death Certificate|

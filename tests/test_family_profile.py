@@ -235,7 +235,8 @@ class ProfileDataTests(unittest.TestCase):
 
     def test_template_has_all_lenses(self):
         template = TEMPLATE.read_text(encoding="utf-8")
-        for marker in ('id="ribbon"', 'id="genbars"', 'id="gaps"', 'id="matrix"',
+        self.assertNotIn('id="ribbon"', template)
+        for marker in ('id="genbars"', 'id="gaps"', 'id="matrix"',
                        'id="hist"', 'id="heat-key"', 'main-line segments',
                        'id="lens3"', 'id="lens4"', 'id="focusbar"',
                        'function applyFocus()', 'function renderHist('):

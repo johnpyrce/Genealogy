@@ -257,7 +257,7 @@ open `artifacts/interactive/family_profile.html` in your default browser. Family
 profile characterizes the family tree along two dimensions: time, encoded by
 generation with recorded birth years overlaid, and lineage, encoded
 by the recorded main-line families. Four linked lenses show the shape of the
-family (lineage segments, people per generation, and first-class gaps),
+family (people per generation and gaps in the records),
 a surname-by-generation heat map shaded by the number of people, per-segment
 detail, and per-surname detail; clicking a segment, surname, or generation
 highlights it across all lenses.
