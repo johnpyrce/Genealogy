@@ -262,6 +262,14 @@ a surname-by-generation heat map shaded by the number of people, per-segment
 detail, and per-surname detail; clicking a segment, surname, or generation
 highlights it across all lenses.
 
+The top of Family Profile shows people, families, people without a recorded
+parent, and the range of recorded years. Expand **Data coverage** below those
+counts and select a row to inspect recorded or unrecorded fields. GEDCOM profiles count
+event dates, places, and evidence directly from the export. For merged profiles,
+the basic counts describe the combined tree, and the source selector shows each
+input file's coverage. The year range uses written Gregorian years, including
+written endpoints of date ranges.
+
 The **Relationship Graph** tab uses the same source and offers both People and
 Families views. The graph loads Cytoscape.js from a CDN when you open the tab.
 The **Generation layers** tab shows a rotatable 3D tree, with older generations
@@ -269,7 +277,8 @@ above younger ones, siblings side by side, and spouses paired front to back.
 Choose a person to highlight their recorded family connections. The Tree
 control appears when there are multiple connected groups to plot. People
 without recorded connections can be reviewed and selected from the Data
-issues dialog.
+issues dialog. Click a generation label or use the Generations control to
+hide or show its plane. Reset view restores all planes.
 
 To build and open a profile directly from a UTF-8 GEDCOM export, run:
 

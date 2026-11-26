@@ -28,6 +28,7 @@ svg text{font-family:system-ui,-apple-system,sans-serif}.barval{font-size:11px;f
  cursor:grab; touch-action:none;
 }
 #layers-canvas:focus-visible { outline:3px solid #c18431; outline-offset:2px; }
+#layers-canvas.layer-label-hover { cursor:pointer; }
 #layers-canvas:active { cursor:grabbing; }
 #layers-canvas[hidden] { display:none; }
 .layers-workspace { display:grid; grid-template-columns:minmax(0,1fr) minmax(210px,245px); align-items:start; gap:16px; }
@@ -63,15 +64,36 @@ svg text{font-family:system-ui,-apple-system,sans-serif}.barval{font-size:11px;f
 }
 #layers-unplaced { border-top:1px solid #dde3dd; margin-top:12px; padding-top:12px; }
 #layers-issues-open { background:#fbfaf7; border-color:#d6c7b7; }
-#layers-isolated {
+.layers-dialog {
  width:min(400px, calc(100% - 32px)); max-height:calc(100% - 32px);
  border:1px solid #e3d9cf; border-radius:8px; background:#fbfaf7; color:inherit; padding:16px;
 }
-#layers-isolated::backdrop { background:rgb(36 53 58 / 35%); }
-.layers-issues-heading { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:8px; }
-.layers-issues-heading h3 { margin:0; }
+#layers-generations { width:min(300px, calc(100% - 32px)); }
+.layers-dialog::backdrop { background:rgb(36 53 58 / 35%); }
+#stats { gap:12px 30px; margin:20px 0; }
+#data-coverage { margin:0 0 16px; padding:8px 12px; border:1px solid #b8c7c1; border-radius:8px; background:white; }
+#data-coverage > summary { font-weight:600; }
+#data-coverage > div { margin-top:8px; }
+.coverage-group { margin:16px 0; }
+.coverage-row { display:grid; grid-template-columns:minmax(0,1.4fr) minmax(48px,1fr) minmax(105px,1fr); gap:9px; align-items:center; width:100%; text-align:left; margin:2px 0; padding:7px 8px; border:1px solid transparent; border-radius:6px; background:#f7f8f3; color:inherit; font-size:13px; }
+button.coverage-row { cursor:pointer; }
+button.coverage-row:hover { border-color:#b8c7c1; }
+.coverage-row progress { width:100%; accent-color:#55786c; }
+.coverage-amount { text-align:right; font-variant-numeric:tabular-nums; }
+.coverage-controls { display:flex; flex-wrap:wrap; align-items:end; gap:10px; margin-top:10px; }
+.coverage-controls [hidden], .coverage-controls[hidden] { display:none; }
+.coverage-controls label { min-width:0; }
+.coverage-controls select { min-height:32px; max-width:100%; }
+.coverage-breakdown { width:min(580px, calc(100% - 32px)); overflow:auto; }
+.coverage-breakdown ol { padding-left:24px; }
+.coverage-breakdown li { margin-bottom:6px; overflow-wrap:anywhere; }
+.coverage-breakdown small { display:block; color:#526366; }
+#layers-generation-list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:6px 10px; }
+#layers-generation-list label { display:flex; align-items:center; gap:6px; min-height:28px; cursor:pointer; }
+.layers-dialog-heading { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:8px; }
+.layers-dialog-heading h3 { margin:0; }
 .layers-unplaced-list { display:flex; flex-wrap:wrap; gap:6px; }
-.layers-unplaced-list button, .layers-issues-heading button {
+.layers-unplaced-list button, .layers-dialog-heading button {
  border:1px solid #b8c7c1; border-radius:6px; padding:4px 8px; background:white; color:inherit; cursor:pointer;
 }
 .layers-unplaced-list button[aria-pressed="true"] { border-color:#24353a; background:#e8eee5; }
@@ -142,6 +164,28 @@ html:not(.gedcom) #lens3 { max-height: none; }
 <div id="profile-panel" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
 <p class="intro" id="intro">A characterization of the recorded family collection along two dimensions — <strong>time</strong>, primarily by generation (many people carry no recorded dates, with recorded birth years overlaid), and <strong>lineage</strong>, the succession of main-line surnames, the branches that leave them, and the ancestry brought in by marriage — across four linked lenses. Click any segment, surname, or generation to highlight it across every lens. Nothing here estimates missing facts.</p>
 <div class="stats" id="stats"></div>
+<details id="data-coverage">
+ <summary>Data coverage</summary>
+ <div>
+  <p class="sub" id="coverage-source"></p>
+  <div class="coverage-controls">
+   <label id="coverage-source-control" hidden>Coverage source<select id="coverage-source-picker"></select></label>
+   <label id="coverage-place-control" hidden>Browse recorded places<select id="coverage-place-picker"></select></label>
+  </div>
+  <div id="coverage-groups"></div>
+ </div>
+</details>
+<dialog class="layers-dialog coverage-breakdown" id="coverage-breakdown" aria-labelledby="coverage-breakdown-title">
+ <div class="layers-dialog-heading">
+  <h3 id="coverage-breakdown-title"></h3>
+  <form method="dialog"><button type="submit">Close</button></form>
+ </div>
+ <div class="coverage-controls" id="coverage-status-control">
+  <label>Show<select id="coverage-status"><option value="recorded">Recorded</option><option value="unrecorded">Unrecorded</option></select></label>
+ </div>
+ <p class="scope" id="coverage-breakdown-count" role="status"></p>
+ <ol id="coverage-breakdown-records"></ol>
+</dialog>
 <div id="focusbar"><span>Highlighting across all lenses:</span><strong id="focuslabel"></strong><button id="clearfocus" type="button">Clear</button></div>
 
 <section class="panel" aria-label="The shape of the family">
@@ -197,7 +241,7 @@ html:not(.gedcom) #lens3 { max-height: none; }
 <div id="layers-panel" role="tabpanel" aria-labelledby="layers-tab" hidden>
  <section class="panel">
   <h2>Generation layers</h2>
-  <p class="sub" id="layers-instructions">Each plane is a generation. Dots are colored by surname, and lines connect recorded families. Drag or use the arrow keys to rotate. Scroll over the tree to zoom. Select a person to highlight their family connections.</p>
+  <p class="sub" id="layers-instructions">Dots are colored by surname, and lines connect recorded families. Click a generation label to hide or show its plane. Drag or use the arrow keys to rotate, and scroll to zoom. Select a person to highlight their family connections.</p>
   <div class="layers-toolbar">
    <label id="layers-tree-control" hidden>Tree<select id="layers-tree"></select></label>
    <label>Find a person<select id="layers-person"></select></label>
@@ -206,10 +250,18 @@ html:not(.gedcom) #lens3 { max-height: none; }
     <button type="button" id="layers-zoom-in" aria-label="Zoom in">+</button>
     <button type="button" id="layers-reset">Reset view</button>
    </div>
+   <button type="button" id="layers-generations-open" aria-haspopup="dialog" aria-controls="layers-generations" hidden>Generations</button>
    <button type="button" id="layers-issues-open" aria-haspopup="dialog" aria-controls="layers-isolated" hidden>Data issues</button>
   </div>
-  <dialog id="layers-isolated" aria-labelledby="layers-issues-title" aria-describedby="layers-issues-description">
-   <div class="layers-issues-heading">
+  <dialog class="layers-dialog" id="layers-generations" aria-labelledby="layers-generations-title">
+   <div class="layers-dialog-heading">
+    <h3 id="layers-generations-title">Visible generations</h3>
+    <form method="dialog"><button type="submit">Close</button></form>
+   </div>
+   <div id="layers-generation-list" role="group" aria-labelledby="layers-generations-title"></div>
+  </dialog>
+  <dialog class="layers-dialog" id="layers-isolated" aria-labelledby="layers-issues-title" aria-describedby="layers-issues-description">
+   <div class="layers-dialog-heading">
     <h3 id="layers-issues-title">Disconnected people</h3>
     <form method="dialog"><button type="submit" autofocus>Close</button></form>
    </div>
@@ -244,6 +296,8 @@ html:not(.gedcom) #lens3 { max-height: none; }
 const data=__PROFILE_DATA__;
 const el=id=>document.getElementById(id);
 __GENERATION_LAYERS_JS__
+__PROFILE_COVERAGE_JS__
+renderProfileCoverage(data);
 const viewTabs=[...document.querySelectorAll('.view-tabs [role="tab"]')];
 let layersReady=false;
 function selectTab(index){
@@ -332,7 +386,13 @@ if(fromGedcom){
   `<li><strong>${esc([person.first,person.surname].filter(Boolean).join(' ')||'Name unknown')}</strong>
    · ${esc(person.merge_note)}<br><span class="muted">${esc(person.reference)}</span></li>`).join('');
 }
-el('stats').innerHTML=[[S.people,'people recorded'],[`${S.families} families`,fromGedcom?'GEDCOM family records':'main line · branches · spouses'],[S.generations,'generations'],[S.groups,'surname groups'],...(fromGedcom?[]:[[data.segments.length,'main-line segments']]),[S.dated,'recorded birth years']].map(([v,l])=>`<div class="stat"><strong>${v}</strong><span>${l}</span></div>`).join('');
+const years=data.coverage.years;
+const dateRange=!years?'Unknown':years[0]===years[1]?years[0]:years.join('–');
+el('stats').innerHTML=[
+ [S.people,'people recorded'],[S.families,'families'],[data.coverage.without_parents,'people without a recorded parent'],
+ [dateRange,'recorded year range'],[S.generations,'generations'],[S.groups,'surname groups'],
+ ...(fromGedcom?[]:[[data.segments.length,'main-line segments']]),[S.dated,'recorded birth years']
+].map(([v,l])=>`<div class="stat"><strong>${v}</strong><span>${l}</span></div>`).join('');
 const segMembers=data.segments.map(()=>new Set());
 const genMembers=new Array(S.generations+1).fill(null).map(()=>new Set());
 for(const p of data.people){

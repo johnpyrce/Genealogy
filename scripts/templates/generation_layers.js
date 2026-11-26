@@ -235,6 +235,11 @@ function initGenerationLayers(data) {
  const zoomOut = document.getElementById('layers-zoom-out');
  const zoomIn = document.getElementById('layers-zoom-in');
  const reset = document.getElementById('layers-reset');
+ const generationsButton = document.getElementById('layers-generations-open');
+ const generationList = document.getElementById('layers-generation-list');
+ const generationInputs = new Map();
+ const hiddenGenerations = new Set();
+ generationsButton.addEventListener('click', () => document.getElementById('layers-generations').showModal());
  const components = new Map();
  const byId = new Map(data.people.map(p => [p.id, p]));
  const ancestorToggle = document.getElementById('layers-ancestors');
@@ -313,6 +318,7 @@ function initGenerationLayers(data) {
  let yaw = defaultYaw, pitch = defaultPitch, zoom = 1;
  let scene, selected = null, hovered = null, drag = null;
  let displayed = [];
+ let generationLabels = [];
  let scheduled = false;
  function requestDraw() {
   if (scheduled) return;
@@ -354,11 +360,18 @@ function initGenerationLayers(data) {
   bounds = scene.layers.flatMap(corners);
   radius = bounds.reduce((max, p) => Math.max(max, Math.hypot(p.x, p.y, p.z)), 1);
   fit = cameraExtent(projector(defaultYaw, defaultPitch));
-  const count = `${placed.length} people plotted`;
-  const generations = scene.layers.length === 1 ? '1 generation' : `${scene.layers.length} generations`;
-  summary.textContent = placed.length ? `${count} · ${generations}` : count;
-  if (allPeople && trees.length > 1) summary.append(' · Generations are numbered within each connected tree');
-  if (allPeople && unplaced.length) summary.append(` · ${unplaced.length} with no established generation`);
+  generationInputs.clear();
+  generationList.replaceChildren();
+  for (const {generation} of scene.layers) {
+   const label = document.createElement('label');
+   const input = document.createElement('input');
+   input.type = 'checkbox';
+   input.addEventListener('change', () => setGenerationVisible(generation, input.checked));
+   label.append(input, `Generation ${generation}`);
+   generationList.append(label);
+   generationInputs.set(generation, input);
+  }
+  generationsButton.hidden = !scene.layers.length;
   canvas.hidden = !placed.length;
   issuesButton.hidden = !allPeople || !isolated.length;
   document.getElementById('layers-unplaced').hidden = !allPeople || !unplaced.length;
@@ -372,14 +385,42 @@ function initGenerationLayers(data) {
   }
   person.disabled = !members.length;
   history.length = 0;
-  selectPerson(null, false);
+  selectPerson(null, {remember: false});
   resetView();
+ }
+ const isPersonVisible = id => !hiddenGenerations.has(byId.get(id)?.component_generation);
+ function updateVisibility() {
+  for (const [generation, input] of generationInputs) input.checked = !hiddenGenerations.has(generation);
+  const hidden = hiddenGenerations.size;
+  const count = [...scene.positions.keys()].filter(isPersonVisible).length;
+  const generations = scene.layers.length - hidden;
+  summary.textContent = `${count} people plotted`;
+  if (scene.layers.length) summary.append(` · ${generations} ${generations === 1 ? 'generation' : 'generations'}`);
+  if (hidden) summary.append(` · ${hidden} hidden`);
+  if (!tree.value && trees.length > 1) summary.append(' · Generations are numbered within each connected tree');
+  if (!tree.value && unplaced.length) summary.append(` · ${unplaced.length} with no established generation`);
+  requestDraw();
+ }
+ function setGenerationVisible(generation, visible) {
+  if (visible) hiddenGenerations.delete(generation);
+  else hiddenGenerations.add(generation);
+  hovered = null;
+  canvas.classList.remove('layer-label-hover');
+  updateVisibility();
+ }
+ function revealPersonGeneration(id) {
+  if (!scene.positions.has(id)) return;
+  const generation = byId.get(id).component_generation;
+  if (hiddenGenerations.has(generation)) setGenerationVisible(generation, true);
  }
  function resetView() {
   yaw = defaultYaw;
   pitch = defaultPitch;
   zoom = 1;
   hovered = null;
+  hiddenGenerations.clear();
+  canvas.classList.remove('layer-label-hover');
+  updateVisibility();
   updateZoom();
  }
  function updateZoom() {
@@ -470,13 +511,14 @@ function initGenerationLayers(data) {
     relatives.querySelector('[aria-pressed="true"]')?.setAttribute('aria-pressed', 'false');
     pinned = pinned === ancestor ? null : ancestor;
     button.setAttribute('aria-pressed', String(pinned !== null));
+    if (pinned !== null) revealPersonGeneration(pinned);
     previewAncestor(pinned);
    });
    relatives.append(button);
   }
  }
- ancestorToggle.addEventListener('change', () => selectPerson(selected, false));
- function selectPerson(id, remember = true) {
+ ancestorToggle.addEventListener('change', () => selectPerson(selected, {remember: false, reveal: false}));
+ function selectPerson(id, {remember = true, reveal = true} = {}) {
   if (remember && selected !== null && selected !== id) history.push(selected);
   back.disabled = !history.length;
   marked = new Set();
@@ -489,6 +531,7 @@ function initGenerationLayers(data) {
   selected = id;
   person.value = id ?? '';
   const p = byId.get(id);
+  if (reveal) revealPersonGeneration(id);
   detail.replaceChildren();
   for (const [personId, button] of unplacedButtons) {
    button.setAttribute('aria-pressed', String(personId === id));
@@ -549,6 +592,7 @@ function initGenerationLayers(data) {
   ctx.setTransform(density, 0, 0, density, 0, 0);
   ctx.clearRect(0, 0, width, height);
   displayed = [];
+  generationLabels = [];
   if (!scene.layers.length) return;
 
   const project = projector(yaw, pitch);
@@ -583,22 +627,26 @@ function initGenerationLayers(data) {
   ctx.textBaseline = 'middle';
   for (const layer of scene.layers) {
    const polygon = corners(layer).map(screen);
-   path(polygon, true);
-   ctx.fillStyle = layer.generation % 2 ? '#d9e7dcaa' : '#dce7eeaa';
-   ctx.strokeStyle = '#a7bdb4';
-   ctx.lineWidth = 1;
-   ctx.fill();
-   ctx.stroke();
+   if (!hiddenGenerations.has(layer.generation)) {
+    path(polygon, true);
+    ctx.fillStyle = layer.generation % 2 ? '#d9e7dcaa' : '#dce7eeaa';
+    ctx.strokeStyle = '#a7bdb4';
+    ctx.lineWidth = 1;
+    ctx.fill();
+    ctx.stroke();
+   }
    const anchor = polygon.reduce((left, point) => point.x < left.x ? point : left);
    const label = `Gen ${layer.generation}`;
-   ctx.fillStyle = '#314e48';
-   ctx.fillText(label, Math.max(8, anchor.x - ctx.measureText(label).width - 6), anchor.y);
+   const span = ctx.measureText(label).width;
+   generationLabels.push({generation: layer.generation, label, span,
+    x: Math.max(8, anchor.x - span - 6), y: anchor.y});
   }
   const active = selected ?? hovered;
   const emphasized = branch || marked;
   const hasFocus = link => !ancestry && (link.ids.includes(active) || link.children?.includes(selected));
-  const links = active === null ? scene.links : [
-   ...scene.links.filter(link => !hasFocus(link)), ...scene.links.filter(hasFocus)
+  const visibleLinks = scene.links.filter(link => link.ids.every(isPersonVisible));
+  const links = active === null ? visibleLinks : [
+   ...visibleLinks.filter(link => !hasFocus(link)), ...visibleLinks.filter(hasFocus)
   ];
   for (const link of links) {
    const highlighted = hasFocus(link);
@@ -609,7 +657,7 @@ function initGenerationLayers(data) {
   }
   if (ancestry) {
    // Trace just the relevant half of a couple's connector on a single branch.
-   for (const link of scene.links) {
+   for (const link of visibleLinks) {
     if (link.children || !emphasized.has(link.to.id)) continue;
     for (const parent of link.ids.slice(0, -1)) {
      const position = scene.positions.get(parent);
@@ -621,7 +669,7 @@ function initGenerationLayers(data) {
     }
    }
   }
-  displayed = markerLayout.markers.map(marker => {
+  displayed = markerLayout.markers.filter(marker => isPersonVisible(marker.id)).map(marker => {
    const anchor = screen(scene.positions.get(marker.id));
    return {id: marker.id, ...screen(marker), anchorX: anchor.x, anchorY: anchor.y};
   }).sort((a, b) => a.depth - b.depth);
@@ -671,20 +719,32 @@ function initGenerationLayers(data) {
    ctx.strokeText(text, x, y, span);
    ctx.fillText(text, x, y, span);
   }
+  // Draw labels above people so their hit regions match the visible targets.
+  for (const {generation, label, x, y, span} of generationLabels) {
+   const hidden = hiddenGenerations.has(generation);
+   ctx.fillStyle = hidden ? '#e8ebe5' : '#f7f8f3';
+   ctx.fillRect(x - 4, y - 9, span + 8, 18);
+   ctx.fillStyle = hidden ? '#526366' : '#314e48';
+   ctx.fillText(label, x, y);
+  }
  }
- function hit(event) {
+ function hitTarget(event) {
   const bounds = canvas.getBoundingClientRect();
   const x = event.clientX - bounds.left - canvas.clientLeft;
   const y = event.clientY - bounds.top - canvas.clientTop;
+  const label = generationLabels.findLast(box =>
+   x >= box.x - 4 && x <= box.x + box.span + 4 && Math.abs(box.y - y) <= 9);
+  if (label) return {generation: label.generation};
   let nearest = null, distance = 10;
   for (const point of displayed) {
+   if (!isPersonVisible(point.id)) continue;
    const separation = Math.hypot(point.x - x, point.y - y);
    if (separation <= distance) {
     distance = separation;
     nearest = point.id;
    }
   }
-  return nearest;
+  return {personId: nearest};
  }
  function rotate(horizontal, vertical) {
   yaw += horizontal;
@@ -702,9 +762,12 @@ function initGenerationLayers(data) {
    if (!drag.moved && Math.hypot(dx, dy) < 4) return;
    drag = {...drag, x:event.clientX, y:event.clientY, moved:true};
    hovered = null;
+   canvas.classList.remove('layer-label-hover');
    rotate(dx * 0.009, dy * 0.007);
   } else {
-   const id = hit(event);
+   const target = hitTarget(event);
+   canvas.classList.toggle('layer-label-hover', target.generation !== undefined);
+   const id = target.personId ?? null;
    if (id === hovered) return;
    hovered = id;
    requestDraw();
@@ -712,11 +775,22 @@ function initGenerationLayers(data) {
  });
  canvas.addEventListener('pointerup', event => {
   if (drag?.id !== event.pointerId) return;
-  if (!drag.moved) selectPerson(hit(event));
+  if (!drag.moved) {
+   const target = hitTarget(event);
+   if (target.generation !== undefined) {
+    setGenerationVisible(target.generation, hiddenGenerations.has(target.generation));
+   } else {
+    selectPerson(target.personId);
+   }
+  }
   drag = null;
  });
  canvas.addEventListener('lostpointercapture', () => { drag = null; });
- canvas.addEventListener('pointerleave', () => { hovered = null; requestDraw(); });
+ canvas.addEventListener('pointerleave', () => {
+  hovered = null;
+  canvas.classList.remove('layer-label-hover');
+  requestDraw();
+ });
  canvas.addEventListener('wheel', event => {
   const mode = event.deltaMode;
   if (!scene.layers.length || !event.deltaY || event.ctrlKey || event.metaKey) return;
@@ -735,7 +809,7 @@ function initGenerationLayers(data) {
  tree.addEventListener('change', loadTree);
  back.addEventListener('click', () => {
   if (!history.length) return;
-  selectPerson(history.pop(), false);
+  selectPerson(history.pop(), {remember: false});
   if (back.disabled) detail.focus({preventScroll: true});
  });
  person.addEventListener('change', () => selectPerson(person.value ? Number(person.value) : null));

@@ -104,6 +104,46 @@ class SegmentComputationTests(unittest.TestCase):
 
 
 class ProfileDataTests(unittest.TestCase):
+    def test_coverage_retains_gedcom_details_and_counts_at_the_right_grain(self):
+        text = GEDCOM.replace("2 DATE 1900", """2 DATE BET 1898 AND 1901
+2 PLAC Muszyna, Polska
+3 MAP
+4 LATI N49.35
+4 LONG E20.90
+2 SOUR @S1@
+1 RESI
+2 DATE FROM 1920 TO 1934
+2 PLAC Żegiestów, Polska
+1 RESI
+2 DATE AFT 1940
+1 _CUSTOM detail""").replace("0 TRLR", """1 MARR Y
+0 @S1@ SOUR
+1 TITL Parish register
+0 TRLR""")
+        with TemporaryDirectory() as directory:
+            gedcom = Path(directory) / "coverage.ged"
+            gedcom.write_text(text, encoding="utf-8")
+            coverage = build_data(gedcom)["coverage"]
+        self.assertEqual(coverage["without_parents"], 2)
+        self.assertEqual(coverage["years"], [1898, 1940])
+        source, = coverage["sources"]
+        groups = {group["title"]: group for group in source["groups"]}
+
+        def row(group, label):
+            return next(item for item in groups[group]["rows"] if item["label"] == label)
+
+        self.assertEqual(row("People", "Birth date")["values"], {0: "BET 1898 AND 1901", 1: "ABT 1930"})
+        self.assertEqual(len(row("Places", "Birth place")["eligible"]), 2)
+        self.assertEqual(list(row("Places", "Birth place")["values"].values()), ["Muszyna, Polska"])
+        self.assertEqual(len(row("Places", "Residence place")["eligible"]), 2)
+        self.assertEqual(len(row("Other fields in this export · people", "Residence entries")["values"]), 1)
+        self.assertIn(0, row("Other fields in this export · people", "_CUSTOM")["values"])
+        self.assertEqual(list(row("Places", "Coordinates")["values"].values()), ["N49.35, E20.90"])
+        self.assertEqual(row("Places", "Marriage place")["values"], {})
+        self.assertEqual(len(row("Places", "Marriage place")["eligible"]), 1)
+        self.assertEqual(row("Evidence · People", "Source citations")["values"], {})
+        self.assertEqual(len(row("Evidence · Event entries", "Source citations")["values"]), 1)
+
     def test_gedcom_cli_builds_profile_from_file(self):
         with TemporaryDirectory() as directory:
             gedcom = Path(directory) / "tree.ged"
@@ -175,6 +215,10 @@ class ProfileDataTests(unittest.TestCase):
             data = json.loads(html.split("\nconst data=", 1)[1].split(";\n", 1)[0])
             self.assertEqual(data["gedcom"], "first.ged, second.ged")
             self.assertEqual(len(data["people"]), 4)
+            self.assertEqual(data["coverage"]["without_parents"], 3)
+            self.assertEqual(data["coverage"]["years"], [1900, 1930])
+            self.assertEqual([source["label"] for source in data["coverage"]["sources"]],
+                             ["first.ged", "second.ged"])
             jan = data["people"][0]
             self.assertIsNone(jan["birth"])
             self.assertIn("Recorded names: Jan Żak; John Żak", jan["merge_note"])
@@ -228,6 +272,7 @@ class ProfileDataTests(unittest.TestCase):
         self.assertNotIn("__PROFILE_DATA__", html)
         self.assertNotIn("__PROFILE_GRAPH__", html)
         self.assertNotIn("__GENERATION_LAYERS_JS__", html)
+        self.assertNotIn("__PROFILE_COVERAGE_JS__", html)
         self.assertIn('aria-controls="graph-panel"', html)
         self.assertIn('aria-controls="layers-panel"', html)
         self.assertEqual(html.count("</script>"), 2)

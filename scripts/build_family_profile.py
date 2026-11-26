@@ -20,11 +20,13 @@ from scripts.build_cytoscape_genealogy_graph import (
     render_html as render_graph_html,
 )
 from scripts.build_generation_overview import generation_layout
-from scripts.import_gedcom import incoming_person, parse_gedcom
+from scripts.family_profile_coverage import build_coverage
+from scripts.import_gedcom import Node, incoming_person, parse_gedcom
 from scripts.lib.genealogy_data import FAMILY_REGISTRY, ROOT, load_people, load_registry_csv
 
 TEMPLATE = ROOT / "scripts/templates/family_profile.html"
 LAYERS_SCRIPT = TEMPLATE.with_name("generation_layers.js")
+COVERAGE_SCRIPT = TEMPLATE.with_name("family_profile_coverage.js")
 
 
 def load_families_with_roles() -> list[tuple[int | None, int | None, list[int], str]]:
@@ -121,7 +123,7 @@ def compute_segments(
     return assignment, segments, inconsistencies
 
 
-def load_gedcom_profile(path: Path) -> tuple[list[dict], list[tuple], list[str]]:
+def load_gedcom_profile(path: Path) -> tuple[list[dict], list[tuple], list[str], list[Node]]:
     """Load people and family links directly from a validated GEDCOM export."""
     records = parse_gedcom(path)
     people = []
@@ -159,22 +161,26 @@ def load_gedcom_profile(path: Path) -> tuple[list[dict], list[tuple], list[str]]
                 None,
             ))
             references.append(record.xref)
-    return people, families, references
+    return people, families, references, records
 
 
-def merge_gedcom_profiles(paths: list[Path]) -> tuple[list[dict], list[tuple], list[str]]:
+def merge_gedcom_profiles(
+    paths: list[Path],
+) -> tuple[list[dict], list[tuple], list[str], list[tuple[str, list[Node]]]]:
     """Combine file-local records, linking people only through unambiguous persistent IDs."""
     labels = Counter(path.name for path in paths)
     loaded = []
+    sources = []
     records = {}
     by_identity = defaultdict(list)
     for index, path in enumerate(paths):
         label = path.name if labels[path.name] == 1 else f"{path.name} (file {index + 1})"
         try:
-            people, families, references = load_gedcom_profile(path)
+            people, families, references, source_records = load_gedcom_profile(path)
         except (OSError, ValueError) as error:
             raise ValueError(f"{path}: {error}") from error
         loaded.append((label, families, references))
+        sources.append((label, source_records))
         for person in people:
             key = (index, person["id"])
             records[key] = person
@@ -230,7 +236,7 @@ def merge_gedcom_profiles(paths: list[Path]) -> tuple[list[dict], list[tuple], l
                 merged_families.append((father, mother, children, role))
                 family_sources.append([])
             family_sources[match].append(f"{label} {reference}")
-    return merged_people, merged_families, ["; ".join(sources) for sources in family_sources]
+    return merged_people, merged_families, ["; ".join(refs) for refs in family_sources], sources
 
 
 def merge_gedcom_person(records: list[dict], person_id: int) -> dict:
@@ -257,11 +263,13 @@ def build_data(gedcom: Path | None = None) -> dict:
     """Assemble the profile from the selected source."""
     if gedcom is None:
         return profile_data(load_people(), load_families_with_roles(), [], None)
-    return profile_data(*load_gedcom_profile(gedcom), gedcom.name)
+    people, families, references, records = load_gedcom_profile(gedcom)
+    return profile_data(people, families, references, gedcom.name, [(gedcom.name, records)])
 
 
 def profile_data(
     people: list[dict], families: list[tuple], references: list[str], source_name: str | None,
+    coverage_sources: list[tuple[str, list[Node]]] | None = None,
 ) -> dict:
     placements = generation_layout(people, families, include_component_generation=True)
     assignment, segments, inconsistencies = compute_segments(people, families, placements)
@@ -296,6 +304,7 @@ def profile_data(
 
     return {
         "gedcom": source_name,
+        "coverage": build_coverage(people, families, coverage_sources),
         "people": out_people,
         "segments": segments,
         "families": [
@@ -374,6 +383,7 @@ def render_html(payload: str, graph_html: str) -> str:
     template = TEMPLATE.read_text(encoding="utf-8")
     before, after = template.split("__PROFILE_DATA__", 1)
     after = after.replace("__GENERATION_LAYERS_JS__", LAYERS_SCRIPT.read_text(encoding="utf-8"), 1)
+    after = after.replace("__PROFILE_COVERAGE_JS__", COVERAGE_SCRIPT.read_text(encoding="utf-8"), 1)
     return before.replace("__PROFILE_GRAPH__", graph_payload, 1) + payload + after
 
 
@@ -397,11 +407,15 @@ def main() -> None:
             profile = build_data()
             graph = render_graph_html(registry_graph_data(), embedded=True)
         else:
-            loaded = load_gedcom_profile(inputs[0]) if len(inputs) == 1 else merge_gedcom_profiles(inputs)
             source_name = ", ".join(path.name for path in inputs)
-            profile = profile_data(*loaded, source_name)
+            if len(inputs) == 1:
+                people, families, references, records = load_gedcom_profile(inputs[0])
+                sources = [(source_name, records)]
+            else:
+                people, families, references, sources = merge_gedcom_profiles(inputs)
+            profile = profile_data(people, families, references, source_name, sources)
             graph = render_graph_html(
-                gedcom_graph_data(*loaded), embedded=True, source_name=source_name
+                gedcom_graph_data(people, families, references), embedded=True, source_name=source_name
             )
         payload = json.dumps(profile, ensure_ascii=False).replace("<", "\\u003c")
         output.parent.mkdir(parents=True, exist_ok=True)
